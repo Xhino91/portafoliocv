@@ -568,6 +568,9 @@ p {
   background-color: var(--black-color);
   clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 1rem), 0% 100%);
 }
+.hero-image-content img{
+  width: 60%;
+}
 
 .typing {
   font-family: var(--font);
@@ -615,7 +618,7 @@ p {
   .hero-image-content img {
     grid-area: 1 / 1 / 5 / 3;
     width: auto;
-    height: 100vh;
+    height: 95vh;
     margin-left: 100px;
   }
 
