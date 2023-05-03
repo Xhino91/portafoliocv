@@ -1,0 +1,95 @@
+.error {
+  padding: 1rem;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.error mark {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+  color: #fff;
+  background-color: #01579b;
+}
+
+.filter {
+  display: none;
+}
+.search-form {
+  margin: auto 0;
+  text-align: center;
+}
+
+.search-form input {
+  display: block;
+  margin: auto;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+
+
+header {
+  width: 100%;
+  height: 5rem;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: rgb(38, 128, 223);
+  box-shadow: inset 0 -3em 3em rgba(0, 3, 89, 0.361), 0 0 0 2px rgb(50, 80, 168),
+    0.3em 0.3em 1em rgba(0, 25, 83, 0.421);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+}
+
+header * .logo {
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+}
+
+.loader {
+  margin: 1rem auto;
+  display: block;
+  width: 4rem;
+  height: 4rem;
+}
+
+#main {
+  margin-top: 5rem;
+}
+
+.margin {
+  padding: 1rem 2rem 1rem 2rem;
+}
+
+.thtable {
+    width: 100%;
+    height: 79vh;
+    position: sticky;
+    overflow-y: scroll;
+}
+
+thead tr th { 
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.active-warning {
+  background-color: rgb(245, 223, 124);
+}
+
+.active-complete {
+  background-color: rgb(146, 225, 117);
+}
+
+.active-error {
+  background-color: #ff8484;
+}
+

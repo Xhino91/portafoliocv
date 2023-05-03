@@ -1,0 +1,127 @@
+
+export function Main() {
+  const $main = document.createElement("main");
+  $main.id = "main";
+
+  let date = new Date();
+  
+  //console.log(location.hash);
+  $main.innerHTML = `
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end margin">
+  <button class="btn btn-dark fw-bold"><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
+  <button class="btn btn-dark fw-bold me-auto"> <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
+  
+  <button class="btn btn-secondary fw-bold" type="button" data-bs-toggle="" data-bs-target="#importModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic"  ? "display: none;" : ""}";>Importar Template</button>
+  <button class="btn btn-primary fw-bold modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal">Generar Reporte</button>
+  <button class="btn btn-success fw-bold me-md-2 reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" ? "display: none;" : ""}";>Agregar Registro</button>
+  </div>
+
+  <form id="formulario">
+    <div classs="container">
+     <div class="modal fade" id="exampleModal" style="height: 40vh; margin-top:10rem;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+       <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button id="bt-save" data-value="" type="submit" class="btn btn-primary hidden">Guardar cambios</button>
+        <input type="hidden" name="id">
+               </div>
+             </div>
+           </div>
+        </div>
+       </div>
+  </form>
+
+
+  <form id="formulario">
+    <div classs="container">
+     <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModal" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+       <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exportModalLabel">Generar Reporte</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div id="exportModalXls" class="export-modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button data-value="" type="submit" class="btn btn-primary generar_xls" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+        <input type="hidden" name="id">
+               </div>
+             </div>
+           </div>
+        </div>
+       </div>
+  </form>
+
+  <!-- Modal import -->
+  <div classs="container">
+  <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModal" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+    <div class="modal-content">
+     <div class="modal-header">
+     <h5 class="modal-title" id="importModalLabel">Generar Template desde:</h5>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     </div>
+   <div class="import-modal-body">
+       <input class="ps-5 importModalCsv" type="file" id=""/>
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+     <button data-value="" type="button" class="btn btn-primary import_csv" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+     <input type="hidden" name="id">
+            </div>
+          </div>
+        </div>
+     </div>
+    </div>
+
+<section id="thtable" class="thtable">
+<table class="table table-hover table-sm" id="table_xls">
+    <thead class="table-dark text-center align-middle">
+      <tr>
+        <th scope="col">UNIDAD</th>
+        <th scope="col">CAJA</th>
+        <th scope="col">OPERADOR</th>
+        <th scope="col">C.PORTE</th>
+        <th scope="col">TRACKING</th>
+        <th scope="col">BOL / SHIPPER</th>
+        <th scope="col">RUTA</th>
+        <th scope="col">CLIENTE</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">HORARIO</th>
+        <th scope="col">LLEGADA</th>
+        <th scope="col">ESTATUS</th>
+        <th class="" scope="col">CHECKED</th>
+        <th scope="col">OPCIONES</th>
+  
+      </tr>
+    </thead>
+ 
+    <tbody id="table_body" class="body_table">
+    </tbody>
+    
+  </table>
+</section>
+
+  `;
+
+  let clockTempo;
+
+  clockTempo = setInterval(() => { let clockHour = new Date().toLocaleTimeString();
+    document.querySelector(".clock").innerHTML=`${clockHour}`;
+   }, 1000);
+
+ 
+
+  return $main;
+}
