@@ -11,9 +11,10 @@ export async function Router() {
   const d = document,
        w = window;
   
-  const reloadTime = setInterval(() => {
+  function reloadTime () { setInterval(() => {
     location.reload();
   }, 30000);
+   }
 
   let { hash } = w.location;   
 
@@ -296,7 +297,6 @@ export async function Router() {
       }
     });
 
-    reloadTime();
  
    }
 
@@ -1740,7 +1740,7 @@ export async function Router() {
         }
       });
     });
-    
+
     reloadTime();
 
   }
