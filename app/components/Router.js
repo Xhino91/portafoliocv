@@ -11,84 +11,83 @@ export async function Router() {
   const d = document,
     w = window;
 
-  let { hash } = w.location;
- 
-    
+  let { hash } = w.location;   
 
   if (!hash || hash === "#/Public") {     
+   
     await ajax({
-      url: api.ITEMS,
-      cbSuccess: (items) => {
-        // console.log(items);
-        // Orden por fecha y hora
-        let orderItems = items.sort((o1, o2) => {
-          if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
-            return -1;
-          } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-
-        let html = "";
-        orderItems.forEach((item) => (html += itemPublic(item)));
-        d.querySelector(".loader").style.display = "none";
-        d.getElementById("thtable").innerHTML = `
-    <table class="table table-hover table-sm" id="table_xls">
-    <thead class="table-dark text-center align-middle">
-      <tr>
-        <th scope="col">UNIDAD</th>
-        <th scope="col">CAJA</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">C.PORTE</th>
-        <th scope="col">TRACKING</th>
-        <th scope="col">BOL / SHIPPER</th>
-        <th scope="col">RUTA</th>
-        <th scope="col">CLIENTE</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">HORARIO</th>
-        <th scope="col">LLEGADA</th>
-        <th scope="col">ESTATUS</th>
-        <th scope="col">OPCIONES</th>
+        url: api.ITEMS,
+        cbSuccess: (items) => {
+          // console.log(items);
+          // Orden por fecha y hora
+          let orderItems = items.sort((o1, o2) => {
+            if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+              return -1;
+            } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
   
-      </tr>
-    </thead>
- 
-    <tbody id="table_body" class="body_table">
-    </tbody>
+          let html = "";
+          orderItems.forEach((item) => (html += itemPublic(item)));
+          d.querySelector(".loader").style.display = "none";
+          d.getElementById("thtable").innerHTML = `
+      <table class="table table-hover table-sm" id="table_xls">
+      <thead class="table-dark text-center align-middle">
+        <tr>
+          <th scope="col">UNIDAD</th>
+          <th scope="col">CAJA</th>
+          <th scope="col">OPERADOR</th>
+          <th scope="col">C.PORTE</th>
+          <th scope="col">TRACKING</th>
+          <th scope="col">BOL / SHIPPER</th>
+          <th scope="col">RUTA</th>
+          <th scope="col">CLIENTE</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">HORARIO</th>
+          <th scope="col">LLEGADA</th>
+          <th scope="col">ESTATUS</th>
+          <th scope="col">OPCIONES</th>
     
-  </table>
-    `; 
-
-        d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
-       
-        //Helper de acceso a los items
-        const $tr = d.querySelectorAll(".item");
-        const newOrder = Array.from($tr);
-        // Orden Run Complete
-        newOrder.sort((e1, e2) => {
-          if (
-            e1.dataset.run < e2.dataset.run ||
-            e1.dataset.run < e2.dataset.run
-          ) {
-            return -1;
-          } else if (
-            e1.dataset.run > e2.dataset.run ||
-            e1.dataset.run > e2.dataset.run
-          ) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-        });
-
-
-      },
-    });
+        </tr>
+      </thead>
+   
+      <tbody id="table_body" class="body_table">
+      </tbody>
+      
+    </table>
+      `; 
+  
+          d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+         
+          //Helper de acceso a los items
+          const $tr = d.querySelectorAll(".item");
+          const newOrder = Array.from($tr);
+          // Orden Run Complete
+          newOrder.sort((e1, e2) => {
+            if (
+              e1.dataset.run < e2.dataset.run ||
+              e1.dataset.run < e2.dataset.run
+            ) {
+              return -1;
+            } else if (
+              e1.dataset.run > e2.dataset.run ||
+              e1.dataset.run > e2.dataset.run
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          newOrder.forEach((e) => {
+            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+          });
+  
+  
+        },
+      });
 
     d.addEventListener("click", (e) => {
       //console.log(e.target);
@@ -289,6 +288,81 @@ export async function Router() {
       }
     });
 
+    setInterval(async () => {
+      await ajax({
+         url: api.ITEMS,
+         cbSuccess: (items) => {
+           // console.log(items);
+           // Orden por fecha y hora
+           let orderItems = items.sort((o1, o2) => {
+             if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+               return -1;
+             } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+               return 1;
+             } else {
+               return 0;
+             }
+           });
+   
+           let html = "";
+           orderItems.forEach((item) => (html += itemPublic(item)));
+           d.getElementById("thtable").innerHTML = `
+       <table class="table table-hover table-sm" id="table_xls">
+       <thead class="table-dark text-center align-middle">
+         <tr>
+           <th scope="col">UNIDAD</th>
+           <th scope="col">CAJA</th>
+           <th scope="col">OPERADOR</th>
+           <th scope="col">C.PORTE</th>
+           <th scope="col">TRACKING</th>
+           <th scope="col">BOL / SHIPPER</th>
+           <th scope="col">RUTA</th>
+           <th scope="col">CLIENTE</th>
+           <th scope="col">FECHA</th>
+           <th scope="col">HORARIO</th>
+           <th scope="col">LLEGADA</th>
+           <th scope="col">ESTATUS</th>
+           <th scope="col">OPCIONES</th>
+     
+         </tr>
+       </thead>
+    
+       <tbody id="table_body" class="body_table">
+       </tbody>
+       
+     </table>
+       `; 
+   
+           d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+          
+           //Helper de acceso a los items
+           const $tr = d.querySelectorAll(".item");
+           const newOrder = Array.from($tr);
+           // Orden Run Complete
+           newOrder.sort((e1, e2) => {
+             if (
+               e1.dataset.run < e2.dataset.run ||
+               e1.dataset.run < e2.dataset.run
+             ) {
+               return -1;
+             } else if (
+               e1.dataset.run > e2.dataset.run ||
+               e1.dataset.run > e2.dataset.run
+             ) {
+               return 1;
+             } else {
+               return 0;
+             }
+           });
+           newOrder.forEach((e) => {
+             d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+           });
+   
+   
+         },
+       });
+     }, 30000);
+ 
    }
 
    if (!hash || hash === "#/Tracking") {
@@ -340,7 +414,7 @@ export async function Router() {
        },
      });  
  
-     d.addEventListener("click", (e) => {
+     d.addEventListener("click", async (e) => {
        //console.log(e.target);
        //LEER CSV / XLS
        /*if (e.target.matches(".import_csv")){
@@ -429,7 +503,7 @@ export async function Router() {
          let isConfirm = confirm("¿Eliminar Registro?");
  
          if (isConfirm) {
-           ajax({
+          await ajax({
              url: `${api.ITEMS}/${e.target.id}`,
              options: {
                method: "DELETE",
@@ -448,7 +522,7 @@ export async function Router() {
          d.querySelector(".hidden").style.display = "block";
          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
  
-         ajax({
+        await ajax({
            url: `${api.ITEMS}/${e.target.id}`,
            method: "GET",
            cbSuccess: (item) => {
@@ -807,6 +881,55 @@ export async function Router() {
          }
        });
      });
+
+     setInterval( async () => {
+      await ajax({
+        url: api.ITEMS,
+        cbSuccess: (items) => {
+          // console.log(items);
+          // Orden por fecha y hora
+          let orderItems = items.sort((o1, o2) => {
+            if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+              return -1;
+            } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+  
+          let html = "";
+          orderItems.forEach((item) => (html += Item(item)));
+          d.querySelector(".loader").style.display = "none";
+          d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+         
+          //Helper de acceso a los items
+          const $tr = d.querySelectorAll(".item");
+          const newOrder = Array.from($tr);
+          // Orden Run Complete
+          newOrder.sort((e1, e2) => {
+            if (
+              e1.dataset.run < e2.dataset.run ||
+              e1.dataset.run < e2.dataset.run
+            ) {
+              return -1;
+            } else if (
+              e1.dataset.run > e2.dataset.run ||
+              e1.dataset.run > e2.dataset.run
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          newOrder.forEach((e) => {
+            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+          });
+  
+  
+        },
+      });
+     }, 30000);
    }
 
    if (!hash || hash === "#/Traffic") {
@@ -1193,6 +1316,55 @@ export async function Router() {
         }
       });
     });
+
+    setInterval( async () => {
+      await ajax({
+        url: api.ITEMS,
+        cbSuccess: (items) => {
+          // console.log(items);
+          // Orden por fecha y hora
+          let orderItems = items.sort((o1, o2) => {
+            if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+              return -1;
+            } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+  
+          let html = "";
+          orderItems.forEach((item) => (html += Item(item)));
+          d.querySelector(".loader").style.display = "none";
+          d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+         
+          //Helper de acceso a los items
+          const $tr = d.querySelectorAll(".item");
+          const newOrder = Array.from($tr);
+          // Orden Run Complete
+          newOrder.sort((e1, e2) => {
+            if (
+              e1.dataset.run < e2.dataset.run ||
+              e1.dataset.run < e2.dataset.run
+            ) {
+              return -1;
+            } else if (
+              e1.dataset.run > e2.dataset.run ||
+              e1.dataset.run > e2.dataset.run
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          newOrder.forEach((e) => {
+            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+          });
+  
+  
+        },
+      });
+    }, 30000);
   }
 
   if (!hash || hash === "#/Inhouse") {
@@ -1244,7 +1416,7 @@ export async function Router() {
       },
     });  
 
-    d.addEventListener("click", (e) => {
+    d.addEventListener("click", async (e) => {
       //console.log(e.target);
       //LEER CSV / XLS
       /*if (e.target.matches(".import_csv")){
@@ -1333,7 +1505,7 @@ export async function Router() {
         let isConfirm = confirm("¿Eliminar Registro?");
 
         if (isConfirm) {
-          ajax({
+       await ajax({
             url: `${api.ITEMS}/${e.target.id}`,
             options: {
               method: "DELETE",
@@ -1345,6 +1517,7 @@ export async function Router() {
               //console.log(res);
             },
           });
+          location.reload;
         }
       }
       if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
@@ -1352,7 +1525,7 @@ export async function Router() {
         d.querySelector(".hidden").style.display = "block";
         d.getElementById("bt-save").dataset.value = `${e.target.id}`;
 
-        ajax({
+       await ajax({
           url: `${api.ITEMS}/${e.target.id}`,
           method: "GET",
           cbSuccess: (item) => {
@@ -1433,7 +1606,7 @@ export async function Router() {
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
         // console.log(e.target);
-       ajax({
+      await ajax({
            url: `${api.SUBITEMS}1`,
            method: "GET",
            cbSuccess: (unit) => {
@@ -1712,14 +1885,58 @@ export async function Router() {
       });
     });
 
-
-    
+    setInterval( async () => {
+      await ajax({
+        url: api.ITEMS,
+        cbSuccess: (items) => {
+          // console.log(items);
+          // Orden por fecha y hora
+          let orderItems = items.sort((o1, o2) => {
+            if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+              return -1;
+            } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+  
+          let html = "";
+          orderItems.forEach((item) => (html += Item(item)));
+          d.querySelector(".loader").style.display = "none";
+          d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+         
+          //Helper de acceso a los items
+          const $tr = d.querySelectorAll(".item");
+          const newOrder = Array.from($tr);
+          // Orden Run Complete
+          newOrder.sort((e1, e2) => {
+            if (
+              e1.dataset.run < e2.dataset.run ||
+              e1.dataset.run < e2.dataset.run
+            ) {
+              return -1;
+            } else if (
+              e1.dataset.run > e2.dataset.run ||
+              e1.dataset.run > e2.dataset.run
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          newOrder.forEach((e) => {
+            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+          });
+  
+  
+        },
+      }); 
+    }, 30000);
     
   }
 
-  
-
-return 
+  return 
 }
 
 

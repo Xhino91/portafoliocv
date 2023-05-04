@@ -70,7 +70,7 @@ header * .logo {
 
 .thtable {
     width: 100%;
-    height: 79vh;
+    height: 85vh;
     position: sticky;
     overflow-y: scroll;
 }
