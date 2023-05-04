@@ -9,12 +9,17 @@ import { itemPublic } from "./itemPublic.js";
 
 export async function Router() {
   const d = document,
-    w = window;
+       w = window;
+  
+  const reloadTime = setInterval(() => {
+    location.reload();
+  }, 30000);
 
   let { hash } = w.location;   
 
   if (!hash || hash === "#/Public") {     
-   
+      reloadTime();
+
     await ajax({
         url: api.ITEMS,
         cbSuccess: (items) => {
@@ -97,6 +102,7 @@ export async function Router() {
       }*/
       //GENERAR REPORTE XLS
       clearInterval(reloadTime);
+      reloadTime = null;
       let date = new Date;
       if (e.target.matches(".modal_xls")){
             d.getElementById("exportModalXls").innerHTML = `
@@ -263,6 +269,7 @@ export async function Router() {
     d.addEventListener("submit", (e) => {
       e.preventDefault();
       clearInterval(reloadTime);
+      reloadTime = null;
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -289,14 +296,11 @@ export async function Router() {
                         });
       }
     });
-
-    setInterval(() => {
-      location.reload();
-     }, reloadTime, 30000);
  
    }
 
    if (!hash || hash === "#/Tracking") {
+    reloadTime();
      
      await ajax({
        url: api.ITEMS,
@@ -352,6 +356,7 @@ export async function Router() {
         //console.log(e.target);    
        }*/
        clearInterval(reloadTime);
+       reloadTime = null;
        //GENERAR REPORTE XLS
        let date = new Date;
        if (e.target.matches(".modal_xls")){
@@ -694,6 +699,7 @@ export async function Router() {
      d.addEventListener("submit", async (e) => {
        e.preventDefault();
        clearInterval(reloadTime);
+       reloadTime = null;
        if (e.target.matches(".search-form")) {
          //console.log(e.target);
          let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -815,12 +821,11 @@ export async function Router() {
        });
      });
 
-     setInterval(() => {
-      location.reload();
-     }, reloadTime, 30000);
+     
    }
 
    if (!hash || hash === "#/Traffic") {
+    reloadTime();
      
     await ajax({
       url: api.ITEMS,
@@ -876,6 +881,7 @@ export async function Router() {
        //console.log(e.target);    
       }*/
       clearInterval(reloadTime);
+      reloadTime = null;
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
@@ -1125,6 +1131,8 @@ export async function Router() {
     d.addEventListener("submit", async (e) => {
       e.preventDefault();
       clearInterval(reloadTime);
+      reloadTime = null;
+
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -1207,12 +1215,10 @@ export async function Router() {
       });
     });
 
-    setInterval(() => {
-      location.reload();
-     }, reloadTime, 30000);
   }
 
   if (!hash || hash === "#/Inhouse") {
+    reloadTime();
     
     await ajax({
       url: api.ITEMS,
@@ -1268,6 +1274,7 @@ export async function Router() {
        //console.log(e.target);    
       }*/
       clearInterval(reloadTime);
+      reloadTime = null;
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
@@ -1611,6 +1618,8 @@ export async function Router() {
     d.addEventListener("submit", async (e) => {
       e.preventDefault();
       clearInterval(reloadTime);
+      reloadTime = null;
+      
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -1732,9 +1741,6 @@ export async function Router() {
       });
     });
     
-    setInterval(() => {
-      location.reload();
-     }, reloadTime, 30000);
   }
 
   return 
