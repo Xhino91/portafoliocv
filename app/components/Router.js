@@ -685,7 +685,7 @@ export async function Router() {
        return;
      });
  
-     d.addEventListener("submit", (e) => {
+     d.addEventListener("submit", async (e) => {
        e.preventDefault();
        if (e.target.matches(".search-form")) {
          //console.log(e.target);
@@ -740,7 +740,7 @@ export async function Router() {
                x1: e.target.x1.checked,
              }),
            };
-           ajax({
+         await ajax({
              url: api.ITEMS,
              options,
              cbSuccess: (res) => {
@@ -780,7 +780,7 @@ export async function Router() {
                x1: e.target.x1.checked,
              }),
            };
-           ajax({
+          await ajax({
              url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
              options,
              cbSuccess: (res) => {
@@ -1110,7 +1110,7 @@ export async function Router() {
       return;
     });
 
-    d.addEventListener("submit", (e) => {
+    d.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
@@ -1166,7 +1166,7 @@ export async function Router() {
               x1: e.target.x1.checked,
             }),
           };
-          ajax({
+         await ajax({
             url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
             options,
             cbSuccess: (res) => {
@@ -1197,8 +1197,6 @@ export async function Router() {
 
   if (!hash || hash === "#/Inhouse") {
     
-
-
     await ajax({
       url: api.ITEMS,
       cbSuccess: (items) => {
@@ -1591,7 +1589,7 @@ export async function Router() {
       return;
     });
 
-    d.addEventListener("submit", (e) => {
+    d.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
@@ -1646,7 +1644,7 @@ export async function Router() {
               x1: e.target.x1.checked,
             }),
           };
-          ajax({
+          await ajax({
             url: api.ITEMS,
             options,
             cbSuccess: (res) => {
@@ -1686,7 +1684,7 @@ export async function Router() {
               x1: e.target.x1.checked,
             }),
           };
-          ajax({
+         await ajax({
             url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
             options,
             cbSuccess: (res) => {
