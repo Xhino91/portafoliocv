@@ -96,7 +96,7 @@ export async function Router() {
        //console.log(e.target);    
       }*/
       //GENERAR REPORTE XLS
-      clearInterval();
+      clearInterval(reloadTime);
       let date = new Date;
       if (e.target.matches(".modal_xls")){
             d.getElementById("exportModalXls").innerHTML = `
@@ -262,7 +262,7 @@ export async function Router() {
     
     d.addEventListener("submit", (e) => {
       e.preventDefault();
-      clearInterval();
+      clearInterval(reloadTime);
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -292,7 +292,7 @@ export async function Router() {
 
     setInterval(() => {
       location.reload();
-     }, 30000);
+     }, reloadTime, 30000);
  
    }
 
@@ -351,7 +351,7 @@ export async function Router() {
        /*if (e.target.matches(".import_csv")){
         //console.log(e.target);    
        }*/
-       clearInterval();
+       clearInterval(reloadTime);
        //GENERAR REPORTE XLS
        let date = new Date;
        if (e.target.matches(".modal_xls")){
@@ -693,7 +693,7 @@ export async function Router() {
  
      d.addEventListener("submit", async (e) => {
        e.preventDefault();
-       clearInterval();
+       clearInterval(reloadTime);
        if (e.target.matches(".search-form")) {
          //console.log(e.target);
          let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -817,7 +817,7 @@ export async function Router() {
 
      setInterval(() => {
       location.reload();
-     }, 30000);
+     }, reloadTime, 30000);
    }
 
    if (!hash || hash === "#/Traffic") {
@@ -875,7 +875,7 @@ export async function Router() {
       /*if (e.target.matches(".import_csv")){
        //console.log(e.target);    
       }*/
-      clearInterval();
+      clearInterval(reloadTime);
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
@@ -1124,7 +1124,7 @@ export async function Router() {
 
     d.addEventListener("submit", async (e) => {
       e.preventDefault();
-      clearInterval();
+      clearInterval(reloadTime);
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -1209,7 +1209,7 @@ export async function Router() {
 
     setInterval(() => {
       location.reload();
-     }, 30000);
+     }, reloadTime, 30000);
   }
 
   if (!hash || hash === "#/Inhouse") {
@@ -1267,7 +1267,7 @@ export async function Router() {
       /*if (e.target.matches(".import_csv")){
        //console.log(e.target);    
       }*/
-      clearInterval();
+      clearInterval(reloadTime);
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
@@ -1610,7 +1610,7 @@ export async function Router() {
 
     d.addEventListener("submit", async (e) => {
       e.preventDefault();
-      clearInterval();
+      clearInterval(reloadTime);
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -1734,7 +1734,7 @@ export async function Router() {
     
     setInterval(() => {
       location.reload();
-     }, 30000);
+     }, reloadTime, 30000);
   }
 
   return 
