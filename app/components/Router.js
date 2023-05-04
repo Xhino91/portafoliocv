@@ -747,7 +747,7 @@ export async function Router() {
                json = res.json();
              },
            });
-           //location.reload();
+           location.reload();
          }
          // console.log(e.target);
        } 
@@ -787,7 +787,7 @@ export async function Router() {
                console.log(res);
              },
            });
-           // location.reload();
+           location.reload();
          }
  
          // console.log(e.target);
@@ -1173,7 +1173,7 @@ export async function Router() {
               console.log(res);
             },
           });
-          // location.reload();
+          location.reload();
         }
 
         // console.log(e.target);
@@ -1653,7 +1653,7 @@ export async function Router() {
               json = res.json();
             },
           });
-          //location.reload();
+          location.reload();
         }
         // console.log(e.target);
       } 
@@ -1693,7 +1693,7 @@ export async function Router() {
               console.log(res);
             },
           });
-          // location.reload();
+          location.reload();
         }
 
         // console.log(e.target);
