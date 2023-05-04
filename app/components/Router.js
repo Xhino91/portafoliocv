@@ -18,7 +18,6 @@ export async function Router() {
   let { hash } = w.location;   
 
   if (!hash || hash === "#/Public") {     
-      reloadTime();
 
     await ajax({
         url: api.ITEMS,
@@ -296,11 +295,13 @@ export async function Router() {
                         });
       }
     });
+
+    reloadTime();
  
    }
 
    if (!hash || hash === "#/Tracking") {
-    reloadTime();
+    
      
      await ajax({
        url: api.ITEMS,
@@ -821,11 +822,10 @@ export async function Router() {
        });
      });
 
-     
+     reloadTime();
    }
 
    if (!hash || hash === "#/Traffic") {
-    reloadTime();
      
     await ajax({
       url: api.ITEMS,
@@ -1214,11 +1214,11 @@ export async function Router() {
         }
       });
     });
+    reloadTime();
 
   }
 
   if (!hash || hash === "#/Inhouse") {
-    reloadTime();
     
     await ajax({
       url: api.ITEMS,
@@ -1619,7 +1619,7 @@ export async function Router() {
       e.preventDefault();
       clearInterval(reloadTime);
       reloadTime = null;
-      
+
       if (e.target.matches(".search-form")) {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -1741,6 +1741,8 @@ export async function Router() {
       });
     });
     
+    reloadTime();
+
   }
 
   return 
