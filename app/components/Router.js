@@ -11,10 +11,6 @@ export async function Router() {
   const d = document,
        w = window;
   
-  function reloadTime () { setInterval(() => {
-    location.reload();
-  }, 30000);
-   }
 
   let { hash } = w.location;   
 
@@ -101,8 +97,6 @@ export async function Router() {
        //console.log(e.target);    
       }*/
       //GENERAR REPORTE XLS
-      clearInterval(reloadTime);
-      reloadTime = null;
       let date = new Date;
       if (e.target.matches(".modal_xls")){
             d.getElementById("exportModalXls").innerHTML = `
@@ -356,8 +350,6 @@ export async function Router() {
        /*if (e.target.matches(".import_csv")){
         //console.log(e.target);    
        }*/
-       clearInterval(reloadTime);
-       reloadTime = null;
        //GENERAR REPORTE XLS
        let date = new Date;
        if (e.target.matches(".modal_xls")){
@@ -880,8 +872,6 @@ export async function Router() {
       /*if (e.target.matches(".import_csv")){
        //console.log(e.target);    
       }*/
-      clearInterval(reloadTime);
-      reloadTime = null;
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
@@ -1273,8 +1263,6 @@ export async function Router() {
       /*if (e.target.matches(".import_csv")){
        //console.log(e.target);    
       }*/
-      clearInterval(reloadTime);
-      reloadTime = null;
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
@@ -1741,9 +1729,7 @@ export async function Router() {
       });
     });
 
-    reloadTime();
-
-  }
+    }
 
   return 
 }

@@ -18,7 +18,7 @@ export function itemPublic(item) {
               <td style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td >${item.status}</td>
               <td>
-              <button id="${item.id}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-car" id="${item.id}"></i></button>
+              <button id="${item.id}" type="button" class="btn btn-sm btn-dark control"><i class="fa-solid fa-car" id="${item.id}"></i></button>
               </td>
            </tr>
              `;
