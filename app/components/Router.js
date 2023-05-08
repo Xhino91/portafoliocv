@@ -177,100 +177,96 @@ export async function Router() {
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
        // console.log(e.target);
-      ajax({
-          url: `${api.SUBITEMS}1`,
-          method: "GET",
-          cbSuccess: (unit) => {
-            console.log(unit);
-            console.log(e.target);
-
-            d.querySelector(".hidden").style.display = "none";
-            d.querySelector("#exampleModal").style.height = "60vh";
-            d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
-            d.querySelector(".modal-body").innerHTML = `
-          <div class="container-fluid"> 
-          <table class="table table-sm" >
-      <thead class="table-dark text-center">
-        <tr class="text-wrap">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-          <th scope="col">VERIFICACION</th>
-          <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th> 
-        </tr>
-      </thead>
-      <tbody class="text-center" class="text-wrap">
-      <tr>
-      <td>${unit.unidad}</td>
-      <td>${unit.modelo}</td>
-      <td>${unit.placa}</td>
-      <td>${unit.año}</td>
-      <td>${unit.verificacion}</td>
-      <td>${unit.poliza}</td>
-      <td>${unit.inciso}</td>
-      <td>${unit.contacto}</td>     
-      </tr>   
-      </tbody>      
-    </table>
-
-    <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios}</textarea>
-    </div>
-          `;
-          },
-        });
-
        ajax({
-          url: `${api.SUBITEMS1}5070`,
-          method: "GET",
-          cbSuccess: (conv) => {
-            console.log(conv);
-            console.log(e.target);
+        url: `${api.SUBITEMS}1`,
+        method: "GET",
+        cbSuccess: (unit) => {
+          console.log(unit);
+          console.log(e.target);
 
-            d.querySelector(".hidden").style.display = "none";
-            d.querySelector("#exampleModal").style.height = "60vh";
-            d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
-            d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
-                       <div class="container-fluid"> 
-      
-                 <table class="table table-sm" >
-                 <thead class="table-dark text-center">
-                   <tr class="text-wrap">
-                     <th scope="col">REMOLQUE</th>
-                     <th scope="col">TIPO</th>
-                     <th scope="col">MODELO</th>
-                     <th scope="col">PLACA</th>
-                     <th scope="col">AÑO</th>
-                     <th scope="col">VERIFICACION</th>
-                     <th scope="col">NO. POLIZA</th>
-                     <th scope="col">INCISO</th>
-                     <th scope="col">CONTACTO DEL SEGURO</th> 
-                   </tr>
-                 </thead>
-                 <tbody class="text-center" class="text-wrap">
-                 <tr>
-                 <td>${conv.caja}</td>
-                 <td>${conv.modelo}</td>
-                 <td>${conv.placa}</td>
-                 <td>${conv.año}</td>
-                 <td>${conv.verificacion}</td>
-                 <td>${conv.poliza}</td>
-                 <td>${conv.inciso}</td>
-                 <td>${conv.contacto}</td>     
-                 </tr>
-               </tbody>      
-              </table>
+          d.querySelector(".hidden").style.display = "none";
+          d.querySelector("#exampleModal").style.height = "60vh";
+          d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
+          d.querySelector(".modal-body").innerHTML = `
+        <div class="container-fluid"> 
+        <table class="table table-sm" >
+        <thead class="table-dark text-center">
+          <tr class="text-wrap">
+            <th scope="col">UNIDAD</th>
+            <th scope="col">MODELO</th>
+            <th scope="col">PLACA</th>
+            <th scope="col">AÑO</th>
+            <th scope="col">VERIFICACION</th>
+            <th scope="col">NO. POLIZA</th>
+            <th scope="col">INCISO</th>
+            <th scope="col">CONTACTO DEL SEGURO</th> 
+          </tr>
+        </thead>
+        <tbody class="text-center" class="text-wrap">
+        <tr>
+        <td>${unit.unidad}</td>
+        <td>${unit.modelo}</td>
+        <td>${unit.placa}</td>
+        <td>${unit.año}</td>
+        <td>${unit.verificacion}</td>
+        <td>${unit.poliza}</td>
+        <td>${unit.inciso}</td>
+        <td>${unit.contacto}</td>     
+        </tr>   
+        </tbody>      
+      </table>
 
-               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque" disabled>${conv.comentarios}</textarea>
-
-                </div>` 
-        
-            );
-
+      <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" disabled>${unit.comentarios.toUpperCase()}</textarea>
+      </div>
+        `;
         },
-        });
+      });
+
+     ajax({
+        url: `${api.SUBITEMS1}5070`,
+        method: "GET",
+        cbSuccess: (conv) => {
+          console.log(conv);
+          console.log(e.target);
+          d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
+            <div class="container-fluid"> 
+    
+               <table class="table table-sm" >
+               <thead class="table-dark text-center">
+                 <tr class="text-wrap">
+                   <th scope="col">REMOLQUE</th>
+                   <th scope="col">TIPO</th>
+                   <th scope="col">MODELO</th>
+                   <th scope="col">PLACA</th>
+                   <th scope="col">AÑO</th>
+                   <th scope="col">VERIFICACION</th>
+                   <th scope="col">NO. POLIZA</th>
+                   <th scope="col">INCISO</th>
+                   <th scope="col">CONTACTO DEL SEGURO</th> 
+                 </tr>
+               </thead>
+               <tbody class="text-center" class="text-wrap">
+               <tr>
+               <td>${conv.caja}</td>
+               <td>${conv.modelo}</td>
+               <td>${conv.placa}</td>
+               <td>${conv.año}</td>
+               <td>${conv.verificacion}</td>
+               <td>${conv.poliza}</td>
+               <td>${conv.inciso}</td>
+               <td>${conv.contacto}</td>     
+               </tr>
+             </tbody>      
+            </table>
+
+             <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque" disabled>${conv.comentarios.toUpperCase()}</textarea>
+
+              </div>` 
+      
+          );
+
+      },
+      });
       }
       if(e.target.matches(".generar_xls")){
         //let $dataTable = d.getElementById("table_xls");
@@ -565,34 +561,34 @@ export async function Router() {
             d.querySelector(".modal-body").innerHTML = `
           <div class="container-fluid"> 
           <table class="table table-sm" >
-      <thead class="table-dark text-center">
-        <tr class="text-wrap">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-          <th scope="col">VERIFICACION</th>
-          <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th> 
-        </tr>
-      </thead>
-      <tbody class="text-center" class="text-wrap">
-      <tr>
-      <td>${unit.unidad}</td>
-      <td>${unit.modelo}</td>
-      <td>${unit.placa}</td>
-      <td>${unit.año}</td>
-      <td>${unit.verificacion}</td>
-      <td>${unit.poliza}</td>
-      <td>${unit.inciso}</td>
-      <td>${unit.contacto}</td>     
-      </tr>   
-      </tbody>      
-    </table>
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
+              <th scope="col">UNIDAD</th>
+              <th scope="col">MODELO</th>
+              <th scope="col">PLACA</th>
+              <th scope="col">AÑO</th>
+              <th scope="col">VERIFICACION</th>
+              <th scope="col">NO. POLIZA</th>
+              <th scope="col">INCISO</th>
+              <th scope="col">CONTACTO DEL SEGURO</th> 
+            </tr>
+          </thead>
+          <tbody class="text-center" class="text-wrap">
+          <tr>
+          <td>${unit.unidad}</td>
+          <td>${unit.modelo}</td>
+          <td>${unit.placa}</td>
+          <td>${unit.año}</td>
+          <td>${unit.verificacion}</td>
+          <td>${unit.poliza}</td>
+          <td>${unit.inciso}</td>
+          <td>${unit.contacto}</td>     
+          </tr>   
+          </tbody>      
+        </table>
 
-    <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios}</textarea>
-    </div>
+        <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios.toUpperCase()}</textarea>
+        </div>
           `;
           },
         });
@@ -603,12 +599,8 @@ export async function Router() {
           cbSuccess: (conv) => {
             console.log(conv);
             console.log(e.target);
-
-            d.querySelector(".hidden").style.display = "none";
-            d.querySelector("#exampleModal").style.height = "60vh";
-            d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
             d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
-                       <div class="container-fluid"> 
+              <div class="container-fluid"> 
       
                  <table class="table table-sm" >
                  <thead class="table-dark text-center">
@@ -638,11 +630,15 @@ export async function Router() {
                </tbody>      
               </table>
 
-               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque" disabled>${conv.comentarios}</textarea>
+               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque">${conv.comentarios.toUpperCase()}</textarea>
 
                 </div>` 
         
             );
+
+            d.querySelector(".modal-footer").insertAdjacentHTML("afterend", ` 
+          <button id="" data-unidad="" data-caja="" type="submit" class="btn btn-primary ">Actualizar</button>
+          `);
 
         },
         });
@@ -1089,34 +1085,34 @@ export async function Router() {
             d.querySelector(".modal-body").innerHTML = `
           <div class="container-fluid"> 
           <table class="table table-sm" >
-      <thead class="table-dark text-center">
-        <tr class="text-wrap">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-          <th scope="col">VERIFICACION</th>
-          <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th> 
-        </tr>
-      </thead>
-      <tbody class="text-center" class="text-wrap">
-      <tr>
-      <td>${unit.unidad}</td>
-      <td>${unit.modelo}</td>
-      <td>${unit.placa}</td>
-      <td>${unit.año}</td>
-      <td>${unit.verificacion}</td>
-      <td>${unit.poliza}</td>
-      <td>${unit.inciso}</td>
-      <td>${unit.contacto}</td>     
-      </tr>   
-      </tbody>      
-    </table>
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
+              <th scope="col">UNIDAD</th>
+              <th scope="col">MODELO</th>
+              <th scope="col">PLACA</th>
+              <th scope="col">AÑO</th>
+              <th scope="col">VERIFICACION</th>
+              <th scope="col">NO. POLIZA</th>
+              <th scope="col">INCISO</th>
+              <th scope="col">CONTACTO DEL SEGURO</th> 
+            </tr>
+          </thead>
+          <tbody class="text-center" class="text-wrap">
+          <tr>
+          <td>${unit.unidad}</td>
+          <td>${unit.modelo}</td>
+          <td>${unit.placa}</td>
+          <td>${unit.año}</td>
+          <td>${unit.verificacion}</td>
+          <td>${unit.poliza}</td>
+          <td>${unit.inciso}</td>
+          <td>${unit.contacto}</td>     
+          </tr>   
+          </tbody>      
+        </table>
 
-    <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios}</textarea>
-    </div>
+        <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios.toUpperCase()}</textarea>
+        </div>
           `;
           },
         });
@@ -1127,12 +1123,8 @@ export async function Router() {
           cbSuccess: (conv) => {
             console.log(conv);
             console.log(e.target);
-
-            d.querySelector(".hidden").style.display = "none";
-            d.querySelector("#exampleModal").style.height = "60vh";
-            d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
             d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
-                       <div class="container-fluid"> 
+              <div class="container-fluid"> 
       
                  <table class="table table-sm" >
                  <thead class="table-dark text-center">
@@ -1162,11 +1154,15 @@ export async function Router() {
                </tbody>      
               </table>
 
-               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque" disabled>${conv.comentarios}</textarea>
+               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque">${conv.comentarios.toUpperCase()}</textarea>
 
                 </div>` 
         
             );
+
+            d.querySelector(".modal-footer").insertAdjacentHTML("afterend", ` 
+          <button id="" data-unidad="" data-caja="" type="submit" class="btn btn-primary ">Actualizar</button>
+          `);
 
         },
         });
@@ -1508,6 +1504,7 @@ export async function Router() {
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
         // console.log(e.target);
+        
         ajax({
           url: `${api.SUBITEMS}1`,
           method: "GET",
@@ -1521,34 +1518,34 @@ export async function Router() {
             d.querySelector(".modal-body").innerHTML = `
           <div class="container-fluid"> 
           <table class="table table-sm" >
-      <thead class="table-dark text-center">
-        <tr class="text-wrap">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-          <th scope="col">VERIFICACION</th>
-          <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th> 
-        </tr>
-      </thead>
-      <tbody class="text-center" class="text-wrap">
-      <tr>
-      <td>${unit.unidad}</td>
-      <td>${unit.modelo}</td>
-      <td>${unit.placa}</td>
-      <td>${unit.año}</td>
-      <td>${unit.verificacion}</td>
-      <td>${unit.poliza}</td>
-      <td>${unit.inciso}</td>
-      <td>${unit.contacto}</td>     
-      </tr>   
-      </tbody>      
-    </table>
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
+              <th scope="col">UNIDAD</th>
+              <th scope="col">MODELO</th>
+              <th scope="col">PLACA</th>
+              <th scope="col">AÑO</th>
+              <th scope="col">VERIFICACION</th>
+              <th scope="col">NO. POLIZA</th>
+              <th scope="col">INCISO</th>
+              <th scope="col">CONTACTO DEL SEGURO</th> 
+            </tr>
+          </thead>
+          <tbody class="text-center" class="text-wrap">
+          <tr>
+          <td>${unit.unidad}</td>
+          <td>${unit.modelo}</td>
+          <td>${unit.placa}</td>
+          <td>${unit.año}</td>
+          <td>${unit.verificacion}</td>
+          <td>${unit.poliza}</td>
+          <td>${unit.inciso}</td>
+          <td>${unit.contacto}</td>     
+          </tr>   
+          </tbody>      
+        </table>
 
-    <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios}</textarea>
-    </div>
+        <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios.toUpperCase()}</textarea>
+        </div>
           `;
           },
         });
@@ -1559,12 +1556,8 @@ export async function Router() {
           cbSuccess: (conv) => {
             console.log(conv);
             console.log(e.target);
-
-            d.querySelector(".hidden").style.display = "none";
-            d.querySelector("#exampleModal").style.height = "60vh";
-            d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
             d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
-                       <div class="container-fluid"> 
+              <div class="container-fluid"> 
       
                  <table class="table table-sm" >
                  <thead class="table-dark text-center">
@@ -1594,7 +1587,7 @@ export async function Router() {
                </tbody>      
               </table>
 
-               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque" disabled>${conv.comentarios}</textarea>
+               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque">${conv.comentarios.toUpperCase()}</textarea>
 
                 </div>` 
         
@@ -1602,6 +1595,7 @@ export async function Router() {
 
         },
         });
+
        }
       if (e.target.matches(".reg")) {
         //  console.log(e.target);
