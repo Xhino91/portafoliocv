@@ -63,7 +63,31 @@ export function Main() {
        </div>
   </form>
 
-  <!-- Modal import -->
+  
+
+  <form id="formulario">
+  <div classs="container">
+   <div class="modal fade" id="controlModal" tabindex="-1" aria-labelledby="controlModal" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+     <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="controlModalLabel">Control Vehicular</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="control-modal-body">
+      ...
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+      <button id="controlV" data-idRem="" type="submit" class="btn btn-primary update">Guardar cambios</button>
+             </div>
+           </div>
+         </div>
+      </div>
+     </div>
+</form>
+
+
   <div classs="container">
   <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModal" aria-hidden="true">
    <div class="modal-dialog modal-md">

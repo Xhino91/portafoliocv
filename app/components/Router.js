@@ -16,7 +16,7 @@ export async function Router() {
 
   if (!hash || hash === "#/Public") {     
 
-    await ajax({
+  await ajax({
         url: api.ITEMS,
         cbSuccess: (items) => {
           // console.log(items);
@@ -178,7 +178,7 @@ export async function Router() {
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
        // console.log(e.target);
        ajax({
-        url: `${api.SUBITEMS}1`,
+        url: `${api.SUBITEMS}1.json`,
         method: "GET",
         cbSuccess: (unit) => {
           console.log(unit);
@@ -223,7 +223,7 @@ export async function Router() {
       });
 
      ajax({
-        url: `${api.SUBITEMS1}5070`,
+        url: `${api.SUBITEMS1}0.json`,
         method: "GET",
         cbSuccess: (conv) => {
           console.log(conv);
@@ -543,22 +543,21 @@ export async function Router() {
            },
          });
  
-         d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
        }
        if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-        // console.log(e.target);
+       //  console.log(e.target);
+
       
         ajax({
-          url: `${api.SUBITEMS}1`,
+          url: `${api.SUBITEMS}1.json`,
           method: "GET",
           cbSuccess: (unit) => {
-            console.log(unit);
-            console.log(e.target);
+         //   console.log(unit);
+           // console.log(e.target);
 
-            d.querySelector(".hidden").style.display = "none";
-            d.querySelector("#exampleModal").style.height = "60vh";
-            d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
-            d.querySelector(".modal-body").innerHTML = `
+            
+            d.getElementById("controlModal").style.height = "60vh";
+            d.querySelector(".control-modal-body").innerHTML = `
           <div class="container-fluid"> 
           <table class="table table-sm" >
           <thead class="table-dark text-center">
@@ -594,12 +593,12 @@ export async function Router() {
         });
 
        ajax({
-          url: `${api.SUBITEMS1}5070`,
+          url: `${api.SUBITEMS1}0.json`,
           method: "GET",
           cbSuccess: (conv) => {
-            console.log(conv);
-            console.log(e.target);
-            d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
+          //  console.log(conv);
+          //  console.log(e.target);
+          d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
               <div class="container-fluid"> 
       
                  <table class="table table-sm" >
@@ -619,6 +618,7 @@ export async function Router() {
                  <tbody class="text-center" class="text-wrap">
                  <tr>
                  <td>${conv.caja}</td>
+                 <td>${conv.tipo}</td>
                  <td>${conv.modelo}</td>
                  <td>${conv.placa}</td>
                  <td>${conv.año}</td>
@@ -635,14 +635,12 @@ export async function Router() {
                 </div>` 
         
             );
+            d.getElementById("controlV").dataset.idRem
+         },
 
-            d.querySelector(".modal-footer").insertAdjacentHTML("afterend", ` 
-          <button id="" data-unidad="" data-caja="" type="submit" class="btn btn-primary ">Actualizar</button>
-          `);
-
-        },
         });
       
+
        }
        if (e.target.matches(".reg")) {
          //  console.log(e.target);
@@ -727,8 +725,7 @@ export async function Router() {
  
      d.addEventListener("submit", async (e) => {
        e.preventDefault();
-       clearInterval(reloadTime);
-       reloadTime = null;
+
        if (e.target.matches(".search-form")) {
          //console.log(e.target);
          let query = localStorage.getItem("apiSearch").toUpperCase();
@@ -834,6 +831,43 @@ export async function Router() {
  
          // console.log(e.target);
        }
+       
+       else if (e.target.matches(".update")) {
+        //UPDATE
+       console.log(e.target);
+        if (!e.target.id.value) {
+         
+          console.log(e.target.id);
+
+          let options = {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({
+              caja: e.target.caja.value.toUpperCase(),
+              tipo: e.target.cporte.value.toUpperCase(),
+              placa: e.target.tracking.value.toUpperCase(),
+              poliza: e.target.bol.value.toUpperCase(),
+              verificacion: e.target.ruta.value.toUpperCase(),
+              inciso: e.target.operador.value.toUpperCase(),
+              contacto: e.target.cliente.value.toUpperCase(),
+              año: e.target.fecha.value.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,"$3/$2/$1"),
+              comentarios: e.target.ventana.valuetoUpperCase()
+            }),
+          };
+       /*  await ajax({
+            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
+            options,
+            cbSuccess: (res) => {
+              console.log(res);
+            },
+          });*/
+         // location.reload();
+        }
+
+        // console.log(e.target);
+      }
      });
  
      d.addEventListener("keyup", (e) => {
@@ -1073,7 +1107,7 @@ export async function Router() {
         // console.log(e.target);
        
         ajax({
-          url: `${api.SUBITEMS}1`,
+          url: `${api.SUBITEMS}1.json`,
           method: "GET",
           cbSuccess: (unit) => {
             console.log(unit);
@@ -1118,7 +1152,7 @@ export async function Router() {
         });
 
        ajax({
-          url: `${api.SUBITEMS1}5070`,
+          url: `${api.SUBITEMS1}0.json`,
           method: "GET",
           cbSuccess: (conv) => {
             console.log(conv);
@@ -1506,7 +1540,7 @@ export async function Router() {
         // console.log(e.target);
         
         ajax({
-          url: `${api.SUBITEMS}1`,
+          url: `${api.SUBITEMS}1.json`,
           method: "GET",
           cbSuccess: (unit) => {
             console.log(unit);
@@ -1551,7 +1585,7 @@ export async function Router() {
         });
 
        ajax({
-          url: `${api.SUBITEMS1}5070`,
+          url: `${api.SUBITEMS1}0.json`,
           method: "GET",
           cbSuccess: (conv) => {
             console.log(conv);
