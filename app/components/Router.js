@@ -57,7 +57,7 @@ export async function Router() {
           <th scope="col">CLIENTE</th>
           <th scope="col">FECHA</th>
           <th scope="col">HORARIO</th>
-          <th scope="col">LLEGADA</th>
+          <th class="llegada" scope="col">LLEGADA</th>
           <th scope="col">ESTATUS</th>
           <th scope="col">OPCIONES</th>
     

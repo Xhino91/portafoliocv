@@ -22,7 +22,7 @@ export function itemPublic(item) {
               <td class="table-active">${item.cliente}</td>
               <td class="">${item.fecha}</td>
               <td class="">${item.ventana}</td>
-              <td style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
+              <td class="llegada" style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
               <td>
              
@@ -45,7 +45,7 @@ export function itemPublic(item) {
            <td class="table-active">${item.cliente}</td>
            <td >${item.fecha}</td>
            <td >${item.ventana}</td>
-           <td style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
+           <td class="llegada" style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
            <td style="${item.status.match("VALIDAR") ? "background-color: #ff6767;" : ""}">${item.status}</td>
            <td>
            
@@ -67,7 +67,7 @@ export function itemPublic(item) {
          <td class="table-active">${item.cliente}</td>
          <td >${item.fecha}</td>
          <td >${item.ventana}</td>
-         <td style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
+         <td class="llegada" style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
          <td style="${item.status.match("TRANSITO") ? "background-color: #72aefd;" : "background-color: #c3d9e5"}">${item.status}</td>
          <td>
          <button id="${item.unidad}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>

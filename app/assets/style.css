@@ -98,7 +98,8 @@ thead tr th {
 @media (max-width: 800px) {
   .cporte,
   .track,
-  .bol {
+  .bol,
+  .llegada {
     display: none;
   }
 }
