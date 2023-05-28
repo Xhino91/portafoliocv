@@ -1,6 +1,9 @@
 export function ItemXls(item) {
     // console.log(item);
     
+item = item[1];
+
+    
     //ALERTA DE WARNING (RUTAS PENDIENTES)
        if(item.unidad === "" || item.caja === "" || item.ruta === "") {
           return `

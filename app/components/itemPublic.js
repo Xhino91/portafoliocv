@@ -1,10 +1,17 @@
 export function itemPublic(item) {
-    // console.log(item);
+     //console.log(Object.values(item));
+
+     let itemId = item[0];
+     item = item[1];
+
+     //console.log(item);
+
+
     
     //ALERTA DE WARNING (RUTAS PENDIENTES)
        if(item.unidad === "" || item.caja === "" || item.ruta === "") {
           return `
-          <tr class="item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("CANCELADA") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
+          <tr id="${itemId}" class="item text-center align-middle" data-run="2"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
               <td class="Unit">Int-${item.unidad}</td>
               <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
               <td >${item.operador}</td>
@@ -27,7 +34,7 @@ export function itemPublic(item) {
     //ALERTA DE COMPLETE (RUTA COMPLETA)
        if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
        return `
-       <tr class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
+       <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
            <td class="Unit">Int-${item.unidad}</td>
            <td >${item.caja}</td>
            <td>${item.operador}</td>
@@ -41,7 +48,7 @@ export function itemPublic(item) {
            <td style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
            <td style="${item.status.match("VALIDAR") ? "background-color: #ff6767;" : ""}">${item.status}</td>
            <td>
-           <button id="${item.id}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-car" id="${item.id}"></i></button>
+           
            </td>
         </tr>
           `;
@@ -49,7 +56,7 @@ export function itemPublic(item) {
     
     //CORRIENDO
         return `
-     <tr class="item text-center align-middle" data-run="0" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color:rgb(217, 241, 255);" : ""}">
+     <tr id="${itemId}" class="item text-center align-middle" data-run="0"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color:rgb(217, 241, 255);" : ""}">
          <td class="Unit">Int - ${item.unidad}</td>
          <td>${item.caja}</td>
          <td>${item.operador}</td>
@@ -61,7 +68,7 @@ export function itemPublic(item) {
          <td >${item.fecha}</td>
          <td >${item.ventana}</td>
          <td style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
-         <td >${item.status}</td>
+         <td style="${item.status.match("TRANSITO") ? "background-color: #72aefd;" : "background-color: #c3d9e5"}">${item.status}</td>
          <td>
          <button id="${item.id}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-car" id="${item.id}"></i></button>
          </td>

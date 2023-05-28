@@ -37,7 +37,7 @@ export function App() {
         await ajax({
           url: api.USERS,
           cbSuccess: (res) => {
-            console.log(data);
+            //console.log(data);
             //Admin         
             if (res[0].user === `${data.username}` && res[0].pass === `${data.password}`) {
               //console.log("Acceso Completo");

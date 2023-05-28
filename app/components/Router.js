@@ -16,22 +16,31 @@ export async function Router() {
 
   if (!hash || hash === "#/Public") {     
 
-  await ajax({
-        url: api.ITEMS,
+      await ajax({
+        url: `${api.ITEMS}.json`,
         cbSuccess: (items) => {
-          // console.log(items);
-          // Orden por fecha y hora
-          let orderItems = items.sort((o1, o2) => {
-            if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+          
+          //console.log(Object.values(items));
+
+          let itemsArray = Object.entries(items);
+          
+          //console.log(itemsArray);
+
+          // Orden for date
+          let orderItems = itemsArray.sort((o1, o2) => {
+            if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
               return -1;
-            } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+            } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
               return 1;
             } else {
               return 0;
             }
           });
-  
+
+         // console.log(orderItems);
+
           let html = "";
+
           orderItems.forEach((item) => (html += itemPublic(item)));
           d.querySelector(".loader").style.display = "none";
           d.getElementById("thtable").innerHTML = `
@@ -66,6 +75,7 @@ export async function Router() {
           //Helper de acceso a los items
           const $tr = d.querySelectorAll(".item");
           const newOrder = Array.from($tr);
+
           // Orden Run Complete
           newOrder.sort((e1, e2) => {
             if (
@@ -82,15 +92,18 @@ export async function Router() {
               return 0;
             }
           });
+
+
           newOrder.forEach((e) => {
             d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
           });
   
-  
+                   
         },
       });
+                
 
-    d.addEventListener("click", (e) => {
+    d.addEventListener("click", async (e) => {
       //console.log(e.target);
       //LEER CSV / XLS
       /*if (e.target.matches(".import_csv")){
@@ -130,15 +143,20 @@ export async function Router() {
         `; 
 
       
-      ajax({
-          url: api.ITEMS,
+     await ajax({
+          url: `${api.ITEMS}.json`,
           method: "GET",
           cbSuccess: (items) => {
             //console.log(items);
-            let orderItems = items.sort((o1, o2) => {
-              if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+            let itemsArray = Object.entries(items);
+          
+            //console.log(itemsArray);
+  
+            // Orden for date
+            let orderItems = itemsArray.sort((o1, o2) => {
+              if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
                 return -1;
-              } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
                 return 1;
               } else {
                 return 0;
@@ -177,12 +195,12 @@ export async function Router() {
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
        // console.log(e.target);
-       ajax({
+      await ajax({
         url: `${api.SUBITEMS}1.json`,
         method: "GET",
         cbSuccess: (unit) => {
-          console.log(unit);
-          console.log(e.target);
+          //console.log(unit);
+          //console.log(e.target);
 
           d.querySelector(".hidden").style.display = "none";
           d.querySelector("#exampleModal").style.height = "60vh";
@@ -222,12 +240,12 @@ export async function Router() {
         },
       });
 
-     ajax({
+      await ajax({
         url: `${api.SUBITEMS1}0.json`,
         method: "GET",
         cbSuccess: (conv) => {
-          console.log(conv);
-          console.log(e.target);
+          //console.log(conv);
+         // console.log(e.target);
           d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
             <div class="container-fluid"> 
     
@@ -267,12 +285,16 @@ export async function Router() {
 
       },
       });
+
+
       }
       if(e.target.matches(".generar_xls")){
         //let $dataTable = d.getElementById("table_xls");
         generar_xls('table_xls', 'Reporte');
  
       }
+
+      
       return;
     });
     
@@ -312,19 +334,24 @@ export async function Router() {
     
      
      await ajax({
-       url: api.ITEMS,
+       url: `${api.ITEMS}.json`,
        cbSuccess: (items) => {
-         // console.log(items);
-         // Orden por fecha y hora
-         let orderItems = items.sort((o1, o2) => {
-           if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
-             return -1;
-           } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
-             return 1;
-           } else {
-             return 0;
-           }
-         });
+            //console.log(Object.values(items));
+
+            let itemsArray = Object.entries(items);
+          
+            //console.log(itemsArray);
+  
+            // Orden for date
+            let orderItems = itemsArray.sort((o1, o2) => {
+              if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+                return -1;
+              } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+                return 1;
+              } else {
+                return 0;
+              }
+            });
  
          let html = "";
          orderItems.forEach((item) => (html += Item(item)));
@@ -396,20 +423,27 @@ export async function Router() {
    </table>
  </section>
          `;      
-       ajax({
-           url: api.ITEMS,
+      await ajax({
+           url: `${api.ITEMS}.json`,
            method: "GET",
            cbSuccess: (items) => {
              //console.log(items);
-             let orderItems = items.sort((o1, o2) => {
-               if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
-                 return -1;
-               } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
-                 return 1;
-               } else {
-                 return 0;
-               }
-             });
+
+             let itemsArray = Object.entries(items);
+          
+            //console.log(itemsArray);
+  
+            // Orden for date
+            let orderItems = itemsArray.sort((o1, o2) => {
+              if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+                return -1;
+              } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+                return 1;
+              } else {
+                return 0;
+              }
+            });
+
  
              orderItems.forEach((item) => {
                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
@@ -442,13 +476,13 @@ export async function Router() {
          
        }
        if (e.target.matches(".delete") || e.target.matches(".fa-trash")) {
-         console.log(e.target);
+        // console.log(e.target);
  
          let isConfirm = confirm("¿Eliminar Registro?");
  
          if (isConfirm) {
           await ajax({
-             url: `${api.ITEMS}/${e.target.id}`,
+             url: `${api.ITEMS}/${e.target.id}.json`,
              options: {
                method: "DELETE",
                headers: {
@@ -457,17 +491,19 @@ export async function Router() {
              },
              cbSuccess: (res) => {
                //console.log(res);
+              
              },
            });
+           location.reload();
          }
        }
        if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
-         //console.log(e.target.id);
+        // console.log(e.target.id);
          d.querySelector(".hidden").style.display = "block";
          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
  
         await ajax({
-           url: `${api.ITEMS}/${e.target.id}`,
+           url: `${api.ITEMS}/${e.target.id}.json`,
            method: "GET",
            cbSuccess: (item) => {
              // console.log(item);
@@ -512,6 +548,7 @@ export async function Router() {
          <option value="A Tiempo">A Tiempo</option>  
          <option value="Tarde" >Tarde</option>
          <option value="Desfasada" >Desfasada</option>
+         <option value="Critica" >Critica</option>
          </select>
          </td>
          <td>
@@ -545,18 +582,22 @@ export async function Router() {
  
        }
        if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-       //  console.log(e.target);
+        // console.log(e.target);
 
       
-        ajax({
-          url: `${api.SUBITEMS}1.json`,
+        await ajax({
+          url: `${api.SUBITEMS}.json`,
           method: "GET",
           cbSuccess: (unit) => {
-         //   console.log(unit);
+         
            // console.log(e.target);
+           let unitArray = Object.entries(unit);
+           
 
-            
-            d.getElementById("controlModal").style.height = "60vh";
+           unitArray.forEach(unit => {
+            if(e.target.id === unit[1].unidad){
+
+              d.getElementById("controlModal").style.height = "60vh";
             d.querySelector(".control-modal-body").innerHTML = `
           <div class="container-fluid"> 
           <table class="table table-sm" >
@@ -574,31 +615,44 @@ export async function Router() {
           </thead>
           <tbody class="text-center" class="text-wrap">
           <tr>
-          <td>${unit.unidad}</td>
-          <td>${unit.modelo}</td>
-          <td>${unit.placa}</td>
-          <td>${unit.año}</td>
-          <td>${unit.verificacion}</td>
-          <td>${unit.poliza}</td>
-          <td>${unit.inciso}</td>
-          <td>${unit.contacto}</td>     
+          <td>${unit[1].unidad}</td>
+          <td>${unit[1].modelo}</td>
+          <td>${unit[1].placa}</td>
+          <td>${unit[1].año}</td>
+          <td>${unit[1].verificacion}</td>
+          <td>${unit[1].poliza}</td>
+          <td>${unit[1].inciso}</td>
+          <td>${unit[1].contacto}</td>     
           </tr>   
           </tbody>      
         </table>
 
-        <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" >${unit.comentarios.toUpperCase()}</textarea>
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
+
+         d.getElementById("controlV").dataset.unit = unit[0];
+
+         
+
+            } 
+           });
+
           },
         });
 
-       ajax({
-          url: `${api.SUBITEMS1}0.json`,
+        await ajax({
+          url: `${api.SUBITEMS1}.json`,
           method: "GET",
           cbSuccess: (conv) => {
-          //  console.log(conv);
-          //  console.log(e.target);
-          d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
+          
+           let convArray = Object.entries(conv);
+           
+           convArray.forEach(conv => {
+          
+            if(e.target.dataset.conveyance === conv[1].caja){
+
+              d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
               <div class="container-fluid"> 
       
                  <table class="table table-sm" >
@@ -617,26 +671,35 @@ export async function Router() {
                  </thead>
                  <tbody class="text-center" class="text-wrap">
                  <tr>
-                 <td>${conv.caja}</td>
-                 <td>${conv.tipo}</td>
-                 <td>${conv.modelo}</td>
-                 <td>${conv.placa}</td>
-                 <td>${conv.año}</td>
-                 <td>${conv.verificacion}</td>
-                 <td>${conv.poliza}</td>
-                 <td>${conv.inciso}</td>
-                 <td>${conv.contacto}</td>     
+                 <td>${conv[1].caja}</td>
+                 <td>${conv[1].tipo}</td>
+                 <td>${conv[1].modelo}</td>
+                 <td>${conv[1].placa}</td>
+                 <td>${conv[1].año}</td>
+                 <td>${conv[1].verificacion}</td>
+                 <td>${conv[1].poliza}</td>
+                 <td>${conv[1].inciso}</td>
+                 <td>${conv[1].contacto}</td>     
                  </tr>
                </tbody>      
               </table>
 
-               <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque">${conv.comentarios.toUpperCase()}</textarea>
+               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
 
                 </div>` 
         
             );
-            d.getElementById("controlV").dataset.idRem
-         },
+
+            d.getElementById("controlV").dataset.conveyance = conv[0];
+              
+            }
+          
+          });
+
+        
+         
+            
+          }
 
         });
       
@@ -725,6 +788,7 @@ export async function Router() {
  
      d.addEventListener("submit", async (e) => {
        e.preventDefault();
+     //  console.log(e.target);
 
        if (e.target.matches(".search-form")) {
          //console.log(e.target);
@@ -780,7 +844,7 @@ export async function Router() {
              }),
            };
          await ajax({
-             url: api.ITEMS,
+             url: `${api.ITEMS}.json`,
              options,
              cbSuccess: (res) => {
                json = res.json();
@@ -794,9 +858,10 @@ export async function Router() {
        else if (e.target.matches(".edit")) {
          //UPDATE
         // console.log(e.target);
+        
          if (!e.target.id.value) {
            let options = {
-             method: "PUT",
+             method: "PATCH",
              headers: {
                "Content-type": "application/json; charset=utf-8",
              },
@@ -820,10 +885,10 @@ export async function Router() {
              }),
            };
           await ajax({
-             url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
+             url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}.json`,
              options,
              cbSuccess: (res) => {
-               console.log(res);
+              // console.log(res);
              },
            });
            location.reload();
@@ -831,43 +896,15 @@ export async function Router() {
  
          // console.log(e.target);
        }
-       
-       else if (e.target.matches(".update")) {
+
+       else if (e.target.matches(".control")) {
         //UPDATE
-       console.log(e.target);
-        if (!e.target.id.value) {
-         
-          console.log(e.target.id);
+        console.log(e.target);
 
-          let options = {
-            method: "PUT",
-            headers: {
-              "Content-type": "application/json; charset=utf-8",
-            },
-            body: JSON.stringify({
-              caja: e.target.caja.value.toUpperCase(),
-              tipo: e.target.cporte.value.toUpperCase(),
-              placa: e.target.tracking.value.toUpperCase(),
-              poliza: e.target.bol.value.toUpperCase(),
-              verificacion: e.target.ruta.value.toUpperCase(),
-              inciso: e.target.operador.value.toUpperCase(),
-              contacto: e.target.cliente.value.toUpperCase(),
-              año: e.target.fecha.value.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,"$3/$2/$1"),
-              comentarios: e.target.ventana.valuetoUpperCase()
-            }),
-          };
-       /*  await ajax({
-            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
-            options,
-            cbSuccess: (res) => {
-              console.log(res);
-            },
-          });*/
-         // location.reload();
-        }
 
-        // console.log(e.target);
-      }
+         }
+
+          
      });
  
      d.addEventListener("keyup", (e) => {
@@ -890,19 +927,24 @@ export async function Router() {
    if (!hash || hash === "#/Traffic") {
      
     await ajax({
-      url: api.ITEMS,
+      url: `${api.ITEMS}.json`,
       cbSuccess: (items) => {
-        // console.log(items);
-        // Orden por fecha y hora
-        let orderItems = items.sort((o1, o2) => {
-          if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
-            return -1;
-          } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
+           //console.log(Object.values(items));
+
+           let itemsArray = Object.entries(items);
+         
+           //console.log(itemsArray);
+ 
+           // Orden for date
+           let orderItems = itemsArray.sort((o1, o2) => {
+             if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+               return -1;
+             } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+               return 1;
+             } else {
+               return 0;
+             }
+           });
 
         let html = "";
         orderItems.forEach((item) => (html += Item(item)));
@@ -936,7 +978,7 @@ export async function Router() {
       },
     });  
 
-    d.addEventListener("click", (e) => {
+    d.addEventListener("click", async (e) => {
       //console.log(e.target);
       //LEER CSV / XLS
       /*if (e.target.matches(".import_csv")){
@@ -973,16 +1015,23 @@ export async function Router() {
     
   </table>
 </section>
-        `;      
-      ajax({
-          url: api.ITEMS,
+        `;  
+
+      
+      await ajax({
+          url: `${api.ITEMS}.json`,
           method: "GET",
           cbSuccess: (items) => {
             //console.log(items);
-            let orderItems = items.sort((o1, o2) => {
-              if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+            let itemsArray = Object.entries(items);
+          
+            //console.log(itemsArray);
+  
+            // Orden for date
+            let orderItems = itemsArray.sort((o1, o2) => {
+              if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
                 return -1;
-              } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
                 return 1;
               } else {
                 return 0;
@@ -1025,7 +1074,7 @@ export async function Router() {
         d.getElementById("bt-save").dataset.value = `${e.target.id}`;
 
         ajax({
-          url: `${api.ITEMS}/${e.target.id}`,
+          url: `${api.ITEMS}/${e.target.id}.json`,
           method: "GET",
           cbSuccess: (item) => {
             // console.log(item);
@@ -1070,6 +1119,7 @@ export async function Router() {
         <option value="A Tiempo">A Tiempo</option>  
         <option value="Tarde" >Tarde</option>
         <option value="Desfasada" >Desfasada</option>
+        <option value="Critica" >Critica</option>
         </select>
         </td>
         <td>
@@ -1106,7 +1156,7 @@ export async function Router() {
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
         // console.log(e.target);
        
-        ajax({
+       await ajax({
           url: `${api.SUBITEMS}1.json`,
           method: "GET",
           cbSuccess: (unit) => {
@@ -1151,7 +1201,7 @@ export async function Router() {
           },
         });
 
-       ajax({
+       await ajax({
           url: `${api.SUBITEMS1}0.json`,
           method: "GET",
           cbSuccess: (conv) => {
@@ -1245,7 +1295,7 @@ export async function Router() {
        // console.log(e.target);
         if (!e.target.id.value) {
           let options = {
-            method: "PUT",
+            method: "PATCH",
             headers: {
               "Content-type": "application/json; charset=utf-8",
             },
@@ -1269,7 +1319,7 @@ export async function Router() {
             }),
           };
          await ajax({
-            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
+            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}.json`,
             options,
             cbSuccess: (res) => {
               console.log(res);
@@ -1302,14 +1352,19 @@ export async function Router() {
   if (!hash || hash === "#/Inhouse") {
     
     await ajax({
-      url: api.ITEMS,
+      url: `${api.ITEMS}.json`,
       cbSuccess: (items) => {
         // console.log(items);
-        // Orden por fecha y hora
-        let orderItems = items.sort((o1, o2) => {
-          if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+       
+        let itemsArray = Object.entries(items);
+          
+        //console.log(itemsArray);
+
+        // Order for date
+        let orderItems = itemsArray.sort((o1, o2) => {
+          if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
             return -1;
-          } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+          } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
             return 1;
           } else {
             return 0;
@@ -1321,10 +1376,10 @@ export async function Router() {
         d.querySelector(".loader").style.display = "none";
         d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
        
-        //Helper de acceso a los items
+        //Helper access to item
         const $tr = d.querySelectorAll(".item");
         const newOrder = Array.from($tr);
-        // Orden Run Complete
+        // Order Run Complete
         newOrder.sort((e1, e2) => {
           if (
             e1.dataset.run < e2.dataset.run ||
@@ -1385,16 +1440,24 @@ export async function Router() {
     
   </table>
 </section>
-        `;      
-      ajax({
-          url: api.ITEMS,
+        `;   
+        
+        
+      
+       await ajax({
+          url: `${api.ITEMS}.json`,
           method: "GET",
           cbSuccess: (items) => {
             //console.log(items);
-            let orderItems = items.sort((o1, o2) => {
-              if (o1.fecha < o2.fecha || o1.ventana < o2.ventana) {
+            let itemsArray = Object.entries(items);
+          
+            //console.log(itemsArray);
+  
+            // Orden for date
+            let orderItems = itemsArray.sort((o1, o2) => {
+              if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
                 return -1;
-              } else if (o1.fecha > o2.fecha || o1.ventana > o2.ventana) {
+              } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
                 return 1;
               } else {
                 return 0;
@@ -1438,7 +1501,7 @@ export async function Router() {
 
         if (isConfirm) {
        await ajax({
-            url: `${api.ITEMS}/${e.target.id}`,
+            url: `${api.ITEMS}/${e.target.id}.json`,
             options: {
               method: "DELETE",
               headers: {
@@ -1458,7 +1521,7 @@ export async function Router() {
         d.getElementById("bt-save").dataset.value = `${e.target.id}`;
 
        await ajax({
-          url: `${api.ITEMS}/${e.target.id}`,
+          url: `${api.ITEMS}/${e.target.id}.json`,
           method: "GET",
           cbSuccess: (item) => {
             // console.log(item);
@@ -1503,6 +1566,7 @@ export async function Router() {
         <option value="A Tiempo">A Tiempo</option>  
         <option value="Tarde" >Tarde</option>
         <option value="Desfasada" >Desfasada</option>
+        <option value="Critica" >Critica</option>
         </select>
         </td>
         <td>
@@ -1539,7 +1603,7 @@ export async function Router() {
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
         // console.log(e.target);
         
-        ajax({
+       await ajax({
           url: `${api.SUBITEMS}1.json`,
           method: "GET",
           cbSuccess: (unit) => {
@@ -1584,7 +1648,7 @@ export async function Router() {
           },
         });
 
-       ajax({
+       await ajax({
           url: `${api.SUBITEMS1}0.json`,
           method: "GET",
           cbSuccess: (conv) => {
@@ -1770,7 +1834,7 @@ export async function Router() {
             }),
           };
           await ajax({
-            url: api.ITEMS,
+            url: `${api.ITEMS}.json`,
             options,
             cbSuccess: (res) => {
               json = res.json();
@@ -1786,7 +1850,7 @@ export async function Router() {
        // console.log(e.target);
         if (!e.target.id.value) {
           let options = {
-            method: "PUT",
+            method: "PATCH",
             headers: {
               "Content-type": "application/json; charset=utf-8",
             },
@@ -1810,7 +1874,7 @@ export async function Router() {
             }),
           };
          await ajax({
-            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}`,
+            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}.json`,
             options,
             cbSuccess: (res) => {
               console.log(res);

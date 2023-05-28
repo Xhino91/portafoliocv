@@ -40,6 +40,7 @@ export function Main() {
   </form>
 
 
+
   <form id="formulario">
     <div classs="container">
      <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModal" aria-hidden="true">
@@ -79,7 +80,8 @@ export function Main() {
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-      <button id="controlV" data-idRem="" type="submit" class="btn btn-primary update">Guardar cambios</button>
+      <button type="subtmit" id="controlV" data-unit="" data-conveyance="" class="btn btn-primary update">Guardar cambios</button>
+    
              </div>
            </div>
          </div>
