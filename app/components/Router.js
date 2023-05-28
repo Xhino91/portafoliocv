@@ -195,17 +195,20 @@ export async function Router() {
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
        // console.log(e.target);
-      await ajax({
-        url: `${api.SUBITEMS}1.json`,
+       await ajax({
+        url: `${api.SUBITEMS}.json`,
         method: "GET",
         cbSuccess: (unit) => {
-          //console.log(unit);
-          //console.log(e.target);
+       
+         // console.log(e.target);
+         let unitArray = Object.entries(unit);
+         
 
-          d.querySelector(".hidden").style.display = "none";
-          d.querySelector("#exampleModal").style.height = "60vh";
-          d.getElementById("exampleModalLabel").innerHTML = `Control Vehicular`;
-          d.querySelector(".modal-body").innerHTML = `
+         unitArray.forEach(unit => {
+          if(e.target.id === unit[1].unidad){
+
+            d.getElementById("controlModal").style.height = "60vh";
+          d.querySelector(".control-modal-body").innerHTML = `
         <div class="container-fluid"> 
         <table class="table table-sm" >
         <thead class="table-dark text-center">
@@ -222,31 +225,44 @@ export async function Router() {
         </thead>
         <tbody class="text-center" class="text-wrap">
         <tr>
-        <td>${unit.unidad}</td>
-        <td>${unit.modelo}</td>
-        <td>${unit.placa}</td>
-        <td>${unit.año}</td>
-        <td>${unit.verificacion}</td>
-        <td>${unit.poliza}</td>
-        <td>${unit.inciso}</td>
-        <td>${unit.contacto}</td>     
+        <td>${unit[1].unidad}</td>
+        <td>${unit[1].modelo}</td>
+        <td>${unit[1].placa}</td>
+        <td>${unit[1].año}</td>
+        <td>${unit[1].verificacion}</td>
+        <td>${unit[1].poliza}</td>
+        <td>${unit[1].inciso}</td>
+        <td>${unit[1].contacto}</td>     
         </tr>   
         </tbody>      
       </table>
 
-      <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre la Unidad" disabled>${unit.comentarios.toUpperCase()}</textarea>
+      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
       </div>
         `;
+
+       d.getElementById("controlV").dataset.unit = unit[0];
+
+       
+
+          } 
+         });
+
         },
       });
 
       await ajax({
-        url: `${api.SUBITEMS1}0.json`,
+        url: `${api.SUBITEMS1}.json`,
         method: "GET",
         cbSuccess: (conv) => {
-          //console.log(conv);
-         // console.log(e.target);
-          d.querySelector(".modal-body").insertAdjacentHTML("beforeend", `
+        
+         let convArray = Object.entries(conv);
+         
+         convArray.forEach(conv => {
+        
+          if(e.target.dataset.conveyance === conv[1].caja){
+
+            d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
             <div class="container-fluid"> 
     
                <table class="table table-sm" >
@@ -265,25 +281,36 @@ export async function Router() {
                </thead>
                <tbody class="text-center" class="text-wrap">
                <tr>
-               <td>${conv.caja}</td>
-               <td>${conv.modelo}</td>
-               <td>${conv.placa}</td>
-               <td>${conv.año}</td>
-               <td>${conv.verificacion}</td>
-               <td>${conv.poliza}</td>
-               <td>${conv.inciso}</td>
-               <td>${conv.contacto}</td>     
+               <td>${conv[1].caja}</td>
+               <td>${conv[1].tipo}</td>
+               <td>${conv[1].modelo}</td>
+               <td>${conv[1].placa}</td>
+               <td>${conv[1].año}</td>
+               <td>${conv[1].verificacion}</td>
+               <td>${conv[1].poliza}</td>
+               <td>${conv[1].inciso}</td>
+               <td>${conv[1].contacto}</td>     
                </tr>
              </tbody>      
             </table>
 
-             <textarea name="textarea" rows="1" cols="150" class="mb-3" style="resize:none" placeholder="Comentarios de Sobre el Remolque" disabled>${conv.comentarios.toUpperCase()}</textarea>
+             <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}" disabled>
 
               </div>` 
       
           );
 
-      },
+          d.getElementById("controlV").dataset.conveyance = conv[0];
+            
+          }
+        
+        });
+
+      
+       
+          
+        }
+
       });
 
 
