@@ -50,9 +50,9 @@ export async function Router() {
           <th scope="col">UNIDAD</th>
           <th scope="col">CAJA</th>
           <th scope="col">OPERADOR</th>
-          <th scope="col">C.PORTE</th>
-          <th scope="col">TRACKING</th>
-          <th scope="col">BOL / SHIPPER</th>
+          <th class="cporte" scope="col">C.PORTE</th>
+          <th class="track" scope="col">TRACKING</th>
+          <th class="bol" scope="col">BOL / SHIPPER</th>
           <th scope="col">RUTA</th>
           <th scope="col">CLIENTE</th>
           <th scope="col">FECHA</th>

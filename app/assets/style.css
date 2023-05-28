@@ -93,3 +93,12 @@ thead tr th {
   background-color: #ff8484;
 }
 
+
+
+@media (max-width: 800px) {
+  .cporte,
+  .track,
+  .bol {
+    display: none;
+  }
+}

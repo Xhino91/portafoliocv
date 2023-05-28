@@ -15,9 +15,9 @@ export function itemPublic(item) {
               <td class="Unit">Int-${item.unidad}</td>
               <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
               <td >${item.operador}</td>
-              <td>${item.cporte}</td>
-              <td class="${item.tracking ? "table-active" : ""}" >${item.tracking}</td>
-              <td class="${item.bol ? "table-active" : ""}" >${item.bol}</td>
+              <td class="cporte" >${item.cporte}</td>
+              <td class="track" class="${item.tracking ? "table-active" : ""}" >${item.tracking}</td>
+              <td class="bol" class="${item.bol ? "table-active" : ""}" >${item.bol}</td>
               <td>${item.ruta}</td>
               <td class="table-active">${item.cliente}</td>
               <td class="">${item.fecha}</td>
@@ -38,9 +38,9 @@ export function itemPublic(item) {
            <td class="Unit">Int-${item.unidad}</td>
            <td >${item.caja}</td>
            <td>${item.operador}</td>
-           <td style="${item.cporte === "" || item.status.match("PORTE") ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
-           <td style="${item.tracking === "" || item.status.match("TRACK") ? "background-color: #ff6767;" : ""}" >${item.tracking}</td>
-           <td style="${item.bol === "" || item.status.match("BOL") || item.status.match("SHIPPER")  ? "background-color: #ff6767;" : ""}" >${item.bol}</td>
+           <td class="cporte" style="${item.cporte === "" || item.status.match("PORTE") ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
+           <td class="track" style="${item.tracking === "" || item.status.match("TRACK") ? "background-color: #ff6767;" : ""}" >${item.tracking}</td>
+           <td class="bol" style="${item.bol === "" || item.status.match("BOL") || item.status.match("SHIPPER")  ? "background-color: #ff6767;" : ""}" >${item.bol}</td>
            <td>${item.ruta}</td>
            <td class="table-active">${item.cliente}</td>
            <td >${item.fecha}</td>
@@ -60,9 +60,9 @@ export function itemPublic(item) {
          <td class="Unit">Int - ${item.unidad}</td>
          <td>${item.caja}</td>
          <td>${item.operador}</td>
-         <td style="${item.cporte === "" ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
-         <td style="${item.tracking === "" ? "background-color: #ff6767;" : ""}" >${item.tracking}</td>
-         <td style="${item.bol === "" ? "background-color: #ff6767;" : ""}" >${item.bol}</td>
+         <td class="cporte" style="${item.cporte === "" ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
+         <td class="track" style="${item.tracking === "" ? "background-color: #ff6767;" : ""}" >${item.tracking}</td>
+         <td class="bol" style="${item.bol === "" ? "background-color: #ff6767;" : ""}" >${item.bol}</td>
          <td>${item.ruta}</td>
          <td class="table-active">${item.cliente}</td>
          <td >${item.fecha}</td>
