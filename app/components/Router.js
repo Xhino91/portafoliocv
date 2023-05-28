@@ -262,6 +262,8 @@ export async function Router() {
         
           if(e.target.dataset.conveyance === conv[1].caja){
 
+            d.getElementById("controlModal").style.height = "60vh";
+
             d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
             <div class="container-fluid"> 
     
@@ -680,6 +682,7 @@ export async function Router() {
           
             if(e.target.dataset.conveyance === conv[1].caja){
 
+              d.getElementById("controlModal").style.height = "60vh";
               d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
               <div class="container-fluid"> 
       
@@ -816,7 +819,7 @@ export async function Router() {
  
      d.addEventListener("submit", async (e) => {
        e.preventDefault();
-     //  console.log(e.target);
+    // console.log(e.target);
 
        if (e.target.matches(".search-form")) {
          //console.log(e.target);
@@ -886,7 +889,8 @@ export async function Router() {
        else if (e.target.matches(".edit")) {
          //UPDATE
         // console.log(e.target);
-        
+       
+         
          if (!e.target.id.value) {
            let options = {
              method: "PATCH",
@@ -925,10 +929,59 @@ export async function Router() {
          // console.log(e.target);
        }
 
-       else if (e.target.matches(".control")) {
-        //UPDATE
-        console.log(e.target);
+       else if (e.target.matches(".update")) {
+          console.log(e.target);
 
+        //UPDATE
+         //console.log(e.target.textarea[0].value.toUpperCase());
+         //console.log(e.target.textarea[1].value.toUpperCase());
+
+         let keyUnit = d.getElementById("controlV").dataset.unit;
+         let keyConv = d.getElementById("controlV").dataset.conveyance;
+
+        // console.log(keyUnit);
+
+         
+         if (!e.target.id.value) {
+          let options = {
+            method: "PATCH",
+            headers: {
+              "Content-type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({
+              comentarios: e.target.textarea[0].value.toUpperCase()
+            }),
+          };
+
+            await ajax({
+               url: `${api.SUBITEMS}/${keyUnit}.json`,
+              options,
+              cbSuccess: (res) => {
+               // console.log(res);
+             },
+          });
+
+           options = {
+            method: "PATCH",
+            headers: {
+              "Content-type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({
+              comentarios: e.target.textarea[1].value.toUpperCase()
+            }),
+          };
+
+            await ajax({
+               url: `${api.SUBITEMS1}/${keyConv}.json`,
+              options,
+              cbSuccess: (res) => {
+               // console.log(res);
+             },
+          });
+
+             location.reload();
+        }
+        
 
          }
 

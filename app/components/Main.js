@@ -66,7 +66,7 @@ export function Main() {
 
   
 
-  <form id="formulario">
+  <form id="formulario" class="update">
   <div classs="container">
    <div class="modal fade" id="controlModal" tabindex="-1" aria-labelledby="controlModal" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
@@ -80,7 +80,7 @@ export function Main() {
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-      <button type="subtmit" id="controlV" data-unit="" data-conveyance="" class="btn btn-primary update">Guardar cambios</button>
+      <button type="subtmit" id="controlV" data-unit="" data-conveyance="" class="btn btn-primary">Guardar cambios</button>
     
              </div>
            </div>

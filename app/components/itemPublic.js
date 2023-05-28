@@ -25,7 +25,7 @@ export function itemPublic(item) {
               <td style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
               <td>
-              <button id="${item.unidad}" style="${item.unidad || item.caja ? "display: inherit;" : "display: none;"}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
+             
               </td>
            </tr>
              `;
@@ -79,4 +79,4 @@ export function itemPublic(item) {
     
     
     
-    //BOTON CONTROL VEHICULAR <button id="${item.id}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-car" id="${item.id}"></i></button>
+    //BOTON CONTROL VEHICULAR <button id="${item.unidad}" style="${item.unidad || item.caja ? "display: inherit;" : "display: none;"}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
