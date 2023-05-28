@@ -194,7 +194,7 @@ export async function Router() {
         
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-        console.log(e.target);
+        //console.log(e.target);
        await ajax({
         url: `${api.SUBITEMS}.json`,
         method: "GET",
@@ -313,6 +313,7 @@ export async function Router() {
 
       });
 
+      d.querySelector("#controlV").style.display= "none";
 
       }
       if(e.target.matches(".generar_xls")){
