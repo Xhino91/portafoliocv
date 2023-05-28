@@ -25,7 +25,7 @@ export function itemPublic(item) {
               <td style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
               <td>
-              <button id="${item.id}" type="button" class="btn btn-sm btn-dark control"><i class="fa-solid fa-car" id="${item.id}"></i></button>
+              <button id="${item.unidad}" style="${item.unidad || item.caja ? "display: inherit;" : "display: none;"}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
               </td>
            </tr>
              `;
@@ -70,8 +70,7 @@ export function itemPublic(item) {
          <td style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
          <td style="${item.status.match("TRANSITO") ? "background-color: #72aefd;" : "background-color: #c3d9e5"}">${item.status}</td>
          <td>
-         <button id="${item.id}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-car" id="${item.id}"></i></button>
-         </td>
+         <button id="${item.unidad}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
       </tr>
                `;
     
