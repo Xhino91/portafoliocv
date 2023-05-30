@@ -32,10 +32,10 @@ export function itemPublic(item) {
               <td class="cporte" >${item.cporte}</td>
               <td class="track" class="${item.tracking ? "table-active" : ""}" >${item.tracking}</td>
               <td class="bol" class="${item.bol ? "table-active" : ""}" >${item.bol}</td>
-              <td>${item.ruta}</td>
+              <td class="ruta" >${item.ruta}</td>
               <td class="table-active">${item.cliente}</td>
-              <td class="">${item.fecha}</td>
-              <td class="">${item.ventana}</td>
+              <td class="fecha">${item.fecha}</td>
+              <td class="ventana">${item.ventana}</td>
               <td class="llegada" style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
               <td>
@@ -55,10 +55,10 @@ export function itemPublic(item) {
            <td class="cporte" style="${item.cporte === "" || item.status.match("PORTE") ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
            <td class="track" style="${item.tracking === "" || item.status.match("TRACK") ? "background-color: #ff6767;" : ""}" >${item.tracking}</td>
            <td class="bol" style="${item.bol === "" || item.status.match("BOL") || item.status.match("SHIPPER")  ? "background-color: #ff6767;" : ""}" >${item.bol}</td>
-           <td>${item.ruta}</td>
+           <td class="ruta" >${item.ruta}</td>
            <td class="table-active">${item.cliente}</td>
-           <td >${item.fecha}</td>
-           <td >${item.ventana}</td>
+           <td class="fecha" >${item.fecha}</td>
+           <td class="ventana" >${item.ventana}</td>
            <td class="llegada" style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
            <td style="${item.status.match("VALIDAR") ? "background-color: #ff6767;" : ""}">${item.status}</td>
            <td>
@@ -77,10 +77,10 @@ export function itemPublic(item) {
          <td class="cporte" style="${item.cporte === "" ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
          <td class="track" style="${item.tracking === "" ? "background-color: #ff6767;" : ""}" >${item.tracking}</td>
          <td class="bol" style="${item.bol === "" ? "background-color: #ff6767;" : ""}" >${item.bol}</td>
-         <td>${item.ruta}</td>
+         <td class="ruta" >${item.ruta}</td>
          <td class="table-active">${item.cliente}</td>
-         <td >${item.fecha}</td>
-         <td >${item.ventana}</td>
+         <td class="fecha" >${item.fecha}</td>
+         <td class="ventana" >${item.ventana}</td>
          <td class="llegada" style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
          <td style="${alertColor(item)}" >${item.status}</td>
          <td>

@@ -53,10 +53,10 @@ export async function Router() {
           <th class="cporte" scope="col">C.PORTE</th>
           <th class="track" scope="col">TRACKING</th>
           <th class="bol" scope="col">BOL / SHIPPER</th>
-          <th scope="col">RUTA</th>
+          <th class="ruta" scope="col">RUTA</th>
           <th scope="col">CLIENTE</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">HORARIO</th>
+          <th class="fecha"  scope="col">FECHA</th>
+          <th class="ventana" scope="col">HORARIO</th>
           <th class="llegada" scope="col">LLEGADA</th>
           <th scope="col">ESTATUS</th>
           <th scope="col">OPCIONES</th>

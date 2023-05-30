@@ -105,7 +105,18 @@ thead tr th {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 450px) {
+
+  .cporte,
+  .track,
+  .bol,
+  .llegada,
+  .fecha,
+  .ventana,
+  .ruta {
+    display: none;
+  }
+
   #thtable {
     width: 95%;
     height: 84vh;
