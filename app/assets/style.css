@@ -108,3 +108,10 @@ thead tr th {
     margin: auto;
   }
 }
+
+@media (max-width: 500px) {
+   #table_xls{ 
+    width: 95%;
+    margin: auto;
+  }
+}
