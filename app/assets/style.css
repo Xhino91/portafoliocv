@@ -105,10 +105,10 @@ thead tr th {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   #thtable {
-    width: 97%;
-    height: 75vh;
+    width: 95%;
+    height: 84vh;
     position: sticky;
     overflow-y: scroll;
     margin: auto;
