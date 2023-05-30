@@ -111,7 +111,7 @@ thead tr th {
 
 @media (max-width: 500px) {
    #table_xls{ 
-    width: 95%;
+    width: 90%;
     margin: auto;
   }
 }
