@@ -95,11 +95,16 @@ thead tr th {
 
 
 
-@media (max-width: 800px) {
+@media (max-width: 1500px) {
   .cporte,
   .track,
   .bol,
   .llegada {
     display: none;
+  }
+
+  #table_xls{ 
+    width: 98%;
+    margin: auto;
   }
 }

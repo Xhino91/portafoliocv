@@ -6,6 +6,20 @@ export function itemPublic(item) {
 
      //console.log(item);
 
+     const alertColor = (item) => {
+
+      if( item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("CSAP") ){
+         return "background-color: #72aefd;" ;
+      } 
+      if( item.status.match("DET") ){
+         return "background-color: #ff8484;" ;
+      }
+
+      else {
+        return "background-color: #c3d9e5" ;
+       }
+
+     }
 
     
     //ALERTA DE WARNING (RUTAS PENDIENTES)
@@ -56,7 +70,7 @@ export function itemPublic(item) {
     
     //CORRIENDO
         return `
-     <tr id="${itemId}" class="item text-center align-middle" data-run="0"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color:rgb(217, 241, 255);" : ""}">
+     <tr id="${itemId}" class="item text-center align-middle" data-run="${item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("CSAP") || item.status.match("DET") ? "0" : "1"}"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color:rgb(217, 241, 255);" : ""}">
          <td class="Unit">Int - ${item.unidad}</td>
          <td>${item.caja}</td>
          <td>${item.operador}</td>
@@ -68,7 +82,7 @@ export function itemPublic(item) {
          <td >${item.fecha}</td>
          <td >${item.ventana}</td>
          <td class="llegada" style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
-         <td style="${item.status.match("TRANSITO") ? "background-color: #72aefd;" : "background-color: #c3d9e5"}">${item.status}</td>
+         <td style="${alertColor(item)}" >${item.status}</td>
          <td>
          <button id="${item.unidad}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
       </tr>

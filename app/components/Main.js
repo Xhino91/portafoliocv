@@ -7,7 +7,7 @@ export function Main() {
   
   //console.log(location.hash);
   $main.innerHTML = `
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end margin">
+  <div class="d-grid gap-2 d-md-flex d-sm-flex justify-content-md-end margin">
   <button class="btn btn-dark fw-bold"><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
   <button class="btn btn-dark fw-bold me-auto"> <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
   
