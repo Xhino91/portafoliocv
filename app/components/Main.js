@@ -112,34 +112,7 @@ export function Main() {
     </div>
 
 <section id="thtable" class="thtable">
-<table class="table table-hover table-sm" id="table_xls">
-    <thead class="table-dark text-center align-middle">
-      <tr>
-        <th scope="col">UNIDAD</th>
-        <th scope="col">CAJA</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">C.PORTE</th>
-        <th scope="col">TRACKING</th>
-        <th scope="col">BOL / SHIPPER</th>
-        <th scope="col">RUTA</th>
-        <th scope="col">CLIENTE</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">HORARIO</th>
-        <th scope="col">LLEGADA</th>
-        <th scope="col">ESTATUS</th>
-        <th scope="col">CHECKED</th>
-        <th scope="col">OPCIONES</th>
-  
-      </tr>
-    </thead>
- 
-    <tbody id="table_body" class="body_table">
-    </tbody>
-    
-  </table>
-</section>
-
-  `;
+`;
 
   let clockTempo;
 

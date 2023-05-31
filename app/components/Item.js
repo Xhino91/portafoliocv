@@ -18,6 +18,9 @@ const alertColor = (item) => {
    if( item.status.match("CRITI") ){
       return "background-color: #ff6767;" ;
    }
+   if( item.status.match("PENDIENTE") ){
+      return "background-color: #ff8f75;" ;
+   }
 
    else {
      return "background-color: #c3d9e5" ;

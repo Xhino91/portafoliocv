@@ -27,7 +27,7 @@ export function renderTablePublic(items){
       orderItems.forEach((item) => (html += itemPublic(item)));
      
       d.getElementById("thtable").innerHTML = `
-  <table class="table table-hover table-sm" id="table_xls">
+  <table class="table table-hover table-sm table-striped" id="table_xls">
   <thead class="table-dark text-center align-middle">
     <tr>
       <th scope="col">UNIDAD</th>
