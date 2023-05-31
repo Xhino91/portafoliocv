@@ -15,6 +15,9 @@ const alertColor = (item) => {
    if( item.status.match("DET") ){
       return "background-color: #ff8484;" ;
    }
+   if( item.status.match("CRITI") ){
+      return "background-color: #ff6767;" ;
+   }
 
    else {
      return "background-color: #c3d9e5" ;
@@ -27,7 +30,7 @@ const alertColor = (item) => {
    if(item.unidad === "" || item.caja === "" || item.ruta === "") {
       return `
       <tr id="${itemId}" class="item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
-          <td class="Unit">Int-${item.unidad}</td>
+          <td class="Unit">${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>
           <td>${item.cporte}</td>
@@ -70,7 +73,7 @@ const alertColor = (item) => {
    if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
    return `
    <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
-       <td class="Unit">Int-${item.unidad}</td>
+       <td class="Unit">${item.unidad}</td>
        <td >${item.caja}</td>
        <td>${item.operador}</td>
        <td style="${item.cporte === "" || item.status.match("PORTE") ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
@@ -110,8 +113,8 @@ const alertColor = (item) => {
 
 //CORRIENDO
     return `
- <tr id="${itemId}" class="item text-center align-middle" data-run="${item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("CSAP") || item.status.match("DET") ? "0" : "1"}" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color:rgb(217, 241, 255);" : ""}">
-     <td class="Unit">Int - ${item.unidad}</td>
+ <tr id="${itemId}" class="item text-center align-middle" data-run="${item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("CSAP") || item.status.match("DET") ? "0" : "1"}" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+     <td class="Unit">${item.unidad}</td>
      <td>${item.caja}</td>
      <td>${item.operador}</td>
      <td style="${item.cporte === "" ? "background-color: #ff6767;" : ""}" >${item.cporte}</td>
@@ -121,7 +124,7 @@ const alertColor = (item) => {
      <td class="table-active">${item.cliente}</td>
      <td >${item.fecha}</td>
      <td >${item.ventana}</td>
-     <td style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
+     <td style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
      <td style="${alertColor(item)}" >${item.status}</td>
      <td>
      <div class="form-check form-check-inline">

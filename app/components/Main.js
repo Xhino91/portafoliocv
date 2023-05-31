@@ -118,7 +118,7 @@ export function Main() {
         <th scope="col">UNIDAD</th>
         <th scope="col">CAJA</th>
         <th scope="col">OPERADOR</th>
-        <th class="cporte" scope="col">C.PORTE</th>
+        <th scope="col">C.PORTE</th>
         <th scope="col">TRACKING</th>
         <th scope="col">BOL / SHIPPER</th>
         <th scope="col">RUTA</th>
@@ -127,7 +127,7 @@ export function Main() {
         <th scope="col">HORARIO</th>
         <th scope="col">LLEGADA</th>
         <th scope="col">ESTATUS</th>
-        <th class="" scope="col">CHECKED</th>
+        <th scope="col">CHECKED</th>
         <th scope="col">OPCIONES</th>
   
       </tr>

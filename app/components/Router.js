@@ -4,104 +4,78 @@ import { Item } from "./Item.js";
 import { generar_xls } from "../helpers/generar_xls.js";
 import { crearTabla } from "./template_con_csv.js";
 import { ItemXls } from "./ItemXls.js";
-import { itemPublic } from "./itemPublic.js";
+import { renderTablePublic } from "./renderTablePublic.js";
+import { renderTable } from "./renderTable.js";
+
 
 
 export async function Router() {
   const d = document,
        w = window;
-  
+
 
   let { hash } = w.location;   
+  let newArray, listenItemsArray;
 
   if (!hash || hash === "#/Public") {     
 
       await ajax({
         url: `${api.ITEMS}.json`,
-        cbSuccess: (items) => {
-          
-          //console.log(Object.values(items));
-
-          let itemsArray = Object.entries(items);
-          
-          //console.log(itemsArray);
-
-          // Orden for date
-          let orderItems = itemsArray.sort((o1, o2) => {
-            if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
-              return -1;
-            } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-
-         // console.log(orderItems);
-
-          let html = "";
-
-          orderItems.forEach((item) => (html += itemPublic(item)));
-          d.querySelector(".loader").style.display = "none";
-          d.getElementById("thtable").innerHTML = `
-      <table class="table table-hover table-sm" id="table_xls">
-      <thead class="table-dark text-center align-middle">
-        <tr>
-          <th scope="col">UNIDAD</th>
-          <th scope="col">CAJA</th>
-          <th scope="col">OPERADOR</th>
-          <th class="cporte" scope="col">C.PORTE</th>
-          <th class="track" scope="col">TRACKING</th>
-          <th class="bol" scope="col">BOL / SHIPPER</th>
-          <th class="ruta" scope="col">RUTA</th>
-          <th scope="col">CLIENTE</th>
-          <th class="fecha"  scope="col">FECHA</th>
-          <th class="ventana" scope="col">HORARIO</th>
-          <th class="llegada" scope="col">LLEGADA</th>
-          <th scope="col">ESTATUS</th>
-          <th scope="col">OPCIONES</th>
-    
-        </tr>
-      </thead>
-   
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-      `; 
-  
-          d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
-         
-          //Helper de acceso a los items
-          const $tr = d.querySelectorAll(".item");
-          const newOrder = Array.from($tr);
-
-          // Orden Run Complete
-          newOrder.sort((e1, e2) => {
-            if (
-              e1.dataset.run < e2.dataset.run ||
-              e1.dataset.run < e2.dataset.run
-            ) {
-              return -1;
-            } else if (
-              e1.dataset.run > e2.dataset.run ||
-              e1.dataset.run > e2.dataset.run
-            ) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-
-
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-          });
-  
-                   
+        cbSuccess: (items) => {   
+          newArray = items;
+          //console.log(itemsArray)   
+          renderTablePublic(newArray);
         },
       });
+
+      setInterval(  () => {
+        
+        ajax({
+          url: `${api.ITEMS}.json`,
+          cbSuccess: (items) => {
+            
+              //console.log(Object.values(items));
+                listenItemsArray = Object.values(items);
+                let firstArray = Object.values(newArray);
+                 // console.log(Object.entries(itemsArray).length);
+
+                 if(listenItemsArray.length === firstArray.length){
+
+                  
+                    for (let i = 0; i < firstArray.length; i++) {
+                      let e = firstArray[i];
+                       let e2 = listenItemsArray[i];
                 
+                     if( e.fecha != e2.fecha || e.caja != e2.caja 
+                      || e.unidad != e2.unidad || e.bol != e2.bol 
+                      || e.af != e2.af || e.ag != e2.ag 
+                      || e.cliente != e2.cliente || e.cporte != e2.cporte
+                      || e.tracking != e2.tracking || e.llegada != e2.llegada
+                      || e.status != e2.status || e.ventana != e2.ventana
+                      || e.x1 != e2.x1 || e.x3 != e2.x3 || e.operador != e2.operador
+                      ) {
+                       // console.log("UPDATE");
+                        
+                        renderTablePublic(items);
+                       }
+       
+                     }
+                   } 
+                   else {
+                    //console.log("UPDATE");
+                   
+                    renderTablePublic(items);
+                   }
+
+
+               
+               //console.log(listenItemsArray);
+             }       
+          })
+
+      }, 5000);
+         
+        
 
     d.addEventListener("click", async (e) => {
       //console.log(e.target);
@@ -363,57 +337,64 @@ export async function Router() {
    if (!hash || hash === "#/Tracking") {
     
      
-     await ajax({
-       url: `${api.ITEMS}.json`,
-       cbSuccess: (items) => {
-            //console.log(Object.values(items));
+    await ajax({
+      url: `${api.ITEMS}.json`,
+      cbSuccess: (items) => {   
+        newArray = items;
+        //console.log(itemsArray)   
+        renderTable(newArray);
+      },
+    });
 
-            let itemsArray = Object.entries(items);
+    setInterval(  () => {
+      
+      ajax({
+        url: `${api.ITEMS}.json`,
+        cbSuccess: (items) => {
           
-            //console.log(itemsArray);
-  
-            // Orden for date
-            let orderItems = itemsArray.sort((o1, o2) => {
-              if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
-                return -1;
-              } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
-                return 1;
-              } else {
-                return 0;
-              }
-            });
- 
-         let html = "";
-         orderItems.forEach((item) => (html += Item(item)));
-         d.querySelector(".loader").style.display = "none";
-         d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
-        
-         //Helper de acceso a los items
-         const $tr = d.querySelectorAll(".item");
-         const newOrder = Array.from($tr);
-         // Orden Run Complete
-         newOrder.sort((e1, e2) => {
-           if (
-             e1.dataset.run < e2.dataset.run ||
-             e1.dataset.run < e2.dataset.run
-           ) {
-             return -1;
-           } else if (
-             e1.dataset.run > e2.dataset.run ||
-             e1.dataset.run > e2.dataset.run
-           ) {
-             return 1;
-           } else {
-             return 0;
-           }
-         });
-         newOrder.forEach((e) => {
-           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-         });
- 
- 
-       },
-     });  
+            //console.log(Object.values(items));
+              listenItemsArray = Object.values(items);
+              let firstArray = Object.values(newArray);
+               // console.log(Object.entries(itemsArray).length);
+
+               if(listenItemsArray.length === firstArray.length){
+
+                
+                  for (let i = 0; i < firstArray.length; i++) {
+                    let e = firstArray[i];
+                     let e2 = listenItemsArray[i];
+              
+                   if( e.fecha != e2.fecha || e.caja != e2.caja 
+                    || e.unidad != e2.unidad || e.bol != e2.bol 
+                    || e.af != e2.af || e.ag != e2.ag 
+                    || e.cliente != e2.cliente || e.cporte != e2.cporte
+                    || e.tracking != e2.tracking || e.llegada != e2.llegada
+                    || e.status != e2.status || e.ventana != e2.ventana
+                    || e.x1 != e2.x1 || e.x3 != e2.x3 || e.operador != e2.operador
+                    ) {
+                    //  console.log("UPDATE")
+                    renderTable(items);
+                     }
+     
+                   }
+                 } 
+                 else {
+                 // console.log("UPDATE");
+                 renderTable(items);
+
+                  
+                 }
+
+
+             
+             //console.log(listenItemsArray);
+           }       
+        })
+
+    }, 5000);
+       
+
+
  
      d.addEventListener("click", async (e) => {
        //console.log(e.target);
@@ -1007,57 +988,65 @@ export async function Router() {
 
    if (!hash || hash === "#/Traffic") {
      
+      
     await ajax({
       url: `${api.ITEMS}.json`,
-      cbSuccess: (items) => {
-           //console.log(Object.values(items));
-
-           let itemsArray = Object.entries(items);
-         
-           //console.log(itemsArray);
- 
-           // Orden for date
-           let orderItems = itemsArray.sort((o1, o2) => {
-             if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
-               return -1;
-             } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
-               return 1;
-             } else {
-               return 0;
-             }
-           });
-
-        let html = "";
-        orderItems.forEach((item) => (html += Item(item)));
-        d.querySelector(".loader").style.display = "none";
-        d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
-       
-        //Helper de acceso a los items
-        const $tr = d.querySelectorAll(".item");
-        const newOrder = Array.from($tr);
-        // Orden Run Complete
-        newOrder.sort((e1, e2) => {
-          if (
-            e1.dataset.run < e2.dataset.run ||
-            e1.dataset.run < e2.dataset.run
-          ) {
-            return -1;
-          } else if (
-            e1.dataset.run > e2.dataset.run ||
-            e1.dataset.run > e2.dataset.run
-          ) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-        });
-
-
+      cbSuccess: (items) => {   
+        newArray = items;
+        //console.log(itemsArray)   
+        renderTable(newArray);
       },
-    });  
+    });
+
+    setInterval(  () => {
+      
+      ajax({
+        url: `${api.ITEMS}.json`,
+        cbSuccess: (items) => {
+          
+            //console.log(Object.values(items));
+              listenItemsArray = Object.values(items);
+              let firstArray = Object.values(newArray);
+               // console.log(Object.entries(itemsArray).length);
+
+               if(listenItemsArray.length === firstArray.length){
+
+                
+                  for (let i = 0; i < firstArray.length; i++) {
+                    let e = firstArray[i];
+                     let e2 = listenItemsArray[i];
+              
+                   if( e.fecha != e2.fecha || e.caja != e2.caja 
+                    || e.unidad != e2.unidad || e.bol != e2.bol 
+                    || e.af != e2.af || e.ag != e2.ag 
+                    || e.cliente != e2.cliente || e.cporte != e2.cporte
+                    || e.tracking != e2.tracking || e.llegada != e2.llegada
+                    || e.status != e2.status || e.ventana != e2.ventana
+                    || e.x1 != e2.x1 || e.x3 != e2.x3 || e.operador != e2.operador
+                    ) {
+                     // console.log("UPDATE")
+                     renderTable(items);
+                     }
+     
+                   }
+                 } 
+                 else {
+                  //console.log("UPDATE");
+                  renderTable(items);
+
+                  
+                 }
+
+
+             
+             //console.log(listenItemsArray);
+           }       
+        })
+
+    }, 5000);
+       
+
+
 
     d.addEventListener("click", async (e) => {
       //console.log(e.target);
@@ -1432,57 +1421,63 @@ export async function Router() {
 
   if (!hash || hash === "#/Inhouse") {
     
+     
     await ajax({
       url: `${api.ITEMS}.json`,
-      cbSuccess: (items) => {
-        // console.log(items);
-       
-        let itemsArray = Object.entries(items);
-          
-        //console.log(itemsArray);
-
-        // Order for date
-        let orderItems = itemsArray.sort((o1, o2) => {
-          if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
-            return -1;
-          } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-
-        let html = "";
-        orderItems.forEach((item) => (html += Item(item)));
-        d.querySelector(".loader").style.display = "none";
-        d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
-       
-        //Helper access to item
-        const $tr = d.querySelectorAll(".item");
-        const newOrder = Array.from($tr);
-        // Order Run Complete
-        newOrder.sort((e1, e2) => {
-          if (
-            e1.dataset.run < e2.dataset.run ||
-            e1.dataset.run < e2.dataset.run
-          ) {
-            return -1;
-          } else if (
-            e1.dataset.run > e2.dataset.run ||
-            e1.dataset.run > e2.dataset.run
-          ) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-        });
-
-
+      cbSuccess: (items) => {   
+        newArray = items;
+        //console.log(itemsArray)   
+        renderTable(newArray);
       },
-    });  
+    });
+
+    setInterval(  () => {
+      
+      ajax({
+        url: `${api.ITEMS}.json`,
+        cbSuccess: (items) => {
+          
+            //console.log(Object.values(items));
+              listenItemsArray = Object.values(items);
+              let firstArray = Object.values(newArray);
+               // console.log(Object.entries(itemsArray).length);
+
+               if(listenItemsArray.length === firstArray.length){
+
+                
+                  for (let i = 0; i < firstArray.length; i++) {
+                    let e = firstArray[i];
+                     let e2 = listenItemsArray[i];
+              
+                   if( e.fecha != e2.fecha || e.caja != e2.caja 
+                    || e.unidad != e2.unidad || e.bol != e2.bol 
+                    || e.af != e2.af || e.ag != e2.ag 
+                    || e.cliente != e2.cliente || e.cporte != e2.cporte
+                    || e.tracking != e2.tracking || e.llegada != e2.llegada
+                    || e.status != e2.status || e.ventana != e2.ventana
+                    || e.x1 != e2.x1 || e.x3 != e2.x3 || e.operador != e2.operador
+                    ) {
+                     // console.log("UPDATE")
+                     renderTable(items);
+                     }
+     
+                   }
+                 } 
+                 else {
+                //  console.log("UPDATE");
+                renderTable(items);
+                  
+                 }
+
+
+             
+             //console.log(listenItemsArray);
+           }       
+        })
+
+    }, 5000);
+        
+
 
     d.addEventListener("click", async (e) => {
       //console.log(e.target);
