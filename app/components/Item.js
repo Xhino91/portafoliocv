@@ -30,10 +30,10 @@ const alertColor = (item) => {
 
 
 //ALERTA DE WARNING (RUTAS PENDIENTES)
-   if(item.unidad === "" || item.caja === "" || item.ruta === "") {
+   if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
       return `
       <tr id="${itemId}" class="item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
-          <td class="Unit">${item.unidad}</td>
+          <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>
           <td>${item.cporte}</td>
