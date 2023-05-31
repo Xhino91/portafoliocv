@@ -77,7 +77,7 @@ export async function Router() {
 
       setInterval(() => {
         location.reload();
-      }, 60000);
+      }, 180000);
          
         
 
