@@ -8,11 +8,14 @@ export function itemPublic(item) {
 
      const alertColor = (item) => {
 
-      if( item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("CSAP") ){
+      if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
          return "background-color: #72aefd;" ;
+      }
+      if( item.status.match("PROVEEDOR") ){
+         return "background-color: #00508d; color: white;" ;
       } 
       if( item.status.match("DET") ){
-         return "background-color: #ff8484;" ;
+         return "background-color: #791d1d; color: white;" ;
       }
       if( item.status.match("CRITI") ){
          return "background-color: #ff6767;" ;
@@ -24,6 +27,23 @@ export function itemPublic(item) {
       else {
         return "background-color: #c3d9e5" ;
        }
+
+     }
+
+     const alertStatus = (item) => {
+
+
+      if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
+         return "-2" ;
+      } 
+      if( item.status.match("PROVEEDOR") ){
+         return "-1" ;
+      }
+      if( item.status.match("DET") ){
+         return "0" ;
+      } else {
+         return "1";
+      }
 
      }
 
@@ -76,7 +96,7 @@ export function itemPublic(item) {
     
     //CORRIENDO
         return `
-     <tr id="${itemId}" class="item text-center align-middle" data-run="${item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("CSAP") || item.status.match("DET") ? "0" : "1"}"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+     <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
          <td class="Unit">${item.unidad}</td>
          <td>${item.caja}</td>
          <td>${item.operador}</td>

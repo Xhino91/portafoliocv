@@ -28,7 +28,7 @@ export async function Router() {
         },
       });
 
-      setInterval(  () => {
+      const updateData = setInterval(  () => {
         
         ajax({
           url: `${api.ITEMS}.json`,
@@ -75,10 +75,12 @@ export async function Router() {
 
       }, 5000);
 
-      setInterval(() => {
+      updateData;
+
+     setInterval(() => {
         location.reload();
-      }, 180000);
-         
+      }, 300000);
+
         
 
     d.addEventListener("click", async (e) => {
@@ -309,6 +311,8 @@ export async function Router() {
     d.addEventListener("submit", (e) => {
       e.preventDefault();
       if (e.target.matches(".search-form")) {
+
+        clearInterval(updateData);
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
 
@@ -350,7 +354,7 @@ export async function Router() {
       },
     });
 
-    setInterval(  () => {
+    const updateData = setInterval(  () => {
       
       ajax({
         url: `${api.ITEMS}.json`,
@@ -397,6 +401,7 @@ export async function Router() {
 
     }, 5000);
        
+    updateData;
 
 
  
@@ -803,6 +808,7 @@ export async function Router() {
      });
  
      d.addEventListener("submit", async (e) => {
+       clearInterval(updateData);
        e.preventDefault();
     // console.log(e.target);
 
@@ -1002,7 +1008,7 @@ export async function Router() {
       },
     });
 
-    setInterval(  () => {
+    const updateData = setInterval(  () => {
       
       ajax({
         url: `${api.ITEMS}.json`,
@@ -1049,7 +1055,7 @@ export async function Router() {
 
     }, 5000);
        
-
+    updateData;
 
 
     d.addEventListener("click", async (e) => {
@@ -1360,6 +1366,7 @@ export async function Router() {
     });
 
     d.addEventListener("submit", async (e) => {
+      clearInterval(updateData);
       e.preventDefault();
       
 
@@ -1460,7 +1467,7 @@ export async function Router() {
       },
     });
 
-    setInterval(  () => {
+    const updateData = setInterval(  () => {
       
       ajax({
         url: `${api.ITEMS}.json`,
@@ -1506,7 +1513,7 @@ export async function Router() {
 
     }, 5000);
         
-
+    updateData;
 
     d.addEventListener("click", async (e) => {
       //console.log(e.target);
@@ -1911,6 +1918,7 @@ export async function Router() {
     });
 
     d.addEventListener("submit", async (e) => {
+      clearInterval(updateData);
       e.preventDefault();
      
 
