@@ -94,6 +94,20 @@ export function App() {
 
               Router();
             }
+            if (res[4].user === `${data.username}` && res[4].pass === `${data.password}`) {
+              //console.log("Acceso Completo");
+              window.location.hash = "/CVehicular";
+              sessionStorage.login = true;
+              localStorage.username = data.username;
+              $login.style = "display: none;";
+              location.reload(true);
+
+              $root.appendChild(Header());
+              $root.appendChild(Main());
+              document.getElementById("thtable").appendChild(Loader());
+
+              Router();
+            }
              else {
               // console.log("Acceso Denegado");
               alert("Usuario y/o Contraseña Incorrecto");

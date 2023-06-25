@@ -6,6 +6,7 @@ import { crearTabla } from "./template_con_csv.js";
 import { ItemXls } from "./ItemXls.js";
 import { renderTablePublic } from "./renderTablePublic.js";
 import { renderTable } from "./renderTable.js";
+import { renderTableCV } from "./renderTableCV.js";
 
 
 
@@ -217,7 +218,7 @@ export async function Router() {
         </tbody>      
       </table>
 
-      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
+      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
       </div>
         `;
 
@@ -276,7 +277,7 @@ export async function Router() {
              </tbody>      
             </table>
 
-             <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}" disabled>
+             <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}" disabled>
 
               </div>` 
       
@@ -406,6 +407,9 @@ export async function Router() {
 
  
      d.addEventListener("click", async (e) => {
+       d.getElementById("cajas").classList.add("change");
+       let change = d.getElementById("cajas").classList;
+      
        //console.log(e.target);
        //LEER CSV / XLS
        /*if (e.target.matches(".import_csv")){
@@ -647,7 +651,7 @@ export async function Router() {
           </tbody>      
         </table>
 
-        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
 
@@ -705,7 +709,7 @@ export async function Router() {
                </tbody>      
               </table>
 
-               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
+               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
 
                 </div>` 
         
@@ -723,9 +727,37 @@ export async function Router() {
           }
 
         });
-      
+    
+
 
        }
+       if (e.target.matches(".change")) {
+        if (change[3] === "invC") {
+          location.reload();
+         }
+        
+
+        d.getElementById("cajas").classList.toggle("change");
+        d.getElementById("cajas").innerText = "Tablero de Viajes";
+        d.getElementById("cajas").style.backgroundColor = "#440b3b"
+        
+
+        await ajax({
+          url: `${api.SUBITEMS1}.json`,
+          cbSuccess: (conv) => {   
+            newArray = conv;
+          //  console.log(newArray)   
+           renderTableCV(newArray); 
+           clearInterval(updateData);
+          },
+
+        });
+    
+        d.getElementById("cajas").classList.toggle("invC");
+
+        
+
+       }   
        if (e.target.matches(".reg")) {
          //  console.log(e.target);
          //MODAL REGISTRO DE VIAJES
@@ -808,11 +840,12 @@ export async function Router() {
      });
  
      d.addEventListener("submit", async (e) => {
-       clearInterval(updateData);
        e.preventDefault();
+       clearInterval(updateData);
     // console.log(e.target);
-
-       if (e.target.matches(".search-form")) {
+     let change = d.getElementById("cajas").classList;
+    // console.log(change);
+       if (e.target.matches(".search-form") && change[3] === "change") {
          //console.log(e.target);
          let query = localStorage.getItem("apiSearch").toUpperCase();
  
@@ -837,6 +870,28 @@ export async function Router() {
            }
                          });
        }
+
+       else if (e.target.matches(".search-form") && change[3] === "invC") {
+        console.log(e.target);
+        let query = localStorage.getItem("apiSearch").toUpperCase();
+
+        //console.log(query);
+
+        let item = d.querySelectorAll(".item");
+            item.forEach((e) => {
+        //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+          if (!query) {
+            e.classList.remove("filter");
+            return false;
+          } 
+          else if (e.dataset.conv.includes(query)) {
+            e.classList.remove("filter");
+          } 
+          else {
+            e.classList.add("filter");
+          }
+                        });
+      }
        
        else if (e.target.matches(".register")) {
          //Create Register
@@ -1059,6 +1114,9 @@ export async function Router() {
 
 
     d.addEventListener("click", async (e) => {
+      d.getElementById("cajas").classList.add("change");
+      let change = d.getElementById("cajas").classList;
+     
       //console.log(e.target);
       //LEER CSV / XLS
       /*if (e.target.matches(".import_csv")){
@@ -1278,7 +1336,7 @@ export async function Router() {
           </tbody>      
         </table>
 
-        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
 
@@ -1336,7 +1394,7 @@ export async function Router() {
                </tbody>      
               </table>
 
-               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
+               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
 
                 </div>` 
         
@@ -1357,6 +1415,33 @@ export async function Router() {
       
 
        }
+       if (e.target.matches(".change")) {
+        if (change[3] === "invC") {
+          location.reload();
+         }
+        
+
+        d.getElementById("cajas").classList.toggle("change");
+        d.getElementById("cajas").innerText = "Tablero de Viajes";
+        d.getElementById("cajas").style.backgroundColor = "#440b3b"
+        
+
+        await ajax({
+          url: `${api.SUBITEMS1}.json`,
+          cbSuccess: (conv) => {   
+            newArray = conv;
+          //  console.log(newArray)   
+           renderTableCV(newArray); 
+           clearInterval(updateData);
+          },
+
+        });
+    
+        d.getElementById("cajas").classList.toggle("invC");
+
+        
+
+       }
       if(e.target.matches(".generar_xls")){
         //let $dataTable = d.getElementById("table_xls");
             generar_xls('table_xls', 'Reporte');
@@ -1366,11 +1451,13 @@ export async function Router() {
     });
 
     d.addEventListener("submit", async (e) => {
-      clearInterval(updateData);
       e.preventDefault();
+      clearInterval(updateData);
+   // console.log(e.target);
+    let change = d.getElementById("cajas").classList;
       
-
-      if (e.target.matches(".search-form")) {
+       // console.log(change);
+       if (e.target.matches(".search-form") && change[3] === "change") {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
 
@@ -1394,7 +1481,29 @@ export async function Router() {
             e.classList.add("filter");
           }
                         });
-      } 
+      }
+
+      else if (e.target.matches(".search-form") && change[3] === "invC") {
+       console.log(e.target);
+       let query = localStorage.getItem("apiSearch").toUpperCase();
+
+       //console.log(query);
+
+       let item = d.querySelectorAll(".item");
+           item.forEach((e) => {
+       //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+         if (!query) {
+           e.classList.remove("filter");
+           return false;
+         } 
+         else if (e.dataset.conv.includes(query)) {
+           e.classList.remove("filter");
+         } 
+         else {
+           e.classList.add("filter");
+         }
+                       });
+     }
       
       else if (e.target.matches(".edit")) {
         //UPDATE
@@ -1516,6 +1625,8 @@ export async function Router() {
     updateData;
 
     d.addEventListener("click", async (e) => {
+      d.getElementById("cajas").classList.add("change");
+       let change = d.getElementById("cajas").classList;
       //console.log(e.target);
       //LEER CSV / XLS
       /*if (e.target.matches(".import_csv")){
@@ -1628,87 +1739,144 @@ export async function Router() {
         }
       }
       if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
-        //console.log(e.target.id);
-        d.querySelector(".hidden").style.display = "block";
-        d.getElementById("bt-save").dataset.value = `${e.target.id}`;
+          console.log(change);
+         if(hash === "#/Inhouse" && change[3] === "change"){
+             //console.log(e.target.id);
+            d.querySelector(".hidden").style.display = "block";
+            d.getElementById("bt-save").dataset.value = `${e.target.id}`;
 
-       await ajax({
-          url: `${api.ITEMS}/${e.target.id}.json`,
-          method: "GET",
-          cbSuccess: (item) => {
-            // console.log(item);
-            d.getElementById("formulario").classList.add("edit");
-            d.getElementById("formulario").classList.remove("register");
-            d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
-            d.querySelector(".modal-body").innerHTML = `
-            <div class="container-fluid"> 
-            <table class="table table-sm" >
-        <thead class="table-dark text-center">
-          <tr class="text-wrap">
-            <th scope="col">UNIDAD</th>
+                 await ajax({
+    url: `${api.ITEMS}/${e.target.id}.json`,
+    method: "GET",
+    cbSuccess: (item) => {
+      // console.log(item);
+      d.getElementById("formulario").classList.add("edit");
+      d.getElementById("formulario").classList.remove("register");
+      d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+      d.querySelector(".modal-body").innerHTML = `
+      <div class="container-fluid"> 
+      <table class="table table-sm" >
+  <thead class="table-dark text-center">
+    <tr class="text-wrap">
+      <th scope="col">UNIDAD</th>
+      <th scope="col">CAJA</th>
+      <th scope="col">OPERADOR</th>
+      <th scope="col">C.PORTE</th>
+      <th scope="col">TRACKING</th>
+      <th scope="col">BOL/SHIPPER</th>
+      <th scope="col">RUTA</th>
+      <th scope="col">CLIENTE</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">HORARIO</th>
+      <th scope="col">LLEGADA</th>
+      <th scope="col">ESTATUS</th>
+      <th scope="col">CHECKED</th>
+
+    </tr>
+  </thead>
+  <tbody class="text-center text-wrap" >
+  <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
+  <td><input name="caja" style="width: 60px;" type="text"   value="${item.caja}"></td>
+  <td><input name="operador" style="width: 130px;" type="text"  value="${item.operador}" disabled></td>
+  <td><input name="cporte" style="width: 70px;" type="text"  value="${item.cporte}"></td>
+  <td><input name="tracking" style="width: 80px;" type="text"  value="${item.tracking}"></td>
+  <td><input name="bol" style="width: 75px;" type="text"  value="${item.bol}"></td>
+  <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" required></td>
+  <td><input name="cliente" style="width: 95px;" type="text"  value="${item.cliente}"></td>
+  <td><input name="fecha" type="text" style="width: 80px;"  value="${item.fecha}" disabled</td>
+  <td><input name="ventana" type="time" name="hour" id="hour"  value="${item.ventana}"></td>
+  <td>
+  <select class="form-select form-select-sm" name="llegada" id="arribo">
+  <option value="${item.llegada}">${item.llegada}</option> 
+  <option value="A Tiempo">A Tiempo</option>  
+  <option value="Tarde" >Tarde</option>
+  <option value="Desfasada" >Desfasada</option>
+  <option value="Critica" >Critica</option>
+  </select>
+  </td>
+  <td>
+  <input name="status" style="width: 95px;" type="text"  value="${item.status}">
+  </td>
+  <td>
+  <div class="form-check form-check-inline">
+    <input name="x3" class="form-check-input" type="checkbox" id="inlineCheckbox1"${item.x3 ? "checked" : ""} >
+    <label class="form-check-label" for="inlineCheckbox1">X3</label>
+   </div>
+   <div class="form-check form-check-inline">
+    <input name="af" class="form-check-input" type="checkbox" id="inlineCheckbox2"${item.af ? "checked" : ""} >
+    <label class="form-check-label" for="inlineCheckbox2">AF</label>
+   </div>
+   <div class="form-check form-check-inline">
+    <input name="ag" class="form-check-input" type="checkbox" id="inlineCheckbox3"${item.ag ? "checked" : ""} >
+    <label class="form-check-label" for="inlineCheckbox3">AG</label>
+   </div>
+   <div class="form-check form-check-inline">
+    <input name="x1" class="form-check-input" type="checkbox" id="inlineCheckbox4"${item.x1 ? "checked" : ""} >
+    <label class="form-check-label" for="inlineCheckbox4">X1</label>
+   </div>
+  </td>    
+  </tbody>
+  
+</table>
+</div>
+      `;
+    },
+                         });
+             } else {
+            
+            //  console.log(e.target.id);
+          d.querySelector(".hidden").style.display = "block";
+          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
+  
+         await ajax({
+            url: `${api.SUBITEMS1}/${e.target.id}.json`,
+            method: "GET",
+            cbSuccess: (item) => {
+              // console.log(item);
+              d.getElementById("formulario").classList.add("edit");
+              d.getElementById("formulario").classList.remove("register");
+              d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+              d.querySelector(".modal-body").innerHTML = `
+              <div class="container-fluid"> 
+              <table class="table table-sm" >
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
             <th scope="col">CAJA</th>
-            <th scope="col">OPERADOR</th>
-            <th scope="col">C.PORTE</th>
-            <th scope="col">TRACKING</th>
-            <th scope="col">BOL/SHIPPER</th>
-            <th scope="col">RUTA</th>
-            <th scope="col">CLIENTE</th>
-            <th scope="col">FECHA</th>
-            <th scope="col">HORARIO</th>
-            <th scope="col">LLEGADA</th>
+            <th scope="col">TIPO</th>
+            <th scope="col">MODELO</th>
+            <th scope="col">PLACA</th>
+            <th scope="col">AÑO</th>
+             <th scope="col">VERIFICACION</th>
+             <th scope="col">NO. POLIZA</th>
+            <th scope="col">INCISO</th>
+            <th scope="col">CONTACTO DEL SEGURO</th>
+            <th scope="col">UBICACION</th> 
             <th scope="col">ESTATUS</th>
-            <th scope="col">CHECKED</th>
-      
-          </tr>
-        </thead>
-        <tbody class="text-center text-wrap" >
-        <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
-        <td><input name="caja" style="width: 60px;" type="text"   value="${item.caja}"></td>
-        <td><input name="operador" style="width: 130px;" type="text"  value="${item.operador}" disabled></td>
-        <td><input name="cporte" style="width: 70px;" type="text"  value="${item.cporte}"></td>
-        <td><input name="tracking" style="width: 80px;" type="text"  value="${item.tracking}"></td>
-        <td><input name="bol" style="width: 75px;" type="text"  value="${item.bol}"></td>
-        <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" required></td>
-        <td><input name="cliente" style="width: 95px;" type="text"  value="${item.cliente}"></td>
-        <td><input name="fecha" type="text" style="width: 80px;"  value="${item.fecha}" disabled</td>
-        <td><input name="ventana" type="time" name="hour" id="hour"  value="${item.ventana}"></td>
-        <td>
-        <select class="form-select form-select-sm" name="llegada" id="arribo">
-        <option value="${item.llegada}">${item.llegada}</option> 
-        <option value="A Tiempo">A Tiempo</option>  
-        <option value="Tarde" >Tarde</option>
-        <option value="Desfasada" >Desfasada</option>
-        <option value="Critica" >Critica</option>
-        </select>
-        </td>
-        <td>
-        <input name="status" style="width: 95px;" type="text"  value="${item.status}">
-        </td>
-        <td>
-        <div class="form-check form-check-inline">
-          <input name="x3" class="form-check-input" type="checkbox" id="inlineCheckbox1"${item.x3 ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox1">X3</label>
-         </div>
-         <div class="form-check form-check-inline">
-          <input name="af" class="form-check-input" type="checkbox" id="inlineCheckbox2"${item.af ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox2">AF</label>
-         </div>
-         <div class="form-check form-check-inline">
-          <input name="ag" class="form-check-input" type="checkbox" id="inlineCheckbox3"${item.ag ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox3">AG</label>
-         </div>
-         <div class="form-check form-check-inline">
-          <input name="x1" class="form-check-input" type="checkbox" id="inlineCheckbox4"${item.x1 ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox4">X1</label>
-         </div>
-        </td>    
-        </tbody>
         
-      </table>
-      </div>
-            `;
-          },
-        });
+            </tr>
+          </thead>
+          <tbody class="text-center text-wrap" >
+          <td><input name="caja" style="width: 35px;" type="text" value="${item.caja}"></td>
+          <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}"></td>
+          <td><input name="modelo" style="width: 130px;" type="text"  value="${item.modelo}"></td>
+          <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
+          <td><input name="año" style="width: 80px;" type="text"  value="${item.año}"></td>
+          <td><input name="verificacion" style="width: 75px;" type="text"  value="${item.verificacion}"></td>
+          <td><input name="poliza" style="width: 75px;" type="text"  value="${item.poliza}"></td>
+          <td><input name="inciso" style="width: 95px;" type="text"  value="${item.inciso}"></td>
+          <td><input name="contacto" type="text" style="width: 80px;"  value="${item.contacto}"</td>
+          <td><input name="ubicacion" style="width: 95px;" type="text"  value="${item.ubicacion}"></td>
+          <td><input name="comentarios" style="width: 95px;" type="text""  value="${item.comentarios}"></td>  
+          </tbody>
+          
+        </table>
+        </div>
+              `;
+            },
+          });
+
+           }
+      
 
         d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
       }
@@ -1757,7 +1925,7 @@ export async function Router() {
           </tbody>      
         </table>
 
-        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
 
@@ -1815,7 +1983,7 @@ export async function Router() {
                </tbody>      
               </table>
 
-               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
+               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
 
                 </div>` 
         
@@ -1834,6 +2002,33 @@ export async function Router() {
 
         });
       
+
+       }
+       if (e.target.matches(".change")) {
+        if (change[3] === "invC") {
+          location.reload();
+         }
+        
+
+        d.getElementById("cajas").classList.toggle("change");
+        d.getElementById("cajas").innerText = "Tablero de Viajes";
+        d.getElementById("cajas").style.backgroundColor = "#440b3b"
+        
+
+        await ajax({
+          url: `${api.SUBITEMS1}.json`,
+          cbSuccess: (conv) => {   
+            newArray = conv;
+          //  console.log(newArray)   
+           renderTableCV(newArray); 
+           clearInterval(updateData);
+          },
+
+        });
+    
+        d.getElementById("cajas").classList.toggle("invC");
+
+        
 
        }
       if (e.target.matches(".reg")) {
@@ -1918,11 +2113,12 @@ export async function Router() {
     });
 
     d.addEventListener("submit", async (e) => {
-      clearInterval(updateData);
       e.preventDefault();
-     
-
-      if (e.target.matches(".search-form")) {
+       clearInterval(updateData);
+    // console.log(e.target);
+     let change = d.getElementById("cajas").classList;
+    // console.log(change);
+       if (e.target.matches(".search-form") && change[3] === "change") {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
 
@@ -1947,6 +2143,28 @@ export async function Router() {
           }
                         });
       }
+
+      else if (e.target.matches(".search-form") && change[3] === "invC") {
+       console.log(e.target);
+       let query = localStorage.getItem("apiSearch").toUpperCase();
+
+       //console.log(query);
+
+       let item = d.querySelectorAll(".item");
+           item.forEach((e) => {
+       //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+         if (!query) {
+           e.classList.remove("filter");
+           return false;
+         } 
+         else if (e.dataset.conv.includes(query)) {
+           e.classList.remove("filter");
+         } 
+         else {
+           e.classList.add("filter");
+         }
+                       });
+     }
       
       else if (e.target.matches(".register")) {
         //Create Register
@@ -1988,6 +2206,8 @@ export async function Router() {
       } 
       
       else if (e.target.matches(".edit")) {
+         if(hash === "#/Inhouse" && change[3] === "change"){
+           
         //UPDATE
        // console.log(e.target);
         if (!e.target.id.value) {
@@ -2026,6 +2246,48 @@ export async function Router() {
         }
 
         // console.log(e.target);
+         } else {
+
+           //UPDATE
+           console.log(e.target.comentarios);
+        
+          
+           if (!e.target.id.value) {
+             let options = {
+               method: "PATCH",
+               headers: {
+                 "Content-type": "application/json; charset=utf-8",
+               },
+               body: JSON.stringify({
+                 caja: e.target.caja.value.toUpperCase(),
+                 tipo: e.target.tipo.value.toUpperCase(),
+                 modelo: e.target.modelo.value.toUpperCase(),
+                 placa: e.target.placa.value.toUpperCase(),
+                 año: e.target.año.value.toUpperCase(),
+                 verificacion: e.target.verificacion.value.toUpperCase(),
+                 poliza: e.target.poliza.value.toUpperCase(),
+                 inciso: e.target.inciso.value.toUpperCase(),
+                 contacto: e.target.contacto.value.toUpperCase(),
+                 ubicacion: e.target.ubicacion.value.toUpperCase(),
+                 comentarios: e.target.comentarios.value.toUpperCase()
+               }),
+             };
+            await ajax({
+               url: `${api.SUBITEMS1}/${d.getElementById("bt-save").dataset.value}.json`,
+               options,
+               cbSuccess: (res) => {
+                // console.log(res);
+               },
+             });
+             location.reload();
+           }
+   
+           // console.log(e.target);
+
+         }
+        
+        
+       
       }
     });
 
@@ -2044,6 +2306,411 @@ export async function Router() {
     });
 
     }
+
+ if (!hash || hash === "#/CVehicular") {
+    
+     
+      await ajax({
+        url: `${api.SUBITEMS1}.json`,
+        cbSuccess: (items) => {   
+          newArray = items;
+        //  console.log(newArray)   
+         renderTableCV(newArray);
+        },
+      });
+  
+      d.addEventListener("click", async (e) => {
+        d.getElementById("cajas").classList.add("change");
+        let change = d.getElementById("cajas").classList;
+       
+        //console.log(e.target);
+        //LEER CSV / XLS
+        /*if (e.target.matches(".import_csv")){
+         //console.log(e.target);    
+        }*/
+        //GENERAR REPORTE XLS
+        let date = new Date;
+        if (e.target.matches(".modal_xls")){
+        d.getElementById("exportModalXls").innerHTML = `
+          <section id="thtable" class="thtable">
+         <table class="table table-hover table-sm" id="table_xls">
+          <thead class="table-dark text-center align-middle">
+          <tr style="background-color:black; color:white;">
+          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+          </tr>
+        <tr style="background-color:black; color:white;">
+          <th scope="col">UNIDAD</th>
+          <th scope="col">CAJA</th>
+          <th scope="col">OPERADOR</th>
+          <th scope="col">C.PORTE</th>
+          <th scope="col">TRACKING</th>
+          <th scope="col">BOL / SHIPPER</th>
+          <th scope="col">RUTA</th>
+          <th scope="col">CLIENTE</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">HORARIO</th>
+          <th scope="col">LLEGADA</th>
+          <th scope="col">ESTATUS</th>  
+        </tr>
+      </thead>
+   
+      <tbody id="table_body" class="body_table">
+      </tbody>
+      
+    </table>
+  </section>
+          `;      
+       await ajax({
+            url: `${api.ITEMS}.json`,
+            method: "GET",
+            cbSuccess: (items) => {
+              //console.log(items);
+ 
+              let itemsArray = Object.entries(items);
+           
+             //console.log(itemsArray);
+   
+             // Orden for date
+             let orderItems = itemsArray.sort((o1, o2) => {
+               if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+                 return -1;
+               } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+                 return 1;
+               } else {
+                 return 0;
+               }
+             });
+ 
+  
+              orderItems.forEach((item) => {
+                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+              });
+  
+              //Helper de acceso a los items
+              const $tr = d.querySelectorAll(".item2");
+                const newOrder = Array.from($tr);
+                // Orden Run Complete
+               newOrder.sort((e1, e2) => {
+            if (
+              e1.dataset.run < e2.dataset.run ||
+              e1.dataset.run < e2.dataset.run
+            ) {
+              return -1;
+            } else if (
+              e1.dataset.run > e2.dataset.run ||
+              e1.dataset.run > e2.dataset.run
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          newOrder.forEach((e) => {
+            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+          });
+          },
+          });
+          
+        }
+        if (e.target.matches(".delete") || e.target.matches(".fa-trash")) {
+         // console.log(e.target);
+  
+          let isConfirm = confirm("¿Eliminar Registro?");
+  
+          if (isConfirm) {
+           await ajax({
+              url: `${api.ITEMS}/${e.target.id}.json`,
+              options: {
+                method: "DELETE",
+                headers: {
+                  "Content-type": "application/json; charset=utf-8",
+                },
+              },
+              cbSuccess: (res) => {
+                //console.log(res);
+               
+              },
+            });
+            location.reload();
+          }
+        }
+        if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
+        //  console.log(e.target.id);
+          d.querySelector(".hidden").style.display = "block";
+          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
+  
+         await ajax({
+            url: `${api.SUBITEMS1}/${e.target.id}.json`,
+            method: "GET",
+            cbSuccess: (item) => {
+              // console.log(item);
+              d.getElementById("formulario").classList.add("edit");
+              d.getElementById("formulario").classList.remove("register");
+              d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+              d.querySelector(".modal-body").innerHTML = `
+              <div class="container-fluid"> 
+              <table class="table table-sm" >
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
+            <th scope="col">CAJA</th>
+            <th scope="col">TIPO</th>
+            <th scope="col">MODELO</th>
+            <th scope="col">PLACA</th>
+            <th scope="col">AÑO</th>
+             <th scope="col">VERIFICACION</th>
+             <th scope="col">NO. POLIZA</th>
+            <th scope="col">INCISO</th>
+            <th scope="col">CONTACTO DEL SEGURO</th>
+            <th scope="col">UBICACION</th> 
+            <th scope="col">ESTATUS</th>
+        
+            </tr>
+          </thead>
+          <tbody class="text-center text-wrap" >
+          <td><input name="caja" style="width: 35px;" type="text" value="${item.caja}"></td>
+          <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}"></td>
+          <td><input name="modelo" style="width: 130px;" type="text"  value="${item.modelo}"></td>
+          <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
+          <td><input name="año" style="width: 80px;" type="text"  value="${item.año}"></td>
+          <td><input name="verificacion" style="width: 75px;" type="text"  value="${item.verificacion}"></td>
+          <td><input name="poliza" style="width: 75px;" type="text"  value="${item.poliza}"></td>
+          <td><input name="inciso" style="width: 95px;" type="text"  value="${item.inciso}"></td>
+          <td><input name="contacto" type="text" style="width: 80px;"  value="${item.contacto}"</td>
+          <td><input name="ubicacion" style="width: 95px;" type="text"  value="${item.ubicacion}"></td>
+          <td><input name="comentarios" style="width: 95px;" type="text""  value="${item.comentarios}"></td>  
+          </tbody>
+          
+        </table>
+        </div>
+              `;
+            },
+          });
+  
+        }  
+        if (e.target.matches(".reg")) {
+          //  console.log(e.target);
+          //MODAL REGISTRO DE VIAJES
+          d.querySelector(".hidden").style.display = "block";
+          d.getElementById("formulario").classList.add("register");
+          d.getElementById("formulario").classList.remove("edit");
+          d.getElementById("exampleModalLabel").innerHTML = `Programación de rutas`;
+          d.querySelector(".modal-body").innerHTML = `
+              <div class="container-fluid"> 
+              <table class="table table-sm" >
+          <thead class="table-dark text-center">
+          <tr class="text-wrap">
+          <th scope="col">CAJA</th>
+          <th scope="col">TIPO</th>
+          <th scope="col">MODELO</th>
+          <th scope="col">PLACA</th>
+          <th scope="col">AÑO</th>
+           <th scope="col">VERIFICACION</th>
+           <th scope="col">NO. POLIZA</th>
+          <th scope="col">INCISO</th>
+          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">UBICACION</th> 
+          <th scope="col">ESTATUS</th>
+      
+          </tr>
+        </thead>
+        <tbody class="text-center text-wrap">
+        <td><input name="caja" style="width: 35px;" type="text"></td>
+        <td><input name="tipo" style="width: 60px;" type="text"></td>
+        <td><input name="modelo" style="width: 130px;" type="text"></td>
+        <td><input name="placa" style="width: 70px;" type="text"></td>
+        <td><input name="año" style="width: 80px;" type="text"></td>
+        <td><input name="verificacion" style="width: 75px;" type="text"></td>
+        <td><input name="poliza" style="width: 75px;" type="text"></td>
+        <td><input name="inciso" style="width: 95px;" type="text"></td>
+        <td><input name="contacto" type="text" style="width: 80px;"></td>
+        <td><input name="ubicacion" type="text"></td>
+        <td><input name="comentarios" type="text"></td>  
+        </tbody>
+          
+        </table>
+        </div>
+              `;
+        }
+        if(e.target.matches(".generar_xls")){
+          //let $dataTable = d.getElementById("table_xls");
+              generar_xls('table_xls', 'Reporte');
+   
+        }
+        return;
+      });
+
+      d.addEventListener("submit", async (e) => {
+        e.preventDefault();
+     // console.log(e.target);
+      let change = d.getElementById("cajas").classList;
+     // console.log(change);
+        if (e.target.matches(".search-form")) {
+          //console.log(e.target);
+          let query = localStorage.getItem("apiSearch").toUpperCase();
+  
+          //console.log(query);
+  
+          let item = d.querySelectorAll(".item");
+              item.forEach((e) => {
+            //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+            if (!query) {
+              e.classList.remove("filter");
+              return false;
+            } else if (e.dataset.conv.includes(query)) {
+              e.classList.remove("filter");
+            } else {
+              e.classList.add("filter");
+            }
+                          });
+        }
+        
+        else if (e.target.matches(".register")) {
+          //Create Register
+          if (!e.target.id.value) {
+            let options = {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json; charset=utf-8",
+              },
+              body: JSON.stringify({
+                caja: e.target.caja.value.toUpperCase(),
+                tipo: e.target.tipo.value.toUpperCase(),
+                modelo: e.target.modelo.value.toUpperCase(),
+                placa: e.target.placa.value.toUpperCase(),
+                año: e.target.año.value.toUpperCase(),
+                verificacion: e.target.verificacion.value.toUpperCase(),
+                poliza: e.target.poliza.value.toUpperCase(),
+                inciso: e.target.inciso.value.toUpperCase(),
+                contacto: e.target.contacto.value.toUpperCase(),
+                ubicacion: e.target.ubicacion.value.toUpperCase(),
+                comentarios: e.target.comentarios.value.toUpperCase()
+                
+              }),
+            };
+          await ajax({
+              url: `${api.SUBITEMS1}.json`,
+              options,
+              cbSuccess: (res) => {
+                json = res.json();
+              },
+            });
+            location.reload();
+          }
+          // console.log(e.target);
+        } 
+        
+        else if (e.target.matches(".edit")) {
+          //UPDATE
+          console.log(e.target.comentarios);
+        
+          
+          if (!e.target.id.value) {
+            let options = {
+              method: "PATCH",
+              headers: {
+                "Content-type": "application/json; charset=utf-8",
+              },
+              body: JSON.stringify({
+                caja: e.target.caja.value.toUpperCase(),
+                tipo: e.target.tipo.value.toUpperCase(),
+                modelo: e.target.modelo.value.toUpperCase(),
+                placa: e.target.placa.value.toUpperCase(),
+                año: e.target.año.value.toUpperCase(),
+                verificacion: e.target.verificacion.value.toUpperCase(),
+                poliza: e.target.poliza.value.toUpperCase(),
+                inciso: e.target.inciso.value.toUpperCase(),
+                contacto: e.target.contacto.value.toUpperCase(),
+                ubicacion: e.target.ubicacion.value.toUpperCase(),
+                comentarios: e.target.comentarios.value.toUpperCase()
+              }),
+            };
+           await ajax({
+              url: `${api.SUBITEMS1}/${d.getElementById("bt-save").dataset.value}.json`,
+              options,
+              cbSuccess: (res) => {
+               // console.log(res);
+              },
+            });
+            location.reload();
+          }
+  
+          // console.log(e.target);
+        }
+ 
+        else if (e.target.matches(".update")) {
+           console.log(e.target);
+ 
+         //UPDATE
+          //console.log(e.target.textarea[0].value.toUpperCase());
+          //console.log(e.target.textarea[1].value.toUpperCase());
+ 
+          let keyUnit = d.getElementById("controlV").dataset.unit;
+          let keyConv = d.getElementById("controlV").dataset.conveyance;
+ 
+         // console.log(keyUnit);
+ 
+          
+          if (!e.target.id.value) {
+           let options = {
+             method: "PATCH",
+             headers: {
+               "Content-type": "application/json; charset=utf-8",
+             },
+             body: JSON.stringify({
+               comentarios: e.target.textarea[0].value.toUpperCase()
+             }),
+           };
+ 
+             await ajax({
+                url: `${api.SUBITEMS}/${keyUnit}.json`,
+               options,
+               cbSuccess: (res) => {
+                // console.log(res);
+              },
+           });
+ 
+            options = {
+             method: "PATCH",
+             headers: {
+               "Content-type": "application/json; charset=utf-8",
+             },
+             body: JSON.stringify({
+               comentarios: e.target.textarea[1].value.toUpperCase()
+             }),
+           };
+ 
+             await ajax({
+                url: `${api.SUBITEMS1}/${keyConv}.json`,
+               options,
+               cbSuccess: (res) => {
+                // console.log(res);
+              },
+           });
+ 
+              location.reload();
+         }
+         
+ 
+          }
+ 
+           
+      });
+     
+      d.addEventListener("keyup", (e) => {
+        //  console.log(d.getElementById("ruta"));
+        //limpiar busqueda
+        let query = localStorage.getItem("apiSearch");
+        if (e.key === "Escape") localStorage.removeItem("apiSearch");
+        let item = d.querySelectorAll(".item");
+        item.forEach((e) => {
+          if (!query) {
+            e.classList.remove("filter");
+            return false;
+          }
+        });
+      });
+  
+      }
 
   return 
 }

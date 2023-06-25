@@ -11,9 +11,9 @@ export function Main() {
   <button class="btn btn-dark fw-bold"><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
   <button class="btn btn-dark fw-bold me-auto"> <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
   
-  <button class="btn btn-secondary fw-bold" type="button" data-bs-toggle="" data-bs-target="#importModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic"  ? "display: none;" : ""}";>Importar Template</button>
-  <button class="btn btn-primary fw-bold modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal">Generar Reporte</button>
-  <button class="btn btn-success fw-bold me-md-2 reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" ? "display: none;" : ""}";>Agregar Registro</button>
+  <button id="cajas" class="btn btn-secondary fw-bold" type="button" style="${window.location.hash === "#/Public" || window.location.hash === "#/CVehicular" ? "display: none;" : "background-color: #595035;"}";>Inventario de Cajas</button>
+  <button class="btn btn-primary fw-bold modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" style="${window.location.hash === "#/CVehicular" ? "display: none;" : ""}">Generar Reporte</button>
+  <button class="btn btn-success fw-bold me-md-2 reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" ? "display: none;" : ""}">Agregar Registro</button>
   </div>
 
   <form id="formulario">
