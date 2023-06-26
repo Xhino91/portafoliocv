@@ -9,11 +9,13 @@ export function renderTableCV(items){
     
       let itemsArray = Object.entries(items);
 
-      // Orden for date
+    //  console.log(itemsArray);
+
+      // Ubication Order
       let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+        if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
           return -1;
-        } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+        } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
           return 1;
         } else {
           return 0;
@@ -44,9 +46,11 @@ d.getElementById("thtable").innerHTML =  `
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
       <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">RUTA</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
-      <th scope="col" style="${window.location.hash === "#/Tracking" || window.location.hash === "#/Traffic"  ? "display: none;" : ""}" >OPCIONES</th>
+      <th scope="col" style="${window.location.hash === "#/Tracking" || window.location.hash === "#/Traffic" || window.location.hash === "#/Public"  ? "display: none;" : ""}" >OPCIONES</th>
  
                  
       </tr>
@@ -70,6 +74,7 @@ d.getElementById("thtable").innerHTML =  `
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);
 
+    //  console.log($tr);
       // Orden Run Complete
           newOrder.sort((e1, e2) => {
         if (

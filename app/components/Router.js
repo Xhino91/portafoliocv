@@ -7,6 +7,7 @@ import { ItemXls } from "./ItemXls.js";
 import { renderTablePublic } from "./renderTablePublic.js";
 import { renderTable } from "./renderTable.js";
 import { renderTableCV } from "./renderTableCV.js";
+import { ItemXlsInv } from "./ItemXlsInv.js";
 
 
 
@@ -85,7 +86,9 @@ export async function Router() {
         
 
     d.addEventListener("click", async (e) => {
-      //console.log(e.target);
+      d.getElementById("cajas").classList.add("change");
+       let change = d.getElementById("cajas").classList;
+       //console.log(e.target);
       //LEER CSV / XLS
       /*if (e.target.matches(".import_csv")){
        //console.log(e.target);    
@@ -218,7 +221,7 @@ export async function Router() {
         </tbody>      
       </table>
 
-      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
+      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
       </div>
         `;
 
@@ -243,42 +246,43 @@ export async function Router() {
         
           if(e.target.dataset.conveyance === conv[1].caja){
 
-            d.getElementById("controlModal").style.height = "60vh";
-
+            d.getElementById("controlModal").style.height = "45vh";
             d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
             <div class="container-fluid"> 
     
                <table class="table table-sm" >
                <thead class="table-dark text-center">
                  <tr class="text-wrap">
-                   <th scope="col">REMOLQUE</th>
-                   <th scope="col">TIPO</th>
-                   <th scope="col">MODELO</th>
-                   <th scope="col">PLACA</th>
-                   <th scope="col">AÑO</th>
-                   <th scope="col">VERIFICACION</th>
-                   <th scope="col">NO. POLIZA</th>
-                   <th scope="col">INCISO</th>
-                   <th scope="col">CONTACTO DEL SEGURO</th> 
+                 <th scope="col">CAJA</th>
+                 <th scope="col">TIPO</th>
+                 <th scope="col">MODELO</th>
+                 <th scope="col">PLACA</th>
+                 <th scope="col">AÑO</th>
+                 <th scope="col">VERIFICACION</th>
+                 <th scope="col">NO. POLIZA</th>
+                 <th scope="col">INCISO</th>
+                 <th scope="col">CONTACTO DEL SEGURO</th>
+                 <th scope="col">CIRCUITO</th>
+                 <th scope="col">RUTA</th>
+                 <th scope="col">UBICACION</th> 
+                 <th scope="col">ESTATUS</th>
                  </tr>
                </thead>
-               <tbody class="text-center" class="text-wrap">
-               <tr>
-               <td>${conv[1].caja}</td>
-               <td>${conv[1].tipo}</td>
-               <td>${conv[1].modelo}</td>
-               <td>${conv[1].placa}</td>
-               <td>${conv[1].año}</td>
-               <td>${conv[1].verificacion}</td>
-               <td>${conv[1].poliza}</td>
-               <td>${conv[1].inciso}</td>
-               <td>${conv[1].contacto}</td>     
-               </tr>
-             </tbody>      
-            </table>
-
-             <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}" disabled>
-
+               <tbody class="text-center text-wrap" >
+        <td>${conv[1].caja}</td>
+        <td>${conv[1].tipo}</td>
+        <td>${conv[1].modelo}</td>
+        <td>${conv[1].placa}</td>
+        <td>${conv[1].año}</td>
+        <td>${conv[1].verificacion}</td>
+        <td>${conv[1].poliza}</td>
+        <td>${conv[1].inciso}</td>
+        <td>${conv[1].contacto}</td>
+        <td>${conv[1].circuito}</td>
+        <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black;" type="text"  value="${conv[1].ruta}" disabled></td>
+        <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}" disabled></td>
+        <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}" disabled></td>  
+        </tbody>      
               </div>` 
       
           );
@@ -304,6 +308,33 @@ export async function Router() {
         generar_xls('table_xls', 'Reporte');
  
       }
+      if (e.target.matches(".change")) {
+        if (change[3] === "invC") {
+          location.reload();
+         }
+        
+
+        d.getElementById("cajas").classList.toggle("change");
+        d.getElementById("cajas").innerText = "Tablero de Viajes";
+        d.getElementById("cajas").style.backgroundColor = "#440b3b"
+        
+
+        await ajax({
+          url: `${api.SUBITEMS1}.json`,
+          cbSuccess: (conv) => {   
+            newArray = conv;
+          //  console.log(newArray)   
+           renderTableCV(newArray); 
+           clearInterval(updateData);
+          },
+
+        });
+    
+        d.getElementById("cajas").classList.toggle("invC");
+
+        
+
+       } 
 
       
       return;
@@ -311,9 +342,11 @@ export async function Router() {
     
     d.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (e.target.matches(".search-form")) {
-
-        clearInterval(updateData);
+       clearInterval(updateData);
+    // console.log(e.target);
+     let change = d.getElementById("cajas").classList;
+    // console.log(change);
+      if (e.target.matches(".search-form") && change[3] === "change") {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
 
@@ -338,6 +371,42 @@ export async function Router() {
           }
                         });
       }
+
+      else if (e.target.matches(".search-form") && change[3] === "invC") {
+       console.log(e.target);
+       let query = localStorage.getItem("apiSearch").toUpperCase();
+
+       //console.log(query);
+
+       let item = d.querySelectorAll(".item");
+           item.forEach((e) => {
+       //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+         if (!query) {
+           e.classList.remove("filter");
+           return false;
+         } 
+         else if (e.dataset.conv.includes(query)) {
+           e.classList.remove("filter");
+         } 
+         else {
+           e.classList.add("filter");
+         }
+                       });
+     }
+    });
+
+    d.addEventListener("keyup", (e) => {
+      //  console.log(d.getElementById("ruta"));
+      //limpiar busqueda
+      let query = localStorage.getItem("apiSearch");
+      if (e.key === "Escape") localStorage.removeItem("apiSearch");
+      let item = d.querySelectorAll(".item");
+      item.forEach((e) => {
+        if (!query) {
+          e.classList.remove("filter");
+          return false;
+        }
+      });
     });
 
  
@@ -651,7 +720,7 @@ export async function Router() {
           </tbody>      
         </table>
 
-        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
 
@@ -676,41 +745,43 @@ export async function Router() {
           
             if(e.target.dataset.conveyance === conv[1].caja){
 
-              d.getElementById("controlModal").style.height = "60vh";
+              d.getElementById("controlModal").style.height = "45vh";
               d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
               <div class="container-fluid"> 
       
                  <table class="table table-sm" >
                  <thead class="table-dark text-center">
                    <tr class="text-wrap">
-                     <th scope="col">REMOLQUE</th>
-                     <th scope="col">TIPO</th>
-                     <th scope="col">MODELO</th>
-                     <th scope="col">PLACA</th>
-                     <th scope="col">AÑO</th>
-                     <th scope="col">VERIFICACION</th>
-                     <th scope="col">NO. POLIZA</th>
-                     <th scope="col">INCISO</th>
-                     <th scope="col">CONTACTO DEL SEGURO</th> 
+                   <th scope="col">CAJA</th>
+                   <th scope="col">TIPO</th>
+                   <th scope="col">MODELO</th>
+                   <th scope="col">PLACA</th>
+                   <th scope="col">AÑO</th>
+                   <th scope="col">VERIFICACION</th>
+                   <th scope="col">NO. POLIZA</th>
+                   <th scope="col">INCISO</th>
+                   <th scope="col">CONTACTO DEL SEGURO</th>
+                   <th scope="col">CIRCUITO</th>
+                   <th scope="col">RUTA</th>
+                   <th scope="col">UBICACION</th> 
+                   <th scope="col">ESTATUS</th>
                    </tr>
                  </thead>
-                 <tbody class="text-center" class="text-wrap">
-                 <tr>
-                 <td>${conv[1].caja}</td>
-                 <td>${conv[1].tipo}</td>
-                 <td>${conv[1].modelo}</td>
-                 <td>${conv[1].placa}</td>
-                 <td>${conv[1].año}</td>
-                 <td>${conv[1].verificacion}</td>
-                 <td>${conv[1].poliza}</td>
-                 <td>${conv[1].inciso}</td>
-                 <td>${conv[1].contacto}</td>     
-                 </tr>
-               </tbody>      
-              </table>
-
-               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
-
+                 <tbody class="text-center text-wrap" >
+          <td>${conv[1].caja}</td>
+          <td>${conv[1].tipo}</td>
+          <td>${conv[1].modelo}</td>
+          <td>${conv[1].placa}</td>
+          <td>${conv[1].año}</td>
+          <td>${conv[1].verificacion}</td>
+          <td>${conv[1].poliza}</td>
+          <td>${conv[1].inciso}</td>
+          <td>${conv[1].contacto}</td>
+          <td><input name="circuito" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
+          <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black;" type="text"  value="${conv[1].ruta}"></td>
+          <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
+          <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
+          </tbody>      
                 </div>` 
         
             );
@@ -757,7 +828,7 @@ export async function Router() {
 
         
 
-       }   
+       }    
        if (e.target.matches(".reg")) {
          //  console.log(e.target);
          //MODAL REGISTRO DE VIAJES
@@ -976,7 +1047,7 @@ export async function Router() {
        }
 
        else if (e.target.matches(".update")) {
-          console.log(e.target);
+          //console.log(e.target);
 
         //UPDATE
          //console.log(e.target.textarea[0].value.toUpperCase());
@@ -989,13 +1060,14 @@ export async function Router() {
 
          
          if (!e.target.id.value) {
+         
           let options = {
             method: "PATCH",
             headers: {
               "Content-type": "application/json; charset=utf-8",
             },
             body: JSON.stringify({
-              comentarios: e.target.textarea[0].value.toUpperCase()
+              comentarios: e.target.textarea.value.toUpperCase()
             }),
           };
 
@@ -1013,7 +1085,10 @@ export async function Router() {
               "Content-type": "application/json; charset=utf-8",
             },
             body: JSON.stringify({
-              comentarios: e.target.textarea[1].value.toUpperCase()
+                circuito: e.target.circuito.value.toUpperCase(),
+                ruta: e.target.ruta.value.toUpperCase(),
+                ubicacion: e.target.ubicacion.value.toUpperCase(),
+                comentarios: e.target.comentarios.value.toUpperCase()
             }),
           };
 
@@ -1336,7 +1411,7 @@ export async function Router() {
           </tbody>      
         </table>
 
-        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
 
@@ -1361,41 +1436,43 @@ export async function Router() {
           
             if(e.target.dataset.conveyance === conv[1].caja){
 
-              d.getElementById("controlModal").style.height = "60vh";
+              d.getElementById("controlModal").style.height = "45vh";
               d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
               <div class="container-fluid"> 
       
                  <table class="table table-sm" >
                  <thead class="table-dark text-center">
                    <tr class="text-wrap">
-                     <th scope="col">REMOLQUE</th>
-                     <th scope="col">TIPO</th>
-                     <th scope="col">MODELO</th>
-                     <th scope="col">PLACA</th>
-                     <th scope="col">AÑO</th>
-                     <th scope="col">VERIFICACION</th>
-                     <th scope="col">NO. POLIZA</th>
-                     <th scope="col">INCISO</th>
-                     <th scope="col">CONTACTO DEL SEGURO</th> 
+                   <th scope="col">CAJA</th>
+                   <th scope="col">TIPO</th>
+                   <th scope="col">MODELO</th>
+                   <th scope="col">PLACA</th>
+                   <th scope="col">AÑO</th>
+                   <th scope="col">VERIFICACION</th>
+                   <th scope="col">NO. POLIZA</th>
+                   <th scope="col">INCISO</th>
+                   <th scope="col">CONTACTO DEL SEGURO</th>
+                   <th scope="col">CIRCUITO</th>
+                   <th scope="col">RUTA</th>
+                   <th scope="col">UBICACION</th> 
+                   <th scope="col">ESTATUS</th>
                    </tr>
                  </thead>
-                 <tbody class="text-center" class="text-wrap">
-                 <tr>
-                 <td>${conv[1].caja}</td>
-                 <td>${conv[1].tipo}</td>
-                 <td>${conv[1].modelo}</td>
-                 <td>${conv[1].placa}</td>
-                 <td>${conv[1].año}</td>
-                 <td>${conv[1].verificacion}</td>
-                 <td>${conv[1].poliza}</td>
-                 <td>${conv[1].inciso}</td>
-                 <td>${conv[1].contacto}</td>     
-                 </tr>
-               </tbody>      
-              </table>
-
-               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
-
+                 <tbody class="text-center text-wrap" >
+          <td>${conv[1].caja}</td>
+          <td>${conv[1].tipo}</td>
+          <td>${conv[1].modelo}</td>
+          <td>${conv[1].placa}</td>
+          <td>${conv[1].año}</td>
+          <td>${conv[1].verificacion}</td>
+          <td>${conv[1].poliza}</td>
+          <td>${conv[1].inciso}</td>
+          <td>${conv[1].contacto}</td>
+          <td><input name="circuito" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
+          <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black;" type="text"  value="${conv[1].ruta}"></td>
+          <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
+          <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
+          </tbody>      
                 </div>` 
         
             );
@@ -1545,6 +1622,67 @@ export async function Router() {
 
         // console.log(e.target);
       }
+
+      else if (e.target.matches(".update")) {
+        //console.log(e.target);
+
+      //UPDATE
+       //console.log(e.target.textarea[0].value.toUpperCase());
+       //console.log(e.target.textarea[1].value.toUpperCase());
+
+       let keyUnit = d.getElementById("controlV").dataset.unit;
+       let keyConv = d.getElementById("controlV").dataset.conveyance;
+
+      // console.log(keyUnit);
+
+       
+       if (!e.target.id.value) {
+       
+        let options = {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify({
+            comentarios: e.target.textarea.value.toUpperCase()
+          }),
+        };
+
+          await ajax({
+             url: `${api.SUBITEMS}/${keyUnit}.json`,
+            options,
+            cbSuccess: (res) => {
+             // console.log(res);
+           },
+        });
+
+         options = {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify({
+              circuito: e.target.circuito.value.toUpperCase(),
+              ruta: e.target.ruta.value.toUpperCase(),
+              ubicacion: e.target.ubicacion.value.toUpperCase(),
+              comentarios: e.target.comentarios.value.toUpperCase()
+          }),
+        };
+
+          await ajax({
+             url: `${api.SUBITEMS1}/${keyConv}.json`,
+            options,
+            cbSuccess: (res) => {
+             // console.log(res);
+           },
+        });
+
+           location.reload();
+      }
+      
+
+       }
+
     });
 
     d.addEventListener("keyup", (e) => {
@@ -1746,9 +1884,9 @@ export async function Router() {
             d.getElementById("bt-save").dataset.value = `${e.target.id}`;
 
                  await ajax({
-    url: `${api.ITEMS}/${e.target.id}.json`,
-    method: "GET",
-    cbSuccess: (item) => {
+           url: `${api.ITEMS}/${e.target.id}.json`,
+          method: "GET",
+        cbSuccess: (item) => {
       // console.log(item);
       d.getElementById("formulario").classList.add("edit");
       d.getElementById("formulario").classList.remove("register");
@@ -1850,23 +1988,27 @@ export async function Router() {
              <th scope="col">NO. POLIZA</th>
             <th scope="col">INCISO</th>
             <th scope="col">CONTACTO DEL SEGURO</th>
+            <th scope="col">CIRCUITO</th>
+            <th scope="col">RUTA</th>
             <th scope="col">UBICACION</th> 
             <th scope="col">ESTATUS</th>
         
             </tr>
           </thead>
           <tbody class="text-center text-wrap" >
-          <td><input name="caja" style="width: 35px;" type="text" value="${item.caja}"></td>
-          <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}"></td>
-          <td><input name="modelo" style="width: 130px;" type="text"  value="${item.modelo}"></td>
-          <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
-          <td><input name="año" style="width: 80px;" type="text"  value="${item.año}"></td>
-          <td><input name="verificacion" style="width: 75px;" type="text"  value="${item.verificacion}"></td>
-          <td><input name="poliza" style="width: 75px;" type="text"  value="${item.poliza}"></td>
-          <td><input name="inciso" style="width: 95px;" type="text"  value="${item.inciso}"></td>
-          <td><input name="contacto" type="text" style="width: 80px;"  value="${item.contacto}"</td>
-          <td><input name="ubicacion" style="width: 95px;" type="text"  value="${item.ubicacion}"></td>
-          <td><input name="comentarios" style="width: 95px;" type="text""  value="${item.comentarios}"></td>  
+          <td>${item.caja}</td>
+          <td>${item.tipo}</td>
+          <td>${item.modelo}</td>
+          <td>${item.placa}</td>
+          <td>${item.año}</td>
+          <td>${item.verificacion}</td>
+          <td>${item.poliza}</td>
+          <td>${item.inciso}</td>
+          <td>${item.contacto}</td>
+          <td><input name="circuito" style="background: #69beff; font-weight: bold; color: black;"   type="text"  value="${item.circuito}"></td>
+          <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black;"   type="text"  value="${item.ruta}"></td>
+          <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black;"   type="text"  value="${item.ubicacion}"></td>
+          <td><input name="comentarios" style="background: #69beff; font-weight: bold; color: black;"   type="text""  value="${item.comentarios}"></td>  
           </tbody>
           
         </table>
@@ -1925,7 +2067,7 @@ export async function Router() {
           </tbody>      
         </table>
 
-        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+        <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
         </div>
           `;
 
@@ -1950,41 +2092,43 @@ export async function Router() {
           
             if(e.target.dataset.conveyance === conv[1].caja){
 
-              d.getElementById("controlModal").style.height = "60vh";
+              d.getElementById("controlModal").style.height = "45vh";
               d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
               <div class="container-fluid"> 
       
                  <table class="table table-sm" >
                  <thead class="table-dark text-center">
                    <tr class="text-wrap">
-                     <th scope="col">REMOLQUE</th>
-                     <th scope="col">TIPO</th>
-                     <th scope="col">MODELO</th>
-                     <th scope="col">PLACA</th>
-                     <th scope="col">AÑO</th>
-                     <th scope="col">VERIFICACION</th>
-                     <th scope="col">NO. POLIZA</th>
-                     <th scope="col">INCISO</th>
-                     <th scope="col">CONTACTO DEL SEGURO</th> 
+                   <th scope="col">CAJA</th>
+                   <th scope="col">TIPO</th>
+                   <th scope="col">MODELO</th>
+                   <th scope="col">PLACA</th>
+                   <th scope="col">AÑO</th>
+                   <th scope="col">VERIFICACION</th>
+                   <th scope="col">NO. POLIZA</th>
+                   <th scope="col">INCISO</th>
+                   <th scope="col">CONTACTO DEL SEGURO</th>
+                   <th scope="col">CIRCUITO</th>
+                   <th scope="col">RUTA</th>
+                   <th scope="col">UBICACION</th> 
+                   <th scope="col">ESTATUS</th>
                    </tr>
                  </thead>
-                 <tbody class="text-center" class="text-wrap">
-                 <tr>
-                 <td>${conv[1].caja}</td>
-                 <td>${conv[1].tipo}</td>
-                 <td>${conv[1].modelo}</td>
-                 <td>${conv[1].placa}</td>
-                 <td>${conv[1].año}</td>
-                 <td>${conv[1].verificacion}</td>
-                 <td>${conv[1].poliza}</td>
-                 <td>${conv[1].inciso}</td>
-                 <td>${conv[1].contacto}</td>     
-                 </tr>
-               </tbody>      
-              </table>
-
-               <input name="textarea" rows="1" cols="250" class="mb-3" style="width: 1000px; background: #69beff;" placeholder="Comentarios de Sobre el Remolque" value="${conv[1].comentarios.toUpperCase()}">
-
+                 <tbody class="text-center text-wrap" >
+          <td>${conv[1].caja}</td>
+          <td>${conv[1].tipo}</td>
+          <td>${conv[1].modelo}</td>
+          <td>${conv[1].placa}</td>
+          <td>${conv[1].año}</td>
+          <td>${conv[1].verificacion}</td>
+          <td>${conv[1].poliza}</td>
+          <td>${conv[1].inciso}</td>
+          <td>${conv[1].contacto}</td>
+          <td><input name="circuito" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
+          <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black;" type="text"  value="${conv[1].ruta}"></td>
+          <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
+          <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
+          </tbody>      
                 </div>` 
         
             );
@@ -2259,17 +2403,10 @@ export async function Router() {
                  "Content-type": "application/json; charset=utf-8",
                },
                body: JSON.stringify({
-                 caja: e.target.caja.value.toUpperCase(),
-                 tipo: e.target.tipo.value.toUpperCase(),
-                 modelo: e.target.modelo.value.toUpperCase(),
-                 placa: e.target.placa.value.toUpperCase(),
-                 año: e.target.año.value.toUpperCase(),
-                 verificacion: e.target.verificacion.value.toUpperCase(),
-                 poliza: e.target.poliza.value.toUpperCase(),
-                 inciso: e.target.inciso.value.toUpperCase(),
-                 contacto: e.target.contacto.value.toUpperCase(),
-                 ubicacion: e.target.ubicacion.value.toUpperCase(),
-                 comentarios: e.target.comentarios.value.toUpperCase()
+                circuito: e.target.circuito.value.toUpperCase(),
+                ruta: e.target.ruta.value.toUpperCase(),
+                ubicacion: e.target.ubicacion.value.toUpperCase(),
+                comentarios: e.target.comentarios.value.toUpperCase()
                }),
              };
             await ajax({
@@ -2289,6 +2426,65 @@ export async function Router() {
         
        
       }
+      else if (e.target.matches(".update")) {
+        //console.log(e.target);
+
+      //UPDATE
+       //console.log(e.target.textarea[0].value.toUpperCase());
+       //console.log(e.target.textarea[1].value.toUpperCase());
+
+       let keyUnit = d.getElementById("controlV").dataset.unit;
+       let keyConv = d.getElementById("controlV").dataset.conveyance;
+
+      // console.log(keyUnit);
+
+       
+       if (!e.target.id.value) {
+       
+        let options = {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify({
+            comentarios: e.target.textarea.value.toUpperCase()
+          }),
+        };
+
+          await ajax({
+             url: `${api.SUBITEMS}/${keyUnit}.json`,
+            options,
+            cbSuccess: (res) => {
+             // console.log(res);
+           },
+        });
+
+         options = {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify({
+              circuito: e.target.circuito.value.toUpperCase(),
+              ruta: e.target.ruta.value.toUpperCase(),
+              ubicacion: e.target.ubicacion.value.toUpperCase(),
+              comentarios: e.target.comentarios.value.toUpperCase()
+          }),
+        };
+
+          await ajax({
+             url: `${api.SUBITEMS1}/${keyConv}.json`,
+            options,
+            cbSuccess: (res) => {
+             // console.log(res);
+           },
+        });
+
+           location.reload();
+      }
+      
+
+       }
     });
 
     d.addEventListener("keyup", (e) => {
@@ -2332,6 +2528,7 @@ export async function Router() {
         let date = new Date;
         if (e.target.matches(".modal_xls")){
         d.getElementById("exportModalXls").innerHTML = `
+
           <section id="thtable" class="thtable">
          <table class="table table-hover table-sm" id="table_xls">
           <thead class="table-dark text-center align-middle">
@@ -2339,18 +2536,19 @@ export async function Router() {
           <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
           </tr>
         <tr style="background-color:black; color:white;">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">CAJA</th>
-          <th scope="col">OPERADOR</th>
-          <th scope="col">C.PORTE</th>
-          <th scope="col">TRACKING</th>
-          <th scope="col">BOL / SHIPPER</th>
-          <th scope="col">RUTA</th>
-          <th scope="col">CLIENTE</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">HORARIO</th>
-          <th scope="col">LLEGADA</th>
-          <th scope="col">ESTATUS</th>  
+        <th scope="col">CAJA</th>
+        <th scope="col">TIPO</th>
+        <th scope="col">MODELO</th>
+        <th scope="col">PLACA</th>
+        <th scope="col">AÑO</th>
+         <th scope="col">VERIFICACION</th>
+         <th scope="col">NO. POLIZA</th>
+        <th scope="col">INCISO</th>
+        <th scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">RUTA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>  
         </tr>
       </thead>
    
@@ -2360,8 +2558,8 @@ export async function Router() {
     </table>
   </section>
           `;      
-       await ajax({
-            url: `${api.ITEMS}.json`,
+          await ajax({
+            url: `${api.SUBITEMS1}.json`,
             method: "GET",
             cbSuccess: (items) => {
               //console.log(items);
@@ -2370,44 +2568,48 @@ export async function Router() {
            
              //console.log(itemsArray);
    
-             // Orden for date
+             // Ubication Order
              let orderItems = itemsArray.sort((o1, o2) => {
-               if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
-                 return -1;
-               } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
-                 return 1;
-               } else {
-                 return 0;
-               }
-             });
+              if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
+                return -1;
+              } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
+                return 1;
+              } else {
+                return 0;
+              }
+            });
  
   
               orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInv(item));          
               });
   
-              //Helper de acceso a los items
-              const $tr = d.querySelectorAll(".item2");
-                const newOrder = Array.from($tr);
+               //Helper de acceso a los items
+                 const $tr = d.querySelectorAll(".item2");
+                  const newOrder = Array.from($tr);
+
+              // console.log($tr);
                 // Orden Run Complete
-               newOrder.sort((e1, e2) => {
-            if (
-              e1.dataset.run < e2.dataset.run ||
-              e1.dataset.run < e2.dataset.run
-            ) {
-              return -1;
-            } else if (
-              e1.dataset.run > e2.dataset.run ||
-              e1.dataset.run > e2.dataset.run
-            ) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-          });
+                   newOrder.sort((e1, e2) => {
+                   if (
+                        e1.dataset.run < e2.dataset.run ||
+                         e1.dataset.run < e2.dataset.run
+                   ) {
+                           return -1;
+                   } else if (
+                        e1.dataset.run > e2.dataset.run ||
+                        e1.dataset.run > e2.dataset.run
+                         ) {
+                      return 1;
+                           } else {
+                         return 0;
+                             }
+                                 });
+
+
+        newOrder.forEach((e) => {
+          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+         });     
           },
           });
           
@@ -2457,10 +2659,12 @@ export async function Router() {
             <th scope="col">MODELO</th>
             <th scope="col">PLACA</th>
             <th scope="col">AÑO</th>
-             <th scope="col">VERIFICACION</th>
-             <th scope="col">NO. POLIZA</th>
+            <th scope="col">VERIFICACION</th>
+            <th scope="col">NO. POLIZA</th>
             <th scope="col">INCISO</th>
             <th scope="col">CONTACTO DEL SEGURO</th>
+            <th scope="col">CIRCUITO</th>
+            <th scope="col">RUTA</th>
             <th scope="col">UBICACION</th> 
             <th scope="col">ESTATUS</th>
         
@@ -2476,6 +2680,8 @@ export async function Router() {
           <td><input name="poliza" style="width: 75px;" type="text"  value="${item.poliza}"></td>
           <td><input name="inciso" style="width: 95px;" type="text"  value="${item.inciso}"></td>
           <td><input name="contacto" type="text" style="width: 80px;"  value="${item.contacto}"</td>
+          <td><input name="circuito" style="width: 95px;" type="text"  value="${item.circuito}"></td>
+          <td><input name="ruta" style="width: 95px;" type="text"  value="${item.ruta}"></td>
           <td><input name="ubicacion" style="width: 95px;" type="text"  value="${item.ubicacion}"></td>
           <td><input name="comentarios" style="width: 95px;" type="text""  value="${item.comentarios}"></td>  
           </tbody>
@@ -2508,6 +2714,8 @@ export async function Router() {
            <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
           <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">CIRCUITO</th>
+          <th scope="col">RUTA</th>
           <th scope="col">UBICACION</th> 
           <th scope="col">ESTATUS</th>
       
@@ -2523,6 +2731,8 @@ export async function Router() {
         <td><input name="poliza" style="width: 75px;" type="text"></td>
         <td><input name="inciso" style="width: 95px;" type="text"></td>
         <td><input name="contacto" type="text" style="width: 80px;"></td>
+        <td><input name="circuito" type="text"></td>
+        <td><input name="ruta" type="text"></td>
         <td><input name="ubicacion" type="text"></td>
         <td><input name="comentarios" type="text"></td>  
         </tbody>
@@ -2582,6 +2792,8 @@ export async function Router() {
                 poliza: e.target.poliza.value.toUpperCase(),
                 inciso: e.target.inciso.value.toUpperCase(),
                 contacto: e.target.contacto.value.toUpperCase(),
+                circuito: e.target.circuito.value.toUpperCase(),
+                ruta: e.target.ruta.value.toUpperCase(),
                 ubicacion: e.target.ubicacion.value.toUpperCase(),
                 comentarios: e.target.comentarios.value.toUpperCase()
                 
@@ -2620,6 +2832,8 @@ export async function Router() {
                 poliza: e.target.poliza.value.toUpperCase(),
                 inciso: e.target.inciso.value.toUpperCase(),
                 contacto: e.target.contacto.value.toUpperCase(),
+                circuito: e.target.circuito.value.toUpperCase(),
+                ruta: e.target.ruta.value.toUpperCase(),
                 ubicacion: e.target.ubicacion.value.toUpperCase(),
                 comentarios: e.target.comentarios.value.toUpperCase()
               }),
@@ -2637,61 +2851,6 @@ export async function Router() {
           // console.log(e.target);
         }
  
-        else if (e.target.matches(".update")) {
-           console.log(e.target);
- 
-         //UPDATE
-          //console.log(e.target.textarea[0].value.toUpperCase());
-          //console.log(e.target.textarea[1].value.toUpperCase());
- 
-          let keyUnit = d.getElementById("controlV").dataset.unit;
-          let keyConv = d.getElementById("controlV").dataset.conveyance;
- 
-         // console.log(keyUnit);
- 
-          
-          if (!e.target.id.value) {
-           let options = {
-             method: "PATCH",
-             headers: {
-               "Content-type": "application/json; charset=utf-8",
-             },
-             body: JSON.stringify({
-               comentarios: e.target.textarea[0].value.toUpperCase()
-             }),
-           };
- 
-             await ajax({
-                url: `${api.SUBITEMS}/${keyUnit}.json`,
-               options,
-               cbSuccess: (res) => {
-                // console.log(res);
-              },
-           });
- 
-            options = {
-             method: "PATCH",
-             headers: {
-               "Content-type": "application/json; charset=utf-8",
-             },
-             body: JSON.stringify({
-               comentarios: e.target.textarea[1].value.toUpperCase()
-             }),
-           };
- 
-             await ajax({
-                url: `${api.SUBITEMS1}/${keyConv}.json`,
-               options,
-               cbSuccess: (res) => {
-                // console.log(res);
-              },
-           });
- 
-              location.reload();
-         }
-         
- 
-          }
  
            
       });
