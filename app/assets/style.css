@@ -95,9 +95,15 @@ thead tr th {
   .cporte,
   .track,
   .bol,
-  .llegada {
+  .llegada,
+  .placa,
+  .año,
+  .verificacion,
+  .poliza,
+  .inciso,
+  .contacto {
     display: none;
-  }
+  }  
 
   #table_xls {
     width: 98%;

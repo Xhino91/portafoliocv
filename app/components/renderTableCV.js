@@ -40,12 +40,12 @@ d.getElementById("thtable").innerHTML =  `
       <th scope="col">CAJA</th>
       <th scope="col">TIPO</th>
       <th scope="col">MODELO</th>
-      <th scope="col">PLACA</th>
-      <th scope="col">AÑO</th>
-       <th scope="col">VERIFICACION</th>
-       <th scope="col">NO. POLIZA</th>
-      <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th class="placa" scope="col">PLACA</th>
+      <th class="año" scope="col">AÑO</th>
+       <th class="verificacion" scope="col">VERIFICACION</th>
+       <th class="poliza" scope="col">NO. POLIZA</th>
+      <th class="inciso" scope="col">INCISO</th>
+      <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">RUTA</th>
       <th scope="col">UBICACION</th> 

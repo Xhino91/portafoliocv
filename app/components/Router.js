@@ -191,7 +191,7 @@ export async function Router() {
          unitArray.forEach(unit => {
           if(e.target.id === unit[1].unidad){
 
-            d.getElementById("controlModal").style.height = "60vh";
+            d.getElementById("controlModal").style.height = "50vh";
           d.querySelector(".control-modal-body").innerHTML = `
         <div class="container-fluid"> 
         <table class="table table-sm" >
@@ -199,29 +199,29 @@ export async function Router() {
           <tr class="text-wrap">
             <th scope="col">UNIDAD</th>
             <th scope="col">MODELO</th>
-            <th scope="col">PLACA</th>
-            <th scope="col">AÑO</th>
-            <th scope="col">VERIFICACION</th>
-            <th scope="col">NO. POLIZA</th>
-            <th scope="col">INCISO</th>
-            <th scope="col">CONTACTO DEL SEGURO</th> 
+            <th class="placa" scope="col">PLACA</th>
+            <th class="año" scope="col">AÑO</th>
+            <th class="verificacion" scope="col">VERIFICACION</th>
+            <th class="poliza" scope="col">NO. POLIZA</th>
+            <th class="inciso" scope="col">INCISO</th>
+            <th class="contacto" scope="col">CONTACTO DEL SEGURO</th> 
           </tr>
         </thead>
         <tbody class="text-center" class="text-wrap">
         <tr>
         <td>${unit[1].unidad}</td>
         <td>${unit[1].modelo}</td>
-        <td>${unit[1].placa}</td>
-        <td>${unit[1].año}</td>
-        <td>${unit[1].verificacion}</td>
-        <td>${unit[1].poliza}</td>
-        <td>${unit[1].inciso}</td>
-        <td>${unit[1].contacto}</td>     
+        <td class="placa">${unit[1].placa}</td>
+        <td class="año">${unit[1].año}</td>
+        <td class="verificacion">${unit[1].verificacion}</td>
+        <td class="poliza">${unit[1].poliza}</td>
+        <td class="inciso">${unit[1].inciso}</td>
+        <td class="contacto">${unit[1].contacto}</td>     
         </tr>   
         </tbody>      
       </table>
 
-      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
+      <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 900px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}" disabled>
       </div>
         `;
 
@@ -246,7 +246,7 @@ export async function Router() {
         
           if(e.target.dataset.conveyance === conv[1].caja){
 
-            d.getElementById("controlModal").style.height = "45vh";
+            d.getElementById("controlModal").style.height = "50vh";
             d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
             <div class="container-fluid"> 
     
@@ -256,12 +256,12 @@ export async function Router() {
                  <th scope="col">CAJA</th>
                  <th scope="col">TIPO</th>
                  <th scope="col">MODELO</th>
-                 <th scope="col">PLACA</th>
-                 <th scope="col">AÑO</th>
-                 <th scope="col">VERIFICACION</th>
-                 <th scope="col">NO. POLIZA</th>
-                 <th scope="col">INCISO</th>
-                 <th scope="col">CONTACTO DEL SEGURO</th>
+                 <th class="placa" scope="col">PLACA</th>
+                 <th class="año" scope="col">AÑO</th>
+                 <th class="verificacion" scope="col">VERIFICACION</th>
+                 <th class="poliza" scope="col">NO. POLIZA</th>
+                 <th class="inciso" scope="col">INCISO</th>
+                 <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
                  <th scope="col">CIRCUITO</th>
                  <th scope="col">RUTA</th>
                  <th scope="col">UBICACION</th> 
@@ -272,16 +272,16 @@ export async function Router() {
         <td>${conv[1].caja}</td>
         <td>${conv[1].tipo}</td>
         <td>${conv[1].modelo}</td>
-        <td>${conv[1].placa}</td>
-        <td>${conv[1].año}</td>
-        <td>${conv[1].verificacion}</td>
-        <td>${conv[1].poliza}</td>
-        <td>${conv[1].inciso}</td>
-        <td>${conv[1].contacto}</td>
+        <td class="placa" >${conv[1].placa}</td>
+        <td class="año" >${conv[1].año}</td>
+        <td  class="verificacion" >${conv[1].verificacion}</td>
+        <td class="poliza" >${conv[1].poliza}</td>
+        <td class="inciso">${conv[1].inciso}</td>
+        <td class="contacto">${conv[1].contacto}</td>
         <td>${conv[1].circuito}</td>
-        <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black;" type="text"  value="${conv[1].ruta}" disabled></td>
-        <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}" disabled></td>
-        <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}" disabled></td>  
+        <td><input name="ruta" style="background: #69beff; font-weight: bold; color: black; width: 200px;" type="text"  value="${conv[1].ruta}" disabled></td>
+        <td><input name="ubicacion" style="background: #69beff; font-weight: bold; color: black; width: 200px;"  type="text"  value="${conv[1].ubicacion}" disabled></td>
+        <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 200px; background-color: #862828; color: white; font-weight: bold;" : "width: 200px; background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}" disabled></td>  
         </tbody>      
               </div>` 
       

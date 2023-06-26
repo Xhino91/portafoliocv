@@ -61,12 +61,12 @@ return  `
 <td style="font-weight: bold;">${conv[1].caja}</td>
 <td>${conv[1].tipo}</td>
 <td>${conv[1].modelo}</td>
-<td>${conv[1].placa}</td>
-<td>${conv[1].año}</td>
-<td>${conv[1].verificacion}</td>
-<td>${conv[1].poliza}</td>
-<td>${conv[1].inciso}</td>
-<td>${conv[1].contacto}</td>
+<td class="placa" >${conv[1].placa}</td>
+<td class="año" >${conv[1].año}</td>
+<td class="verificacion" >${conv[1].verificacion}</td>
+<td class="poliza" >${conv[1].poliza}</td>
+<td class="inciso">${conv[1].inciso}</td>
+<td class="contacto">${conv[1].contacto}</td>
 <td>${conv[1].circuito}</td>
 <td>${conv[1].ruta}</td>
 <td style="${orderUbi(conv[1])}" >${conv[1].ubicacion}</td> 
