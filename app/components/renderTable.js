@@ -71,6 +71,24 @@ d.getElementById("thtable").innerHTML =  `
       const newOrder = Array.from($tr);
 
       // Orden Run Complete
+
+      newOrder.sort((e1, e2) => {
+        if (
+          e1.dataset.fecha < e2.dataset.fecha ||
+          e1.dataset.fecha < e2.dataset.fecha
+        ) {
+          return -1;
+        } else if (
+          e1.dataset.fecha > e2.dataset.fecha ||
+          e1.dataset.fecha > e2.dataset.fecha
+        ) {
+          return 1;
+        } else {
+          return 0;
+        }
+          });
+
+
           newOrder.sort((e1, e2) => {
         if (
           e1.dataset.run < e2.dataset.run ||
@@ -86,6 +104,7 @@ d.getElementById("thtable").innerHTML =  `
           return 0;
         }
           });
+
 
 
         newOrder.forEach((e) => {
