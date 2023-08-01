@@ -2766,7 +2766,10 @@ export async function Router() {
             if (!query) {
               e.classList.remove("filter");
               return false;
-            } else if (e.dataset.conv.includes(query)) {
+            } else if (e.dataset.circuito.includes(query) || 
+            e.dataset.conv.includes(query) ||
+            e.dataset.ubicacion.includes(query)
+             ) {
               e.classList.remove("filter");
             } else {
               e.classList.add("filter");

@@ -55,7 +55,7 @@ export function ItemV(conv) {
 
 
 return  `
-<tr class="item text-center align-middle" data-run="${orderRun(conv[1])}" data-conv="${conv[1].caja}">
+<tr class="item text-center align-middle" data-run="${orderRun(conv[1])}" data-conv="${conv[1].caja}" data-circuito="${conv[1].circuito}" data-ubicacion="${conv[1].ubicacion}">
 
 
 <td style="font-weight: bold;">${conv[1].caja}</td>
