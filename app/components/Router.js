@@ -385,7 +385,10 @@ export async function Router() {
            e.classList.remove("filter");
            return false;
          } 
-         else if (e.dataset.conv.includes(query)) {
+         else if (e.dataset.conv.includes(query) ||
+         e.dataset.circuito.includes(query) ||
+         e.dataset.ubicacion.includes(query)
+         ) {
            e.classList.remove("filter");
          } 
          else {
@@ -955,7 +958,9 @@ export async function Router() {
             e.classList.remove("filter");
             return false;
           } 
-          else if (e.dataset.conv.includes(query)) {
+          else if (e.dataset.conv.includes(query) ||
+          e.dataset.circuito.includes(query) ||
+          e.dataset.ubicacion.includes(query)) {
             e.classList.remove("filter");
           } 
           else {
@@ -1573,7 +1578,9 @@ export async function Router() {
            e.classList.remove("filter");
            return false;
          } 
-         else if (e.dataset.conv.includes(query)) {
+         else if (e.dataset.conv.includes(query) ||
+         e.dataset.circuito.includes(query) ||
+         e.dataset.ubicacion.includes(query)) {
            e.classList.remove("filter");
          } 
          else {
@@ -2301,7 +2308,9 @@ export async function Router() {
            e.classList.remove("filter");
            return false;
          } 
-         else if (e.dataset.conv.includes(query)) {
+         else if (e.dataset.conv.includes(query) ||
+         e.dataset.circuito.includes(query) ||
+         e.dataset.ubicacion.includes(query)) {
            e.classList.remove("filter");
          } 
          else {
