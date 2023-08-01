@@ -39,7 +39,7 @@ d.getElementById("thtable").innerHTML =  `
      
       <th scope="col">CAJA</th>
       <th scope="col">TIPO</th>
-      <th scope="col">MODELO</th>
+      <th class="modelo" scope="col">MODELO</th>
       <th class="placa" scope="col">PLACA</th>
       <th class="año" scope="col">AÑO</th>
        <th class="verificacion" scope="col">VERIFICACION</th>

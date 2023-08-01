@@ -60,7 +60,7 @@ return  `
 
 <td style="font-weight: bold;">${conv[1].caja}</td>
 <td>${conv[1].tipo}</td>
-<td>${conv[1].modelo}</td>
+<td class="modelo">${conv[1].modelo}</td>
 <td class="placa" >${conv[1].placa}</td>
 <td class="año" >${conv[1].año}</td>
 <td class="verificacion" >${conv[1].verificacion}</td>

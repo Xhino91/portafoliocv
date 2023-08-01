@@ -8,11 +8,11 @@ export function Main() {
   //console.log(location.hash);
   $main.innerHTML = `
   <div class="d-grid gap-2 d-md-flex d-sm-flex justify-content-md-end margin">
-  <button class="btn btn-dark fw-bold"><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
-  <button class="btn btn-dark fw-bold me-auto"> <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
+  <button class="btn btn-dark fw-bold" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" ><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
+  <button class="btn btn-dark fw-bold me-auto" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" > <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
   
   <button id="cajas" class="btn btn-secondary fw-bold" type="button" style="${window.location.hash === "#/CVehicular" ? "display: none;" : "background-color: #595035;"}";>Inventario de Cajas</button>
-  <button class="btn btn-primary fw-bold modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" >Generar Reporte</button>
+  <button class="btn btn-primary fw-bold modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" >Generar Reporte</button>
   <button class="btn btn-success fw-bold me-md-2 reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" ? "display: none;" : ""}">Agregar Registro</button>
   </div>
 

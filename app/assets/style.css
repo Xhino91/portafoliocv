@@ -111,7 +111,7 @@ thead tr th {
   }
 }
 
-@media (max-width: 450px) {
+@media (min-width: 300px) and (max-width: 700px) {
 
   .cporte,
   .track,
@@ -119,15 +119,24 @@ thead tr th {
   .llegada,
   .fecha,
   .ventana,
-  .ruta {
+  .ruta,
+  .placa,
+  .año,
+  .verificacion,
+  .poliza,
+  .inciso,
+  .contacto,
+  .modelo
+   {
     display: none;
   }
 
   #thtable {
-    width: 95%;
+    width: 100%;
     height: 84vh;
     position: sticky;
     overflow-y: scroll;
     margin: auto;
+    font-size: 10px;
   }
 }
