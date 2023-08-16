@@ -51,7 +51,7 @@ const alertColor = (item) => {
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
       return `
-      <tr id="${itemId}" class="item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-fecha="${item.fecha}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
+      <tr id="${itemId}" class="item text-center align-middle pending" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-fecha="${item.fecha}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
           <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>

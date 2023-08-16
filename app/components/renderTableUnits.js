@@ -1,9 +1,10 @@
+import { ItemUnit } from "./ItemUnits.js";
 import { ItemV } from "./ItemV.js";
 
 
 const d = document;
 
-export function renderTableCV(items){
+export function renderTableUnits(items){
 
       // console.log(newArray); 
     
@@ -27,7 +28,7 @@ export function renderTableCV(items){
       let html = "";
       
 
-      orderItems.forEach((item) => (html += ItemV(item)));
+      orderItems.forEach((item) => (html += ItemUnit(item)));
      
     
  
@@ -37,8 +38,8 @@ d.getElementById("thtable").innerHTML =  `
       <thead class="table-dark text-center align-middle">
       <tr>
      
-      <th scope="col">CAJA</th>
-      <th scope="col">TIPO</th>
+      <th scope="col">UNIDAD</th>
+      <th scope="col">OPERADOR</th>
       <th class="modelo" scope="col">MODELO</th>
       <th class="placa" scope="col">PLACA</th>
       <th class="año" scope="col">AÑO</th>
@@ -50,7 +51,9 @@ d.getElementById("thtable").innerHTML =  `
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
-      <th scope="col" style="${window.location.hash === "#/Public"  ? "display: none;" : ""}" >OPCIONES</th>             
+      <th scope="col" style="${window.location.hash === "#/Public"  ? "display: none;" : ""}" >OPCIONES</th>
+ 
+                 
       </tr>
     </thead>
  

@@ -104,8 +104,50 @@ d.getElementById("thtable").innerHTML =  `
           return 0;
         }
           });
+        
+      //Order Routes Pending
 
+        newOrder.forEach(e => {
+         
+          if(!e.classList.contains("pending")){
+          //  console.log(e);
+            newOrder.sort((e1, e2) => {
+              if (
+                e1.dataset.fecha < e2.dataset.fecha ||
+                e1.dataset.fecha < e2.dataset.fecha
+              ) {
+                return -1;
+              } else if (
+                e1.dataset.fecha > e2.dataset.fecha ||
+                e1.dataset.fecha > e2.dataset.fecha
+              ) {
+                return 1;
+              } else {
+                return 0;
+              }
+                });
+          } else {
+          //  console.log(e);
+            newOrder.sort((e1, e2) => {
+              if (
+                e1.dataset.fecha < e2.dataset.fecha ||
+                e1.dataset.fecha < e2.dataset.fecha
+              ) {
+                return -1;
+              } else if (
+                e1.dataset.fecha > e2.dataset.fecha ||
+                e1.dataset.fecha > e2.dataset.fecha
+              ) {
+                return 1;
+              } else {
+                return 0;
+              }
+                });
+          }
+          
+        });
 
+        
 
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          

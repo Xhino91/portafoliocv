@@ -4,17 +4,24 @@ export function Main() {
   $main.id = "main";
 
   let date = new Date();
+
+  //console.log(localStorage.username);
+
   
   //console.log(location.hash);
   $main.innerHTML = `
   <div class="d-grid gap-2 d-md-flex d-sm-flex justify-content-md-end margin">
-  <button class="btn btn-dark fw-bold" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" ><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
-  <button class="btn btn-dark fw-bold me-auto" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" > <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
+  <button class="btn btn-dark fw-bold" style="${window.location.hash === "#/Public" ? "" : ""}" ><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
+  <button class="btn btn-dark fw-bold me-auto" style="${window.location.hash === "#/Public" ? "" : ""}" > <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
   
-  <button id="cajas" class="btn btn-secondary fw-bold" type="button" style="${window.location.hash === "#/CVehicular" ? "display: none;" : "background-color: #595035;"}";>Inventario de Cajas</button>
-  <button class="btn btn-primary fw-bold modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" >Generar Reporte</button>
-  <button class="btn btn-success fw-bold me-md-2 reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" ? "display: none;" : ""}">Agregar Registro</button>
-  </div>
+  <button id="tablero"  class="btn btn-primary fw-bold tablero" type="button" >Tablero de Viajes</button>
+  <button id="cajas" class="btn btn-primary fw-bold cajas" type="button" >Inventario de Cajas</button>
+  <button id="unidades" class="btn btn-primary fw-bold unidades" type="button" >Inventario de Unidades</button>
+  <button class="btn btn-primary fw-bold  modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" style="${window.location.hash === "#/Public" ? "display: none;" : ""}" >Generar Reporte</button>
+  <button class="btn btn-success fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" || window.location.hash === "#/CVehicular" ? "display: none;" : ""}">Agregar Registro</button>
+  <button  class="remolque btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" || window.location.hash === "#/Inhouse" || window.location.hash === "#/Tracking" ? "display: none;" : ""}">Agregar Remolque</button>
+  <button  class="unidad btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${window.location.hash === "#/Public" || window.location.hash === "#/Traffic" || window.location.hash === "#/Inhouse" || window.location.hash === "#/Tracking" ? "display: none;" : ""}">Agregar Unidad</button>
+  </div>  
 
   <form id="formulario">
     <div classs="container">
@@ -54,7 +61,7 @@ export function Main() {
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger cancelXls" data-bs-dismiss="modal">Cancelar</button>
         <button data-value="" type="submit" class="btn btn-primary generar_xls" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
         <input type="hidden" name="id">
                </div>
@@ -111,7 +118,7 @@ export function Main() {
      </div>
     </div>
 
-<section id="thtable" class="thtable">
+<section id="thtable" class="thtable"> </section>
 `;
 
   let clockTempo;

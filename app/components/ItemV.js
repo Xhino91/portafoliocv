@@ -4,7 +4,7 @@ export function ItemV(conv) {
   const alertStatus = (comit) => {
 
 
-   if( comit.comentarios.match("CRITIC") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ")){
+   if( comit.comentarios.match("CRITIC") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("DETE")){
       return `
           background: #862828;
           color: white;
@@ -13,7 +13,11 @@ export function ItemV(conv) {
       ` ;
    }
    else {
-      return "background: #69beff";
+      return  `
+      background-color: #39596c;
+      color: white;
+      font-weight: bold;
+      `;
    }
   }
 
@@ -68,10 +72,10 @@ return  `
 <td class="inciso">${conv[1].inciso}</td>
 <td class="contacto">${conv[1].contacto}</td>
 <td>${conv[1].circuito}</td>
-<td>${conv[1].ruta}</td>
+<td>${conv[1].fecha}</td>
 <td style="${orderUbi(conv[1])}" >${conv[1].ubicacion}</td> 
 <td style="${alertStatus(conv[1])}" >${conv[1].comentarios}</td> 
-<td  style="${window.location.hash === "#/Tracking" || window.location.hash === "#/Traffic" || window.location.hash === "#/Public"  ? "display: none;" : ""}"><button id="${conv[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${conv[0]}"></i></button></td>    
+<td  style="${window.location.hash === "#/Public"  ? "display: none;" : ""}"><button id="${conv[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${conv[0]}"></i></button></td>    
 </tr>
 `;
 
