@@ -1877,6 +1877,9 @@ d.addEventListener("keyup", e => {
         });
         
       }
+      if (e.target.matches(".cancelXls") || e.target.matches(".report")){
+        location.reload();
+      }
       if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
         //console.log(e.target.id);
         d.querySelector(".hidden").style.display = "block";
