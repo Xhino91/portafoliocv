@@ -51,7 +51,7 @@ d.getElementById("thtable").innerHTML =  `
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
-      <th scope="col" style="${window.location.hash === "#/Public"  ? "display: none;" : ""}" >OPCIONES</th>
+      <th scope="col" style="${window.location.hash === "#/Public" || "#/Traffic" ? "display: none;" : ""}" >OPCIONES</th>
  
                  
       </tr>

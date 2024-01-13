@@ -1702,8 +1702,10 @@ d.addEventListener("keyup", e => {
    }
 
    if (!hash || hash === "#/Traffic") {
+    localStorage.tabConveyance = false;
+    localStorage.tabUnit = false;
+    localStorage.tabViajes = true;
      
-      
     await ajax({
       url: `${api.ITEMS}.json`,
       cbSuccess: (items) => {   
@@ -1739,15 +1741,15 @@ d.addEventListener("keyup", e => {
                     || e.status != e2.status || e.ventana != e2.ventana
                     || e.x1 != e2.x1 || e.x3 != e2.x3 || e.operador != e2.operador
                     ) {
-                     // console.log("UPDATE")
-                     renderTable(items);
+                    //  console.log("UPDATE")
+                    renderTable(items);
                      }
      
                    }
                  } 
                  else {
-                  //console.log("UPDATE");
-                  renderTable(items);
+                 // console.log("UPDATE");
+                 renderTable(items);
 
                   
                  }
@@ -1761,6 +1763,25 @@ d.addEventListener("keyup", e => {
     }, 5000);
        
     updateData;
+
+
+    let sectionActive = () => {
+      d.getElementById("tablero").style.color = "#ffffffe8";
+        d.getElementById("tablero").style.backgroundColor = "#10438e";
+        d.getElementById("tablero").style.borderColor = "#094fb5";
+
+        d.getElementById("cajas").style.color = "";
+        d.getElementById("cajas").style.backgroundColor = "";
+        d.getElementById("cajas").style.borderColor = "";
+
+        d.getElementById("unidades").style.color = "";
+        d.getElementById("unidades").style.backgroundColor = "";
+        d.getElementById("unidades").style.borderColor = "";
+       };
+
+       if(localStorage.tabViajes){
+        sectionActive();
+      }
 
 
     d.addEventListener("click", async (e) => {
@@ -2067,33 +2088,92 @@ d.addEventListener("keyup", e => {
       
 
        }
-       if (e.target.matches(".change")) {
-        if (change[3] === "invC") {
-          location.reload();
-         }
-        
+       if (e.target.matches(".tablero")) {
+        clearInterval(updateData);
+        localStorage.tabConveyance = false;
+        localStorage.tabViajes = true;
+      localStorage.tabUnit = false;
 
-        d.getElementById("cajas").classList.toggle("change");
-        d.getElementById("cajas").innerText = "Tablero de Viajes";
-        d.getElementById("cajas").style.backgroundColor = "#440b3b"
-        
+
+        await ajax({
+          url: `${api.ITEMS}.json`,
+          cbSuccess: (items) => {   
+            newArray = items;
+            //console.log(itemsArray)   
+            renderTable(newArray);
+          },
+        });
+
+        d.getElementById("tablero").style.color = "#ffffffe8";
+        d.getElementById("tablero").style.backgroundColor = "#10438e";
+        d.getElementById("tablero").style.borderColor = "#094fb5";
+
+        d.getElementById("cajas").style.color = "";
+        d.getElementById("cajas").style.backgroundColor = "";
+        d.getElementById("cajas").style.borderColor = "";
+
+        d.getElementById("unidades").style.color = "";
+        d.getElementById("unidades").style.backgroundColor = "";
+        d.getElementById("unidades").style.borderColor = "";
+      }
+       if (e.target.matches(".cajas")) {
+        clearInterval(updateData);
+        localStorage.tabConveyance = true;
+        localStorage.tabViajes = false;
+      localStorage.tabUnit = false;
+
+
 
         await ajax({
           url: `${api.SUBITEMS1}.json`,
-          cbSuccess: (conv) => {   
-            newArray = conv;
+          cbSuccess: (items) => {   
+            newArray = items;
           //  console.log(newArray)   
-           renderTableCV(newArray); 
-           clearInterval(updateData);
+           renderTableCV(newArray);
           },
-
         });
-    
-        d.getElementById("cajas").classList.toggle("invC");
 
+        d.getElementById("cajas").style.color = "#ffffffe8";
+        d.getElementById("cajas").style.backgroundColor = "#10438e";
+        d.getElementById("cajas").style.borderColor = "#094fb5";
+
+        d.getElementById("tablero").style.color = "";
+        d.getElementById("tablero").style.backgroundColor = "";
+        d.getElementById("tablero").style.borderColor = "";
+
+        d.getElementById("unidades").style.color = "";
+        d.getElementById("unidades").style.backgroundColor = "";
+        d.getElementById("unidades").style.borderColor = "";
         
+      }
+      if (e.target.matches(".unidades")) {
+        clearInterval(updateData);
+        localStorage.tabConveyance = false;
+        localStorage.tabViajes = false;
+        localStorage.tabUnit = true;
 
-       }
+
+        await ajax({
+          url: `${api.SUBITEMS}.json`,
+          cbSuccess: (items) => {   
+            newArray = items;
+      //      console.log(newArray);   
+            renderTableUnits(newArray);
+          },
+        });
+
+        d.getElementById("unidades").style.color = "#ffffffe8";
+        d.getElementById("unidades").style.backgroundColor = "#10438e";
+        d.getElementById("unidades").style.borderColor = "#094fb5";
+
+        d.getElementById("cajas").style.color = "";
+        d.getElementById("cajas").style.backgroundColor = "";
+        d.getElementById("cajas").style.borderColor = "";
+
+        d.getElementById("tablero").style.color = "";
+        d.getElementById("tablero").style.backgroundColor = "";
+        d.getElementById("tablero").style.borderColor = "";
+      }
       if(e.target.matches(".generar_xls")){
         //let $dataTable = d.getElementById("table_xls");
             generar_xls('table_xls', 'Reporte');
