@@ -445,16 +445,18 @@ d.addEventListener("keyup", e => {
 
         let item = d.querySelectorAll(".item");
             item.forEach((e) => {
-          console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+          //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
           if (!query) {
             e.classList.remove("filter");
             return false;
           } else if (
-            e.dataset.unit.includes(query) ||
+           e.dataset.unit.includes(query) ||
             e.dataset.box.includes(query) ||
+            e.dataset.operador.includes(query) ||
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
-            e.dataset.cliente.includes(query)
+            e.dataset.cliente.includes(query) ||
+            e.dataset.status.includes(query)
           ) {
             e.classList.remove("filter");
           } else {
@@ -1431,10 +1433,12 @@ d.addEventListener("keyup", e => {
           return false;
         } else if (
           e.dataset.unit.includes(query) ||
-          e.dataset.box.includes(query) ||
-          e.dataset.track.includes(query) ||
-          e.dataset.ruta.includes(query) ||
-          e.dataset.cliente.includes(query)
+            e.dataset.box.includes(query) ||
+            e.dataset.operador.includes(query) ||
+            e.dataset.track.includes(query) ||
+            e.dataset.ruta.includes(query) ||
+            e.dataset.cliente.includes(query) ||
+            e.dataset.status.includes(query)
         ) {
           e.classList.remove("filter");
         } else {
@@ -2192,12 +2196,12 @@ d.addEventListener("keyup", e => {
     let change = d.getElementById("cajas").classList;
       
        // console.log(change);
-       if (e.target.matches(".search-form") && change[3] === "change") {
+       if (e.target.matches(".search-form") && localStorage.tabViajes === "true") {
         //console.log(e.target);
         let query = localStorage.getItem("apiSearch").toUpperCase();
-
-        //console.log(query);
-
+  
+       //console.log(query);
+  
         let item = d.querySelectorAll(".item");
             item.forEach((e) => {
           //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
@@ -2207,23 +2211,24 @@ d.addEventListener("keyup", e => {
           } else if (
             e.dataset.unit.includes(query) ||
             e.dataset.box.includes(query) ||
+            e.dataset.operador.includes(query) ||
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
-            e.dataset.cliente.includes(query)
+            e.dataset.cliente.includes(query) ||
+            e.dataset.status.includes(query)
           ) {
             e.classList.remove("filter");
           } else {
             e.classList.add("filter");
           }
                         });
-      }
-
-      else if (e.target.matches(".search-form") && change[3] === "invC") {
-       console.log(e.target);
+        }
+        else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
+    //   console.log(e.target);
        let query = localStorage.getItem("apiSearch").toUpperCase();
-
-       //console.log(query);
-
+  
+    //  console.log(query);
+  
        let item = d.querySelectorAll(".item");
            item.forEach((e) => {
        //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
@@ -2233,14 +2238,39 @@ d.addEventListener("keyup", e => {
          } 
          else if (e.dataset.conv.includes(query) ||
          e.dataset.circuito.includes(query) ||
-         e.dataset.ubicacion.includes(query)) {
+         e.dataset.ubicacion.includes(query)
+         ) {
            e.classList.remove("filter");
          } 
          else {
            e.classList.add("filter");
          }
                        });
-     }
+        } 
+        else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
+     // console.log(e.target);
+      let query = localStorage.getItem("apiSearch").toUpperCase();
+  
+      //console.log(query);
+  
+      let item = d.querySelectorAll(".item");
+          item.forEach((e) => {
+      //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
+        if (!query) {
+          e.classList.remove("filter");
+          return false;
+        } 
+        else if (e.dataset.unit.includes(query) ||
+        e.dataset.circuito.includes(query) ||
+        e.dataset.ubicacion.includes(query)
+        ) {
+          e.classList.remove("filter");
+        } 
+        else {
+          e.classList.add("filter");
+        }
+                      });
+        }  
       
       else if (e.target.matches(".edit")) {
         //UPDATE
@@ -3256,10 +3286,12 @@ d.addEventListener("keyup", e => {
           return false;
         } else if (
           e.dataset.unit.includes(query) ||
-          e.dataset.box.includes(query) ||
-          e.dataset.track.includes(query) ||
-          e.dataset.ruta.includes(query) ||
-          e.dataset.cliente.includes(query)
+            e.dataset.box.includes(query) ||
+            e.dataset.operador.includes(query) ||
+            e.dataset.track.includes(query) ||
+            e.dataset.ruta.includes(query) ||
+            e.dataset.cliente.includes(query) ||
+            e.dataset.status.includes(query)
         ) {
           e.classList.remove("filter");
         } else {
@@ -4195,10 +4227,12 @@ d.addEventListener("keyup", e => {
           return false;
         } else if (
           e.dataset.unit.includes(query) ||
-          e.dataset.box.includes(query) ||
-          e.dataset.track.includes(query) ||
-          e.dataset.ruta.includes(query) ||
-          e.dataset.cliente.includes(query)
+            e.dataset.box.includes(query) ||
+            e.dataset.operador.includes(query) ||
+            e.dataset.track.includes(query) ||
+            e.dataset.ruta.includes(query) ||
+            e.dataset.cliente.includes(query) ||
+            e.dataset.status.includes(query)
         ) {
           e.classList.remove("filter");
         } else {
