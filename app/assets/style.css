@@ -1,3 +1,7 @@
+.table {
+  --bs-table-hover-bg: rgba(52, 66, 126, 0.411);
+}
+
 .error {
   padding: 1rem;
   font-size: 150%;
@@ -73,6 +77,7 @@ header * .logo {
   overflow-y: scroll;
 }
 
+
 thead tr th {
   position: sticky;
   top: 0;
@@ -90,6 +95,7 @@ thead tr th {
 .active-error {
   background-color: #ff8484;
 }
+
 
 /* style="color: var(--bs-btn-hover-color); background-color: #174993; border-color: var(--bs-btn-hover-border-color);" */
 

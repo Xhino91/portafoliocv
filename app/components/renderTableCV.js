@@ -31,7 +31,7 @@ export function renderTableCV(items){
      
     
  
-
+  // style="${window.location.hash === "#/Public" || "#/Traffic"  ? "display: none;" : ""}"  Ocultar Opciones
 d.getElementById("thtable").innerHTML =  `
          <table class="table table-hover table-sm  table-striped" id="table_xls">
       <thead class="table-dark text-center align-middle">
@@ -50,7 +50,7 @@ d.getElementById("thtable").innerHTML =  `
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
-      <th scope="col" style="${window.location.hash === "#/Public" || "#/Traffic"  ? "display: none;" : ""}" >OPCIONES</th>             
+      <th scope="col" style="${window.location.hash === "#/Public" ? "display: none;" : ""}">OPCIONES</th>             
       </tr>
     </thead>
  

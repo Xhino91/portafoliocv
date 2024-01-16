@@ -108,7 +108,7 @@ d.addEventListener("keyup", e => {
           d.getElementById("unidades").style.borderColor = "";
          };
             
-            if(localStorage.tabViajes){
+   if(localStorage.tabViajes){
               sectionActive();
             }
         
@@ -1885,89 +1885,210 @@ d.addEventListener("keyup", e => {
         location.reload();
       }
       if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
-        //console.log(e.target.id);
-        d.querySelector(".hidden").style.display = "block";
-        d.getElementById("bt-save").dataset.value = `${e.target.id}`;
 
-        ajax({
-          url: `${api.ITEMS}/${e.target.id}.json`,
-          method: "GET",
-          cbSuccess: (item) => {
-            // console.log(item);
-            d.getElementById("formulario").classList.add("edit");
-            d.getElementById("formulario").classList.remove("register");
-            d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
-            d.querySelector(".modal-body").innerHTML = `
-            <div class="container-fluid"> 
-            <table class="table table-sm" >
-        <thead class="table-dark text-center">
-          <tr class="text-wrap">
-            <th scope="col">UNIDAD</th>
-            <th scope="col">CAJA</th>
-            <th scope="col">OPERADOR</th>
-            <th scope="col">C.PORTE</th>
-            <th scope="col">TRACKING</th>
-            <th scope="col">BOL/SHIPPER</th>
-            <th scope="col">RUTA</th>
-            <th scope="col">CLIENTE</th>
-            <th scope="col">FECHA</th>
-            <th scope="col">HORARIO</th>
-            <th scope="col">LLEGADA</th>
-            <th scope="col">ESTATUS</th>
-            <th scope="col">CHECKED</th>
+        const tabConv = (item) => {
+
+          d.getElementById("formulario").classList.add("edit");
+          d.getElementById("formulario").classList.remove("register");
+          d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+          d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th id="cajas" scope="col">CAJA</th>
+        <th class="tipo" scope="col">TIPO</th>
+        <th class="modelo" scope="col">MODELO</th>
+        <th class="placa" scope="col">PLACA</th>
+        <th class="año" scope="col">AÑO</th>
+        <th class="verificacion" scope="col">VERIFICACION</th>
+        <th class="poliza" scope="col">NO. POLIZA</th>
+        <th class="inciso" scope="col">INCISO</th>
+        <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap" >
+      <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
+      <td class="tipo"><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
+      <td class="modelo"><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+      <td class="placa"><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+      <td class="año"><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
+      <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
+      <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+      <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+      <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+      <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
+      </tbody>
       
-          </tr>
-        </thead>
-        <tbody class="text-center text-wrap" >
-        <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}"></td>
-        <td><input name="caja" style="width: 60px;" type="text"   value="${item.caja}"></td>
-        <td><input name="operador" style="width: 130px;" type="text"  value="${item.operador}"></td>
-        <td><input name="cporte" style="width: 70px;" type="text"  value="${item.cporte}"></td>
-        <td><input name="tracking" style="width: 80px;" type="text"  value="${item.tracking}"></td>
-        <td><input name="bol" style="width: 75px;" type="text"  value="${item.bol}"></td>
-        <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" required disabled></td>
-        <td><input name="cliente" style="width: 95px;" type="text"  value="${item.cliente}" disabled></td>
-        <td><input name="fecha" type="text" style="width: 80px;"  value="${item.fecha}" disabled> </td>
-        <td><input name="ventana" type="time" name="hour" id="hour"  value="${item.ventana}" disabled></td>
-        <td>
-        <select class="form-select form-select-sm" name="llegada" id="arribo">
-        <option value="${item.llegada}">${item.llegada}</option> 
-        <option value="A Tiempo">A Tiempo</option>  
-        <option value="Tarde" >Tarde</option>
-        <option value="Desfasada" >Desfasada</option>
-        <option value="Critica" >Critica</option>
-        </select>
-        </td>
-        <td>
-        <input name="status" style="width: 95px;" type="text"  value="${item.status}">
-        </td>
-        <td>
-        <div class="form-check form-check-inline">
-          <input name="x3" class="form-check-input" type="checkbox" id="inlineCheckbox1"${item.x3 ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox1">X3</label>
-         </div>
-         <div class="form-check form-check-inline">
-          <input name="af" class="form-check-input" type="checkbox" id="inlineCheckbox2"${item.af ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox2">AF</label>
-         </div>
-         <div class="form-check form-check-inline">
-          <input name="ag" class="form-check-input" type="checkbox" id="inlineCheckbox3"${item.ag ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox3">AG</label>
-         </div>
-         <div class="form-check form-check-inline">
-          <input name="x1" class="form-check-input" type="checkbox" id="inlineCheckbox4"${item.x1 ? "checked" : ""} >
-          <label class="form-check-label" for="inlineCheckbox4">X1</label>
-         </div>
-        </td>    
-        </tbody>
-        
-      </table>
-      </div>
-            `;
-          },
-        });
+    </table>
+    </div>
+          `;
+        }
 
-        d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+        const tabUnit = (item) => {
+
+          d.getElementById("formulario").classList.add("edit");
+          d.getElementById("formulario").classList.remove("register");
+          d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+          d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">UNIDAD</th>
+    <th scope="col">OPERADOR</th>
+    <th scope="col">MODELO</th>
+    <th scope="col">PLACA</th>
+    <th scope="col">AÑO</th>
+     <th scope="col">VERIFICACION</th>
+     <th scope="col">NO. POLIZA</th>
+    <th scope="col">INCISO</th>
+    <th scope="col">CONTACTO DEL SEGURO</th>
+    <th scope="col">CIRCUITO</th>
+    <th scope="col">FECHA</th>
+    <th scope="col">UBICACION</th> 
+    <th scope="col">ESTATUS</th>
+
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap" >
+      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
+      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
+      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
+      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
+      <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+      <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+      <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
+      </tbody>
+      
+    </table>
+    </div>
+          `;
+        }
+
+        //  console.log();
+         if(localStorage.tabViajes === "true"){
+          d.querySelector(".hidden").style.display = "block";
+          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
+         await ajax({
+            url: `${api.ITEMS}/${e.target.id}.json`,
+            method: "GET",
+            cbSuccess: (item) => {
+              // console.log(item);
+              d.getElementById("formulario").classList.add("edit");
+              d.getElementById("formulario").classList.remove("register");
+              d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+              d.querySelector(".modal-body").innerHTML = `
+              <div class="container-fluid"> 
+              <table class="table table-sm" >
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
+              <th scope="col">UNIDAD</th>
+              <th scope="col">CAJA</th>
+              <th scope="col">OPERADOR</th>
+              <th scope="col">C.PORTE</th>
+              <th scope="col">TRACKING</th>
+              <th scope="col">BOL/SHIPPER</th>
+              <th scope="col">RUTA</th>
+              <th scope="col">CLIENTE</th>
+              <th scope="col">FECHA</th>
+              <th scope="col">HORARIO</th>
+              <th scope="col">LLEGADA</th>
+              <th scope="col">ESTATUS</th>
+              <th scope="col">CHECKED</th>
+        
+            </tr>
+          </thead>
+          <tbody class="text-center text-wrap" >
+          <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}"></td>
+          <td><input name="caja" style="width: 60px;" type="text"   value="${item.caja}"></td>
+          <td><input name="operador" style="width: 130px;" type="text"  value="${item.operador}"></td>
+          <td><input name="cporte" style="width: 70px;" type="text"  value="${item.cporte}"></td>
+          <td><input name="tracking" style="width: 80px;" type="text"  value="${item.tracking}"></td>
+          <td><input name="bol" style="width: 75px;" type="text"  value="${item.bol}"></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" required></td>
+          <td><input name="cliente" style="width: 95px;" type="text"  value="${item.cliente}"></td>
+          <td><input name="fecha" type="text" style="width: 80px;"  value="${item.fecha}" disabled</td>
+          <td><input name="ventana" type="time" name="hour" id="hour"  value="${item.ventana}"></td>
+          <td>
+          <select class="form-select form-select-sm" name="llegada" id="arribo">
+          <option value="${item.llegada}">${item.llegada}</option> 
+          <option value="A Tiempo">A Tiempo</option>  
+          <option value="Tarde" >Tarde</option>
+          <option value="Desfasada" >Desfasada</option>
+          <option value="Critica" >Critica</option>
+          </select>
+          </td>
+          <td>
+          <input name="status" style="width: 95px;" type="text"  value="${item.status}">
+          </td>
+          <td>
+          <div class="form-check form-check-inline">
+            <input name="x3" class="form-check-input" type="checkbox" id="inlineCheckbox1"${item.x3 ? "checked" : ""} >
+            <label class="form-check-label" for="inlineCheckbox1">X3</label>
+           </div>
+           <div class="form-check form-check-inline">
+            <input name="af" class="form-check-input" type="checkbox" id="inlineCheckbox2"${item.af ? "checked" : ""} >
+            <label class="form-check-label" for="inlineCheckbox2">AF</label>
+           </div>
+           <div class="form-check form-check-inline">
+            <input name="ag" class="form-check-input" type="checkbox" id="inlineCheckbox3"${item.ag ? "checked" : ""} >
+            <label class="form-check-label" for="inlineCheckbox3">AG</label>
+           </div>
+           <div class="form-check form-check-inline">
+            <input name="x1" class="form-check-input" type="checkbox" id="inlineCheckbox4"${item.x1 ? "checked" : ""} >
+            <label class="form-check-label" for="inlineCheckbox4">X1</label>
+           </div>
+          </td>    
+          </tbody>
+          
+        </table>
+        </div>
+              `;
+            },
+          });
+         }
+         if(localStorage.tabConveyance === "true"){
+          d.querySelector(".hidden").style.display = "block";
+          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
+          await ajax({
+            url: `${api.SUBITEMS1}/${e.target.id}.json`,
+            method: "GET",
+            cbSuccess: (item) => {
+              // console.log(item);
+              tabConv(item);
+            },
+          });
+         }
+         if(localStorage.tabUnit === "true"){
+          d.querySelector(".hidden").style.display = "block";
+          d.getElementById("bt-save").dataset.value = `${e.target.id}`;
+        
+          await ajax({
+            url: `${api.SUBITEMS}/${e.target.id}.json`,
+            method: "GET",
+            cbSuccess: (item) => {
+              // console.log(item);
+              tabUnit(item);
+            },
+          });
+
+         }
+          
       }
       if (e.target.matches(".control") || e.target.matches(".fa-car")) {
         // console.log(e.target);
@@ -2272,46 +2393,97 @@ d.addEventListener("keyup", e => {
                       });
         }  
       
-      else if (e.target.matches(".edit")) {
-        //UPDATE
-       // console.log(e.target);
-        if (!e.target.id.value) {
-          let options = {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json; charset=utf-8",
-            },
-            body: JSON.stringify({
-              unidad: e.target.unidad.value.toUpperCase(),
-              caja: e.target.caja.value.toUpperCase(),
-              cporte: e.target.cporte.value.toUpperCase(),
-              tracking: e.target.tracking.value.toUpperCase(),
-              bol: e.target.bol.value.toUpperCase(),
-              ruta: e.target.ruta.value.toUpperCase(),
-              operador: e.target.operador.value.toUpperCase(),
-              cliente: e.target.cliente.value.toUpperCase(),
-              fecha: e.target.fecha.value.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,"$3/$2/$1"),
-              ventana: e.target.ventana.value,
-              llegada: e.target.llegada.value.toUpperCase(),
-              status: e.target.status.value.toUpperCase(),
-              x3: e.target.x3.checked,
-              af: e.target.af.checked,
-              ag: e.target.ag.checked,
-              x1: e.target.x1.checked,
-            }),
-          };
-         await ajax({
-            url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}.json`,
-            options,
-            cbSuccess: (res) => {
-              console.log(res);
-            },
-          });
-          location.reload();
+        else if (e.target.matches(".edit")) {
+       
+          if(localStorage.tabConveyance === "true" && localStorage.tabUnit == "false"){
+            if (!e.target.id.value) {
+              let options = {
+                method: "PATCH",
+                headers: {
+                  "Content-type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify({
+                 circuito: e.target.circuito.value.toUpperCase(),
+                 fecha: e.target.fecha.value.toUpperCase(),
+                 ubicacion: e.target.ubicacion.value.toUpperCase(),
+                 comentarios: e.target.comentarios.value.toUpperCase()
+                }),
+              };
+             await ajax({
+                url: `${api.SUBITEMS1}/${d.getElementById("bt-save").dataset.value}.json`,
+                options,
+                cbSuccess: (res) => {
+                 // console.log(res);
+                },
+              });
+              location.reload();
+            }
+          }    
+          if(localStorage.tabConveyance === "false" && localStorage.tabUnit == "true"){
+            
+            if (!e.target.id.value) {
+              let options = {
+                method: "PATCH",
+                headers: {
+                  "Content-type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify({
+                 circuito: e.target.circuito.value.toUpperCase(),
+                 fecha: e.target.fecha.value.toUpperCase(),
+                 ubicacion: e.target.ubicacion.value.toUpperCase(),
+                 comentarios: e.target.comentarios.value.toUpperCase()
+                }),
+              };
+             await ajax({
+                url: `${api.SUBITEMS}/${d.getElementById("bt-save").dataset.value}.json`,
+                options,
+                cbSuccess: (res) => {
+                 // console.log(res);
+                },
+              });
+              location.reload();
+            }
+  
+  
+          } 
+          else if(localStorage.tabViajes === "true") {
+            if (!e.target.id.value) {
+              let options = {
+                method: "PATCH",
+                headers: {
+                  "Content-type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify({
+                  unidad: e.target.unidad.value.toUpperCase(),
+                  caja: e.target.caja.value.toUpperCase(),
+                  cporte: e.target.cporte.value.toUpperCase(),
+                  tracking: e.target.tracking.value.toUpperCase(),
+                  bol: e.target.bol.value.toUpperCase(),
+                  ruta: e.target.ruta.value.toUpperCase(),
+                  operador: e.target.operador.value.toUpperCase(),
+                  cliente: e.target.cliente.value.toUpperCase(),
+                  fecha: e.target.fecha.value.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,"$3/$2/$1"),
+                  ventana: e.target.ventana.value,
+                  llegada: e.target.llegada.value.toUpperCase(),
+                  status: e.target.status.value.toUpperCase(),
+                  x3: e.target.x3.checked,
+                  af: e.target.af.checked,
+                  ag: e.target.ag.checked,
+                  x1: e.target.x1.checked,
+                }),
+              };
+             await ajax({
+                url: `${api.ITEMS}/${d.getElementById("bt-save").dataset.value}.json`,
+                options,
+                cbSuccess: (res) => {
+               //   console.log(res);
+                },
+              });
+              location.reload();
+            }
+          }
+         
         }
-
-        // console.log(e.target);
-      }
 
       else if (e.target.matches(".update")) {
         //console.log(e.target);
@@ -3865,26 +4037,51 @@ d.addEventListener("keyup", e => {
           location.reload();
         }
         if (e.target.matches(".delete") || e.target.matches(".fa-trash")) {
-         // console.log(e.target);
+         console.log(e.target);
   
           let isConfirm = confirm("¿Eliminar Registro?");
   
-          if (isConfirm) {
-           await ajax({
-              url: `${api.ITEMS}/${e.target.id}.json`,
-              options: {
-                method: "DELETE",
-                headers: {
-                  "Content-type": "application/json; charset=utf-8",
-                },
-              },
-              cbSuccess: (res) => {
-                //console.log(res);
-               
-              },
-            });
-            location.reload();
+          if(localStorage.tabConveyance === "true") {
+            if (isConfirm) {
+              await ajax({
+                 url: `${api.SUBITEMS1}/${e.target.id}.json`,
+                 options: {
+                   method: "DELETE",
+                   headers: {
+                     "Content-type": "application/json; charset=utf-8",
+                   },
+                 },
+                 cbSuccess: (res) => {
+                   //console.log(res);
+                  
+                 },
+               });
+               location.reload();
+             }
+          } else if (localStorage.tabUnit === "true") {
+            if (isConfirm) {
+              await ajax({
+                 url: `${api.SUBITEMS}/${e.target.id}.json`,
+                 options: {
+                   method: "DELETE",
+                   headers: {
+                     "Content-type": "application/json; charset=utf-8",
+                   },
+                 },
+                 cbSuccess: (res) => {
+                   //console.log(res);
+                  
+                 },
+               });
+               location.reload();
+             }
+          } else {
+            return;
           }
+
+          
+
+
         }
         if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
          // console.log(e.target);
@@ -4016,7 +4213,7 @@ d.addEventListener("keyup", e => {
           //  console.log(e.target);
 
           const tabConv = ()=> {
-            //MODAL REGISTRO DE VIAJES
+            //MODAL
           d.querySelector(".hidden").style.display = "block";
           d.getElementById("formulario").classList.add("register");
           d.getElementById("formulario").classList.remove("edit");
@@ -4070,7 +4267,7 @@ d.addEventListener("keyup", e => {
         }
         if (e.target.matches(".unidad")) {
           const tabUnit = ()=> {
-            //MODAL REGISTRO DE VIAJES
+            //MODAL
           d.querySelector(".hidden").style.display = "block";
           d.getElementById("formulario").classList.add("register");
           d.getElementById("formulario").classList.remove("edit");
