@@ -135,9 +135,28 @@ thead tr th {
   .inciso,
   .contacto,
   .tipo,
-  .modelo
+  .modelo,
+  .btn,
+  .opciones
    {
     display: none;
+  }
+
+  .header{
+    position: absolute;
+  }
+
+  .unidades,
+  .cajas {
+    width: 50%;
+    margin: 0.5rem;
+    display: block;
+    font-size: small;
+  }
+
+  .margin{
+    display: flex !important;
+    padding: 0;
   }
 
   #thtable {

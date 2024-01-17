@@ -47,11 +47,21 @@ const alertColor = (item) => {
    }
   }
 
+ /* const filterUser = (item) => {
+   if(localStorage.username === "Inhouse"){
+      if(item.cliente.includes("FORDH-")){
+         return ""
+      } else {
+         return "display: none"
+      }
+   }
+     }*/
+
 
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
       return `
-      <tr id="${itemId}" class="item text-center align-middle pending" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fecha="${item.fecha}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
+      <tr id="${itemId}" class="item text-center align-middle pending" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
           <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>
@@ -94,7 +104,7 @@ const alertColor = (item) => {
 //ALERTA DE COMPLETE (RUTA COMPLETA)
    if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
    return `
-   <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
+   <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
        <td class="Unit">${item.unidad}</td>
        <td >${item.caja}</td>
        <td>${item.operador}</td>
@@ -135,7 +145,7 @@ const alertColor = (item) => {
 
 //CORRIENDO
     return `
- <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+ <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
      <td class="Unit">${item.unidad}</td>
      <td>${item.caja}</td>
      <td>${item.operador}</td>

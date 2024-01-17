@@ -48,6 +48,8 @@ export function itemPublic(item) {
      }
 
     
+
+    
     //ALERTA DE WARNING (RUTAS PENDIENTES)
        if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
           return `
@@ -64,7 +66,7 @@ export function itemPublic(item) {
               <td class="ventana">${item.ventana}</td>
               <td class="llegada" style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
-              <td>
+              <td class="opciones">
              
               </td>
            </tr>
@@ -74,7 +76,7 @@ export function itemPublic(item) {
     //ALERTA DE COMPLETE (RUTA COMPLETA)
        if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
        return `
-       <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
+       <tr id="${itemId}" style="display: none;" class="item text-center align-middle active-complete" data-run="3"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" >
            <td class="Unit">${item.unidad}</td>
            <td >${item.caja}</td>
            <td>${item.operador}</td>
@@ -86,8 +88,8 @@ export function itemPublic(item) {
            <td class="fecha" >${item.fecha}</td>
            <td class="ventana" >${item.ventana}</td>
            <td class="llegada" style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
-           <td style="${item.status.match("VALIDAR") ? "background-color: #ff6767;" : ""}">${item.status}</td>
-           <td>
+           <td >${item.status}</td>
+           <td class="opciones">
            
            </td>
         </tr>
@@ -109,7 +111,7 @@ export function itemPublic(item) {
          <td class="ventana" >${item.ventana}</td>
          <td class="llegada" style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
          <td style="${alertColor(item)}" >${item.status}</td>
-         <td>
+         <td class="opciones">
          <button id="${item.unidad}" data-conveyance="${item.caja}" style="${window.location.hash === "#/CVehicular" ? "display: none;" : ""}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
       </tr>
                `;

@@ -42,7 +42,7 @@ export function renderTablePublic(items){
       <th class="ventana" scope="col">HORARIO</th>
       <th class="llegada" scope="col">LLEGADA</th>
       <th scope="col">ESTATUS</th>
-      ${window.location.hash === "#/CVehicular" ? "<th></th>" : `<th scope="col">OPCIONES</th>`}
+      ${window.location.hash === "#/CVehicular" ? "<th></th>" : `<th class="opciones" scope="col">OPCIONES</th>`}
     </tr>
   </thead>
 
