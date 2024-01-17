@@ -456,6 +456,7 @@ d.addEventListener("keyup", e => {
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
             e.dataset.cliente.includes(query) ||
+            e.dataset.fechaf.includes(query) ||
             e.dataset.status.includes(query)
           ) {
             e.classList.remove("filter");
@@ -1438,6 +1439,7 @@ d.addEventListener("keyup", e => {
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
             e.dataset.cliente.includes(query) ||
+            e.dataset.fechaf.includes(query) ||
             e.dataset.status.includes(query)
         ) {
           e.classList.remove("filter");
@@ -2336,6 +2338,7 @@ d.addEventListener("keyup", e => {
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
             e.dataset.cliente.includes(query) ||
+            e.dataset.fechaf.includes(query) ||
             e.dataset.status.includes(query)
           ) {
             e.classList.remove("filter");
@@ -4430,6 +4433,7 @@ d.addEventListener("keyup", e => {
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
             e.dataset.cliente.includes(query) ||
+            e.dataset.fechaf.includes(query) ||
             e.dataset.status.includes(query)
         ) {
           e.classList.remove("filter");
