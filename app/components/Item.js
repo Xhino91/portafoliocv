@@ -12,7 +12,7 @@ const alertColor = (item) => {
    if( item.status.match("TRANSITO")){
       return "background-color: #72aefd;" ;
    }
-   if( item.status.match("PROVEEDOR") || item.status.match("ESP")){
+   if( item.status.match("PROVEEDOR") || item.status.match("ESP") || item.status.match("PLANT")){
       return "background-color: #00508d; color: white;" ;
    }
    if( item.status.match("DET") ){

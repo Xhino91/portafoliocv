@@ -8,43 +8,36 @@ export function itemPublic(item) {
 
      const alertColor = (item) => {
 
-      if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
+      if( item.status.match("TRANSITO")){
          return "background-color: #72aefd;" ;
       }
-      if( item.status.match("PROVEEDOR") ){
+      if( item.status.match("PROVEEDOR") || item.status.match("ESP")){
          return "background-color: #00508d; color: white;" ;
-      } 
+      }
       if( item.status.match("DET") ){
          return "background-color: #791d1d; color: white;" ;
       }
-      if( item.status.match("CRITI") ){
-         return "background-color: #ff6767;" ;
-      }
-      if( item.status.match("PENDIENTE") ){
-         return "background-color: #ff8f75;" ;
-      }
-
+     
       else {
         return "background-color: #c3d9e5" ;
        }
-
+   
      }
-
+   
      const alertStatus = (item) => {
-
-
-      if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
-         return "-2" ;
-      } 
-      if( item.status.match("PROVEEDOR") ){
+   
+   
+     if( item.status.match("TRANSITO")){
          return "-1" ;
+      } 
+      if( item.status.match("PROVEEDOR") || item.status.match("ESPER")){
+         return "" ;
       }
       if( item.status.match("DET") ){
-         return "0" ;
+         return "" ;
       } else {
-         return "1";
+         return "";
       }
-
      }
 
     
@@ -53,7 +46,7 @@ export function itemPublic(item) {
     //ALERTA DE WARNING (RUTAS PENDIENTES)
        if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
           return `
-          <tr id="${itemId}" class="item text-center align-middle" data-run="2"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-fecha="${item.fecha}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
+          <tr id="${itemId}" class="active-pending item text-center align-middle" data-run="2"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-fechaf="${item.fecha}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
               <td class="${item.unidad ? "table-active" : ""}">${item.unidad}</td>
               <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
               <td >${item.operador}</td>
@@ -66,9 +59,6 @@ export function itemPublic(item) {
               <td class="ventana">${item.ventana}</td>
               <td class="llegada" style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
-              <td class="opciones">
-             
-              </td>
            </tr>
              `;
        }
@@ -76,7 +66,7 @@ export function itemPublic(item) {
     //ALERTA DE COMPLETE (RUTA COMPLETA)
        if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
        return `
-       <tr id="${itemId}" style="display: none;" class="item text-center align-middle active-complete" data-run="3"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" >
+       <tr id="${itemId}" style="display: none;" class="item text-center align-middle active-complete" data-run="3"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" >
            <td class="Unit">${item.unidad}</td>
            <td >${item.caja}</td>
            <td>${item.operador}</td>
@@ -89,16 +79,13 @@ export function itemPublic(item) {
            <td class="ventana" >${item.ventana}</td>
            <td class="llegada" style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
            <td >${item.status}</td>
-           <td class="opciones">
-           
-           </td>
         </tr>
           `;
        }
     
     //CORRIENDO
         return `
-     <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+     <tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
          <td class="Unit">${item.unidad}</td>
          <td>${item.caja}</td>
          <td>${item.operador}</td>
@@ -111,8 +98,6 @@ export function itemPublic(item) {
          <td class="ventana" >${item.ventana}</td>
          <td class="llegada" style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
          <td style="${alertColor(item)}" >${item.status}</td>
-         <td class="opciones">
-         <button id="${item.unidad}" data-conveyance="${item.caja}" style="${window.location.hash === "#/CVehicular" ? "display: none;" : ""}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
       </tr>
                `;
     

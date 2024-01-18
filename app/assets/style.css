@@ -141,7 +141,7 @@ thead tr th {
   .contacto,
   .tipo,
   .modelo,
-  .btn,
+  .publico,
   .opciones
    {
     display: none;
@@ -152,16 +152,18 @@ thead tr th {
   }
 
   .unidades,
-  .cajas {
-    width: 50%;
-    margin: 0.5rem;
-    display: block;
+  .cajas,
+  .tablero {
+    width: 30%;
     font-size: small;
+    padding: 0px;
+    height: 31px;
   }
 
   .margin{
     display: flex !important;
-    padding: 0;
+    padding: 5px 0px 4px 0px;
+    justify-content: center;
   }
 
   #thtable {

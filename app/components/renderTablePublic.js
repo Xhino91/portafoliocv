@@ -42,7 +42,6 @@ export function renderTablePublic(items){
       <th class="ventana" scope="col">HORARIO</th>
       <th class="llegada" scope="col">LLEGADA</th>
       <th scope="col">ESTATUS</th>
-      ${window.location.hash === "#/CVehicular" ? "<th></th>" : `<th class="opciones" scope="col">OPCIONES</th>`}
     </tr>
   </thead>
 
@@ -61,13 +60,13 @@ export function renderTablePublic(items){
       // Orden Run Complete
       newOrder.sort((e1, e2) => {
         if (
-          e1.dataset.fecha < e2.dataset.fecha ||
-          e1.dataset.fecha < e2.dataset.fecha
+          e1.dataset.fechaf < e2.dataset.fechaf ||
+          e1.dataset.fechaf < e2.dataset.fechaf
         ) {
           return -1;
         } else if (
-          e1.dataset.fecha > e2.dataset.fecha ||
-          e1.dataset.fecha > e2.dataset.fecha
+          e1.dataset.fechaf > e2.dataset.fechaf ||
+          e1.dataset.fechaf > e2.dataset.fechaf
         ) {
           return 1;
         } else {
