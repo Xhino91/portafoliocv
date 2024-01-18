@@ -7,6 +7,14 @@ let itemId = item[0];
 item = item[1];
 
 //console.log(item);
+const travelStatus = (item) => {
+   if(item.status.match("COMPLET")) {
+      return "active-complete";
+   } if(item.status.match("CANCEL")) {
+      return "active-error";
+   }
+}
+
 const alertColor = (item) => {
 
    if( item.status.match("TRANSITO")){
@@ -112,7 +120,7 @@ const alertColor = (item) => {
 //ALERTA DE COMPLETE (RUTA COMPLETA)
    if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
    return `
-   <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+   <tr id="${itemId}" class="item text-center align-middle ${travelStatus(item)}" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
        <td class="Unit">${item.unidad}</td>
        <td >${item.caja}</td>
        <td>${item.operador}</td>
