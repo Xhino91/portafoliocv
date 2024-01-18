@@ -97,7 +97,7 @@ thead tr th {
 }
 
 .active-error {
-  background-color: #ff8484;
+  background-color: #ff8484 !important;
 }
 
 

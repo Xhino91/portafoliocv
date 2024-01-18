@@ -10,10 +10,14 @@ item = item[1];
 const travelStatus = (item) => {
    if(item.status.match("COMPLET")) {
       return "active-complete";
-   } if(item.status.match("CANCEL")) {
+   } 
+   if(item.status.match("CANCEL")) {
       return "active-error";
    }
-}
+   if(item.status.match("")) {
+      return "active-pending";
+   }
+   }
 
 const alertColor = (item) => {
 
@@ -77,7 +81,7 @@ const alertColor = (item) => {
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
       return `
-      <tr id="${itemId}" class="active-pending item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+      <tr id="${itemId}" class="${travelStatus(item)} item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
           <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>
