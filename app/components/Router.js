@@ -2571,7 +2571,7 @@ d.addEventListener("keyup", e => {
 
   }
 
-  if (!hash || hash === "#/Inhouse") {
+  if (!hash || hash === "#/InhouseTOL") {
     localStorage.tabConveyance = false;
     localStorage.tabUnit = false;
     localStorage.tabViajes = true;

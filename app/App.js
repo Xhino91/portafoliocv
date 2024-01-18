@@ -54,7 +54,7 @@ export function App() {
             } else
             if (res[1].user === `${data.username}` && res[1].pass === `${data.password}`) {
               //console.log("Acceso Completo");
-              window.location.hash = "/Inhouse";
+              window.location.hash = "/InhouseTOL";
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
