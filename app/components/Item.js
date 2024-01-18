@@ -73,7 +73,7 @@ const alertColor = (item) => {
       }
    }
    if(localStorage.username === "InhouseGTO"){
-      if(item.cliente.includes("MOLTILOG")){         return ""
+      if(item.cliente.includes("MULTILOG")){         return ""
       } else {
          return "display: none"
       }
