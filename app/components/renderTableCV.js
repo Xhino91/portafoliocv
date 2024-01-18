@@ -39,10 +39,10 @@ d.getElementById("thtable").innerHTML =  `
      
       <th scope="col">CAJA</th>
       <th scope="col">TIPO</th>
-      <th class="modelo" scope="col">MODELO</th>
+      <th class="modelo" scope="col">MARCA</th>
       <th class="placa" scope="col">PLACA</th>
       <th class="año" scope="col">AÑO</th>
-       <th class="verificacion" scope="col">VERIFICACION</th>
+       <th class="verificacion" scope="col">NO. SERIE</th>
        <th class="poliza" scope="col">NO. POLIZA</th>
       <th class="inciso" scope="col">INCISO</th>
       <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
