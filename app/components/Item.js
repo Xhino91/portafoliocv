@@ -31,7 +31,7 @@ const alertColor = (item) => {
 
   }
 
-  const alertStatus = (item) => {
+const alertStatus = (item) => {
 
 
    if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
@@ -47,21 +47,26 @@ const alertColor = (item) => {
    }
   }
 
- /* const filterUser = (item) => {
-   if(localStorage.username === "Inhouse"){
-      if(item.cliente.includes("FORDH-")){
-         return ""
+  const filterUser = (item) => {
+   if(localStorage.username === "InhouseHMO"){
+      if(item.cliente.includes("FORDH-")){         return ""
       } else {
          return "display: none"
       }
    }
-     }*/
+   if(localStorage.username === "InhouseMX"){
+      if(item.cliente.includes("FORDC-")){         return ""
+      } else {
+         return "display: none"
+      }
+   }
+   }
 
 
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
       return `
-      <tr id="${itemId}" class="item text-center align-middle pending" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
+      <tr id="${itemId}" class="pend item text-center align-middle pending" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
           <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>
@@ -94,7 +99,7 @@ const alertColor = (item) => {
           </td>
           <td>
              <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/Inhouse" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${itemId}"></i></button>
+             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${itemId}"></i></button>
              
           </td>
        </tr>
@@ -104,7 +109,7 @@ const alertColor = (item) => {
 //ALERTA DE COMPLETE (RUTA COMPLETA)
    if(item.x1 === true && item.x1 === true && item.x1 === true && item.x1 === true) {
    return `
-   <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.status.match("COMPLE") ? "background-color: rgb(146, 225, 117);" : "background-color: rgb(146, 225, 117);"}">
+   <tr id="${itemId}" class="item text-center align-middle active-complete" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
        <td class="Unit">${item.unidad}</td>
        <td >${item.caja}</td>
        <td>${item.operador}</td>
@@ -145,7 +150,7 @@ const alertColor = (item) => {
 
 //CORRIENDO
     return `
- <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+ <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
      <td class="Unit">${item.unidad}</td>
      <td>${item.caja}</td>
      <td>${item.operador}</td>
@@ -178,7 +183,7 @@ const alertColor = (item) => {
      </td>
      <td>
         <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-        <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/Inhouse" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+        <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/Inhouse" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
         <button id="${item.unidad}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
      </td>
   </tr>

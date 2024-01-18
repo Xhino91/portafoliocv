@@ -37,7 +37,7 @@ export function App() {
         await ajax({
           url: api.USERS,
           cbSuccess: (res) => {
-            //console.log(data);
+           // console.log(data);
             //Admin         
             if (res[0].user === `${data.username}` && res[0].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -93,7 +93,7 @@ export function App() {
               document.getElementById("thtable").appendChild(Loader());
 
               Router();
-            }
+            } else
             if (res[4].user === `${data.username}` && res[4].pass === `${data.password}`) {
               //console.log("Acceso Completo");
               window.location.hash = "/CVehicular";
@@ -107,8 +107,36 @@ export function App() {
               document.getElementById("thtable").appendChild(Loader());
 
               Router();
+            } else
+            if (res[5].user === `${data.username}` && res[5].pass === `${data.password}`) {
+              //console.log("Acceso Completo");
+              window.location.hash = "/InhouseHMO";
+              sessionStorage.login = true;
+              localStorage.username = data.username;
+              $login.style = "display: none;";
+              location.reload(true);
+
+              $root.appendChild(Header());
+              $root.appendChild(Main());
+              document.getElementById("thtable").appendChild(Loader());
+
+              Router();
+            } else
+            if (res[6].user === `${data.username}` && res[6].pass === `${data.password}`) {
+              //console.log("Acceso Completo");
+              window.location.hash = "/InhouseMX";
+              sessionStorage.login = true;
+              localStorage.username = data.username;
+              $login.style = "display: none;";
+              location.reload(true);
+
+              $root.appendChild(Header());
+              $root.appendChild(Main());
+              document.getElementById("thtable").appendChild(Loader());
+
+              Router();
             }
-             else {
+            else {
               // console.log("Acceso Denegado");
               alert("Usuario y/o Contraseña Incorrecto");
             }
