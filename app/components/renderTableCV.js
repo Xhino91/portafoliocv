@@ -22,7 +22,8 @@ export function renderTableCV(items){
         }
       });
 
-     // console.log(orderItems);
+      
+      console.log(orderItems);
 
       let html = "";
       
@@ -32,7 +33,7 @@ export function renderTableCV(items){
     
  
   // style="${window.location.hash === "#/Public" || "#/Traffic"  ? "display: none;" : ""}"  Ocultar Opciones
-d.getElementById("thtable").innerHTML =  `
+ d.getElementById("thtable").innerHTML =  `
          <table class="table table-hover table-sm  table-striped" id="table_xls">
       <thead class="table-dark text-center align-middle">
       <tr>
@@ -58,16 +59,29 @@ d.getElementById("thtable").innerHTML =  `
     </tbody>
     
   </table>
-</section>`;
+ </section>`;
 
-  
-
-
-
-
-
-      d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+ d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
      
+
+  //Helper de acceso a los items
+  const $tr = d.querySelectorAll(".item");
+  const newOrder = Array.from($tr);
+
+//  console.log($tr);
+  // Orden Run Complete
+ 
+  newOrder.sort((a, b) => a.dataset.conv - b.dataset.conv);
+      console.log(newOrder);
+
+      newOrder.forEach((e) => {
+        d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+       }); 
+
+}
+
+
+/*
       //Helper de acceso a los items
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);
@@ -94,7 +108,4 @@ d.getElementById("thtable").innerHTML =  `
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
          });     
-
-
-
-}
+*/

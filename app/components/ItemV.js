@@ -25,9 +25,9 @@ export function ItemV(conv) {
 
 
    if( item.ubicacion.match("TRANSITO") || item.ubicacion.match("PROVEEDOR") || item.ubicacion.match("PLANTA")){
-      return "0" ;
+      return "" ;
    } else {
-      return "1";
+      return "";
    }
   }
 

@@ -14,16 +14,16 @@ export function renderTableUnits(items){
 
       // Ubication Order
       let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
+        if (o1[1].unidad < o2[1].unidad || o1[1].unidad < o2[1].unidad) {
           return -1;
-        } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
+        } else if (o1[1].unidad > o2[1].unidad || o1[1].unidad > o2[1].unidad) {
           return 1;
         } else {
           return 0;
         }
       });
 
-     // console.log(orderItems);
+    //console.log(orderItems);
 
       let html = "";
       
@@ -33,7 +33,7 @@ export function renderTableUnits(items){
     
  
 
-d.getElementById("thtable").innerHTML =  `
+ d.getElementById("thtable").innerHTML =  `
          <table class="table table-hover table-sm  table-striped" id="table_xls">
       <thead class="table-dark text-center align-middle">
       <tr>
@@ -63,15 +63,27 @@ d.getElementById("thtable").innerHTML =  `
   </table>
 </section>`;
 
-  
-
-
-
-
-
-      d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
+d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
      
-      //Helper de acceso a los items
+   //Helper de acceso a los items
+  const $tr = d.querySelectorAll(".item");
+  const newOrder = Array.from($tr);
+
+//  console.log($tr);
+  // Orden Run Complete
+ 
+  newOrder.sort((a, b) => a.dataset.unit - b.dataset.unit);
+      console.log(newOrder);
+
+      newOrder.forEach((e) => {
+        d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+       }); 
+
+
+}
+
+/* 
+   //Helper de acceso a los items
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);
 
@@ -97,7 +109,4 @@ d.getElementById("thtable").innerHTML =  `
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
          });     
-
-
-
-}
+*/
