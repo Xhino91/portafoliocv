@@ -2024,12 +2024,12 @@ d.addEventListener("keyup", e => {
           <td><input name="caja" style="width: 60px;" type="text"   value="${item.caja}"></td>
           <td><input name="operador" style="width: 130px;" type="text"  value="${item.operador}"></td>
           <td><input name="cporte" style="width: 70px;" type="text"  value="${item.cporte}"></td>
-          <td><input name="tracking" style="width: 80px;" type="text"  value="${item.tracking}"></td>
+          <td><input name="tracking" style="width: 80px;" type="text"  value="${item.tracking}" disabled></td>
           <td><input name="bol" style="width: 75px;" type="text"  value="${item.bol}"></td>
-          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" required></td>
-          <td><input name="cliente" style="width: 95px;" type="text"  value="${item.cliente}"></td>
-          <td><input name="fecha" type="text" style="width: 80px;"  value="${item.fecha}" disabled</td>
-          <td><input name="ventana" type="time" name="hour" id="hour"  value="${item.ventana}"></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" disabled></td>
+          <td><input name="cliente" style="width: 95px;" type="text"  value="${item.cliente}" disabled></td>
+          <td><input name="fecha" type="text" style="width: 80px;"  value="${item.fecha}" disabled></td>
+          <td><input name="ventana" type="time" name="hour" id="hour"  value="${item.ventana}" disabled></td>
           <td>
           <select class="form-select form-select-sm" name="llegada" id="arribo">
           <option value="${item.llegada}">${item.llegada}</option> 

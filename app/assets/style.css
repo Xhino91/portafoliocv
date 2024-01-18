@@ -84,7 +84,11 @@ thead tr th {
   z-index: 10;
 }
 
-.active-warning {
+.active-run {
+  background-color: #d2f2ff;
+}
+
+.active-pending {
   background-color: rgb(245, 223, 124);
 }
 
@@ -96,9 +100,6 @@ thead tr th {
   background-color: #ff8484;
 }
 
-.pend {
-  background-color: rgb(245, 223, 124);
-}
 
 
 /* style="color: var(--bs-btn-hover-color); background-color: #174993; border-color: var(--bs-btn-hover-border-color);" */

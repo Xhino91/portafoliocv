@@ -9,41 +9,35 @@ item = item[1];
 //console.log(item);
 const alertColor = (item) => {
 
-   if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
+   if( item.status.match("TRANSITO")){
       return "background-color: #72aefd;" ;
    }
-   if( item.status.match("PROVEEDOR") ){
+   if( item.status.match("PROVEEDOR") || item.status.match("ESP")){
       return "background-color: #00508d; color: white;" ;
    }
    if( item.status.match("DET") ){
       return "background-color: #791d1d; color: white;" ;
    }
-   if( item.status.match("CRITI") ){
-      return "background-color: #ff6767;" ;
-   }
-   if( item.status.match("PENDIENTE") ){
-      return "background-color: #ff8f75;" ;
-   }
-
+  
    else {
      return "background-color: #c3d9e5" ;
     }
 
   }
 
-const alertStatus = (item) => {
+  const alertStatus = (item) => {
 
 
-   if( item.status.match("TRANSITO") || item.status.match("CSAP") ){
-      return "-2" ;
-   } 
-   if( item.status.match("PROVEEDOR") ){
+  if( item.status.match("TRANSITO")){
       return "-1" ;
+   } 
+   if( item.status.match("PROVEEDOR") || item.status.match("ESPER")){
+      return "" ;
    }
    if( item.status.match("DET") ){
-      return "0" ;
+      return "" ;
    } else {
-      return "1";
+      return "";
    }
   }
 
@@ -60,13 +54,16 @@ const alertStatus = (item) => {
          return "display: none"
       }
    }
+   else {
+      return ""
+   }
    }
 
 
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.unidad === "" || item.caja === "" || item.ruta === "" || item.operador === "") {
       return `
-      <tr id="${itemId}" class="pend item text-center align-middle pending" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+      <tr id="${itemId}" class="active-pending item text-center align-middle" data-run="2" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
           <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
           <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
           <td >${item.operador}</td>
@@ -77,8 +74,8 @@ const alertStatus = (item) => {
           <td class="table-active">${item.cliente}</td>
           <td class="">${item.fecha}</td>
           <td class="">${item.ventana}</td>
-          <td style="${item.llegada.match("DESFASADA") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
-          <td style="${item.status.match("TRANSITO") ? "background-color: #0d6efd;" : ""}">${item.status}</td>
+          <td >${item.llegada}</td>
+          <td >${item.status}</td>
           <td>
           <div class="form-check form-check-inline">
            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" ${item.x3 ? "checked disabled" : "disabled"}>
@@ -99,7 +96,7 @@ const alertStatus = (item) => {
           </td>
           <td>
              <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${itemId}"></i></button>
+             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
              
           </td>
        </tr>
@@ -150,7 +147,7 @@ const alertStatus = (item) => {
 
 //CORRIENDO
     return `
- <tr id="${itemId}" class="item text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+ <tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
      <td class="Unit">${item.unidad}</td>
      <td>${item.caja}</td>
      <td>${item.operador}</td>

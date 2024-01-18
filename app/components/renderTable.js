@@ -72,45 +72,44 @@ d.getElementById("thtable").innerHTML =  `
 
       // Orden Run Complete
 
-      newOrder.sort((e1, e2) => {
-        if (
-          e1.dataset.fecha < e2.dataset.fecha ||
-          e1.dataset.fecha < e2.dataset.fecha
-        ) {
-          return -1;
-        } else if (
-          e1.dataset.fecha > e2.dataset.fecha ||
-          e1.dataset.fecha > e2.dataset.fecha
-        ) {
-          return 1;
-        } else {
-          return 0;
-        }
-          });
-
-
           newOrder.sort((e1, e2) => {
-        if (
-          e1.dataset.run < e2.dataset.run ||
-          e1.dataset.run < e2.dataset.run
-        ) {
-          return -1;
-        } else if (
-          e1.dataset.run > e2.dataset.run ||
-          e1.dataset.run > e2.dataset.run
-        ) {
-          return 1;
-        } else {
-          return 0;
-        }
-          });
+            if (
+              e1.dataset.fechaf < e2.dataset.fechaf ||
+              e1.dataset.fechaf < e2.dataset.fechaf
+            ) {
+              return -1;
+            } else if (
+              e1.dataset.fechaf > e2.dataset.fechaf ||
+              e1.dataset.fechaf > e2.dataset.fechaf
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+              });
+
+              newOrder.sort((e1, e2) => {
+                if (
+                  e1.dataset.run < e2.dataset.run ||
+                  e1.dataset.run < e2.dataset.run
+                ) {
+                  return -1;
+                } else if (
+                  e1.dataset.run > e2.dataset.run ||
+                  e1.dataset.run > e2.dataset.run
+                ) {
+                  return 1;
+                } else {
+                  return 0;
+                }
+                  });
         
       //Order Routes Pending
 
         newOrder.forEach(e => {
          
           if(!e.classList.contains("pending")){
-          //  console.log(e);
+            //console.log(e);
             newOrder.sort((e1, e2) => {
               if (
                 e1.dataset.fecha < e2.dataset.fecha ||
