@@ -13,9 +13,9 @@ export function renderTableCV(items){
 
       // Ubication Order
       let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
+        if (o1[1].caja < o2[1].caja || o1[1].caja < o2[1].caja) {
           return -1;
-        } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
+        } else if (o1[1].caja > o2[1].caja || o1[1].caja > o2[1].caja) {
           return 1;
         } else {
           return 0;

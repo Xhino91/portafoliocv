@@ -136,6 +136,20 @@ export function App() {
 
               Router();
             }
+            if (res[7].user === `${data.username}` && res[7].pass === `${data.password}`) {
+              //console.log("Acceso Completo");
+              window.location.hash = "/InhouseGTO";
+              sessionStorage.login = true;
+              localStorage.username = data.username;
+              $login.style = "display: none;";
+              location.reload(true);
+
+              $root.appendChild(Header());
+              $root.appendChild(Main());
+              document.getElementById("thtable").appendChild(Loader());
+
+              Router();
+            }
             else {
               // console.log("Acceso Denegado");
               alert("Usuario y/o Contraseña Incorrecto");

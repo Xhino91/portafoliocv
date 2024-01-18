@@ -72,6 +72,12 @@ const alertColor = (item) => {
          return "display: none"
       }
    }
+   if(localStorage.username === "InhouseGTO"){
+      if(item.cliente.includes("MOLTILOG")){         return ""
+      } else {
+         return "display: none"
+      }
+   }
    else {
       return ""
    }
@@ -198,7 +204,7 @@ const alertColor = (item) => {
      </td>
      <td>
         <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-        <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+        <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
         <button id="${item.unidad}" data-conveyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
      </td>
   </tr>
