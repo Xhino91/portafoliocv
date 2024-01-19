@@ -70,6 +70,9 @@ export function itemPublic(item) {
               <td class="ventana">${item.ventana}</td>
               <td class="llegada" style="${item.llegada.match("DESFASADA") ? "background-color: rgb(245, 223, 124);" : ""}" >${item.llegada}</td>
               <td style="${item.status.match("CRITICA") ? "background-color: #ff6767;;" : ""}">${item.status}</td>
+              <td>
+                  ${item.x3}
+                 </td>
            </tr>
              `;
        }
@@ -90,6 +93,9 @@ export function itemPublic(item) {
            <td class="ventana" >${item.ventana}</td>
            <td class="llegada" style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
            <td >${item.status}</td>
+           <td>
+          ${item.x3}
+          </td>
         </tr>
           `;
        }
@@ -109,6 +115,9 @@ export function itemPublic(item) {
          <td class="ventana" >${item.ventana}</td>
          <td class="llegada" style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
          <td style="${alertColor(item)}" >${item.status}</td>
+         <td>
+          ${item.x3}
+          </td>
       </tr>
                `;
     

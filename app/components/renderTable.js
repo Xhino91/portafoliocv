@@ -9,28 +9,15 @@ export function renderTable(items){
     
       let itemsArray = Object.entries(items);
 
-      // Orden for date
-      let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
-          return -1;
-        } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-
-     // console.log(orderItems);
+      // console.log(orderItems);
 
       let html = "";
       
-
-      orderItems.forEach((item) => (html += Item(item)));
+    
+      itemsArray.forEach((item) => (html += Item(item)));
      
     
- 
-
-d.getElementById("thtable").innerHTML =  `
+      d.getElementById("thtable").innerHTML =  `
          <table class="table table-hover table-sm  table-striped" id="table_xls">
       <thead class="table-dark text-center align-middle">
       <tr>
@@ -46,7 +33,7 @@ d.getElementById("thtable").innerHTML =  `
         <th scope="col">HORARIO</th>
         <th scope="col">LLEGADA</th>
         <th scope="col">ESTATUS</th>
-        <th scope="col">CHECKED</th>
+        <th scope="col">COMENTARIOS</th>
         <th scope="col">OPCIONES</th>
   
       </tr>
@@ -56,13 +43,7 @@ d.getElementById("thtable").innerHTML =  `
     </tbody>
     
   </table>
-</section>`;
-
-  
-
-
-
-
+      </section>`;
 
       d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
      
@@ -70,83 +51,65 @@ d.getElementById("thtable").innerHTML =  `
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);
 
-      // Orden Run Complete
-
-          newOrder.sort((e1, e2) => {
-            if (
-              e1.dataset.fechaf < e2.dataset.fechaf ||
-              e1.dataset.fechaf < e2.dataset.fechaf
-            ) {
-              return -1;
-            } else if (
-              e1.dataset.fechaf > e2.dataset.fechaf ||
-              e1.dataset.fechaf > e2.dataset.fechaf
-            ) {
-              return 1;
-            } else {
-              return 0;
-            }
-              });
-
-              newOrder.sort((e1, e2) => {
-                if (
-                  e1.dataset.run < e2.dataset.run ||
-                  e1.dataset.run < e2.dataset.run
-                ) {
-                  return -1;
-                } else if (
-                  e1.dataset.run > e2.dataset.run ||
-                  e1.dataset.run > e2.dataset.run
-                ) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-                  });
+     //Date Order
+     newOrder.sort((e1, e2) => {
+      if (
+        e1.dataset.fechaf < e2.dataset.fechaf ||
+        e1.dataset.fechaf < e2.dataset.fechaf
+      ) {
+        return -1;
+      } else if (
+        e1.dataset.fechaf > e2.dataset.fechaf ||
+        e1.dataset.fechaf > e2.dataset.fechaf
+      ) {
+        return 1;
+      } else {
+        return 0;
+      }
+     });
         
-      //Order Routes Pending
+     //Run Order 
+     newOrder.sort((e1, e2) => {
+      if (
+        e1.dataset.run < e2.dataset.run ||
+        e1.dataset.run < e2.dataset.run
+      ) {
+        return -1;
+      } else if (
+        e1.dataset.run > e2.dataset.run ||
+        e1.dataset.run > e2.dataset.run
+      ) {
+        return 1;
+      } else {
+        return 0;
+      }
+     });
 
-        newOrder.forEach(e => {
-         
-          if(!e.classList.contains("pending")){
-            //console.log(e);
-            newOrder.sort((e1, e2) => {
-              if (
-                e1.dataset.fecha < e2.dataset.fecha ||
-                e1.dataset.fecha < e2.dataset.fecha
-              ) {
-                return -1;
-              } else if (
-                e1.dataset.fecha > e2.dataset.fecha ||
-                e1.dataset.fecha > e2.dataset.fecha
-              ) {
-                return 1;
-              } else {
-                return 0;
-              }
-                });
-          } else {
-          //  console.log(e);
-            newOrder.sort((e1, e2) => {
-              if (
-                e1.dataset.fecha < e2.dataset.fecha ||
-                e1.dataset.fecha < e2.dataset.fecha
-              ) {
-                return -1;
-              } else if (
-                e1.dataset.fecha > e2.dataset.fecha ||
-                e1.dataset.fecha > e2.dataset.fecha
-              ) {
-                return 1;
-              } else {
-                return 0;
-              }
-                });
-          }
-          
-        });
 
+  /*    const $pending = d.querySelectorAll(".pending");
+      const orderHour = Array.from($pending);
+     
+
+   
+      orderHour.sort((a, b) => {
+        if (
+          a.dataset.hour < b.dataset.hour ||
+          a.dataset.hour < b.dataset.hour
+        ) {
+          return -1;
+        } else if (
+          a.dataset.hour > b.dataset.hour ||
+          a.dataset.hour > b.dataset.hour
+        ) {
+          return 1;
+        } else {
+          return 0;
+        } 
+      });
         
+     // console.log(orderHour);
+     */
+
 
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          

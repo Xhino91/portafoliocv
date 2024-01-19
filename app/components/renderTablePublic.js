@@ -42,6 +42,7 @@ export function renderTablePublic(items){
       <th class="ventana" scope="col">HORARIO</th>
       <th class="llegada" scope="col">LLEGADA</th>
       <th scope="col">ESTATUS</th>
+      <th scope="col">COMENTARIOS</th>
     </tr>
   </thead>
 
