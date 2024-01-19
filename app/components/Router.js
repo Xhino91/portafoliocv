@@ -7405,7 +7405,7 @@ if (!hash || hash === "#/InhouseMX") {
           <th scope="col">VERIFICACION</th>
           <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">KILOMETRAJE</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -7452,7 +7452,7 @@ if (!hash || hash === "#/InhouseMX") {
        <th scope="col">VERIFICACION</th>
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">KILOMETRAJE</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
