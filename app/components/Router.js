@@ -936,7 +936,7 @@ d.addEventListener("keyup", e => {
           <th scope="col">VERIFICACION</th>
           <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">KILOMETRAJE</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -953,7 +953,7 @@ d.addEventListener("keyup", e => {
       <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
       <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
       <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-      <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+      <td><input name="contacto" type="text" style="width: 150px; background-color: #69beff;"  value="${item.contacto}"></td>
       <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
       <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
       <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
@@ -983,7 +983,7 @@ d.addEventListener("keyup", e => {
      <th scope="col">VERIFICACION</th>
      <th scope="col">NO. POLIZA</th>
     <th scope="col">INCISO</th>
-    <th scope="col">CONTACTO DEL SEGURO</th>
+    <th scope="col">KILOMETRAJE</th>
     <th scope="col">CIRCUITO</th>
     <th scope="col">FECHA</th>
     <th scope="col">UBICACION</th> 
@@ -1000,7 +1000,7 @@ d.addEventListener("keyup", e => {
       <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
       <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
       <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+      <td><input name="contacto" type="text" style="width: 100px; background-color: #69beff;"  value="${item.contacto}"></td>
       <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
       <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
       <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
@@ -1874,7 +1874,7 @@ d.addEventListener("keyup", e => {
         <th class="verificacion" scope="col">VERIFICACION</th>
         <th class="poliza" scope="col">NO. POLIZA</th>
         <th class="inciso" scope="col">INCISO</th>
-        <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
+        <th class="contacto" scope="col">KILOMETRAJE</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -1921,7 +1921,7 @@ d.addEventListener("keyup", e => {
      <th scope="col">VERIFICACION</th>
      <th scope="col">NO. POLIZA</th>
     <th scope="col">INCISO</th>
-    <th scope="col">CONTACTO DEL SEGURO</th>
+    <th scope="col">KILOMETRAJE</th>
     <th scope="col">CIRCUITO</th>
     <th scope="col">FECHA</th>
     <th scope="col">UBICACION</th> 
@@ -2910,7 +2910,7 @@ d.addEventListener("keyup", e => {
         <th class="verificacion" scope="col">VERIFICACION</th>
         <th class="poliza" scope="col">NO. POLIZA</th>
         <th class="inciso" scope="col">INCISO</th>
-        <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
+        <th class="contacto" scope="col">KILOMETRAJE</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -2957,7 +2957,7 @@ d.addEventListener("keyup", e => {
      <th scope="col">VERIFICACION</th>
      <th scope="col">NO. POLIZA</th>
     <th scope="col">INCISO</th>
-    <th scope="col">CONTACTO DEL SEGURO</th>
+    <th scope="col">KILOMETRAJE</th>
     <th scope="col">CIRCUITO</th>
     <th scope="col">FECHA</th>
     <th scope="col">UBICACION</th> 
@@ -4038,7 +4038,7 @@ d.addEventListener("keyup", e => {
           <th class="verificacion" scope="col">VERIFICACION</th>
           <th class="poliza" scope="col">NO. POLIZA</th>
           <th class="inciso" scope="col">INCISO</th>
-          <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
+          <th class="contacto" scope="col">KILOMETRAJE</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -4055,7 +4055,7 @@ d.addEventListener("keyup", e => {
         <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
         <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
         <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+        <td class="contacto"><input name="contacto" type="text" style="width: 150px; background-color: #69beff;"  value="${item.contacto}"></td>
         <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
         <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
         <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
@@ -4085,7 +4085,7 @@ d.addEventListener("keyup", e => {
        <th scope="col">VERIFICACION</th>
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">KILOMETRAJE</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
@@ -4102,7 +4102,7 @@ d.addEventListener("keyup", e => {
         <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
         <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
         <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+        <td><input name="contacto" type="text" style="width: 100px; background-color: #69beff;"  value="${item.contacto}" disabled></td>
         <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
         <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
         <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
@@ -5166,7 +5166,7 @@ if (!hash || hash === "#/InhouseMX") {
             <th scope="col">VERIFICACION</th>
             <th scope="col">NO. POLIZA</th>
             <th scope="col">INCISO</th>
-            <th scope="col">CONTACTO DEL SEGURO</th>
+            <th scope="col">KILOMETRAJE</th>
             <th scope="col">CIRCUITO</th>
             <th scope="col">FECHA</th>
             <th scope="col">UBICACION</th> 
@@ -5213,7 +5213,7 @@ if (!hash || hash === "#/InhouseMX") {
        <th scope="col">VERIFICACION</th>
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">KILOMETRAJE</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
@@ -6293,7 +6293,7 @@ if (!hash || hash === "#/InhouseMX") {
             <th scope="col">VERIFICACION</th>
             <th scope="col">NO. POLIZA</th>
             <th scope="col">INCISO</th>
-            <th scope="col">CONTACTO DEL SEGURO</th>
+            <th scope="col">KILOMETRAJE</th>
             <th scope="col">CIRCUITO</th>
             <th scope="col">FECHA</th>
             <th scope="col">UBICACION</th> 
@@ -6340,7 +6340,7 @@ if (!hash || hash === "#/InhouseMX") {
        <th scope="col">VERIFICACION</th>
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">KILOMETRAJE</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
