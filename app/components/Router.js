@@ -238,7 +238,7 @@ d.addEventListener("keyup", e => {
               <th scope="col">VERIFICACION</th>
               <th scope="col">NO. POLIZA</th>
               <th scope="col">INCISO</th>
-              <th scope="col">CONTACTO DEL SEGURO</th> 
+              <th scope="col">KILOMETRAJE</th> 
             </tr>
           </thead>
           <tbody class="text-center" class="text-wrap">
@@ -296,7 +296,7 @@ d.addEventListener("keyup", e => {
                  <th class="verificacion" scope="col">VERIFICACION</th>
                  <th class="poliza" scope="col">NO. POLIZA</th>
                  <th class="inciso" scope="col">INCISO</th>
-                 <th class="contacto" scope="col">CONTACTO DEL SEGURO</th>
+                 <th class="contacto" scope="col">MARCHAMO</th>
                  <th scope="col">CIRCUITO</th>
                  <th scope="col">FECHA</th>
                  <th scope="col">UBICACION</th> 
@@ -539,7 +539,7 @@ d.addEventListener("keyup", e => {
  
    }
 
-   if (!hash || hash === "#/Tracking") {
+ if (!hash || hash === "#/Tracking") {
     localStorage.tabConveyance = false;
     localStorage.tabUnit = false;
     localStorage.tabViajes = true;
@@ -731,7 +731,7 @@ d.addEventListener("keyup", e => {
           <th scope="col">VERIFICACION</th>
           <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -820,7 +820,7 @@ d.addEventListener("keyup", e => {
        <th scope="col">VERIFICACION</th>
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">KILOMETRAJE</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
@@ -936,7 +936,7 @@ d.addEventListener("keyup", e => {
           <th scope="col">VERIFICACION</th>
           <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">KILOMETRAJE</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -1675,7 +1675,7 @@ d.addEventListener("keyup", e => {
      
    }
 
-   if (!hash || hash === "#/Traffic") {
+ if (!hash || hash === "#/Traffic") {
       localStorage.tabConveyance = false;
       localStorage.tabUnit = false;
       localStorage.tabViajes = true;
@@ -1874,7 +1874,7 @@ d.addEventListener("keyup", e => {
         <th class="verificacion" scope="col">VERIFICACION</th>
         <th class="poliza" scope="col">NO. POLIZA</th>
         <th class="inciso" scope="col">INCISO</th>
-        <th class="contacto" scope="col">KILOMETRAJE</th>
+        <th class="contacto" scope="col">MARCHAMO</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -2073,7 +2073,7 @@ d.addEventListener("keyup", e => {
               <th scope="col">VERIFICACION</th>
               <th scope="col">NO. POLIZA</th>
               <th scope="col">INCISO</th>
-              <th scope="col">CONTACTO DEL SEGURO</th> 
+              <th scope="col">KILOMETRAJE</th> 
             </tr>
           </thead>
           <tbody class="text-center" class="text-wrap">
@@ -2130,7 +2130,7 @@ d.addEventListener("keyup", e => {
                    <th scope="col">VERIFICACION</th>
                    <th scope="col">NO. POLIZA</th>
                    <th scope="col">INCISO</th>
-                   <th scope="col">CONTACTO DEL SEGURO</th>
+                   <th scope="col">MARCHAMO</th>
                    <th scope="col">CIRCUITO</th>
                    <th scope="col">RUTA</th>
                    <th scope="col">UBICACION</th> 
@@ -2518,7 +2518,7 @@ d.addEventListener("keyup", e => {
 
   }
 
-  if (!hash || hash === "#/InhouseTOL") {
+ if (!hash || hash === "#/InhouseTOL") {
     localStorage.tabConveyance = false;
     localStorage.tabUnit = false;
     localStorage.tabViajes = true;
@@ -2705,7 +2705,7 @@ d.addEventListener("keyup", e => {
          <th scope="col">VERIFICACION</th>
          <th scope="col">NO. POLIZA</th>
         <th scope="col">INCISO</th>
-        <th scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">MARCHAMO/th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -2794,7 +2794,7 @@ d.addEventListener("keyup", e => {
        <th scope="col">VERIFICACION</th>
        <th scope="col">NO. POLIZA</th>
       <th scope="col">INCISO</th>
-      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">KILOMETRAJE</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
@@ -2910,7 +2910,7 @@ d.addEventListener("keyup", e => {
         <th class="verificacion" scope="col">VERIFICACION</th>
         <th class="poliza" scope="col">NO. POLIZA</th>
         <th class="inciso" scope="col">INCISO</th>
-        <th class="contacto" scope="col">KILOMETRAJE</th>
+        <th class="contacto" scope="col">MARCHAMO</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -3111,7 +3111,7 @@ d.addEventListener("keyup", e => {
               <th scope="col">VERIFICACION</th>
               <th scope="col">NO. POLIZA</th>
               <th scope="col">INCISO</th>
-              <th scope="col">CONTACTO DEL SEGURO</th> 
+              <th scope="col">KILOMETRAJE</th> 
             </tr>
           </thead>
           <tbody class="text-center" class="text-wrap">
@@ -3169,7 +3169,7 @@ d.addEventListener("keyup", e => {
                    <th scope="col">VERIFICACION</th>
                    <th scope="col">NO. POLIZA</th>
                    <th scope="col">INCISO</th>
-                   <th scope="col">CONTACTO DEL SEGURO</th>
+                   <th scope="col">MARCHAMO</th>
                    <th scope="col">CIRCUITO</th>
                    <th scope="col">FECHA</th>
                    <th scope="col">UBICACION</th> 
@@ -3833,7 +3833,7 @@ d.addEventListener("keyup", e => {
            <th scope="col">VERIFICACION</th>
            <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -4038,7 +4038,7 @@ d.addEventListener("keyup", e => {
           <th class="verificacion" scope="col">VERIFICACION</th>
           <th class="poliza" scope="col">NO. POLIZA</th>
           <th class="inciso" scope="col">INCISO</th>
-          <th class="contacto" scope="col">KILOMETRAJE</th>
+          <th class="contacto" scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -4239,7 +4239,7 @@ d.addEventListener("keyup", e => {
                 <th scope="col">VERIFICACION</th>
                 <th scope="col">NO. POLIZA</th>
                 <th scope="col">INCISO</th>
-                <th scope="col">CONTACTO DEL SEGURO</th> 
+                <th scope="col">KILOMETRAJE</th> 
               </tr>
             </thead>
             <tbody class="text-center" class="text-wrap">
@@ -4774,7 +4774,7 @@ d.addEventListener("keyup", e => {
   
     }
 
-if (!hash || hash === "#/InhouseMX") {
+ if (!hash || hash === "#/InhouseMX") {
       localStorage.tabConveyance = false;
       localStorage.tabUnit = false;
       localStorage.tabViajes = true;
@@ -4961,7 +4961,7 @@ if (!hash || hash === "#/InhouseMX") {
            <th scope="col">VERIFICACION</th>
            <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -5050,7 +5050,7 @@ if (!hash || hash === "#/InhouseMX") {
          <th scope="col">VERIFICACION</th>
          <th scope="col">NO. POLIZA</th>
         <th scope="col">INCISO</th>
-        <th scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">KILOMETRAJE</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -5166,7 +5166,7 @@ if (!hash || hash === "#/InhouseMX") {
             <th scope="col">VERIFICACION</th>
             <th scope="col">NO. POLIZA</th>
             <th scope="col">INCISO</th>
-            <th scope="col">KILOMETRAJE</th>
+            <th scope="col">MARCHAMO</th>
             <th scope="col">CIRCUITO</th>
             <th scope="col">FECHA</th>
             <th scope="col">UBICACION</th> 
@@ -5367,7 +5367,7 @@ if (!hash || hash === "#/InhouseMX") {
                 <th scope="col">VERIFICACION</th>
                 <th scope="col">NO. POLIZA</th>
                 <th scope="col">INCISO</th>
-                <th scope="col">CONTACTO DEL SEGURO</th> 
+                <th scope="col">MARCHAMO</th> 
               </tr>
             </thead>
             <tbody class="text-center" class="text-wrap">
@@ -5901,7 +5901,7 @@ if (!hash || hash === "#/InhouseMX") {
   
     }
   
-    if (!hash || hash === "#/InhouseGTO") {
+ if (!hash || hash === "#/InhouseGTO") {
       localStorage.tabConveyance = false;
       localStorage.tabUnit = false;
       localStorage.tabViajes = true;
@@ -6088,7 +6088,7 @@ if (!hash || hash === "#/InhouseMX") {
            <th scope="col">VERIFICACION</th>
            <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -6177,7 +6177,7 @@ if (!hash || hash === "#/InhouseMX") {
          <th scope="col">VERIFICACION</th>
          <th scope="col">NO. POLIZA</th>
         <th scope="col">INCISO</th>
-        <th scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">KILOMETRAJE</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
         <th scope="col">UBICACION</th> 
@@ -6293,7 +6293,7 @@ if (!hash || hash === "#/InhouseMX") {
             <th scope="col">VERIFICACION</th>
             <th scope="col">NO. POLIZA</th>
             <th scope="col">INCISO</th>
-            <th scope="col">KILOMETRAJE</th>
+            <th scope="col">MARCHAMO</th>
             <th scope="col">CIRCUITO</th>
             <th scope="col">FECHA</th>
             <th scope="col">UBICACION</th> 
@@ -7405,7 +7405,7 @@ if (!hash || hash === "#/InhouseMX") {
           <th scope="col">VERIFICACION</th>
           <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">KILOMETRAJE</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -7534,7 +7534,7 @@ if (!hash || hash === "#/InhouseMX") {
            <th scope="col">VERIFICACION</th>
            <th scope="col">NO. POLIZA</th>
           <th scope="col">INCISO</th>
-          <th scope="col">CONTACTO DEL SEGURO</th>
+          <th scope="col">MARCHAMO</th>
           <th scope="col">CIRCUITO</th>
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
@@ -7551,7 +7551,7 @@ if (!hash || hash === "#/InhouseMX") {
         <td><input name="verificacion" style="width: 75px;" type="text"></td>
         <td><input name="poliza" style="width: 75px;" type="text"></td>
         <td><input name="inciso" style="width: 95px;" type="text"></td>
-        <td><input name="contacto" type="text" style="width: 80px;"></td>
+        <td><input name="contacto" type="text" style="width: 80px;"></input></td>
         <td><input name="circuito" type="text"></td>
         <td><input name="fecha" type="date"></td>
         <td><input name="ubicacion" type="text"></td>

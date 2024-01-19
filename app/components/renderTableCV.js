@@ -46,7 +46,7 @@ export function renderTableCV(items){
        <th class="verificacion" scope="col">NO. SERIE</th>
        <th class="poliza" scope="col">NO. POLIZA</th>
       <th class="inciso" scope="col">INCISO</th>
-      <th class="contacto" scope="col">KILOMETRAJE</th>
+      <th class="contacto" scope="col">MARCHAMO</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
