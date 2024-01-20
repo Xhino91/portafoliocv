@@ -9,12 +9,23 @@ export function renderTable(items){
     
       let itemsArray = Object.entries(items);
 
+         // Orden for date
+         let orderItems = itemsArray.sort((o1, o2) => {
+          if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+            return -1;
+          } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+
       // console.log(orderItems);
 
       let html = "";
       
     
-      itemsArray.forEach((item) => (html += Item(item)));
+      orderItems.forEach((item) => (html += Item(item)));
      
     
       d.getElementById("thtable").innerHTML =  `

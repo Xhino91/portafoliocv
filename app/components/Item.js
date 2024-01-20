@@ -115,7 +115,7 @@ const alertColor = (item) => {
 //ALERTA DE COMPLETE (RUTA COMPLETA)
    if(item.status.match("COMPLET")) {
    return `
-   <tr id="${itemId}" class="item text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+   <tr id="${itemId}" class="item text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" style="${filterUser(item)}">
        <td class="Unit">${item.unidad}</td>
        <td >${item.caja}</td>
        <td>${item.operador}</td>
@@ -140,10 +140,10 @@ const alertColor = (item) => {
    } else
 
    //CORRIENDO
-   if(item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("PLANTA") ) {
+   if(item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("PLANTA") || item.status.match("DETENIDO") || item.status.match("CARGA")) {
 
 return `
-<tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+<tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" style="${filterUser(item)}">
     <td class="Unit">${item.unidad}</td>
     <td>${item.caja}</td>
     <td>${item.operador}</td>
@@ -169,7 +169,7 @@ return `
 
    if(item.status.match("CANCEL")) {
       return `
-      <tr id="${itemId}" class="item active-error text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+      <tr id="${itemId}" class="item active-error text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" style="${filterUser(item)}">
           <td class="Unit">${item.unidad}</td>
           <td>${item.caja}</td>
           <td>${item.operador}</td>
@@ -195,7 +195,7 @@ return `
    } else {
       
    return `
-   <tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+   <tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" style="${filterUser(item)}">
        <td class="Unit">${item.unidad}</td>
        <td>${item.caja}</td>
        <td>${item.operador}</td>
