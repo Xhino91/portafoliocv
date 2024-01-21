@@ -38,15 +38,15 @@ const alertColor = (item) => {
 
    if( item.status.match("PROVEEDOR") || item.status.match("TRANSITO") || item.status.match("PLANTA")){
       return "1" ;
-   }
+   } else
    if(item.status.match("PENDIENTE") || item.status.match("ACTIVA")){
       return "2" ;
-   } 
+   } else
    if (item.status.match("COMPLET")) {
-      return "3" ;
+      return "4" ;
    }
    if(item.status.match("CANCEL")){
-      return "4";
+      return "5";
    }
    else {
       return "";
@@ -59,23 +59,29 @@ const alertColor = (item) => {
       } else {
          return "display: none"
       }
-   }
+   } else
    if(localStorage.username === "InhouseMX"){
       if(item.cliente.includes("FORDC")){         return ""
       } else {
          return "display: none"
       }
-   }
+   } else
    if(localStorage.username === "InhouseTOL"){
       if(item.cliente.includes("FCA") || item.cliente.includes("BRP")){         return ""
       } else {
          return "display: none"
       }
-   }
+   } else
    if(localStorage.username === "InhouseGTO"){
       if(item.cliente.includes("MULTILOG")){         return ""
       } else {
          return "display: none"
+      }
+   } else
+   if(localStorage.username === "Traffic"){
+      if(item.status.includes("COMPLET")){         return "display: none"
+      } else {
+         return 
       }
    }
    else {
@@ -83,6 +89,32 @@ const alertColor = (item) => {
    }
    }
 
+   if (item.ruta.match("HS") || item.ruta.match("CU")) {
+      return `
+      <tr id="${itemId}" class="${travelStatus(item)} pending item text-center align-middle" data-run="3" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-hour="${item.ventana}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${filterUser(item)}">
+          <td class="${item.unidad ? "table-active" : ""}" >${item.unidad}</td>
+          <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
+          <td >${item.operador}</td>
+          <td>${item.cporte}</td>
+          <td class="${item.tracking ? "table-active" : ""}" >${item.tracking}</td>
+          <td class="${item.bol ? "table-active" : ""}" >${item.bol}</td>
+          <td>${item.ruta}</td>
+          <td class="table-active">${item.cliente}</td>
+          <td class="">${item.fecha}</td>
+          <td class="">${item.ventana}</td>
+          <td >${item.llegada}</td>
+          <td >${item.status}</td>
+          <td>
+          ${item.x3}
+          </td>
+          <td>
+             <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
+             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
+             
+          </td>
+       </tr>
+         `;
+   }
 
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.status.match("PENDIENTE") || item.status.match("ACTIVA")) {
