@@ -54,7 +54,7 @@ const alertColor = (item) => {
   }
 
   const filterUser = (item) => {
-   if(localStorage.username === "InhouseHMO"){
+   if(localStorage.username === "InhouseHMO" || localStorage.username === "TrafficH"){
       if(item.cliente.includes("FORDH")){         return ""
       } else {
          return "display: none"
@@ -78,7 +78,7 @@ const alertColor = (item) => {
          return "display: none"
       }
    } else
-   if(localStorage.username === "Traffic"){
+   if(localStorage.username === "Traffic" || localStorage.username === "TrafficH"){
       if(item.status.includes("COMPLET")){         return "display: none"
       } else {
          return 
@@ -137,7 +137,7 @@ const alertColor = (item) => {
           </td>
           <td>
              <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
+             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/TrafficH" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
              
           </td>
        </tr>
@@ -165,7 +165,7 @@ const alertColor = (item) => {
        </td>
        <td>
           <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-          <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" ? "display: none;" : ""}";><i class="fa-solid fa-trash" id="${itemId}"></i></button>
+          <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/TrafficH" ? "display: none;" : ""}";><i class="fa-solid fa-trash" id="${itemId}"></i></button>
        </td>
     </tr>
       `;
@@ -193,7 +193,7 @@ return `
     </td>
     <td>
        <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-       <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+       <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/TrafficH" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
     </td>
  </tr>
           `;
@@ -219,7 +219,7 @@ return `
           </td>
           <td>
              <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/TrafficH" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
           </td>
        </tr>
                 `;
@@ -245,7 +245,7 @@ return `
        </td>
        <td>
           <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-          <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+          <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/Traffic" || window.location.hash === "#/TrafficH" || window.location.hash === "#/InhouseTOL" || window.location.hash === "#/InhouseHMO" || window.location.hash === "#/InhouseGTO" || window.location.hash === "#/InhouseMX" || window.location.hash === "#/Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
        </td>
     </tr>
              `;

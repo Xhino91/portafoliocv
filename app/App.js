@@ -135,10 +135,24 @@ export function App() {
               document.getElementById("thtable").appendChild(Loader());
 
               Router();
-            }
+            } else
             if (res[7].user === `${data.username}` && res[7].pass === `${data.password}`) {
               //console.log("Acceso Completo");
               window.location.hash = "/InhouseGTO";
+              sessionStorage.login = true;
+              localStorage.username = data.username;
+              $login.style = "display: none;";
+              location.reload(true);
+
+              $root.appendChild(Header());
+              $root.appendChild(Main());
+              document.getElementById("thtable").appendChild(Loader());
+
+              Router();
+            } else
+            if (res[8].user === `${data.username}` && res[8].pass === `${data.password}`) {
+              //console.log("Acceso Completo");
+              window.location.hash = "/TrafficH";
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
