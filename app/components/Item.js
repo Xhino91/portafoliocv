@@ -70,6 +70,8 @@ const alertColor = (item) => {
       } else {
          return 
       }
+      } else {
+         return "display: none"
       }
    } else
    if(localStorage.username === "InhouseTOL"){
@@ -78,6 +80,8 @@ const alertColor = (item) => {
       } else {
          return 
       }
+      } else {
+         return "display: none"
       }
    } else
    if(localStorage.username === "InhouseGTO"){
@@ -86,16 +90,22 @@ const alertColor = (item) => {
       } else {
          return 
       }
+      } else {
+         return "display: none"
       }
    } else
    if(localStorage.username === "Traffic"){
-      if(item.status.includes("COMPLET")){         return "display: none"
+      if(item.cliente.includes("FORDH")){
+         return "display: none" 
+      } else {
+         if(item.status.includes("COMPLET")){         return "display: none"
       } else {
          return 
       }
+      }
    }
    else {
-     if(item.status.includes("COMPLET")){         return "display: none"
+     if(item.status.includes("COMPLET")){         return 
       } else {
          return 
       }
