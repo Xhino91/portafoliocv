@@ -4,7 +4,7 @@ export function ItemV(conv) {
   const alertStatus = (comit) => {
 
 
-   if( comit.comentarios.match("CRITIC") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("DETE")){
+   if( comit.comentarios.match("MANTE") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("CORRA")){
       return `
           background: #862828;
           color: white;
@@ -13,11 +13,20 @@ export function ItemV(conv) {
       ` ;
    }
    else {
-      return  `
-      background-color: #39596c;
-      color: white;
-      font-weight: bold;
-      `;
+      if( comit.comentarios.match("DISPONIBLE")){
+         return  `
+           background-color: #017d1a;
+           color: white;
+           font-weight: bold;
+           `;
+           }
+           else {
+              return  `
+           background-color: #004c86;
+           color: white;
+           font-weight: bold;
+           `;
+           }
    }
   }
 

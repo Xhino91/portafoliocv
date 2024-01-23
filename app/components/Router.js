@@ -1893,7 +1893,7 @@ d.addEventListener("keyup", e => {
       <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
       <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
       <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-      <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
       <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
       <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
       </tbody>
@@ -1940,7 +1940,7 @@ d.addEventListener("keyup", e => {
       <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
       <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
       <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-      <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
       <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
       <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
       </tbody>
@@ -2736,7 +2736,7 @@ d.addEventListener("keyup", e => {
     <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
     <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
     <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-    <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+    <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
     <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
     <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
     </tbody>
@@ -2783,7 +2783,7 @@ d.addEventListener("keyup", e => {
     <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
     <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
     <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-    <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+    <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
     <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
     <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
     </tbody>
@@ -3772,7 +3772,7 @@ d.addEventListener("keyup", e => {
       <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
       <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
       <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-      <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
       <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
       <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
       </tbody>
@@ -3819,7 +3819,7 @@ d.addEventListener("keyup", e => {
       <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
       <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
       <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-      <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
       <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
       <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
       </tbody>
@@ -4864,7 +4864,7 @@ d.addEventListener("keyup", e => {
         if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
 
           const tabConv = (item) => {
-  
+
             d.getElementById("formulario").classList.add("edit");
             d.getElementById("formulario").classList.remove("register");
             d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
@@ -4898,9 +4898,9 @@ d.addEventListener("keyup", e => {
         <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
         <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
         <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td class="contacto"><input name="contacto" type="text" style="width: 150px; background-color: #69beff;"  value="${item.contacto}"></td>
+        <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
         <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+        <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
         <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
         <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
         </tbody>
@@ -4945,9 +4945,9 @@ d.addEventListener("keyup", e => {
         <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
         <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
         <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td><input name="contacto" type="text" style="width: 100px; background-color: #69beff;"  value="${item.contacto}" disabled></td>
+        <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
         <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+        <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
         <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
         <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
         </tbody>
@@ -5992,43 +5992,43 @@ d.addEventListener("keyup", e => {
         if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
        
           const tabConv = (item) => {
-  
+
             d.getElementById("formulario").classList.add("edit");
             d.getElementById("formulario").classList.remove("register");
             d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
             d.querySelector(".modal-body").innerHTML = `
             <div class="container-fluid"> 
             <table class="table table-sm" >
-            <thead class="table-dark text-center">
-            <tr class="text-wrap">
-            <th id="cajas" scope="col">CAJA</th>
-            <th scope="col">TIPO</th>
-            <th scope="col">MODELO</th>
-            <th scope="col">PLACA</th>
-            <th scope="col">AÑO</th>
-            <th scope="col">VERIFICACION</th>
-            <th scope="col">NO. POLIZA</th>
-            <th scope="col">INCISO</th>
-            <th scope="col">MARCHAMO</th>
-            <th scope="col">CIRCUITO</th>
-            <th scope="col">FECHA</th>
-            <th scope="col">UBICACION</th> 
-            <th scope="col">ESTATUS</th>
+        <thead class="table-dark text-center">
+          <tr class="text-wrap">
+          <th id="cajas" scope="col">CAJA</th>
+          <th class="tipo" scope="col">TIPO</th>
+          <th class="modelo" scope="col">MODELO</th>
+          <th class="placa" scope="col">PLACA</th>
+          <th class="año" scope="col">AÑO</th>
+          <th class="verificacion" scope="col">VERIFICACION</th>
+          <th class="poliza" scope="col">NO. POLIZA</th>
+          <th class="inciso" scope="col">INCISO</th>
+          <th class="contacto" scope="col">MARCHAMO</th>
+          <th scope="col">CIRCUITO</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">UBICACION</th> 
+          <th scope="col">ESTATUS</th>
       
           </tr>
         </thead>
         <tbody class="text-center text-wrap" >
         <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
-        <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
-        <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-        <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-        <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
-        <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
-        <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-        <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+        <td class="tipo"><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
+        <td class="modelo"><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+        <td class="placa"><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+        <td class="año"><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
+        <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
+        <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+        <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+        <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
         <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+        <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
         <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
         <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
         </tbody>
@@ -6075,7 +6075,7 @@ d.addEventListener("keyup", e => {
         <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
         <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
         <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
+        <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
         <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
         <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
         </tbody>
@@ -6084,7 +6084,7 @@ d.addEventListener("keyup", e => {
       </div>
             `;
           }
-  
+
           //  console.log();
            if(localStorage.tabViajes === "true"){
             d.querySelector(".hidden").style.display = "block";
@@ -7118,99 +7118,99 @@ d.addEventListener("keyup", e => {
         }
         if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
        
-          const tabConv = (item) => {
-  
-            d.getElementById("formulario").classList.add("edit");
-            d.getElementById("formulario").classList.remove("register");
-            d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
-            d.querySelector(".modal-body").innerHTML = `
-            <div class="container-fluid"> 
-            <table class="table table-sm" >
-            <thead class="table-dark text-center">
-            <tr class="text-wrap">
-            <th id="cajas" scope="col">CAJA</th>
-            <th scope="col">TIPO</th>
-            <th scope="col">MODELO</th>
-            <th scope="col">PLACA</th>
-            <th scope="col">AÑO</th>
-            <th scope="col">VERIFICACION</th>
-            <th scope="col">NO. POLIZA</th>
-            <th scope="col">INCISO</th>
-            <th scope="col">MARCHAMO</th>
-            <th scope="col">CIRCUITO</th>
-            <th scope="col">FECHA</th>
-            <th scope="col">UBICACION</th> 
-            <th scope="col">ESTATUS</th>
+           const tabConv = (item) => {
+
+          d.getElementById("formulario").classList.add("edit");
+          d.getElementById("formulario").classList.remove("register");
+          d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+          d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th id="cajas" scope="col">CAJA</th>
+        <th class="tipo" scope="col">TIPO</th>
+        <th class="modelo" scope="col">MODELO</th>
+        <th class="placa" scope="col">PLACA</th>
+        <th class="año" scope="col">AÑO</th>
+        <th class="verificacion" scope="col">VERIFICACION</th>
+        <th class="poliza" scope="col">NO. POLIZA</th>
+        <th class="inciso" scope="col">INCISO</th>
+        <th class="contacto" scope="col">MARCHAMO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap" >
+      <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
+      <td class="tipo"><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
+      <td class="modelo"><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+      <td class="placa"><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+      <td class="año"><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
+      <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
+      <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+      <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+      <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+      <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
+      </tbody>
       
-          </tr>
-        </thead>
-        <tbody class="text-center text-wrap" >
-        <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
-        <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
-        <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-        <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-        <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
-        <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
-        <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-        <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
-        <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 90px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
-        <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
-        <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
-        </tbody>
-        
-      </table>
-      </div>
-            `;
-          }
-  
-          const tabUnit = (item) => {
-  
-            d.getElementById("formulario").classList.add("edit");
-            d.getElementById("formulario").classList.remove("register");
-            d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
-            d.querySelector(".modal-body").innerHTML = `
-            <div class="container-fluid"> 
-            <table class="table table-sm" >
-        <thead class="table-dark text-center">
-          <tr class="text-wrap">
-          <th scope="col">UNIDAD</th>
-      <th scope="col">OPERADOR</th>
-      <th scope="col">MODELO</th>
-      <th scope="col">PLACA</th>
-      <th scope="col">AÑO</th>
-       <th scope="col">VERIFICACION</th>
-       <th scope="col">NO. POLIZA</th>
-      <th scope="col">INCISO</th>
-      <th scope="col">KILOMETRAJE</th>
-      <th scope="col">CIRCUITO</th>
-      <th scope="col">FECHA</th>
-      <th scope="col">UBICACION</th> 
-      <th scope="col">ESTATUS</th>
-  
-          </tr>
-        </thead>
-        <tbody class="text-center text-wrap" >
-        <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
-        <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
-        <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-        <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-        <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
-        <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
-        <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-        <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-        <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
-        <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 100px; background-color: #69beff;" type="text"  value="${item.fecha}"></td>
-        <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
-        <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
-        </tbody>
-        
-      </table>
-      </div>
-            `;
-          }
+    </table>
+    </div>
+          `;
+        }
+
+        const tabUnit = (item) => {
+
+          d.getElementById("formulario").classList.add("edit");
+          d.getElementById("formulario").classList.remove("register");
+          d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+          d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">UNIDAD</th>
+    <th scope="col">OPERADOR</th>
+    <th scope="col">MODELO</th>
+    <th scope="col">PLACA</th>
+    <th scope="col">AÑO</th>
+     <th scope="col">VERIFICACION</th>
+     <th scope="col">NO. POLIZA</th>
+    <th scope="col">INCISO</th>
+    <th scope="col">KILOMETRAJE</th>
+    <th scope="col">CIRCUITO</th>
+    <th scope="col">FECHA</th>
+    <th scope="col">UBICACION</th> 
+    <th scope="col">ESTATUS</th>
+
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap" >
+      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
+      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
+      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
+      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
+      <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+      <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+      <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
+      </tbody>
+      
+    </table>
+    </div>
+          `;
+        }
   
           //  console.log();
            if(localStorage.tabViajes === "true"){
@@ -8230,99 +8230,99 @@ d.addEventListener("keyup", e => {
         if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
          // console.log(e.target);
 
-          const tabConv = (item) => {
+         const tabConv = (item) => {
 
-            d.getElementById("formulario").classList.add("edit");
-            d.getElementById("formulario").classList.remove("register");
-            d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
-            d.querySelector(".modal-body").innerHTML = `
-            <div class="container-fluid"> 
-            <table class="table table-sm" >
-        <thead class="table-dark text-center">
-          <tr class="text-wrap">
-          <th id="cajas" scope="col">CAJA</th>
-          <th scope="col">TIPO</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-          <th scope="col">VERIFICACION</th>
-          <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">MARCHAMO</th>
-          <th scope="col">CIRCUITO</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">UBICACION</th> 
-          <th scope="col">ESTATUS</th>
+          d.getElementById("formulario").classList.add("edit");
+          d.getElementById("formulario").classList.remove("register");
+          d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+          d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th id="cajas" scope="col">CAJA</th>
+        <th class="tipo" scope="col">TIPO</th>
+        <th class="modelo" scope="col">MODELO</th>
+        <th class="placa" scope="col">PLACA</th>
+        <th class="año" scope="col">AÑO</th>
+        <th class="verificacion" scope="col">VERIFICACION</th>
+        <th class="poliza" scope="col">NO. POLIZA</th>
+        <th class="inciso" scope="col">INCISO</th>
+        <th class="contacto" scope="col">MARCHAMO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap" >
+      <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
+      <td class="tipo"><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
+      <td class="modelo"><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+      <td class="placa"><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+      <td class="año"><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
+      <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
+      <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+      <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+      <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+      <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
+      </tbody>
       
-          </tr>
-        </thead>
-        <tbody class="text-center text-wrap" >
-        <td><input name="caja" style="width: 35px;" type="text" value="${item.caja}"></td>
-        <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}"></td>
-        <td><input name="modelo" style="width: 130px;" type="text"  value="${item.modelo}"></td>
-        <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
-        <td><input name="año" style="width: 80px;" type="text"  value="${item.año}"></td>
-        <td><input name="verificacion" style="width: 75px;" type="text"  value="${item.verificacion}"></td>
-        <td><input name="poliza" style="width: 75px;" type="text"  value="${item.poliza}"></td>
-        <td><input name="inciso" style="width: 95px;" type="text"  value="${item.inciso}"></td>
-        <td><input name="contacto" type="text" style="width: 80px;"  value="${item.contacto}"</td>
-        <td><input name="circuito" style="width: 95px;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 95px;" type="date"  value="${item.fecha}"></td>
-        <td><input name="ubicacion" style="width: 95px;" type="text"  value="${item.ubicacion}"></td>
-        <td><input name="comentarios" style="width: 95px;" type="text""  value="${item.comentarios}"></td>  
-        </tbody>
-        
-      </table>
-      </div>
-            `;
-          }
+    </table>
+    </div>
+          `;
+        }
 
-          const tabUnit = (item) => {
+        const tabUnit = (item) => {
 
-            d.getElementById("formulario").classList.add("edit");
-            d.getElementById("formulario").classList.remove("register");
-            d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
-            d.querySelector(".modal-body").innerHTML = `
-            <div class="container-fluid"> 
-            <table class="table table-sm" >
-        <thead class="table-dark text-center">
-          <tr class="text-wrap">
-          <th scope="col">UNIDAD</th>
-      <th scope="col">OPERADOR</th>
-      <th scope="col">MODELO</th>
-      <th scope="col">PLACA</th>
-      <th scope="col">AÑO</th>
-       <th scope="col">VERIFICACION</th>
-       <th scope="col">NO. POLIZA</th>
-      <th scope="col">INCISO</th>
-      <th scope="col">KILOMETRAJE</th>
-      <th scope="col">CIRCUITO</th>
-      <th scope="col">FECHA</th>
-      <th scope="col">UBICACION</th> 
-      <th scope="col">ESTATUS</th>
+          d.getElementById("formulario").classList.add("edit");
+          d.getElementById("formulario").classList.remove("register");
+          d.getElementById("exampleModalLabel").innerHTML = `Actualizar Datos`;
+          d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">UNIDAD</th>
+    <th scope="col">OPERADOR</th>
+    <th scope="col">MODELO</th>
+    <th scope="col">PLACA</th>
+    <th scope="col">AÑO</th>
+     <th scope="col">VERIFICACION</th>
+     <th scope="col">NO. POLIZA</th>
+    <th scope="col">INCISO</th>
+    <th scope="col">KILOMETRAJE</th>
+    <th scope="col">CIRCUITO</th>
+    <th scope="col">FECHA</th>
+    <th scope="col">UBICACION</th> 
+    <th scope="col">ESTATUS</th>
 
-          </tr>
-        </thead>
-        <tbody class="text-center text-wrap" >
-        <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}"></td>
-        <td><input name="operador" style="width: 60px;" type="text"   value="${item.operador}"></td>
-        <td><input name="modelo" style="width: 130px;" type="text"  value="${item.modelo}"></td>
-        <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
-        <td><input name="año" style="width: 80px;" type="text"  value="${item.año}"></td>
-        <td><input name="verificacion" style="width: 75px;" type="text"  value="${item.verificacion}"></td>
-        <td><input name="poliza" style="width: 75px;" type="text"  value="${item.poliza}"></td>
-        <td><input name="inciso" style="width: 95px;" type="text"  value="${item.inciso}"></td>
-        <td><input name="contacto" type="text" style="width: 80px;"  value="${item.contacto}"</td>
-        <td><input name="circuito" style="width: 95px;" type="text"  value="${item.circuito}"></td>
-        <td><input name="fecha" style="width: 95px;" type="date"  value="${item.fecha}"></td>
-        <td><input name="ubicacion" style="width: 95px;" type="text"  value="${item.ubicacion}"></td>
-        <td><input name="comentarios" style="width: 95px;" type="text""  value="${item.comentarios}"></td>  
-        </tbody>
-        
-      </table>
-      </div>
-            `;
-          }
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap" >
+      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
+      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
+      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
+      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
+      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
+      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
+      <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
+      <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
+      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+      <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
+      </tbody>
+      
+    </table>
+    </div>
+          `;
+        }
 
           d.querySelector(".hidden").style.display = "block";
           d.getElementById("bt-save").dataset.value = `${e.target.id}`;
