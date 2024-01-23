@@ -1066,7 +1066,7 @@ d.addEventListener("keyup", e => {
           </select>
           </td>
           <td>
-          <input name="estatus" style="width: 130px;" type="text"  value="${item.status}">
+          <input name="status" style="width: 130px;" type="text"  value="${item.status}">
           </td>
           <td>
           <input name="x3" style="width: 130px;" type="text"  value="${item.x3}">
