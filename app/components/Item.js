@@ -60,6 +60,8 @@ const alertColor = (item) => {
       } else {
          return 
       }
+      } else {
+         return "display: none"
       }
    } else
    if(localStorage.username === "InhouseMX"){
@@ -87,21 +89,16 @@ const alertColor = (item) => {
       }
    } else
    if(localStorage.username === "Traffic"){
-      if(item.cliente.includes("FORDC")){
-         if(item.status.includes("COMPLET")){  
-                   return "display: none"
+      if(item.status.includes("COMPLET")){         return "display: none"
       } else {
          return 
       }
-      } else {
-         return "display: none"
-      }
    }
    else {
-      if(item.status.includes("COMPLET")){         return "display: none"
-   } else {
-      return 
-   }
+     if(item.status.includes("COMPLET")){         return "display: none"
+      } else {
+         return 
+      }
    }
    }
 
