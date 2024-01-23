@@ -55,37 +55,53 @@ const alertColor = (item) => {
 
   const filterUser = (item) => {
    if(localStorage.username === "InhouseHMO" || localStorage.username === "TrafficH"){
-      if(item.cliente.includes("FORDH")){         return ""
-      } else {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "InhouseMX"){
-      if(item.cliente.includes("FORDC")){         return ""
-      } else {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "InhouseTOL"){
-      if(item.cliente.includes("FCA") || item.cliente.includes("BRP")){         return ""
-      } else {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "InhouseGTO"){
-      if(item.cliente.includes("MULTILOG")){         return ""
-      } else {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "Traffic" || localStorage.username === "TrafficH"){
-      if(item.status.includes("COMPLET")){         return "display: none"
+      if(item.cliente.includes("FORDH")){
+         if(item.status.includes("COMPLET")){         return "display: none"
       } else {
          return 
       }
+      }
+   } else
+   if(localStorage.username === "InhouseMX"){
+      if(item.cliente.includes("FORDC")){
+         if(item.status.includes("COMPLET")){         return "display: none"
+      } else {
+         return 
+      }
+      }
+   } else
+   if(localStorage.username === "InhouseTOL"){
+      if(item.cliente.includes("FCA") || item.cliente.includes("BRP")){
+         if(item.status.includes("COMPLET")){         return "display: none"
+      } else {
+         return 
+      }
+      }
+   } else
+   if(localStorage.username === "InhouseGTO"){
+      if(item.cliente.includes("MULTILOG")){  
+         if(item.status.includes("COMPLET")){         return "display: none"
+      } else {
+         return 
+      }
+      }
+   } else
+   if(localStorage.username === "Traffic"){
+      if(item.cliente.includes("FORDC")){
+         if(item.status.includes("COMPLET")){  
+                   return "display: none"
+      } else {
+         return 
+      }
+      } else {
+         return "display: none"
+      }
    }
    else {
-      return ""
+      if(item.status.includes("COMPLET")){         return "display: none"
+   } else {
+      return 
+   }
    }
    }
 

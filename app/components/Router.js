@@ -1060,13 +1060,13 @@ d.addEventListener("keyup", e => {
           <select class="form-select form-select-sm" name="llegada" id="arribo">
           <option value="${item.llegada}">${item.llegada}</option> 
           <option value="A Tiempo">A Tiempo</option>  
-          <option value="Tarde" >Tarde</option>
-          <option value="Desfasada" >Desfasada</option>
-          <option value="Critica" >Critica</option>
+          <option value="Tarde">Tarde</option>
+          <option value="Desfasada">Desfasada</option>
+          <option value="Critica">Critica</option>
           </select>
           </td>
           <td>
-          <input name="status" style="width: 95px;" type="text"  value="${item.status}">
+         
           </td>
           <td>
           <input name="x3" style="width: 130px;" type="text"  value="${item.x3}">
@@ -8990,4 +8990,19 @@ d.addEventListener("keyup", e => {
 
            }
 
-    */
+
+            <select class="form-select form-select-sm" name="estatus" id="estatus">
+          <option value="${item.status}">${item.status}</option> 
+          <option value="En transito">En transito a proveedor</option>
+          <option value="En transito">En transito a fordc</option>
+          <option value="En transito">En transito a fordh</option>
+          <option value="En transito">En transito a fca</option>
+          <option value="En transito">En transito a fca</option>
+          <option value="Detenido">Detenido</option>
+          <option value="Cargando">Cargando</option>
+          <option value="Espera de Carga">Espera de carga</option>
+          <option value="Descargando">Descargando</option>
+          <option value="Descargando">Espera de descarga</option>
+          <option value="Descargando"></option>
+           
+              */
