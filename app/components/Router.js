@@ -8257,19 +8257,19 @@ d.addEventListener("keyup", e => {
         </tr>
       </thead>
       <tbody class="text-center text-wrap" >
-      <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
-      <td class="tipo"><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
-      <td class="modelo"><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-      <td class="placa"><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-      <td class="año"><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
-      <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
-      <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-      <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-      <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
-      <td><input name="circuito" style="width: 130px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-      <td><input name="fecha" style="width: 90px; background-color: #69beff;"  value="${item.fecha}"></td>
-      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
-      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text"  value="${item.comentarios}"></td>  
+      <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}"></td>
+      <td class="tipo"><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}"></td>
+      <td class="modelo"><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}"></td>
+      <td class="placa"><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
+      <td class="año"><input name="año" style="width: 45px;" type="text"  value="${item.año}"></td>
+      <td class="verificacion"><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}"></td>
+      <td class="poliza"><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}"></td>
+      <td class="inciso"><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}"></td>
+      <td class="contacto"><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}"></td>
+      <td><input name="circuito" style="width: 130px;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 90px; type="text" value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px; type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px; type="text"  value="${item.comentarios}"></td>  
       </tbody>
       
     </table>
@@ -8304,19 +8304,19 @@ d.addEventListener("keyup", e => {
         </tr>
       </thead>
       <tbody class="text-center text-wrap" >
-      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
-      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
-      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
-      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
-      <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-      <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
-      <td><input name="circuito" style="width: 150px; background-color: #69beff;" type="text"  value="${item.circuito}"></td>
-      <td><input name="fecha" style="width: 100px; background-color: #69beff;"  value="${item.fecha}"></td>
-      <td><input name="ubicacion" style="width: 150px; background-color: #69beff;" type="text"  value="${item.ubicacion}"></td>
-      <td><input name="comentarios" style="width: 250px; background-color: #69beff;" type="text""  value="${item.comentarios}"></td>  
+      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}"></td>
+      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}"></td>
+      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}"></td>
+      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}"></td>
+      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}"></td>
+      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}"></td>
+      <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}"></td>
+      <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}"></td>
+      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}"></td>
+      <td><input name="circuito" style="width: 150px;" type="text"  value="${item.circuito}"></td>
+      <td><input name="fecha" style="width: 100px;"  type="text"  value="${item.fecha}"></td>
+      <td><input name="ubicacion" style="width: 150px;" type="text"  value="${item.ubicacion}"></td>
+      <td><input name="comentarios" style="width: 250px;" type="text""  value="${item.comentarios}"></td>  
       </tbody>
       
     </table>
