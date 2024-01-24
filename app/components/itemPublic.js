@@ -22,10 +22,10 @@ export function itemPublic(item) {
       if( item.status.match("TRANSITO")){
          return "background-color: #72aefd;" ;
       }
-      if( item.status.match("PROVEEDOR") || item.status.match("ESP") || item.status.match("PLANT") || item.status.match("CARGANDO")){
+      if( item.status.match("PROVEEDOR")  || item.status.match("PLANT") || item.status.match("CARGANDO")){
          return "background-color: #00508d; color: white;" ;
       }
-      if( item.status.match("DET") ){
+      if( item.status.match("DET") || item.status.match("ESP") ){
          return "background-color: #791d1d; color: white;" ;
       }
      
@@ -34,7 +34,7 @@ export function itemPublic(item) {
      const alertStatus = (item) => {
    
    
-      if( item.status.match("PROVEEDOR") || item.status.match("TRANSITO") || item.status.match("PLANTA")){
+      if( item.status.match("PROVEEDOR") || item.status.match("TRANSITO") || item.status.match("PLANTA") || item.status.match("ESPERA")){
          return "1" ;
       }
       if(item.status.match("PENDIENTE") || item.status.match("ACTIVA")){
