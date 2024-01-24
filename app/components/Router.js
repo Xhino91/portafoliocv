@@ -652,6 +652,7 @@ d.addEventListener("keyup", e => {
          <th scope="col">HORARIO</th>
          <th scope="col">LLEGADA</th>
          <th scope="col">ESTATUS</th>  
+         <th scope="col">COMENTARIOS</th>  
          </tr>
          </thead>
          <tbody id="table_body" class="body_table">
@@ -689,207 +690,91 @@ d.addEventListener("keyup", e => {
             //Helper de acceso a los items
             const $tr = d.querySelectorAll(".item2");
               const newOrder = Array.from($tr);
-              // Orden Run Complete
-             newOrder.sort((e1, e2) => {
-          if (
-            e1.dataset.run < e2.dataset.run ||
-            e1.dataset.run < e2.dataset.run
-          ) {
-            return -1;
-          } else if (
-            e1.dataset.run > e2.dataset.run ||
-            e1.dataset.run > e2.dataset.run
-          ) {
-            return 1;
+             
+
+                // Orden Run Complete
+      newOrder.sort((e1, e2) => {
+        if (
+          e1.dataset.fechaf < e2.dataset.fechaf ||
+          e1.dataset.fechaf < e2.dataset.fechaf
+        ) {
+          return -1;
+        } else if (
+          e1.dataset.fechaf > e2.dataset.fechaf ||
+          e1.dataset.fechaf > e2.dataset.fechaf
+        ) {
+          return 1;
+        } else {
+          return 0;
+        }
+          });
+
+          newOrder.sort((e1, e2) => {
+        if (
+          e1.dataset.run < e2.dataset.run ||
+          e1.dataset.run < e2.dataset.run
+        ) {
+          return -1;
+        } else if (
+          e1.dataset.run > e2.dataset.run ||
+          e1.dataset.run > e2.dataset.run
+        ) {
+          return 1;
+        } else {
+          return 0;
+        }
+          });
+
+           //Order Routes Pending
+
+        newOrder.forEach(e => {
+         
+          if(!e.classList.contains("pending")){
+        //    console.log(e);
+            newOrder.sort((e1, e2) => {
+              if (
+                e1.dataset.fecha < e2.dataset.fecha ||
+                e1.dataset.fecha < e2.dataset.fecha
+              ) {
+                return -1;
+              } else if (
+                e1.dataset.fecha > e2.dataset.fecha ||
+                e1.dataset.fecha > e2.dataset.fecha
+              ) {
+                return 1;
+              } else {
+                return 0;
+              }
+                });
           } else {
-            return 0;
+        //    console.log(e);
+            newOrder.sort((e1, e2) => {
+              if (
+                e1.dataset.fecha < e2.dataset.fecha ||
+                e1.dataset.fecha < e2.dataset.fecha
+              ) {
+                return -1;
+              } else if (
+                e1.dataset.fecha > e2.dataset.fecha ||
+                e1.dataset.fecha > e2.dataset.fecha
+              ) {
+                return 1;
+              } else {
+                return 0;
+              }
+                });
           }
+          
         });
+
+
+
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
         });
         },
          });
-
-
-         if(localStorage.tabConveyance === "true" && localStorage.tabUnit === "false"){
-          
-          d.getElementById("exportModalXls").innerHTML = `
-
-          <section id="thtable" class="thtable">
-          <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-          </tr>
-          <tr style="background-color:black; color:white;">
-          <th scope="col">CAJA</th>
-          <th scope="col">TIPO</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-          <th scope="col">VERIFICACION</th>
-          <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">MARCHAMO</th>
-          <th scope="col">CIRCUITO</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">UBICACION</th> 
-          <th scope="col">ESTATUS</th>  
-          </tr>
-          </thead>
-   
-          <tbody id="table_body" class="body_table">
-          </tbody>
-      
-          </table>
-          </section>
-          `; 
-          
-          await ajax({
-            url: `${api.SUBITEMS1}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
- 
-              let itemsArray = Object.entries(items);
-           
-             //console.log(itemsArray);
-   
-             // Ubication Order
-              let orderItems = itemsArray.sort((o1, o2) => {
-              if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                return -1;
-              } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                return 1;
-              } else {
-                return 0;
-              }
-            });
- 
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvConv(item));          
-              });
-  
-               //Helper de acceso a los items
-                 const $tr = d.querySelectorAll(".item2");
-                  const newOrder = Array.from($tr);
-
-              // console.log($tr);
-                // Orden Run Complete
-                   newOrder.sort((e1, e2) => {
-                   if (
-                        e1.dataset.run < e2.dataset.run ||
-                         e1.dataset.run < e2.dataset.run
-                   ) {
-                           return -1;
-                   } else if (
-                        e1.dataset.run > e2.dataset.run ||
-                        e1.dataset.run > e2.dataset.run
-                         ) {
-                      return 1;
-                           } else {
-                         return 0;
-                             }
-                                 });
-
-
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-         });     
-            },
-          });
-        } 
-        
-        if(localStorage.tabConveyance === "false" && localStorage.tabUnit === "true"){
-          d.getElementById("exportModalXls").innerHTML = `
-
-        <section id="thtable" class="thtable">
-       <table class="table table-hover table-sm" id="table_xls">
-        <thead class="table-dark text-center align-middle">
-        <tr style="background-color:black; color:white;">
-        <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-        </tr>
-      <tr style="background-color:black; color:white;">
-      <th scope="col">UNIDAD</th>
-      <th scope="col">OPERADOR</th>
-      <th scope="col">MODELO</th>
-      <th scope="col">PLACA</th>
-      <th scope="col">AÑO</th>
-       <th scope="col">VERIFICACION</th>
-       <th scope="col">NO. POLIZA</th>
-      <th scope="col">INCISO</th>
-      <th scope="col">KILOMETRAJE</th>
-      <th scope="col">CIRCUITO</th>
-      <th scope="col">FECHA</th>
-      <th scope="col">UBICACION</th> 
-      <th scope="col">ESTATUS</th>  
-      </tr>
-    </thead>
- 
-    <tbody id="table_body" class="body_table">
-    </tbody>
     
-  </table>
-</section>
-        `; 
-         
-          await ajax({
-            url: `${api.SUBITEMS}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
- 
-              let itemsArray = Object.entries(items);
-           
-             //console.log(itemsArray);
-   
-             // Ubication Order
-             let orderItems = itemsArray.sort((o1, o2) => {
-              if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                return -1;
-              } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                return 1;
-              } else {
-                return 0;
-              }
-            });
- 
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvUnit(item));          
-              });
-  
-               //Helper de acceso a los items
-                 const $tr = d.querySelectorAll(".item2");
-                  const newOrder = Array.from($tr);
-
-              // console.log($tr);
-                // Orden Run Complete
-                   newOrder.sort((e1, e2) => {
-                   if (
-                        e1.dataset.run < e2.dataset.run ||
-                         e1.dataset.run < e2.dataset.run
-                   ) {
-                           return -1;
-                   } else if (
-                        e1.dataset.run > e2.dataset.run ||
-                        e1.dataset.run > e2.dataset.run
-                         ) {
-                      return 1;
-                           } else {
-                         return 0;
-                             }
-                                 });
-
-
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-         });     
-          },
-          });
-        }     
        }
        if (e.target.matches(".cancelXls") || e.target.matches(".report")){
         location.reload();
@@ -1770,43 +1655,43 @@ d.addEventListener("keyup", e => {
       //GENERAR REPORTE XLS
       let date = new Date;
       if (e.target.matches(".modal_xls")){
-      d.getElementById("exportModalXls").innerHTML = `
-        <section id="thtable" class="thtable">
-       <table class="table table-hover table-sm" id="table_xls">
-        <thead class="table-dark text-center align-middle">
-        <tr style="background-color:black; color:white;">
-        <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-      </tr>
-      <tr style="background-color:black; color:white;">
-        <th scope="col">UNIDAD</th>
-        <th scope="col">CAJA</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">C.PORTE</th>
-        <th scope="col">TRACKING</th>
-        <th scope="col">BOL / SHIPPER</th>
-        <th scope="col">RUTA</th>
-        <th scope="col">CLIENTE</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">HORARIO</th>
-        <th scope="col">LLEGADA</th>
-        <th scope="col">ESTATUS</th>  
-      </tr>
-    </thead>
- 
-    <tbody id="table_body" class="body_table">
-    </tbody>
-    
-  </table>
-</section>
-        `;  
 
-      
-      await ajax({
-          url: `${api.ITEMS}.json`,
-          method: "GET",
-          cbSuccess: (items) => {
-            //console.log(items);
-            let itemsArray = Object.entries(items);
+        d.getElementById("exportModalXls").innerHTML = `
+          <section id="thtable" class="thtable">
+          <table class="table table-hover table-sm" id="table_xls">
+          <thead class="table-dark text-center align-middle">
+          <tr style="background-color:black; color:white;">
+          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+          </tr>
+          <tr style="background-color:black; color:white;">
+          <th scope="col">UNIDAD</th>
+          <th scope="col">CAJA</th>
+          <th scope="col">OPERADOR</th>
+          <th scope="col">C.PORTE</th>
+          <th scope="col">TRACKING</th>
+          <th scope="col">BOL / SHIPPER</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">CLIENTE</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">HORARIO</th>
+          <th scope="col">LLEGADA</th>
+          <th scope="col">ESTATUS</th>  
+          <th scope="col">COMENTARIOS</th>  
+          </tr>
+          </thead>
+          <tbody id="table_body" class="body_table">
+          </tbody>     
+          </table>
+          </section>
+          `;
+ 
+          await ajax({
+           url: `${api.ITEMS}.json`,
+           method: "GET",
+           cbSuccess: (items) => {
+             //console.log(items);
+ 
+             let itemsArray = Object.entries(items);
           
             //console.log(itemsArray);
   
@@ -1820,37 +1705,101 @@ d.addEventListener("keyup", e => {
                 return 0;
               }
             });
-
-            orderItems.forEach((item) => {
-              d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
-            });
-
-            //Helper de acceso a los items
-            const $tr = d.querySelectorAll(".item2");
-              const newOrder = Array.from($tr);
-              // Orden Run Complete
+ 
+ 
+             orderItems.forEach((item) => {
+               d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+             });
+ 
+             //Helper de acceso a los items
+             const $tr = d.querySelectorAll(".item2");
+               const newOrder = Array.from($tr);
+              
+ 
+                 // Orden Run Complete
+       newOrder.sort((e1, e2) => {
+         if (
+           e1.dataset.fechaf < e2.dataset.fechaf ||
+           e1.dataset.fechaf < e2.dataset.fechaf
+         ) {
+           return -1;
+         } else if (
+           e1.dataset.fechaf > e2.dataset.fechaf ||
+           e1.dataset.fechaf > e2.dataset.fechaf
+         ) {
+           return 1;
+         } else {
+           return 0;
+         }
+           });
+ 
+           newOrder.sort((e1, e2) => {
+         if (
+           e1.dataset.run < e2.dataset.run ||
+           e1.dataset.run < e2.dataset.run
+         ) {
+           return -1;
+         } else if (
+           e1.dataset.run > e2.dataset.run ||
+           e1.dataset.run > e2.dataset.run
+         ) {
+           return 1;
+         } else {
+           return 0;
+         }
+           });
+ 
+            //Order Routes Pending
+ 
+         newOrder.forEach(e => {
+          
+           if(!e.classList.contains("pending")){
+         //    console.log(e);
              newOrder.sort((e1, e2) => {
-          if (
-            e1.dataset.run < e2.dataset.run ||
-            e1.dataset.run < e2.dataset.run
-          ) {
-            return -1;
-          } else if (
-            e1.dataset.run > e2.dataset.run ||
-            e1.dataset.run > e2.dataset.run
-          ) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-        });
-        },
-        });
-        
-      }
+               if (
+                 e1.dataset.fecha < e2.dataset.fecha ||
+                 e1.dataset.fecha < e2.dataset.fecha
+               ) {
+                 return -1;
+               } else if (
+                 e1.dataset.fecha > e2.dataset.fecha ||
+                 e1.dataset.fecha > e2.dataset.fecha
+               ) {
+                 return 1;
+               } else {
+                 return 0;
+               }
+                 });
+           } else {
+         //    console.log(e);
+             newOrder.sort((e1, e2) => {
+               if (
+                 e1.dataset.fecha < e2.dataset.fecha ||
+                 e1.dataset.fecha < e2.dataset.fecha
+               ) {
+                 return -1;
+               } else if (
+                 e1.dataset.fecha > e2.dataset.fecha ||
+                 e1.dataset.fecha > e2.dataset.fecha
+               ) {
+                 return 1;
+               } else {
+                 return 0;
+               }
+                 });
+           }
+           
+         });
+ 
+ 
+ 
+         newOrder.forEach((e) => {
+           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+         });
+         },
+          });
+     
+        }
       if (e.target.matches(".cancelXls") || e.target.matches(".report")){
         location.reload();
       }
@@ -2613,43 +2562,43 @@ d.addEventListener("keyup", e => {
     //GENERAR REPORTE XLS
     let date = new Date;
     if (e.target.matches(".modal_xls")){
-    d.getElementById("exportModalXls").innerHTML = `
-      <section id="thtable" class="thtable">
-     <table class="table table-hover table-sm" id="table_xls">
-      <thead class="table-dark text-center align-middle">
-      <tr style="background-color:black; color:white;">
-      <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-    </tr>
-    <tr style="background-color:black; color:white;">
-      <th scope="col">UNIDAD</th>
-      <th scope="col">CAJA</th>
-      <th scope="col">OPERADOR</th>
-      <th scope="col">C.PORTE</th>
-      <th scope="col">TRACKING</th>
-      <th scope="col">BOL / SHIPPER</th>
-      <th scope="col">RUTA</th>
-      <th scope="col">CLIENTE</th>
-      <th scope="col">FECHA</th>
-      <th scope="col">HORARIO</th>
-      <th scope="col">LLEGADA</th>
-      <th scope="col">ESTATUS</th>  
-    </tr>
-  </thead>
 
-  <tbody id="table_body" class="body_table">
-  </tbody>
-  
-</table>
-</section>
-      `;  
+      d.getElementById("exportModalXls").innerHTML = `
+        <section id="thtable" class="thtable">
+        <table class="table table-hover table-sm" id="table_xls">
+        <thead class="table-dark text-center align-middle">
+        <tr style="background-color:black; color:white;">
+        <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+        </tr>
+        <tr style="background-color:black; color:white;">
+        <th scope="col">UNIDAD</th>
+        <th scope="col">CAJA</th>
+        <th scope="col">OPERADOR</th>
+        <th scope="col">C.PORTE</th>
+        <th scope="col">TRACKING</th>
+        <th scope="col">BOL / SHIPPER</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">CLIENTE</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">HORARIO</th>
+        <th scope="col">LLEGADA</th>
+        <th scope="col">ESTATUS</th>  
+        <th scope="col">COMENTARIOS</th>  
+        </tr>
+        </thead>
+        <tbody id="table_body" class="body_table">
+        </tbody>     
+        </table>
+        </section>
+        `;
 
-    
-    await ajax({
-        url: `${api.ITEMS}.json`,
-        method: "GET",
-        cbSuccess: (items) => {
-          //console.log(items);
-          let itemsArray = Object.entries(items);
+        await ajax({
+         url: `${api.ITEMS}.json`,
+         method: "GET",
+         cbSuccess: (items) => {
+           //console.log(items);
+
+           let itemsArray = Object.entries(items);
         
           //console.log(itemsArray);
 
@@ -2664,36 +2613,100 @@ d.addEventListener("keyup", e => {
             }
           });
 
-          orderItems.forEach((item) => {
-            d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
-          });
 
-          //Helper de acceso a los items
-          const $tr = d.querySelectorAll(".item2");
-            const newOrder = Array.from($tr);
-            // Orden Run Complete
+           orderItems.forEach((item) => {
+             d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+           });
+
+           //Helper de acceso a los items
+           const $tr = d.querySelectorAll(".item2");
+             const newOrder = Array.from($tr);
+            
+
+               // Orden Run Complete
+     newOrder.sort((e1, e2) => {
+       if (
+         e1.dataset.fechaf < e2.dataset.fechaf ||
+         e1.dataset.fechaf < e2.dataset.fechaf
+       ) {
+         return -1;
+       } else if (
+         e1.dataset.fechaf > e2.dataset.fechaf ||
+         e1.dataset.fechaf > e2.dataset.fechaf
+       ) {
+         return 1;
+       } else {
+         return 0;
+       }
+         });
+
+         newOrder.sort((e1, e2) => {
+       if (
+         e1.dataset.run < e2.dataset.run ||
+         e1.dataset.run < e2.dataset.run
+       ) {
+         return -1;
+       } else if (
+         e1.dataset.run > e2.dataset.run ||
+         e1.dataset.run > e2.dataset.run
+       ) {
+         return 1;
+       } else {
+         return 0;
+       }
+         });
+
+          //Order Routes Pending
+
+       newOrder.forEach(e => {
+        
+         if(!e.classList.contains("pending")){
+       //    console.log(e);
            newOrder.sort((e1, e2) => {
-        if (
-          e1.dataset.run < e2.dataset.run ||
-          e1.dataset.run < e2.dataset.run
-        ) {
-          return -1;
-        } else if (
-          e1.dataset.run > e2.dataset.run ||
-          e1.dataset.run > e2.dataset.run
-        ) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      newOrder.forEach((e) => {
-        d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-      });
-      },
-      });
-      
-    }
+             if (
+               e1.dataset.fecha < e2.dataset.fecha ||
+               e1.dataset.fecha < e2.dataset.fecha
+             ) {
+               return -1;
+             } else if (
+               e1.dataset.fecha > e2.dataset.fecha ||
+               e1.dataset.fecha > e2.dataset.fecha
+             ) {
+               return 1;
+             } else {
+               return 0;
+             }
+               });
+         } else {
+       //    console.log(e);
+           newOrder.sort((e1, e2) => {
+             if (
+               e1.dataset.fecha < e2.dataset.fecha ||
+               e1.dataset.fecha < e2.dataset.fecha
+             ) {
+               return -1;
+             } else if (
+               e1.dataset.fecha > e2.dataset.fecha ||
+               e1.dataset.fecha > e2.dataset.fecha
+             ) {
+               return 1;
+             } else {
+               return 0;
+             }
+               });
+         }
+         
+       });
+
+
+
+       newOrder.forEach((e) => {
+         d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+       });
+       },
+        });
+   
+      }
     if (e.target.matches(".cancelXls") || e.target.matches(".report")){
       location.reload();
     }
@@ -3452,41 +3465,42 @@ d.addEventListener("keyup", e => {
       let date = new Date;
       if (e.target.matches(".modal_xls")){
 
-      d.getElementById("exportModalXls").innerHTML = `
-        <section id="thtable" class="thtable">
-       <table class="table table-hover table-sm" id="table_xls">
-        <thead class="table-dark text-center align-middle">
-        <tr style="background-color:black; color:white;">
-        <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-      </tr>
-      <tr style="background-color:black; color:white;">
-        <th scope="col">UNIDAD</th>
-        <th scope="col">CAJA</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">C.PORTE</th>
-        <th scope="col">TRACKING</th>
-        <th scope="col">BOL / SHIPPER</th>
-        <th scope="col">RUTA</th>
-        <th scope="col">CLIENTE</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">HORARIO</th>
-        <th scope="col">LLEGADA</th>
-        <th scope="col">ESTATUS</th>  
-      </tr>
-    </thead>
+        d.getElementById("exportModalXls").innerHTML = `
+          <section id="thtable" class="thtable">
+          <table class="table table-hover table-sm" id="table_xls">
+          <thead class="table-dark text-center align-middle">
+          <tr style="background-color:black; color:white;">
+          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+          </tr>
+          <tr style="background-color:black; color:white;">
+          <th scope="col">UNIDAD</th>
+          <th scope="col">CAJA</th>
+          <th scope="col">OPERADOR</th>
+          <th scope="col">C.PORTE</th>
+          <th scope="col">TRACKING</th>
+          <th scope="col">BOL / SHIPPER</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">CLIENTE</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">HORARIO</th>
+          <th scope="col">LLEGADA</th>
+          <th scope="col">ESTATUS</th>  
+          <th scope="col">COMENTARIOS</th>  
+          </tr>
+          </thead>
+          <tbody id="table_body" class="body_table">
+          </tbody>     
+          </table>
+          </section>
+          `;
  
-    <tbody id="table_body" class="body_table">
-    </tbody>
-    
-  </table>
-</section>
-        `;         
-       await ajax({
-          url: `${api.ITEMS}.json`,
-          method: "GET",
-          cbSuccess: (items) => {
-            //console.log(items);
-            let itemsArray = Object.entries(items);
+          await ajax({
+           url: `${api.ITEMS}.json`,
+           method: "GET",
+           cbSuccess: (items) => {
+             //console.log(items);
+ 
+             let itemsArray = Object.entries(items);
           
             //console.log(itemsArray);
   
@@ -3500,215 +3514,101 @@ d.addEventListener("keyup", e => {
                 return 0;
               }
             });
-
-            orderItems.forEach((item) => {
-              d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
-            });
-
-            //Helper de acceso a los items
-            const $tr = d.querySelectorAll(".item2");
-              const newOrder = Array.from($tr);
-              // Orden Run Complete
-             newOrder.sort((e1, e2) => {
-          if (
-            e1.dataset.run < e2.dataset.run ||
-            e1.dataset.run < e2.dataset.run
-          ) {
-            return -1;
-          } else if (
-            e1.dataset.run > e2.dataset.run ||
-            e1.dataset.run > e2.dataset.run
-          ) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-        });
-        },
-        });
-
-        if(localStorage.tabConveyance === "true" && localStorage.tabUnit === "false"){
-          d.getElementById("exportModalXls").innerHTML = `
-
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-          </tr>
-        <tr style="background-color:black; color:white;">
-        <th scope="col">CAJA</th>
-        <th scope="col">TIPO</th>
-        <th scope="col">MODELO</th>
-        <th scope="col">PLACA</th>
-        <th scope="col">AÑO</th>
-         <th scope="col">VERIFICACION</th>
-         <th scope="col">NO. POLIZA</th>
-        <th scope="col">INCISO</th>
-        <th scope="col">MARCHAMO/th>
-        <th scope="col">CIRCUITO</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">UBICACION</th> 
-        <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
-   
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `; 
+ 
+ 
+             orderItems.forEach((item) => {
+               d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+             });
+ 
+             //Helper de acceso a los items
+             const $tr = d.querySelectorAll(".item2");
+               const newOrder = Array.from($tr);
+              
+ 
+                 // Orden Run Complete
+       newOrder.sort((e1, e2) => {
+         if (
+           e1.dataset.fechaf < e2.dataset.fechaf ||
+           e1.dataset.fechaf < e2.dataset.fechaf
+         ) {
+           return -1;
+         } else if (
+           e1.dataset.fechaf > e2.dataset.fechaf ||
+           e1.dataset.fechaf > e2.dataset.fechaf
+         ) {
+           return 1;
+         } else {
+           return 0;
+         }
+           });
+ 
+           newOrder.sort((e1, e2) => {
+         if (
+           e1.dataset.run < e2.dataset.run ||
+           e1.dataset.run < e2.dataset.run
+         ) {
+           return -1;
+         } else if (
+           e1.dataset.run > e2.dataset.run ||
+           e1.dataset.run > e2.dataset.run
+         ) {
+           return 1;
+         } else {
+           return 0;
+         }
+           });
+ 
+            //Order Routes Pending
+ 
+         newOrder.forEach(e => {
           
-          await ajax({
-            url: `${api.SUBITEMS1}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
- 
-              let itemsArray = Object.entries(items);
+           if(!e.classList.contains("pending")){
+         //    console.log(e);
+             newOrder.sort((e1, e2) => {
+               if (
+                 e1.dataset.fecha < e2.dataset.fecha ||
+                 e1.dataset.fecha < e2.dataset.fecha
+               ) {
+                 return -1;
+               } else if (
+                 e1.dataset.fecha > e2.dataset.fecha ||
+                 e1.dataset.fecha > e2.dataset.fecha
+               ) {
+                 return 1;
+               } else {
+                 return 0;
+               }
+                 });
+           } else {
+         //    console.log(e);
+             newOrder.sort((e1, e2) => {
+               if (
+                 e1.dataset.fecha < e2.dataset.fecha ||
+                 e1.dataset.fecha < e2.dataset.fecha
+               ) {
+                 return -1;
+               } else if (
+                 e1.dataset.fecha > e2.dataset.fecha ||
+                 e1.dataset.fecha > e2.dataset.fecha
+               ) {
+                 return 1;
+               } else {
+                 return 0;
+               }
+                 });
+           }
            
-             //console.log(itemsArray);
-   
-             // Ubication Order
-             let orderItems = itemsArray.sort((o1, o2) => {
-              if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                return -1;
-              } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                return 1;
-              } else {
-                return 0;
-              }
-            });
+         });
  
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvConv(item));          
-              });
-  
-               //Helper de acceso a los items
-                 const $tr = d.querySelectorAll(".item2");
-                  const newOrder = Array.from($tr);
-
-              // console.log($tr);
-                // Orden Run Complete
-                   newOrder.sort((e1, e2) => {
-                   if (
-                        e1.dataset.run < e2.dataset.run ||
-                         e1.dataset.run < e2.dataset.run
-                   ) {
-                           return -1;
-                   } else if (
-                        e1.dataset.run > e2.dataset.run ||
-                        e1.dataset.run > e2.dataset.run
-                         ) {
-                      return 1;
-                           } else {
-                         return 0;
-                             }
-                                 });
-
-
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-         });     
-          },
+ 
+ 
+         newOrder.forEach((e) => {
+           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+         });
+         },
           });
-        } 
-        
-        if(localStorage.tabConveyance === "false" && localStorage.tabUnit === "true"){
-          d.getElementById("exportModalXls").innerHTML = `
-
-        <section id="thtable" class="thtable">
-       <table class="table table-hover table-sm" id="table_xls">
-        <thead class="table-dark text-center align-middle">
-        <tr style="background-color:black; color:white;">
-        <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-        </tr>
-      <tr style="background-color:black; color:white;">
-      <th scope="col">UNIDAD</th>
-      <th scope="col">OPERADOR</th>
-      <th scope="col">MODELO</th>
-      <th scope="col">PLACA</th>
-      <th scope="col">AÑO</th>
-       <th scope="col">VERIFICACION</th>
-       <th scope="col">NO. POLIZA</th>
-      <th scope="col">INCISO</th>
-      <th scope="col">KILOMETRAJE</th>
-      <th scope="col">CIRCUITO</th>
-      <th scope="col">FECHA</th>
-      <th scope="col">UBICACION</th> 
-      <th scope="col">ESTATUS</th>  
-      </tr>
-    </thead>
- 
-    <tbody id="table_body" class="body_table">
-    </tbody>
-    
-  </table>
-</section>
-        `; 
-         
-          await ajax({
-            url: `${api.SUBITEMS}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
- 
-              let itemsArray = Object.entries(items);
-           
-             //console.log(itemsArray);
-   
-             // Ubication Order
-             let orderItems = itemsArray.sort((o1, o2) => {
-              if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                return -1;
-              } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                return 1;
-              } else {
-                return 0;
-              }
-            });
- 
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvUnit(item));          
-              });
-  
-               //Helper de acceso a los items
-                 const $tr = d.querySelectorAll(".item2");
-                  const newOrder = Array.from($tr);
-
-              // console.log($tr);
-                // Orden Run Complete
-                   newOrder.sort((e1, e2) => {
-                   if (
-                        e1.dataset.run < e2.dataset.run ||
-                         e1.dataset.run < e2.dataset.run
-                   ) {
-                           return -1;
-                   } else if (
-                        e1.dataset.run > e2.dataset.run ||
-                        e1.dataset.run > e2.dataset.run
-                         ) {
-                      return 1;
-                           } else {
-                         return 0;
-                             }
-                                 });
-
-
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-         });     
-          },
-          });
+     
         }
-        
-      }
       if (e.target.matches(".cancelXls") || e.target.matches(".report")){
         location.reload();
       }
@@ -4579,42 +4479,43 @@ d.addEventListener("keyup", e => {
         //GENERAR REPORTE XLS
         let date = new Date;
         if (e.target.matches(".modal_xls")){
-  
-        d.getElementById("exportModalXls").innerHTML = `
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-        </tr>
-        <tr style="background-color:black; color:white;">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">CAJA</th>
-          <th scope="col">OPERADOR</th>
-          <th scope="col">C.PORTE</th>
-          <th scope="col">TRACKING</th>
-          <th scope="col">BOL / SHIPPER</th>
-          <th scope="col">RUTA</th>
-          <th scope="col">CLIENTE</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">HORARIO</th>
-          <th scope="col">LLEGADA</th>
-          <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
+
+          d.getElementById("exportModalXls").innerHTML = `
+            <section id="thtable" class="thtable">
+            <table class="table table-hover table-sm" id="table_xls">
+            <thead class="table-dark text-center align-middle">
+            <tr style="background-color:black; color:white;">
+            <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+            </tr>
+            <tr style="background-color:black; color:white;">
+            <th scope="col">UNIDAD</th>
+            <th scope="col">CAJA</th>
+            <th scope="col">OPERADOR</th>
+            <th scope="col">C.PORTE</th>
+            <th scope="col">TRACKING</th>
+            <th scope="col">BOL / SHIPPER</th>
+            <th scope="col">FECHA</th>
+            <th scope="col">CLIENTE</th>
+            <th scope="col">FECHA</th>
+            <th scope="col">HORARIO</th>
+            <th scope="col">LLEGADA</th>
+            <th scope="col">ESTATUS</th>  
+            <th scope="col">COMENTARIOS</th>  
+            </tr>
+            </thead>
+            <tbody id="table_body" class="body_table">
+            </tbody>     
+            </table>
+            </section>
+            `;
    
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `;         
-         await ajax({
-            url: `${api.ITEMS}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
-              let itemsArray = Object.entries(items);
+            await ajax({
+             url: `${api.ITEMS}.json`,
+             method: "GET",
+             cbSuccess: (items) => {
+               //console.log(items);
+   
+               let itemsArray = Object.entries(items);
             
               //console.log(itemsArray);
     
@@ -4628,215 +4529,101 @@ d.addEventListener("keyup", e => {
                   return 0;
                 }
               });
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
-              });
-  
-              //Helper de acceso a los items
-              const $tr = d.querySelectorAll(".item2");
-                const newOrder = Array.from($tr);
-                // Orden Run Complete
-               newOrder.sort((e1, e2) => {
-            if (
-              e1.dataset.run < e2.dataset.run ||
-              e1.dataset.run < e2.dataset.run
-            ) {
-              return -1;
-            } else if (
-              e1.dataset.run > e2.dataset.run ||
-              e1.dataset.run > e2.dataset.run
-            ) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-          });
-          },
-          });
-  
-          if(localStorage.tabConveyance === "true" && localStorage.tabUnit === "false"){
-            d.getElementById("exportModalXls").innerHTML = `
-  
-            <section id="thtable" class="thtable">
-           <table class="table table-hover table-sm" id="table_xls">
-            <thead class="table-dark text-center align-middle">
-            <tr style="background-color:black; color:white;">
-            <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-            </tr>
-          <tr style="background-color:black; color:white;">
-          <th scope="col">CAJA</th>
-          <th scope="col">TIPO</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-           <th scope="col">VERIFICACION</th>
-           <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">MARCHAMO</th>
-          <th scope="col">CIRCUITO</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">UBICACION</th> 
-          <th scope="col">ESTATUS</th>  
-          </tr>
-        </thead>
-     
-        <tbody id="table_body" class="body_table">
-        </tbody>
-        
-      </table>
-    </section>
-            `; 
+   
+   
+               orderItems.forEach((item) => {
+                 d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+               });
+   
+               //Helper de acceso a los items
+               const $tr = d.querySelectorAll(".item2");
+                 const newOrder = Array.from($tr);
+                
+   
+                   // Orden Run Complete
+         newOrder.sort((e1, e2) => {
+           if (
+             e1.dataset.fechaf < e2.dataset.fechaf ||
+             e1.dataset.fechaf < e2.dataset.fechaf
+           ) {
+             return -1;
+           } else if (
+             e1.dataset.fechaf > e2.dataset.fechaf ||
+             e1.dataset.fechaf > e2.dataset.fechaf
+           ) {
+             return 1;
+           } else {
+             return 0;
+           }
+             });
+   
+             newOrder.sort((e1, e2) => {
+           if (
+             e1.dataset.run < e2.dataset.run ||
+             e1.dataset.run < e2.dataset.run
+           ) {
+             return -1;
+           } else if (
+             e1.dataset.run > e2.dataset.run ||
+             e1.dataset.run > e2.dataset.run
+           ) {
+             return 1;
+           } else {
+             return 0;
+           }
+             });
+   
+              //Order Routes Pending
+   
+           newOrder.forEach(e => {
             
-            await ajax({
-              url: `${api.SUBITEMS1}.json`,
-              method: "GET",
-              cbSuccess: (items) => {
-                //console.log(items);
-   
-                let itemsArray = Object.entries(items);
+             if(!e.classList.contains("pending")){
+           //    console.log(e);
+               newOrder.sort((e1, e2) => {
+                 if (
+                   e1.dataset.fecha < e2.dataset.fecha ||
+                   e1.dataset.fecha < e2.dataset.fecha
+                 ) {
+                   return -1;
+                 } else if (
+                   e1.dataset.fecha > e2.dataset.fecha ||
+                   e1.dataset.fecha > e2.dataset.fecha
+                 ) {
+                   return 1;
+                 } else {
+                   return 0;
+                 }
+                   });
+             } else {
+           //    console.log(e);
+               newOrder.sort((e1, e2) => {
+                 if (
+                   e1.dataset.fecha < e2.dataset.fecha ||
+                   e1.dataset.fecha < e2.dataset.fecha
+                 ) {
+                   return -1;
+                 } else if (
+                   e1.dataset.fecha > e2.dataset.fecha ||
+                   e1.dataset.fecha > e2.dataset.fecha
+                 ) {
+                   return 1;
+                 } else {
+                   return 0;
+                 }
+                   });
+             }
              
-               //console.log(itemsArray);
-     
-               // Ubication Order
-               let orderItems = itemsArray.sort((o1, o2) => {
-                if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                  return -1;
-                } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
+           });
    
-    
-                orderItems.forEach((item) => {
-                  d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvConv(item));          
-                });
-    
-                 //Helper de acceso a los items
-                   const $tr = d.querySelectorAll(".item2");
-                    const newOrder = Array.from($tr);
-  
-                // console.log($tr);
-                  // Orden Run Complete
-                     newOrder.sort((e1, e2) => {
-                     if (
-                          e1.dataset.run < e2.dataset.run ||
-                           e1.dataset.run < e2.dataset.run
-                     ) {
-                             return -1;
-                     } else if (
-                          e1.dataset.run > e2.dataset.run ||
-                          e1.dataset.run > e2.dataset.run
-                           ) {
-                        return 1;
-                             } else {
-                           return 0;
-                               }
-                                   });
-  
-  
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-           });     
-            },
+   
+   
+           newOrder.forEach((e) => {
+             d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+           });
+           },
             });
-          } 
-          
-          if(localStorage.tabConveyance === "false" && localStorage.tabUnit === "true"){
-            d.getElementById("exportModalXls").innerHTML = `
-  
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-          </tr>
-        <tr style="background-color:black; color:white;">
-        <th scope="col">UNIDAD</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">MODELO</th>
-        <th scope="col">PLACA</th>
-        <th scope="col">AÑO</th>
-         <th scope="col">VERIFICACION</th>
-         <th scope="col">NO. POLIZA</th>
-        <th scope="col">INCISO</th>
-        <th scope="col">CONTACTO DEL SEGURO</th>
-        <th scope="col">CIRCUITO</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">UBICACION</th> 
-        <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
-   
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `; 
-           
-            await ajax({
-              url: `${api.SUBITEMS}.json`,
-              method: "GET",
-              cbSuccess: (items) => {
-                //console.log(items);
-   
-                let itemsArray = Object.entries(items);
-             
-               //console.log(itemsArray);
-     
-               // Ubication Order
-               let orderItems = itemsArray.sort((o1, o2) => {
-                if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                  return -1;
-                } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-   
-    
-                orderItems.forEach((item) => {
-                  d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvUnit(item));          
-                });
-    
-                 //Helper de acceso a los items
-                   const $tr = d.querySelectorAll(".item2");
-                    const newOrder = Array.from($tr);
-  
-                // console.log($tr);
-                  // Orden Run Complete
-                     newOrder.sort((e1, e2) => {
-                     if (
-                          e1.dataset.run < e2.dataset.run ||
-                           e1.dataset.run < e2.dataset.run
-                     ) {
-                             return -1;
-                     } else if (
-                          e1.dataset.run > e2.dataset.run ||
-                          e1.dataset.run > e2.dataset.run
-                           ) {
-                        return 1;
-                             } else {
-                           return 0;
-                               }
-                                   });
-  
-  
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-           });     
-            },
-            });
+       
           }
-          
-        }
         if (e.target.matches(".cancelXls") || e.target.matches(".report")){
           location.reload();
         }
@@ -5707,42 +5494,43 @@ d.addEventListener("keyup", e => {
         //GENERAR REPORTE XLS
         let date = new Date;
         if (e.target.matches(".modal_xls")){
-  
-        d.getElementById("exportModalXls").innerHTML = `
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-        </tr>
-        <tr style="background-color:black; color:white;">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">CAJA</th>
-          <th scope="col">OPERADOR</th>
-          <th scope="col">C.PORTE</th>
-          <th scope="col">TRACKING</th>
-          <th scope="col">BOL / SHIPPER</th>
-          <th scope="col">RUTA</th>
-          <th scope="col">CLIENTE</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">HORARIO</th>
-          <th scope="col">LLEGADA</th>
-          <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
+
+          d.getElementById("exportModalXls").innerHTML = `
+            <section id="thtable" class="thtable">
+            <table class="table table-hover table-sm" id="table_xls">
+            <thead class="table-dark text-center align-middle">
+            <tr style="background-color:black; color:white;">
+            <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+            </tr>
+            <tr style="background-color:black; color:white;">
+            <th scope="col">UNIDAD</th>
+            <th scope="col">CAJA</th>
+            <th scope="col">OPERADOR</th>
+            <th scope="col">C.PORTE</th>
+            <th scope="col">TRACKING</th>
+            <th scope="col">BOL / SHIPPER</th>
+            <th scope="col">FECHA</th>
+            <th scope="col">CLIENTE</th>
+            <th scope="col">FECHA</th>
+            <th scope="col">HORARIO</th>
+            <th scope="col">LLEGADA</th>
+            <th scope="col">ESTATUS</th>  
+            <th scope="col">COMENTARIOS</th>  
+            </tr>
+            </thead>
+            <tbody id="table_body" class="body_table">
+            </tbody>     
+            </table>
+            </section>
+            `;
    
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `;         
-         await ajax({
-            url: `${api.ITEMS}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
-              let itemsArray = Object.entries(items);
+            await ajax({
+             url: `${api.ITEMS}.json`,
+             method: "GET",
+             cbSuccess: (items) => {
+               //console.log(items);
+   
+               let itemsArray = Object.entries(items);
             
               //console.log(itemsArray);
     
@@ -5756,215 +5544,101 @@ d.addEventListener("keyup", e => {
                   return 0;
                 }
               });
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
-              });
-  
-              //Helper de acceso a los items
-              const $tr = d.querySelectorAll(".item2");
-                const newOrder = Array.from($tr);
-                // Orden Run Complete
-               newOrder.sort((e1, e2) => {
-            if (
-              e1.dataset.run < e2.dataset.run ||
-              e1.dataset.run < e2.dataset.run
-            ) {
-              return -1;
-            } else if (
-              e1.dataset.run > e2.dataset.run ||
-              e1.dataset.run > e2.dataset.run
-            ) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-          });
-          },
-          });
-  
-          if(localStorage.tabConveyance === "true" && localStorage.tabUnit === "false"){
-            d.getElementById("exportModalXls").innerHTML = `
-  
-            <section id="thtable" class="thtable">
-           <table class="table table-hover table-sm" id="table_xls">
-            <thead class="table-dark text-center align-middle">
-            <tr style="background-color:black; color:white;">
-            <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-            </tr>
-          <tr style="background-color:black; color:white;">
-          <th scope="col">CAJA</th>
-          <th scope="col">TIPO</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-           <th scope="col">VERIFICACION</th>
-           <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">MARCHAMO</th>
-          <th scope="col">CIRCUITO</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">UBICACION</th> 
-          <th scope="col">ESTATUS</th>  
-          </tr>
-        </thead>
-     
-        <tbody id="table_body" class="body_table">
-        </tbody>
-        
-      </table>
-    </section>
-            `; 
+   
+   
+               orderItems.forEach((item) => {
+                 d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+               });
+   
+               //Helper de acceso a los items
+               const $tr = d.querySelectorAll(".item2");
+                 const newOrder = Array.from($tr);
+                
+   
+                   // Orden Run Complete
+         newOrder.sort((e1, e2) => {
+           if (
+             e1.dataset.fechaf < e2.dataset.fechaf ||
+             e1.dataset.fechaf < e2.dataset.fechaf
+           ) {
+             return -1;
+           } else if (
+             e1.dataset.fechaf > e2.dataset.fechaf ||
+             e1.dataset.fechaf > e2.dataset.fechaf
+           ) {
+             return 1;
+           } else {
+             return 0;
+           }
+             });
+   
+             newOrder.sort((e1, e2) => {
+           if (
+             e1.dataset.run < e2.dataset.run ||
+             e1.dataset.run < e2.dataset.run
+           ) {
+             return -1;
+           } else if (
+             e1.dataset.run > e2.dataset.run ||
+             e1.dataset.run > e2.dataset.run
+           ) {
+             return 1;
+           } else {
+             return 0;
+           }
+             });
+   
+              //Order Routes Pending
+   
+           newOrder.forEach(e => {
             
-            await ajax({
-              url: `${api.SUBITEMS1}.json`,
-              method: "GET",
-              cbSuccess: (items) => {
-                //console.log(items);
-   
-                let itemsArray = Object.entries(items);
+             if(!e.classList.contains("pending")){
+           //    console.log(e);
+               newOrder.sort((e1, e2) => {
+                 if (
+                   e1.dataset.fecha < e2.dataset.fecha ||
+                   e1.dataset.fecha < e2.dataset.fecha
+                 ) {
+                   return -1;
+                 } else if (
+                   e1.dataset.fecha > e2.dataset.fecha ||
+                   e1.dataset.fecha > e2.dataset.fecha
+                 ) {
+                   return 1;
+                 } else {
+                   return 0;
+                 }
+                   });
+             } else {
+           //    console.log(e);
+               newOrder.sort((e1, e2) => {
+                 if (
+                   e1.dataset.fecha < e2.dataset.fecha ||
+                   e1.dataset.fecha < e2.dataset.fecha
+                 ) {
+                   return -1;
+                 } else if (
+                   e1.dataset.fecha > e2.dataset.fecha ||
+                   e1.dataset.fecha > e2.dataset.fecha
+                 ) {
+                   return 1;
+                 } else {
+                   return 0;
+                 }
+                   });
+             }
              
-               //console.log(itemsArray);
-     
-               // Ubication Order
-               let orderItems = itemsArray.sort((o1, o2) => {
-                if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                  return -1;
-                } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
+           });
    
-    
-                orderItems.forEach((item) => {
-                  d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvConv(item));          
-                });
-    
-                 //Helper de acceso a los items
-                   const $tr = d.querySelectorAll(".item2");
-                    const newOrder = Array.from($tr);
-  
-                // console.log($tr);
-                  // Orden Run Complete
-                     newOrder.sort((e1, e2) => {
-                     if (
-                          e1.dataset.run < e2.dataset.run ||
-                           e1.dataset.run < e2.dataset.run
-                     ) {
-                             return -1;
-                     } else if (
-                          e1.dataset.run > e2.dataset.run ||
-                          e1.dataset.run > e2.dataset.run
-                           ) {
-                        return 1;
-                             } else {
-                           return 0;
-                               }
-                                   });
-  
-  
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-           });     
-            },
+   
+   
+           newOrder.forEach((e) => {
+             d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+           });
+           },
             });
-          } 
-          
-          if(localStorage.tabConveyance === "false" && localStorage.tabUnit === "true"){
-            d.getElementById("exportModalXls").innerHTML = `
-  
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-          </tr>
-        <tr style="background-color:black; color:white;">
-        <th scope="col">UNIDAD</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">MODELO</th>
-        <th scope="col">PLACA</th>
-        <th scope="col">AÑO</th>
-         <th scope="col">VERIFICACION</th>
-         <th scope="col">NO. POLIZA</th>
-        <th scope="col">INCISO</th>
-        <th scope="col">KILOMETRAJE</th>
-        <th scope="col">CIRCUITO</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">UBICACION</th> 
-        <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
-   
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `; 
-           
-            await ajax({
-              url: `${api.SUBITEMS}.json`,
-              method: "GET",
-              cbSuccess: (items) => {
-                //console.log(items);
-   
-                let itemsArray = Object.entries(items);
-             
-               //console.log(itemsArray);
-     
-               // Ubication Order
-               let orderItems = itemsArray.sort((o1, o2) => {
-                if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                  return -1;
-                } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-   
-    
-                orderItems.forEach((item) => {
-                  d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvUnit(item));          
-                });
-    
-                 //Helper de acceso a los items
-                   const $tr = d.querySelectorAll(".item2");
-                    const newOrder = Array.from($tr);
-  
-                // console.log($tr);
-                  // Orden Run Complete
-                     newOrder.sort((e1, e2) => {
-                     if (
-                          e1.dataset.run < e2.dataset.run ||
-                           e1.dataset.run < e2.dataset.run
-                     ) {
-                             return -1;
-                     } else if (
-                          e1.dataset.run > e2.dataset.run ||
-                          e1.dataset.run > e2.dataset.run
-                           ) {
-                        return 1;
-                             } else {
-                           return 0;
-                               }
-                                   });
-  
-  
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-           });     
-            },
-            });
+       
           }
-          
-        }
         if (e.target.matches(".cancelXls") || e.target.matches(".report")){
           location.reload();
         }
@@ -6834,42 +6508,43 @@ d.addEventListener("keyup", e => {
         //GENERAR REPORTE XLS
         let date = new Date;
         if (e.target.matches(".modal_xls")){
-  
-        d.getElementById("exportModalXls").innerHTML = `
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-        </tr>
-        <tr style="background-color:black; color:white;">
-          <th scope="col">UNIDAD</th>
-          <th scope="col">CAJA</th>
-          <th scope="col">OPERADOR</th>
-          <th scope="col">C.PORTE</th>
-          <th scope="col">TRACKING</th>
-          <th scope="col">BOL / SHIPPER</th>
-          <th scope="col">RUTA</th>
-          <th scope="col">CLIENTE</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">HORARIO</th>
-          <th scope="col">LLEGADA</th>
-          <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
+
+          d.getElementById("exportModalXls").innerHTML = `
+            <section id="thtable" class="thtable">
+            <table class="table table-hover table-sm" id="table_xls">
+            <thead class="table-dark text-center align-middle">
+            <tr style="background-color:black; color:white;">
+            <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
+            </tr>
+            <tr style="background-color:black; color:white;">
+            <th scope="col">UNIDAD</th>
+            <th scope="col">CAJA</th>
+            <th scope="col">OPERADOR</th>
+            <th scope="col">C.PORTE</th>
+            <th scope="col">TRACKING</th>
+            <th scope="col">BOL / SHIPPER</th>
+            <th scope="col">FECHA</th>
+            <th scope="col">CLIENTE</th>
+            <th scope="col">FECHA</th>
+            <th scope="col">HORARIO</th>
+            <th scope="col">LLEGADA</th>
+            <th scope="col">ESTATUS</th>  
+            <th scope="col">COMENTARIOS</th>  
+            </tr>
+            </thead>
+            <tbody id="table_body" class="body_table">
+            </tbody>     
+            </table>
+            </section>
+            `;
    
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `;         
-         await ajax({
-            url: `${api.ITEMS}.json`,
-            method: "GET",
-            cbSuccess: (items) => {
-              //console.log(items);
-              let itemsArray = Object.entries(items);
+            await ajax({
+             url: `${api.ITEMS}.json`,
+             method: "GET",
+             cbSuccess: (items) => {
+               //console.log(items);
+   
+               let itemsArray = Object.entries(items);
             
               //console.log(itemsArray);
     
@@ -6883,215 +6558,101 @@ d.addEventListener("keyup", e => {
                   return 0;
                 }
               });
-  
-              orderItems.forEach((item) => {
-                d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
-              });
-  
-              //Helper de acceso a los items
-              const $tr = d.querySelectorAll(".item2");
-                const newOrder = Array.from($tr);
-                // Orden Run Complete
-               newOrder.sort((e1, e2) => {
-            if (
-              e1.dataset.run < e2.dataset.run ||
-              e1.dataset.run < e2.dataset.run
-            ) {
-              return -1;
-            } else if (
-              e1.dataset.run > e2.dataset.run ||
-              e1.dataset.run > e2.dataset.run
-            ) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-          });
-          },
-          });
-  
-          if(localStorage.tabConveyance === "true" && localStorage.tabUnit === "false"){
-            d.getElementById("exportModalXls").innerHTML = `
-  
-            <section id="thtable" class="thtable">
-           <table class="table table-hover table-sm" id="table_xls">
-            <thead class="table-dark text-center align-middle">
-            <tr style="background-color:black; color:white;">
-            <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-            </tr>
-          <tr style="background-color:black; color:white;">
-          <th scope="col">CAJA</th>
-          <th scope="col">TIPO</th>
-          <th scope="col">MODELO</th>
-          <th scope="col">PLACA</th>
-          <th scope="col">AÑO</th>
-           <th scope="col">VERIFICACION</th>
-           <th scope="col">NO. POLIZA</th>
-          <th scope="col">INCISO</th>
-          <th scope="col">MARCHAMO</th>
-          <th scope="col">CIRCUITO</th>
-          <th scope="col">FECHA</th>
-          <th scope="col">UBICACION</th> 
-          <th scope="col">ESTATUS</th>  
-          </tr>
-        </thead>
-     
-        <tbody id="table_body" class="body_table">
-        </tbody>
-        
-      </table>
-    </section>
-            `; 
+   
+   
+               orderItems.forEach((item) => {
+                 d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXls(item));          
+               });
+   
+               //Helper de acceso a los items
+               const $tr = d.querySelectorAll(".item2");
+                 const newOrder = Array.from($tr);
+                
+   
+                   // Orden Run Complete
+         newOrder.sort((e1, e2) => {
+           if (
+             e1.dataset.fechaf < e2.dataset.fechaf ||
+             e1.dataset.fechaf < e2.dataset.fechaf
+           ) {
+             return -1;
+           } else if (
+             e1.dataset.fechaf > e2.dataset.fechaf ||
+             e1.dataset.fechaf > e2.dataset.fechaf
+           ) {
+             return 1;
+           } else {
+             return 0;
+           }
+             });
+   
+             newOrder.sort((e1, e2) => {
+           if (
+             e1.dataset.run < e2.dataset.run ||
+             e1.dataset.run < e2.dataset.run
+           ) {
+             return -1;
+           } else if (
+             e1.dataset.run > e2.dataset.run ||
+             e1.dataset.run > e2.dataset.run
+           ) {
+             return 1;
+           } else {
+             return 0;
+           }
+             });
+   
+              //Order Routes Pending
+   
+           newOrder.forEach(e => {
             
-            await ajax({
-              url: `${api.SUBITEMS1}.json`,
-              method: "GET",
-              cbSuccess: (items) => {
-                //console.log(items);
-   
-                let itemsArray = Object.entries(items);
+             if(!e.classList.contains("pending")){
+           //    console.log(e);
+               newOrder.sort((e1, e2) => {
+                 if (
+                   e1.dataset.fecha < e2.dataset.fecha ||
+                   e1.dataset.fecha < e2.dataset.fecha
+                 ) {
+                   return -1;
+                 } else if (
+                   e1.dataset.fecha > e2.dataset.fecha ||
+                   e1.dataset.fecha > e2.dataset.fecha
+                 ) {
+                   return 1;
+                 } else {
+                   return 0;
+                 }
+                   });
+             } else {
+           //    console.log(e);
+               newOrder.sort((e1, e2) => {
+                 if (
+                   e1.dataset.fecha < e2.dataset.fecha ||
+                   e1.dataset.fecha < e2.dataset.fecha
+                 ) {
+                   return -1;
+                 } else if (
+                   e1.dataset.fecha > e2.dataset.fecha ||
+                   e1.dataset.fecha > e2.dataset.fecha
+                 ) {
+                   return 1;
+                 } else {
+                   return 0;
+                 }
+                   });
+             }
              
-               //console.log(itemsArray);
-     
-               // Ubication Order
-               let orderItems = itemsArray.sort((o1, o2) => {
-                if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                  return -1;
-                } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
+           });
    
-    
-                orderItems.forEach((item) => {
-                  d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvConv(item));          
-                });
-    
-                 //Helper de acceso a los items
-                   const $tr = d.querySelectorAll(".item2");
-                    const newOrder = Array.from($tr);
-  
-                // console.log($tr);
-                  // Orden Run Complete
-                     newOrder.sort((e1, e2) => {
-                     if (
-                          e1.dataset.run < e2.dataset.run ||
-                           e1.dataset.run < e2.dataset.run
-                     ) {
-                             return -1;
-                     } else if (
-                          e1.dataset.run > e2.dataset.run ||
-                          e1.dataset.run > e2.dataset.run
-                           ) {
-                        return 1;
-                             } else {
-                           return 0;
-                               }
-                                   });
-  
-  
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-           });     
-            },
+   
+   
+           newOrder.forEach((e) => {
+             d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
+           });
+           },
             });
-          } 
-          
-          if(localStorage.tabConveyance === "false" && localStorage.tabUnit === "true"){
-            d.getElementById("exportModalXls").innerHTML = `
-  
-          <section id="thtable" class="thtable">
-         <table class="table table-hover table-sm" id="table_xls">
-          <thead class="table-dark text-center align-middle">
-          <tr style="background-color:black; color:white;">
-          <td colspan="" scope="row" style="font-weight: bold;" class="tableDate">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>  
-          </tr>
-        <tr style="background-color:black; color:white;">
-        <th scope="col">UNIDAD</th>
-        <th scope="col">OPERADOR</th>
-        <th scope="col">MODELO</th>
-        <th scope="col">PLACA</th>
-        <th scope="col">AÑO</th>
-         <th scope="col">VERIFICACION</th>
-         <th scope="col">NO. POLIZA</th>
-        <th scope="col">INCISO</th>
-        <th scope="col">KILOMETRAJE</th>
-        <th scope="col">CIRCUITO</th>
-        <th scope="col">FECHA</th>
-        <th scope="col">UBICACION</th> 
-        <th scope="col">ESTATUS</th>  
-        </tr>
-      </thead>
-   
-      <tbody id="table_body" class="body_table">
-      </tbody>
-      
-    </table>
-  </section>
-          `; 
-           
-            await ajax({
-              url: `${api.SUBITEMS}.json`,
-              method: "GET",
-              cbSuccess: (items) => {
-                //console.log(items);
-   
-                let itemsArray = Object.entries(items);
-             
-               //console.log(itemsArray);
-     
-               // Ubication Order
-               let orderItems = itemsArray.sort((o1, o2) => {
-                if (o1[1].ubicacion < o2[1].ubicacion || o1[1].ubicacion < o2[1].ubicacion) {
-                  return -1;
-                } else if (o1[1].ubicacion > o2[1].ubicacion || o1[1].ubicacion > o2[1].ubicacion) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-   
-    
-                orderItems.forEach((item) => {
-                  d.getElementById("table_body").insertAdjacentHTML("beforeend", ItemXlsInvUnit(item));          
-                });
-    
-                 //Helper de acceso a los items
-                   const $tr = d.querySelectorAll(".item2");
-                    const newOrder = Array.from($tr);
-  
-                // console.log($tr);
-                  // Orden Run Complete
-                     newOrder.sort((e1, e2) => {
-                     if (
-                          e1.dataset.run < e2.dataset.run ||
-                           e1.dataset.run < e2.dataset.run
-                     ) {
-                             return -1;
-                     } else if (
-                          e1.dataset.run > e2.dataset.run ||
-                          e1.dataset.run > e2.dataset.run
-                           ) {
-                        return 1;
-                             } else {
-                           return 0;
-                               }
-                                   });
-  
-  
-          newOrder.forEach((e) => {
-            d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-           });     
-            },
-            });
+       
           }
-          
-        }
         if (e.target.matches(".cancelXls") || e.target.matches(".report")){
           location.reload();
         }
