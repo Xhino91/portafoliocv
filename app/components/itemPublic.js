@@ -86,7 +86,7 @@ export function itemPublic(item) {
     //ALERTA DE WARNING (RUTAS PENDIENTES)
        if(item.status.match("PENDIENTE") || item.status.match("ACTIVA")) {
           return `
-          <tr id="${itemId}" class="${travelStatus(item)} item text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-fechaf="${item.fecha}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
+          <tr id="${itemId}" class="${travelStatus(item)} item text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" style="${item.status.match("CANCELADA") || item.status.match("BROK") ? "background-color: #ff6767;" : "background-color: rgb(245, 223, 124);"}">
               <td class="${item.unidad ? "table-active" : ""}">${item.unidad}</td>
               <td class="${item.caja ? "table-active" : ""}">${item.caja}</td>
               <td >${item.operador}</td>
@@ -109,7 +109,7 @@ export function itemPublic(item) {
     //ALERTA DE COMPLETE (RUTA COMPLETA)
        if(item.status.match("COMPLET")) {
        return `
-       <tr id="${itemId}" style="display: none;" class="item text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" >
+       <tr id="${itemId}" style="display: none;" class="item text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" >
            <td class="Unit">${item.unidad}</td>
            <td >${item.caja}</td>
            <td>${item.operador}</td>
@@ -132,7 +132,7 @@ export function itemPublic(item) {
     //CORRIENDO
     if(item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("PLANTA") ){
         return `
-     <tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+     <tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
          <td class="Unit">${item.unidad}</td>
          <td>${item.caja}</td>
          <td>${item.operador}</td>
@@ -153,7 +153,7 @@ export function itemPublic(item) {
             } else 
             if(item.status.match("CANCEL") ){
                return `
-            <tr id="${itemId}" class="item active-error text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
+            <tr id="${itemId}" class="item active-error text-center align-middle" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" data-hour="${item.ventana}" style="${item.llegada.match("TIEMPO") || item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color:rgb(217, 241, 255);" : ""}">
                 <td class="Unit">${item.unidad}</td>
                 <td>${item.caja}</td>
                 <td>${item.operador}</td>

@@ -62,7 +62,26 @@ export function renderTable(items){
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);
 
-     //Date Order
+     
+      
+      newOrder.sort((a, b) => {
+        if (
+          a.dataset.hour < b.dataset.hour ||
+          a.dataset.hour < b.dataset.hour
+        ) {
+          return -1;
+        } else if (
+          a.dataset.hour > b.dataset.hour ||
+          a.dataset.hour > b.dataset.hour
+        ) {
+          return 1;
+        } else {
+          return 0;
+        } 
+      });
+
+
+      //Date Order
      newOrder.sort((e1, e2) => {
       if (
         e1.dataset.fechaf < e2.dataset.fechaf ||
@@ -79,6 +98,7 @@ export function renderTable(items){
       }
      });
         
+          
      //Run Order 
      newOrder.sort((e1, e2) => {
       if (
@@ -95,31 +115,7 @@ export function renderTable(items){
         return 0;
       }
      });
-
-
-  /*    const $pending = d.querySelectorAll(".pending");
-      const orderHour = Array.from($pending);
      
-
-   
-      orderHour.sort((a, b) => {
-        if (
-          a.dataset.hour < b.dataset.hour ||
-          a.dataset.hour < b.dataset.hour
-        ) {
-          return -1;
-        } else if (
-          a.dataset.hour > b.dataset.hour ||
-          a.dataset.hour > b.dataset.hour
-        ) {
-          return 1;
-        } else {
-          return 0;
-        } 
-      });
-        
-     // console.log(orderHour);
-     */
 
 
         newOrder.forEach((e) => {
