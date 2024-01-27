@@ -109,7 +109,7 @@ export function ItemXls(item) {
     //ALERTA DE COMPLETE (RUTA COMPLETA)
        if(item.status.match("COMPLET")) {
        return `
-       <tr id="${itemId}" style="display: none;" class="item2 text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" >
+       <tr id="${itemId}"  class="item2 text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}"  data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-status="${item.status}" data-fechaf="${item.fecha}" >
            <td class="Unit">${item.unidad}</td>
            <td >${item.caja}</td>
            <td>${item.operador}</td>
