@@ -953,17 +953,20 @@ d.addEventListener("keyup", e => {
           <td>
           <select class="form-select form-select-sm" name="status" id="status">
           <option value="${item.status}">${item.status}</option> 
-          <option value="EN TRANSITO A PROVEEDOR">EN TRANSITO A PROVEEDOR</option>
-          <option value="EN TRANSITO A FORD HMO">EN TRANSITO A FORD HMO</option>
-          <option value="EN TRANSITO A FORD MX">EN TRANSITO A FORD MX</option>
-          <option value="EN TRANSITO A FCA TOL">EN TRANSITO A FCA TOL</option>
-          <option value="EN TRANSITO A FCA SAL">EN TRANSITO A FCA SAL</option>
-          <option value="EN TRANSITO A FEMSA">EN TRANSITO A FEMSA</option>
+          <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
+          <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
+          <option value="TRANSITO A FORD MX">TRANSITO A FORD MX</option>
+          <option value="TRANSITO A FORD TULTITLAN">TRANSITO A FORD TULTITLAN</option>
+          <option value="TRANSITO A FORD SUPPLIER">TRANSITO A FORD SUPPLIER</option>
+          <option value="TRANSITO A FCA TOL">TRANSITO A FCA TOL</option>
+          <option value="TRANSITO A FCA SAL">TRANSITO A FCA SAL</option>
+          <option value="TRANSITO A FEMSA">TRANSITO A FEMSA</option>
           <option value="DETENIDO">DETENIDO</option>
           <option value="PENDIENTE">PENDIENTE</option>
           <option value="CARGANDO">CARGANDO</option>
           <option value="EN ESPERA">EN ESPERA</option>
           <option value="DRY RUN">DRY RUN</option>
+          <option value="BROKEREADO">BROKEREADO</option>
           <option value="TONU">TONU</option>
           <option value="CANCELADO">CANCELADO</option>
           <option value="COMPLETO">COMPLETO</option>
@@ -1970,17 +1973,20 @@ d.addEventListener("keyup", e => {
           <td>
           <select class="form-select form-select-sm" name="status" id="status">
           <option value="${item.status}">${item.status}</option> 
-          <option value="EN TRANSITO A PROVEEDOR">EN TRANSITO A PROVEEDOR</option>
-          <option value="EN TRANSITO A FORD HMO">EN TRANSITO A FORD HMO</option>
-          <option value="EN TRANSITO A FORD MX">EN TRANSITO A FORD MX</option>
-          <option value="EN TRANSITO A FCA TOL">EN TRANSITO A FCA TOL</option>
-          <option value="EN TRANSITO A FCA SAL">EN TRANSITO A FCA SAL</option>
-          <option value="EN TRANSITO A FEMSA">EN TRANSITO A FEMSA</option>
+          <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
+          <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
+          <option value="TRANSITO A FORD MX">TRANSITO A FORD MX</option>
+          <option value="TRANSITO A FORD TULTITLAN">TRANSITO A FORD TULTITLAN</option>
+          <option value="TRANSITO A FORD SUPPLIER">TRANSITO A FORD SUPPLIER</option>
+          <option value="TRANSITO A FCA TOL">TRANSITO A FCA TOL</option>
+          <option value="TRANSITO A FCA SAL">TRANSITO A FCA SAL</option>
+          <option value="TRANSITO A FEMSA">TRANSITO A FEMSA</option>
           <option value="DETENIDO">DETENIDO</option>
           <option value="PENDIENTE">PENDIENTE</option>
           <option value="CARGANDO">CARGANDO</option>
           <option value="EN ESPERA">EN ESPERA</option>
           <option value="DRY RUN">DRY RUN</option>
+          <option value="BROKEREADO">BROKEREADO</option>
           <option value="TONU">TONU</option>
           <option value="CANCELADO">CANCELADO</option>
           <option value="COMPLETO">COMPLETO</option>
@@ -2891,21 +2897,24 @@ d.addEventListener("keyup", e => {
         </td>
         <td>
         <select class="form-select form-select-sm" name="status" id="status">
-        <option value="${item.status}">${item.status}</option> 
-        <option value="EN TRANSITO A PROVEEDOR">EN TRANSITO A PROVEEDOR</option>
-        <option value="EN TRANSITO A FORD HMO">EN TRANSITO A FORD HMO</option>
-        <option value="EN TRANSITO A FORD MX">EN TRANSITO A FORD MX</option>
-        <option value="EN TRANSITO A FCA TOL">EN TRANSITO A FCA TOL</option>
-        <option value="EN TRANSITO A FCA SAL">EN TRANSITO A FCA SAL</option>
-        <option value="EN TRANSITO A FEMSA">EN TRANSITO A FEMSA</option>
-        <option value="DETENIDO">DETENIDO</option>
-        <option value="PENDIENTE">PENDIENTE</option>
-        <option value="CARGANDO">CARGANDO</option>
-        <option value="EN ESPERA">EN ESPERA</option>
-        <option value="DRY RUN">DRY RUN</option>
-        <option value="TONU">TONU</option>
-        <option value="CANCELADO">CANCELADO</option>
-        <option value="COMPLETO">COMPLETO</option>
+          <option value="${item.status}">${item.status}</option> 
+          <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
+          <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
+          <option value="TRANSITO A FORD MX">TRANSITO A FORD MX</option>
+          <option value="TRANSITO A FORD TULTITLAN">TRANSITO A FORD TULTITLAN</option>
+          <option value="TRANSITO A FORD SUPPLIER">TRANSITO A FORD SUPPLIER</option>
+          <option value="TRANSITO A FCA TOL">TRANSITO A FCA TOL</option>
+          <option value="TRANSITO A FCA SAL">TRANSITO A FCA SAL</option>
+          <option value="TRANSITO A FEMSA">TRANSITO A FEMSA</option>
+          <option value="DETENIDO">DETENIDO</option>
+          <option value="PENDIENTE">PENDIENTE</option>
+          <option value="CARGANDO">CARGANDO</option>
+          <option value="EN ESPERA">EN ESPERA</option>
+          <option value="DRY RUN">DRY RUN</option>
+          <option value="BROKEREADO">BROKEREADO</option>
+          <option value="TONU">TONU</option>
+          <option value="CANCELADO">CANCELADO</option>
+          <option value="COMPLETO">COMPLETO</option>
         </td>
         <td>
         <input name="x3" style="width: 130px;" type="text"  value="${item.x3}">
@@ -3830,17 +3839,20 @@ d.addEventListener("keyup", e => {
           <td>
           <select class="form-select form-select-sm" name="status" id="status">
           <option value="${item.status}">${item.status}</option> 
-          <option value="EN TRANSITO A PROVEEDOR">EN TRANSITO A PROVEEDOR</option>
-          <option value="EN TRANSITO A FORD HMO">EN TRANSITO A FORD HMO</option>
-          <option value="EN TRANSITO A FORD MX">EN TRANSITO A FORD MX</option>
-          <option value="EN TRANSITO A FCA TOL">EN TRANSITO A FCA TOL</option>
-          <option value="EN TRANSITO A FCA SAL">EN TRANSITO A FCA SAL</option>
-          <option value="EN TRANSITO A FEMSA">EN TRANSITO A FEMSA</option>
+          <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
+          <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
+          <option value="TRANSITO A FORD MX">TRANSITO A FORD MX</option>
+          <option value="TRANSITO A FORD TULTITLAN">TRANSITO A FORD TULTITLAN</option>
+          <option value="TRANSITO A FORD SUPPLIER">TRANSITO A FORD SUPPLIER</option>
+          <option value="TRANSITO A FCA TOL">TRANSITO A FCA TOL</option>
+          <option value="TRANSITO A FCA SAL">TRANSITO A FCA SAL</option>
+          <option value="TRANSITO A FEMSA">TRANSITO A FEMSA</option>
           <option value="DETENIDO">DETENIDO</option>
           <option value="PENDIENTE">PENDIENTE</option>
           <option value="CARGANDO">CARGANDO</option>
           <option value="EN ESPERA">EN ESPERA</option>
           <option value="DRY RUN">DRY RUN</option>
+          <option value="BROKEREADO">BROKEREADO</option>
           <option value="TONU">TONU</option>
           <option value="CANCELADO">CANCELADO</option>
           <option value="COMPLETO">COMPLETO</option>
@@ -4860,17 +4872,20 @@ d.addEventListener("keyup", e => {
             <td>
             <select class="form-select form-select-sm" name="status" id="status">
             <option value="${item.status}">${item.status}</option> 
-            <option value="EN TRANSITO A PROVEEDOR">EN TRANSITO A PROVEEDOR</option>
-            <option value="EN TRANSITO A FORD HMO">EN TRANSITO A FORD HMO</option>
-            <option value="EN TRANSITO A FORD MX">EN TRANSITO A FORD MX</option>
-            <option value="EN TRANSITO A FCA TOL">EN TRANSITO A FCA TOL</option>
-            <option value="EN TRANSITO A FCA SAL">EN TRANSITO A FCA SAL</option>
-            <option value="EN TRANSITO A FEMSA">EN TRANSITO A FEMSA</option>
+            <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
+            <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
+            <option value="TRANSITO A FORD MX">TRANSITO A FORD MX</option>
+            <option value="TRANSITO A FORD TULTITLAN">TRANSITO A FORD TULTITLAN</option>
+            <option value="TRANSITO A FORD SUPPLIER">TRANSITO A FORD SUPPLIER</option>
+            <option value="TRANSITO A FCA TOL">TRANSITO A FCA TOL</option>
+            <option value="TRANSITO A FCA SAL">TRANSITO A FCA SAL</option>
+            <option value="TRANSITO A FEMSA">TRANSITO A FEMSA</option>
             <option value="DETENIDO">DETENIDO</option>
             <option value="PENDIENTE">PENDIENTE</option>
             <option value="CARGANDO">CARGANDO</option>
             <option value="EN ESPERA">EN ESPERA</option>
             <option value="DRY RUN">DRY RUN</option>
+            <option value="BROKEREADO">BROKEREADO</option>
             <option value="TONU">TONU</option>
             <option value="CANCELADO">CANCELADO</option>
             <option value="COMPLETO">COMPLETO</option>
@@ -5889,21 +5904,24 @@ d.addEventListener("keyup", e => {
             </td>
             <td>
             <select class="form-select form-select-sm" name="status" id="status">
-            <option value="${item.status}">${item.status}</option> 
-            <option value="EN TRANSITO A PROVEEDOR">EN TRANSITO A PROVEEDOR</option>
-            <option value="EN TRANSITO A FORD HMO">EN TRANSITO A FORD HMO</option>
-            <option value="EN TRANSITO A FORD MX">EN TRANSITO A FORD MX</option>
-            <option value="EN TRANSITO A FCA TOL">EN TRANSITO A FCA TOL</option>
-            <option value="EN TRANSITO A FCA SAL">EN TRANSITO A FCA SAL</option>
-            <option value="EN TRANSITO A FEMSA">EN TRANSITO A FEMSA</option>
-            <option value="DETENIDO">DETENIDO</option>
-            <option value="PENDIENTE">PENDIENTE</option>
-            <option value="CARGANDO">CARGANDO</option>
-            <option value="EN ESPERA">EN ESPERA</option>
-            <option value="DRY RUN">DRY RUN</option>
-            <option value="TONU">TONU</option>
-            <option value="CANCELADO">CANCELADO</option>
-            <option value="COMPLETO">COMPLETO</option>
+          <option value="${item.status}">${item.status}</option> 
+          <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
+          <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
+          <option value="TRANSITO A FORD MX">TRANSITO A FORD MX</option>
+          <option value="TRANSITO A FORD TULTITLAN">TRANSITO A FORD TULTITLAN</option>
+          <option value="TRANSITO A FORD SUPPLIER">TRANSITO A FORD SUPPLIER</option>
+          <option value="TRANSITO A FCA TOL">TRANSITO A FCA TOL</option>
+          <option value="TRANSITO A FCA SAL">TRANSITO A FCA SAL</option>
+          <option value="TRANSITO A FEMSA">TRANSITO A FEMSA</option>
+          <option value="DETENIDO">DETENIDO</option>
+          <option value="PENDIENTE">PENDIENTE</option>
+          <option value="CARGANDO">CARGANDO</option>
+          <option value="EN ESPERA">EN ESPERA</option>
+          <option value="DRY RUN">DRY RUN</option>
+          <option value="BROKEREADO">BROKEREADO</option>
+          <option value="TONU">TONU</option>
+          <option value="CANCELADO">CANCELADO</option>
+          <option value="COMPLETO">COMPLETO</option>
             </td>
             <td>
             <input name="x3" style="width: 130px;" type="text"  value="${item.x3}">
