@@ -10,5 +10,6 @@ export const generar_xls = (function() {
           let ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
           window.location.href = uri + base64(format(template, ctx))
         }
+
     
       })()

@@ -23,7 +23,7 @@ export function renderTableCV(items){
       });
 
       
-      console.log(orderItems);
+    //  console.log(orderItems);
 
       let html = "";
       
@@ -51,7 +51,7 @@ export function renderTableCV(items){
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
-      <th scope="col" style="${window.location.hash === "#/Public" ? "display: none;" : ""}">OPCIONES</th>             
+      <th scope="col" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>             
       </tr>
     </thead>
  
@@ -72,7 +72,7 @@ export function renderTableCV(items){
   // Orden Run Complete
  
   newOrder.sort((a, b) => a.dataset.conv - b.dataset.conv);
-      console.log(newOrder);
+   //   console.log(newOrder);
 
       newOrder.forEach((e) => {
         d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
@@ -80,32 +80,3 @@ export function renderTableCV(items){
 
 }
 
-
-/*
-      //Helper de acceso a los items
-      const $tr = d.querySelectorAll(".item");
-      const newOrder = Array.from($tr);
-
-    //  console.log($tr);
-      // Orden Run Complete
-          newOrder.sort((e1, e2) => {
-        if (
-          e1.dataset.run < e2.dataset.run ||
-          e1.dataset.run < e2.dataset.run
-        ) {
-          return -1;
-        } else if (
-          e1.dataset.run > e2.dataset.run ||
-          e1.dataset.run > e2.dataset.run
-        ) {
-          return 1;
-        } else {
-          return 0;
-        }
-          });
-
-
-        newOrder.forEach((e) => {
-          d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
-         });     
-*/

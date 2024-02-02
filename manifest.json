@@ -1,0 +1,42 @@
+{
+    "name": "#OnTime",
+    "short_name": "#OnTime",
+    "description": "App On Time Delivery",
+    "background_color": "#5097ffc2",
+    "theme_color": "#5097ffc2",
+    "orientatio": "portrait",
+    "display_override": ["window-control-overlay", "minimal-ui"],
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest",
+    "scope": "./",
+    "lang": "es-MX",
+    "icons": [
+        {
+            "src": "./app/assets/favicon30.png",
+            "sizes": "30x30",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "./app/assets/favicon144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ],
+
+    "screenshots": [
+        {
+          "src": "./app/assets/favicon320.png",
+          "type": "image/png",
+          "sizes": "320x320",
+          "form_factor": "narrow"
+        },
+        {
+          "src": "./app/assets/favicon320.png",
+          "type": "image/png",
+          "sizes": "320x320",
+          "form_factor": "wide"
+        }
+      ]
+}

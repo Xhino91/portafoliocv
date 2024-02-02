@@ -1,9 +1,10 @@
 import { Item } from "./Item.js";
+import { ItemHistory } from "./ItemHistory.js";
 
 
 const d = document;
 
-export function renderTable(items){
+export function renderTableHistory(items){
   
 
       //console.log(items); 
@@ -28,7 +29,7 @@ export function renderTable(items){
       let html = "";
      
     
-      orderItems.forEach((item) => (html += Item(item)));
+      orderItems.forEach((item) => (html += ItemHistory(item)));
      
     
       d.getElementById("thtable").innerHTML =  `
@@ -53,7 +54,7 @@ export function renderTable(items){
         <th scope="col">LLEGADA</th>
         <th scope="col">ESTATUS</th>
         <th scope="col">COMENTARIOS</th>
-        <th scope="col" class="btn-hid" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>
+        <th scope="col" style="${localStorage.username === "Public" || localStorage.username === "CVehicular" ? "display: none;" : ""}">OPCIONES</th>
   
       </tr>
     </thead>
@@ -72,10 +73,15 @@ export function renderTable(items){
           
      //Run Order 
      newOrder.sort((e1, e2) => {
-      if (e1.dataset.run < e2.dataset.run || e1.dataset.run < e2.dataset.run) {
+      if (
+        e1.dataset.run < e2.dataset.run ||
+        e1.dataset.run < e2.dataset.run
+      ) {
         return -1;
       } else if (
-        e1.dataset.run > e2.dataset.run || e1.dataset.run > e2.dataset.run) {
+        e1.dataset.run > e2.dataset.run ||
+        e1.dataset.run > e2.dataset.run
+      ) {
         return 1;
       } else {
         return 0;

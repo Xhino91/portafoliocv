@@ -34,7 +34,7 @@ export function App() {
 
       //console.log(data);
       if (e.target.id === "form") {
-        await ajax({
+           await ajax({
           url: api.USERS,
           cbSuccess: (res) => {
            // console.log(data);
@@ -45,12 +45,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[1].user === `${data.username}` && res[1].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -58,13 +53,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[2].user === `${data.username}` && res[2].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -72,13 +61,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[3].user === `${data.username}` && res[3].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -86,13 +69,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[4].user === `${data.username}` && res[4].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -100,13 +77,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[5].user === `${data.username}` && res[5].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -114,13 +85,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[6].user === `${data.username}` && res[6].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -128,13 +93,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[7].user === `${data.username}` && res[7].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -142,13 +101,7 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             } else
             if (res[8].user === `${data.username}` && res[8].pass === `${data.password}`) {
               //console.log("Acceso Completo");
@@ -156,22 +109,16 @@ export function App() {
               sessionStorage.login = true;
               localStorage.username = data.username;
               $login.style = "display: none;";
-              location.reload(true);
-
-              $root.appendChild(Header());
-              $root.appendChild(Main());
-              document.getElementById("thtable").appendChild(Loader());
-
-              Router();
+              location.reload();
             }
             else {
               // console.log("Acceso Denegado");
               alert("Usuario y/o Contraseña Incorrecto");
             }
           },
-        });
-      }
-    });
+                     });
+               }
+     });
   } 
   else {
     $root.appendChild(Header());

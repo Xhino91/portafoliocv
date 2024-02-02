@@ -1,9 +1,9 @@
-import { Item } from "./Item.js";
+import { itemEV } from "./ItemEV.js";
 
 
 const d = document;
 
-export function renderTable(items){
+export function renderTableEV(items){
   
 
       //console.log(items); 
@@ -28,7 +28,7 @@ export function renderTable(items){
       let html = "";
      
     
-      orderItems.forEach((item) => (html += Item(item)));
+      orderItems.forEach((item) => (html += itemEV(item)));
      
     
       d.getElementById("thtable").innerHTML =  `
@@ -45,15 +45,15 @@ export function renderTable(items){
         <th scope="col">CLIENTE</th>
         <th scope="col">PROVEEDOR</th>
         <th scope="col">CITA PROGRAMADA</th>
-        <th scope="col">LLEGADA REAL</th>
-        <th scope="col">SALIDA REAL</th>
-        <th scope="col">ETA DESTINO</th>
-        <th scope="col">LLEGADA DESTINO</th>
-        <th scope="col">SALIDA DESTINO</th>
+        <th scope="col" >LLEGADA REAL</th>
+        <th scope="col" >SALIDA REAL</th>
+        <th scope="col" >ETA A DESTINO</th>
+        <th scope="col">LLEGADA A DESTINO</th>
+        <th scope="col" >SALIDA A DESTINO</th>
         <th scope="col">LLEGADA</th>
         <th scope="col">ESTATUS</th>
         <th scope="col">COMENTARIOS</th>
-        <th scope="col" class="btn-hid" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>
+        <th scope="col" style="${localStorage.username === "Public" || localStorage.username === "CVehicular" ? "display: none;" : ""}">OPCIONES</th>
   
       </tr>
     </thead>
@@ -70,12 +70,17 @@ export function renderTable(items){
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);       
           
-     //Run Order 
+    //Run Order 
      newOrder.sort((e1, e2) => {
-      if (e1.dataset.run < e2.dataset.run || e1.dataset.run < e2.dataset.run) {
+      if (
+        e1.dataset.run < e2.dataset.run ||
+        e1.dataset.run < e2.dataset.run
+      ) {
         return -1;
       } else if (
-        e1.dataset.run > e2.dataset.run || e1.dataset.run > e2.dataset.run) {
+        e1.dataset.run > e2.dataset.run ||
+        e1.dataset.run > e2.dataset.run
+      ) {
         return 1;
       } else {
         return 0;

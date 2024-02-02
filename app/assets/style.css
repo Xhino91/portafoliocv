@@ -4,7 +4,7 @@
 
 .error {
   padding: 1rem;
-  font-size: 150%;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
   color: #fff;
@@ -45,15 +45,14 @@ header {
   background-color: rgb(38, 128, 223);
   box-shadow: inset 0 -3em 3em rgba(0, 3, 89, 0.361), 0 0 0 2px rgb(50, 80, 168),
     0.3em 0.3em 1em rgba(0, 25, 83, 0.421);
-  z-index: 999;
-  position: fixed;
-  top: 0;
+  
 }
 
 header * .logo {
   font-weight: bold !important;
   font-size: 1.2rem !important;
 }
+
 
 .loader {
   margin: 1rem auto;
@@ -62,18 +61,15 @@ header * .logo {
   height: 4rem;
 }
 
-#main {
-  margin-top: 5rem;
-}
-
 .margin {
   padding: 1rem 2rem 1rem 2rem;
 }
 
 .thtable {
   width: 100%;
-  height: 85vh;
-  position: sticky;
+  height: 86vh;
+  font-size: 12px;
+  position: fixed;
   overflow-y: scroll;
 }
 
@@ -84,8 +80,12 @@ thead tr th {
   z-index: 10;
 }
 
+.table-active1 {
+  background-color: rgb(219, 200, 118) !important;
+}
+
 .active-run {
-  background-color: #d2f2ff;
+  background-color: #e7f8ff;
 }
 
 .active-pending {
@@ -93,13 +93,21 @@ thead tr th {
 }
 
 .active-complete {
-  background-color: rgb(146, 225, 117);
+  background-color: rgb(255, 255, 255);
+}
+
+.active-select {
+  background-color: rgba(25, 104, 182, 0.667);
 }
 
 .active-error {
-  background-color: #ff8484 !important;
+  background-color: #ffcbcb !important;
 }
 
+
+.btn, .font{
+  font-size: 12px;
+}
 
 
 /* style="color: var(--bs-btn-hover-color); background-color: #174993; border-color: var(--bs-btn-hover-border-color);" */
@@ -129,10 +137,8 @@ thead tr th {
   .cporte,
   .track,
   .bol,
-  .llegada,
-  .fecha,
-  .ventana,
   .ruta,
+  .llegada,
   .placa,
   .año,
   .verificacion,
@@ -142,22 +148,32 @@ thead tr th {
   .tipo,
   .modelo,
   .publico,
-  .opciones
+  .opciones,
+  .sd,
+  .ld,
+  .eta,
+  .sr,
+  .lr,
+  .cp
    {
     display: none;
   }
 
   .header{
-    position: absolute;
+    position: sticky;
   }
 
   .unidades,
   .cajas,
-  .tablero {
+  .tablero{
     width: 30%;
-    font-size: small;
+    font-size: 10px;
     padding: 0px;
-    height: 31px;
+    height: 25px;
+  }
+
+  .equipov {
+    display: none;
   }
 
   .margin{
@@ -173,5 +189,9 @@ thead tr th {
     overflow-y: scroll;
     margin: auto;
     font-size: 10px;
+  } 
+   
+  tr {
+    font-size: 8px;
   }
 }

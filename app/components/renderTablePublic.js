@@ -10,9 +10,9 @@ export function renderTablePublic(items){
 
       // Orden for date
       let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].fecha < o2[1].fecha || o1[1].ventana < o2[1].ventana) {
+        if (o1[1].citaprogramada < o2[1].citaprogramada) {
           return -1;
-        } else if (o1[1].fecha > o2[1].fecha || o1[1].ventana > o2[1].ventana) {
+        } else if (o1[1].citaprogramada > o2[1].citaprogramada) {
           return 1;
         } else {
           return 0;
@@ -38,9 +38,14 @@ export function renderTablePublic(items){
       <th class="bol" scope="col">BOL / SHIPPER</th>
       <th class="ruta" scope="col">RUTA</th>
       <th scope="col">CLIENTE</th>
-      <th class="fecha"  scope="col">FECHA</th>
-      <th class="ventana" scope="col">HORARIO</th>
-      <th class="llegada" scope="col">LLEGADA</th>
+      <th scope="col">PROVEEDOR</th>
+      <th  class="cp"scope="col">CITA PROGRAMADA</th>
+      <th  class="lr"scope="col">LLEGADA REAL</th>
+      <th  class="sr"scope="col">SALIDA REAL</th>
+      <th class="eta"scope="col">ETA DESTINO</th>
+      <th  class="ld"scope="col">LLEGADA DESTINO</th>
+      <th  class="sd"scope="col">SALIDA DESTINO</th>
+      <th  class="llegada"scope="col">LLEGADA</th>
       <th scope="col">ESTATUS</th>
       <th scope="col">COMENTARIOS</th>
     </tr>
@@ -56,42 +61,7 @@ export function renderTablePublic(items){
      
       //Helper de acceso a los items
       const $tr = d.querySelectorAll(".item");
-      const newOrder = Array.from($tr);
-
-      newOrder.sort((a, b) => {
-        if (
-          a.dataset.hour < b.dataset.hour ||
-          a.dataset.hour < b.dataset.hour
-        ) {
-          return -1;
-        } else if (
-          a.dataset.hour > b.dataset.hour ||
-          a.dataset.hour > b.dataset.hour
-        ) {
-          return 1;
-        } else {
-          return 0;
-        } 
-      });
-
-
-      //Date Order
-     newOrder.sort((e1, e2) => {
-      if (
-        e1.dataset.fechaf < e2.dataset.fechaf ||
-        e1.dataset.fechaf < e2.dataset.fechaf
-      ) {
-        return -1;
-      } else if (
-        e1.dataset.fechaf > e2.dataset.fechaf ||
-        e1.dataset.fechaf > e2.dataset.fechaf
-      ) {
-        return 1;
-      } else {
-        return 0;
-      }
-     });
-        
+      const newOrder = Array.from($tr);      
           
      //Run Order 
      newOrder.sort((e1, e2) => {

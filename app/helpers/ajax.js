@@ -13,6 +13,6 @@ export async function ajax(props){
         </div>`);
         document.querySelector(".loader").style.display = "none";*/
 
-        console.log(error);
+//        console.log(error);
     });
 }

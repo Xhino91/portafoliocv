@@ -51,7 +51,7 @@ export function renderTableUnits(items){
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
-      <th scope="col" style="${window.location.hash === "#/Public" ? "display: none;" : ""}">OPCIONES</th>
+      <th scope="col" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>
  
                  
       </tr>
@@ -73,7 +73,7 @@ d.getElementById("table_body").insertAdjacentHTML("beforeend", html);
   // Orden Run Complete
  
   newOrder.sort((a, b) => a.dataset.unit - b.dataset.unit);
-      console.log(newOrder);
+      //console.log(newOrder);
 
       newOrder.forEach((e) => {
         d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
