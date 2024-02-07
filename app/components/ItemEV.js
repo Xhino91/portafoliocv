@@ -75,7 +75,7 @@ export function itemEV(item) {
           }
        } else
        if(localStorage.username === "InhouseTOL"){
-          if(item.cliente.includes("STELLANTIS") || item.cliente.includes("BRP")){
+          if(item.cliente.includes("STELLANTIS") || item.cliente.includes("BRP") || item.cliente.includes("GM")){
              if(item.status.includes("COMPLET")){         return "display: none"
           } else {
              return 

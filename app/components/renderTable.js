@@ -14,9 +14,9 @@ export function renderTable(items){
 
 
       let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].citaprogramada < o2[1].citaprogramada) {
+        if (o1[1].citaprogramada < o2[1].citaprogramada || o1[1].citaprogramada < o2[1].citaprogramada) {
           return -1;
-        } else if (o1[1].citaprogramada > o2[1].citaprogramada) {
+        } else if (o1[1].citaprogramada > o2[1].citaprogramada || o1[1].citaprogramada > o2[1].citaprogramada) {
           return 1;
         } else {
           return 0;
@@ -71,6 +71,19 @@ export function renderTable(items){
       const newOrder = Array.from($tr);       
           
      //Run Order 
+    
+     newOrder.sort((e1, e2) => {
+      if (e1.dataset.citaprogramada < e2.dataset.citaprogramada) {
+        return -1;
+      } else if (
+        e1.dataset.citaprogramada > e2.dataset.citaprogramada) {
+        return 1;
+      } else {
+        return 0;
+      }
+     });
+
+
      newOrder.sort((e1, e2) => {
       if (e1.dataset.run < e2.dataset.run || e1.dataset.run < e2.dataset.run) {
         return -1;
@@ -83,6 +96,7 @@ export function renderTable(items){
      });
      
 
+     
 
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          

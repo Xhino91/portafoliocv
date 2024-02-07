@@ -20,10 +20,10 @@ export function Main() {
   <button id="cajas" class="btn btn-primary fw-bold cajas" type="button" >Inv de Cajas</button>
   <button id="unidades" class="btn btn-primary fw-bold unidades" type="button" >Inv de Unidades</button>
   <button class="btn btn-primary fw-bold  modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic"  ? "display: none;" : ""}" >Generar Reporte</button>
-  <button class="btn btn-primary fw-bold  importModal" type="button" data-bs-toggle="modal" data-bs-target="#importModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic" || localStorage.username === "TrafficH" ? "display: none;" : ""}" >Importar Excel</button>
+  <button class="btn btn-primary fw-bold  importModal" type="button" data-bs-toggle="modal" data-bs-target="#importModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic" || localStorage.username === "TrafficH" || localStorage.username === "CVehicular" ? "display: none;" : ""}" >Importar Excel</button>
   <button class="btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic" || localStorage.username === "TrafficH" || localStorage.username === "CVehicular" ? "display: none;" : ""}">Agregar Registro</button>
-  <button  class="remolque btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicualr" ? "" : "display: none;"}">Agregar Remolque</button>
-  <button  class="unidad btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicualr" ? "" : "display: none;"}">Agregar Unidad</button>
+  <button  class="remolque btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}">Agregar Remolque</button>
+  <button  class="unidad btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}">Agregar Unidad</button>
   </div>  
 
   <form id="formulario">
