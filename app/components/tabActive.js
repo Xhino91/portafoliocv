@@ -1,7 +1,6 @@
 export function tabActive (tab) {
     let d = document;
 
-
     if(tab === "tablero") {
 
      d.getElementById("tablero").style.color = "#ffffffe8";
