@@ -5588,7 +5588,8 @@ export async function Router() {
                 "Content-type": "application/json; charset=utf-8",
               },
               body: JSON.stringify({
-               circuito: e.target.circuito.value.toUpperCase(),
+                contacto: e.target.contacto.value.toUpperCase(),
+                circuito: e.target.circuito.value.toUpperCase(),
                fecha: e.target.fecha.value.toUpperCase(),
                ubicacion: e.target.ubicacion.value.toUpperCase(),
                comentarios: e.target.comentarios.value.toUpperCase()
@@ -5613,6 +5614,7 @@ export async function Router() {
                 "Content-type": "application/json; charset=utf-8",
               },
               body: JSON.stringify({
+                contacto: e.target.contacto.value.toUpperCase(),
                circuito: e.target.circuito.value.toUpperCase(),
                fecha: e.target.fecha.value.toUpperCase(),
                ubicacion: e.target.ubicacion.value.toUpperCase(),
@@ -6997,6 +6999,7 @@ export async function Router() {
               "Content-type": "application/json; charset=utf-8",
             },
             body: JSON.stringify({
+              contacto: e.target.contacto.value.toUpperCase(),
              circuito: e.target.circuito.value.toUpperCase(),
              fecha: e.target.fecha.value.toUpperCase(),
              ubicacion: e.target.ubicacion.value.toUpperCase(),
