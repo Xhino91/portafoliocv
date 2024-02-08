@@ -828,7 +828,7 @@ export async function Router() {
           <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
           <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
           <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
-          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" disabled required></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
           <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
           <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
           <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour"  value="${item.citaprogramada}" disabled></td>
@@ -913,6 +913,115 @@ export async function Router() {
         }
 
       }else
+      if (e.target.matches(".remolque")) {
+        //  console.log(e.target);
+  
+        const tabConv = ()=> {
+          //MODAL
+        d.querySelector(".hidden").style.display = "block";
+        d.getElementById("formulario").classList.add("register");
+        d.getElementById("formulario").classList.remove("edit");
+        d.getElementById("exampleModalLabel").innerHTML = `Registrar Remolque`;
+        d.getElementById("exampleModalLabel").classList.add("convoy");
+        d.getElementById("exampleModalLabel").classList.remove("convoy");
+        d.querySelector(".modal-body").innerHTML = `
+            <div class="container-fluid"> 
+            <table class="table table-sm" >
+        <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">CAJA</th>
+        <th scope="col">TIPO</th>
+        <th scope="col">MODELO</th>
+        <th scope="col">PLACA</th>
+        <th scope="col">AÑO</th>
+         <th scope="col">VERIFICACION</th>
+         <th scope="col">NO. POLIZA</th>
+        <th scope="col">INCISO</th>
+        <th scope="col">MARCHAMO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap">
+      <td><input name="caja" style="width: 35px;" type="text"></td>
+      <td><input name="tipo" style="width: 60px;" type="text"></td>
+      <td><input name="modelo" style="width: 130px;" type="text"></td>
+      <td><input name="placa" style="width: 70px;" type="text"></td>
+      <td><input name="año" style="width: 80px;" type="text"></td>
+      <td><input name="verificacion" style="width: 75px;" type="text"></td>
+      <td><input name="poliza" style="width: 75px;" type="text"></td>
+      <td><input name="inciso" style="width: 95px;" type="text"></td>
+      <td><input name="contacto" type="text" style="width: 80px;"></td>
+      <td><input name="circuito" type="text"></td>
+      <td><input name="fecha" type="date"></td>
+      <td><input name="ubicacion" type="text"></td>
+      <td><input name="comentarios" type="text"></td>  
+      </tbody>
+        
+      </table>
+      </div>
+            `;
+        };      
+  
+        tabConv();
+        
+      }else
+      if (e.target.matches(".unidad")) {
+        const tabUnit = ()=> {
+          //MODAL
+        d.querySelector(".hidden").style.display = "block";
+        d.getElementById("formulario").classList.add("register");
+        d.getElementById("formulario").classList.remove("edit");
+        d.getElementById("exampleModalLabel").innerHTML = `Registrar Unidad`;
+        d.getElementById("exampleModalLabel").classList.add("unit");
+        d.getElementById("exampleModalLabel").classList.remove("convoy");
+        d.querySelector(".modal-body").innerHTML = `
+            <div class="container-fluid"> 
+            <table class="table table-sm" >
+        <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">UNIDAD</th>
+        <th scope="col">OPERADOR</th>
+        <th scope="col">MODELO</th>
+        <th scope="col">PLACA</th>
+        <th scope="col">AÑO</th>
+         <th scope="col">VERIFICACION</th>
+         <th scope="col">NO. POLIZA</th>
+        <th scope="col">INCISO</th>
+        <th scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap">
+      <td><input name="unidad" style="width: 35px;" type="text"></td>
+      <td><input name="operador" style="width: 60px;" type="text"></td>
+      <td><input name="modelo" style="width: 130px;" type="text"></td>
+      <td><input name="placa" style="width: 70px;" type="text"></td>
+      <td><input name="año" style="width: 80px;" type="text"></td>
+      <td><input name="verificacion" style="width: 75px;" type="text"></td>
+      <td><input name="poliza" style="width: 75px;" type="text"></td>
+      <td><input name="inciso" style="width: 95px;" type="text"></td>
+      <td><input name="contacto" type="text" style="width: 80px;"></td>
+      <td><input name="circuito" type="text"></td>
+      <td><input name="fecha" type="date"></td>
+      <td><input name="ubicacion" type="text"></td>
+      <td><input name="comentarios" type="text"></td>  
+      </tbody>
+        
+      </table>
+      </div>
+            `;
+        };
+  
+        tabUnit();
+      } else
       if (e.target.matches(".tablero")) {
        clearInterval(updateData);
        window.location.hash = "/"+ user+"/productivo";
@@ -2125,7 +2234,7 @@ export async function Router() {
           <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
           <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
           <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
-          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" disabled required></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
           <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
           <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
           <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour"  value="${item.citaprogramada}" disabled></td>
@@ -2210,136 +2319,115 @@ export async function Router() {
       }
 
     }else
-    if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-     // console.log(e.target);
+    if (e.target.matches(".remolque")) {
+      //  console.log(e.target);
 
-   
-     await ajax({
-       url: `${api.SUBITEMS}.json`,
-       method: "GET",
-       cbSuccess: (unit) => {
+      const tabConv = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Remolque`;
+      d.getElementById("exampleModalLabel").classList.add("convoy");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">CAJA</th>
+      <th scope="col">TIPO</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">MARCHAMO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="caja" style="width: 35px;" type="text"></td>
+    <td><input name="tipo" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
       
-        // console.log(e.target);
-        let unitArray = Object.entries(unit);
-        
+    </table>
+    </div>
+          `;
+      };      
 
-        unitArray.forEach(unit => {
-         if(e.target.id === unit[1].unidad){
-
-           d.getElementById("controlModal").style.height = "60vh";
-         d.querySelector(".control-modal-body").innerHTML = `
-       <div class="container-fluid"> 
-       <table class="table table-sm" >
-       <thead class="table-dark text-center">
-         <tr class="text-wrap">
-           <th scope="col">UNIDAD</th>
-           <th scope="col">OPERADOR</th>
-           <th scope="col">MODELO</th>
-           <th scope="col">PLACA</th>
-           <th scope="col">AÑO</th>
-           <th scope="col">VERIFICACION</th>
-           <th scope="col">NO. POLIZA</th>
-           <th scope="col">INCISO</th>
-           <th scope="col">CONTACTO DEL SEGURO</th> 
-         </tr>
-       </thead>
-       <tbody class="text-center" class="text-wrap">
-       <tr>
-       <td>${unit[1].unidad}</td>
-       <td>${unit[1].operador}</td>
-       <td>${unit[1].modelo}</td>
-       <td>${unit[1].placa}</td>
-       <td>${unit[1].año}</td>
-       <td>${unit[1].verificacion}</td>
-       <td>${unit[1].poliza}</td>
-       <td>${unit[1].inciso}</td>
-       <td>${unit[1].contacto}</td>     
-       </tr>   
-       </tbody>      
-     </table>
-
-     <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #b9e1ff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
-     </div>
-       `;
-
-      d.getElementById("controlV").dataset.unit = unit[0];
-
+      tabConv();
       
-
-         } 
-        });
-
-       },
-     });
-
-     await ajax({
-       url: `${api.SUBITEMS1}.json`,
-       method: "GET",
-       cbSuccess: (conv) => {
-       
-        let convArray = Object.entries(conv);
-        
-        convArray.forEach(conv => {
-       
-         if(e.target.dataset.conveyance === conv[1].caja){
-
-           d.getElementById("controlModal").style.height = "45vh";
-           d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
-           <div class="container-fluid"> 
-   
-              <table class="table table-sm" >
-              <thead class="table-dark text-center">
-                <tr class="text-wrap">
-                <th scope="col">CAJA</th>
-                <th scope="col">TIPO</th>
-                <th scope="col">MODELO</th>
-                <th scope="col">PLACA</th>
-                <th scope="col">AÑO</th>
-                <th scope="col">VERIFICACION</th>
-                <th scope="col">NO. POLIZA</th>
-                <th scope="col">INCISO</th>
-                <th scope="col">CONTACTO DEL SEGURO</th>
-                <th scope="col">CIRCUITO</th>
-                <th scope="col">FECHA</th>
-                <th scope="col">UBICACION</th> 
-                <th scope="col">ESTATUS</th>
-                </tr>
-              </thead>
-              <tbody class="text-center text-wrap" >
-       <td>${conv[1].caja}</td>
-       <td>${conv[1].tipo}</td>
-       <td>${conv[1].modelo}</td>
-       <td>${conv[1].placa}</td>
-       <td>${conv[1].año}</td>
-       <td>${conv[1].verificacion}</td>
-       <td>${conv[1].poliza}</td>
-       <td>${conv[1].inciso}</td>
-       <td>${conv[1].contacto}</td>
-       <td><input name="circuito" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
-       <td><input name="ruta" style="background: #b9e1ff; font-weight: bold; color: black;" type="text"  value="${conv[1].fecha}"></td>
-       <td><input name="ubicacion" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
-       <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #b9e1ff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
-       </tbody>      
-             </div>` 
-     
-         );
-
-         d.getElementById("controlV").dataset.conveyance = conv[0];
-           
-         }
-       
-       });
-
-     
-      
-         
-       }
-
-     });
- 
-
-
     }else
+    if (e.target.matches(".unidad")) {
+      const tabUnit = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Unidad`;
+      d.getElementById("exampleModalLabel").classList.add("unit");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">UNIDAD</th>
+      <th scope="col">OPERADOR</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="unidad" style="width: 35px;" type="text"></td>
+    <td><input name="operador" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
+      
+    </table>
+    </div>
+          `;
+      };
+
+      tabUnit();
+    } else
     if (e.target.matches(".tablero")) {
      clearInterval(updateData);
      window.location.hash = "/"+ user+"/productivo";
@@ -3260,15 +3348,15 @@ export async function Router() {
     </tr>
   </thead>
   <tbody class="text-center text-wrap" >
-  <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
-  <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
-  <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-  <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-  <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
-  <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
-  <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-  <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-  <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+  <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
   <td>
   <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
       <option value="${item.circuito}">${item.circuito}</option> 
@@ -3365,15 +3453,15 @@ export async function Router() {
     </tr>
   </thead>
   <tbody class="text-center text-wrap" >
-  <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
-  <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
-  <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-  <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-  <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
-  <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
-  <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-  <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-  <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+  <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
   <td>
   <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
   <option value="${item.circuito}">${item.circuito}</option> 
@@ -3550,7 +3638,7 @@ export async function Router() {
           <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
           <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
           <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
-          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" disabled required></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
           <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
           <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
           <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour"  value="${item.citaprogramada}" disabled></td>
@@ -3635,136 +3723,115 @@ export async function Router() {
       }
 
     }else
-    if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-     // console.log(e.target);
+    if (e.target.matches(".remolque")) {
+      //  console.log(e.target);
 
-   
-     await ajax({
-       url: `${api.SUBITEMS}.json`,
-       method: "GET",
-       cbSuccess: (unit) => {
+      const tabConv = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Remolque`;
+      d.getElementById("exampleModalLabel").classList.add("convoy");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">CAJA</th>
+      <th scope="col">TIPO</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">MARCHAMO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="caja" style="width: 35px;" type="text"></td>
+    <td><input name="tipo" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
       
-        // console.log(e.target);
-        let unitArray = Object.entries(unit);
-        
+    </table>
+    </div>
+          `;
+      };      
 
-        unitArray.forEach(unit => {
-         if(e.target.id === unit[1].unidad){
-
-           d.getElementById("controlModal").style.height = "60vh";
-         d.querySelector(".control-modal-body").innerHTML = `
-       <div class="container-fluid"> 
-       <table class="table table-sm" >
-       <thead class="table-dark text-center">
-         <tr class="text-wrap">
-           <th scope="col">UNIDAD</th>
-           <th scope="col">OPERADOR</th>
-           <th scope="col">MODELO</th>
-           <th scope="col">PLACA</th>
-           <th scope="col">AÑO</th>
-           <th scope="col">VERIFICACION</th>
-           <th scope="col">NO. POLIZA</th>
-           <th scope="col">INCISO</th>
-           <th scope="col">CONTACTO DEL SEGURO</th> 
-         </tr>
-       </thead>
-       <tbody class="text-center" class="text-wrap">
-       <tr>
-       <td>${unit[1].unidad}</td>
-       <td>${unit[1].operador}</td>
-       <td>${unit[1].modelo}</td>
-       <td>${unit[1].placa}</td>
-       <td>${unit[1].año}</td>
-       <td>${unit[1].verificacion}</td>
-       <td>${unit[1].poliza}</td>
-       <td>${unit[1].inciso}</td>
-       <td>${unit[1].contacto}</td>     
-       </tr>   
-       </tbody>      
-     </table>
-
-     <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #b9e1ff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
-     </div>
-       `;
-
-      d.getElementById("controlV").dataset.unit = unit[0];
-
+      tabConv();
       
-
-         } 
-        });
-
-       },
-     });
-
-     await ajax({
-       url: `${api.SUBITEMS1}.json`,
-       method: "GET",
-       cbSuccess: (conv) => {
-       
-        let convArray = Object.entries(conv);
-        
-        convArray.forEach(conv => {
-       
-         if(e.target.dataset.conveyance === conv[1].caja){
-
-           d.getElementById("controlModal").style.height = "45vh";
-           d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
-           <div class="container-fluid"> 
-   
-              <table class="table table-sm" >
-              <thead class="table-dark text-center">
-                <tr class="text-wrap">
-                <th scope="col">CAJA</th>
-                <th scope="col">TIPO</th>
-                <th scope="col">MODELO</th>
-                <th scope="col">PLACA</th>
-                <th scope="col">AÑO</th>
-                <th scope="col">VERIFICACION</th>
-                <th scope="col">NO. POLIZA</th>
-                <th scope="col">INCISO</th>
-                <th scope="col">CONTACTO DEL SEGURO</th>
-                <th scope="col">CIRCUITO</th>
-                <th scope="col">FECHA</th>
-                <th scope="col">UBICACION</th> 
-                <th scope="col">ESTATUS</th>
-                </tr>
-              </thead>
-              <tbody class="text-center text-wrap" >
-       <td>${conv[1].caja}</td>
-       <td>${conv[1].tipo}</td>
-       <td>${conv[1].modelo}</td>
-       <td>${conv[1].placa}</td>
-       <td>${conv[1].año}</td>
-       <td>${conv[1].verificacion}</td>
-       <td>${conv[1].poliza}</td>
-       <td>${conv[1].inciso}</td>
-       <td>${conv[1].contacto}</td>
-       <td><input name="circuito" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
-       <td><input name="ruta" style="background: #b9e1ff; font-weight: bold; color: black;" type="text"  value="${conv[1].fecha}"></td>
-       <td><input name="ubicacion" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
-       <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #b9e1ff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
-       </tbody>      
-             </div>` 
-     
-         );
-
-         d.getElementById("controlV").dataset.conveyance = conv[0];
-           
-         }
-       
-       });
-
-     
-      
-         
-       }
-
-     });
- 
-
-
     }else
+    if (e.target.matches(".unidad")) {
+      const tabUnit = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Unidad`;
+      d.getElementById("exampleModalLabel").classList.add("unit");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">UNIDAD</th>
+      <th scope="col">OPERADOR</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="unidad" style="width: 35px;" type="text"></td>
+    <td><input name="operador" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
+      
+    </table>
+    </div>
+          `;
+      };
+
+      tabUnit();
+    } else
     if (e.target.matches(".tablero")) {
      clearInterval(updateData);
      window.location.hash = "/"+ user+"/productivo";
@@ -4685,17 +4752,17 @@ export async function Router() {
       </tr>
     </thead>
     <tbody class="text-center text-wrap" >
-    <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
-    <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
-    <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-    <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-    <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
-    <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
-    <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-    <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-    <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+    <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="tipo" style="width: 120px;" type="text"   value="${item.tipo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="poliza" style="width: 100px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="inciso" style="width: 100px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
     <td>
-    <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
+    <select class="form-select form-select-sm" style="height: 24px; width: 150px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
         <option value="${item.circuito}">${item.circuito}</option> 
         <option value="FORDC - HILEX">FORDC - HILEX</option>  
         <option value="FORDC - WINDSOR QRO">FORDC - WINDSOR QRO</option>
@@ -4725,7 +4792,7 @@ export async function Router() {
         <option value="FCA - TENNECO">FCA - TENNECO</option>
         </select>
     </td>
-    <td><input name="fecha" style="width: 90px; background-color: #b9e1ff;" type="text"  value="${item.fecha}"></td>
+    <td><input name="fecha" style="width: 90px;" type="text"  value="${item.fecha}"></td>
     <td>
     <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="ubicacion" id="ubicacion">
         <option value="${item.ubicacion}">${item.ubicacion}</option> 
@@ -4790,15 +4857,15 @@ export async function Router() {
       </tr>
     </thead>
     <tbody class="text-center text-wrap" >
-    <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
-    <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
-    <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-    <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-    <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
-    <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
-    <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-    <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-    <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+    <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+    <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
     <td>
     <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
     <option value="${item.circuito}">${item.circuito}</option> 
@@ -4830,7 +4897,7 @@ export async function Router() {
     <option value="FCA - TENNECO">FCA - TENNECO</option>
     </select>
     </td>
-    <td><input name="fecha" style="width: 100px; background-color: #b9e1ff;" type="text"  value="${item.fecha}"></td>
+    <td><input name="fecha" style="width: 100px;" type="text"  value="${item.fecha}"></td>
     <td>
     <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="ubicacion" id="ubicacion">
         <option value="${item.ubicacion}">${item.ubicacion}</option> 
@@ -4848,7 +4915,7 @@ export async function Router() {
         <option value="EN TRANSITO">EN TRANSITO</option>
         </select>
     </td>
-    <td><input name="comentarios" style="width: 250px; background-color: #b9e1ff;" type="text""  value="${item.comentarios}"></td>  
+    <td><input name="comentarios" style="width: 250px;" type="text""  value="${item.comentarios}"></td>  
     </tbody>
     
   </table>
@@ -4975,7 +5042,7 @@ export async function Router() {
           <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
           <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
           <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
-          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" disabled required></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
           <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
           <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
           <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour"  value="${item.citaprogramada}" disabled></td>
@@ -5060,136 +5127,115 @@ export async function Router() {
         }
 
       }else
-      if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-       // console.log(e.target);
-
-     
-       await ajax({
-         url: `${api.SUBITEMS}.json`,
-         method: "GET",
-         cbSuccess: (unit) => {
+      if (e.target.matches(".remolque")) {
+        //  console.log(e.target);
+  
+        const tabConv = ()=> {
+          //MODAL
+        d.querySelector(".hidden").style.display = "block";
+        d.getElementById("formulario").classList.add("register");
+        d.getElementById("formulario").classList.remove("edit");
+        d.getElementById("exampleModalLabel").innerHTML = `Registrar Remolque`;
+        d.getElementById("exampleModalLabel").classList.add("convoy");
+        d.getElementById("exampleModalLabel").classList.remove("convoy");
+        d.querySelector(".modal-body").innerHTML = `
+            <div class="container-fluid"> 
+            <table class="table table-sm" >
+        <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">CAJA</th>
+        <th scope="col">TIPO</th>
+        <th scope="col">MODELO</th>
+        <th scope="col">PLACA</th>
+        <th scope="col">AÑO</th>
+         <th scope="col">VERIFICACION</th>
+         <th scope="col">NO. POLIZA</th>
+        <th scope="col">INCISO</th>
+        <th scope="col">MARCHAMO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap">
+      <td><input name="caja" style="width: 35px;" type="text"></td>
+      <td><input name="tipo" style="width: 60px;" type="text"></td>
+      <td><input name="modelo" style="width: 130px;" type="text"></td>
+      <td><input name="placa" style="width: 70px;" type="text"></td>
+      <td><input name="año" style="width: 80px;" type="text"></td>
+      <td><input name="verificacion" style="width: 75px;" type="text"></td>
+      <td><input name="poliza" style="width: 75px;" type="text"></td>
+      <td><input name="inciso" style="width: 95px;" type="text"></td>
+      <td><input name="contacto" type="text" style="width: 80px;"></td>
+      <td><input name="circuito" type="text"></td>
+      <td><input name="fecha" type="date"></td>
+      <td><input name="ubicacion" type="text"></td>
+      <td><input name="comentarios" type="text"></td>  
+      </tbody>
         
-          // console.log(e.target);
-          let unitArray = Object.entries(unit);
-          
-
-          unitArray.forEach(unit => {
-           if(e.target.id === unit[1].unidad){
-
-             d.getElementById("controlModal").style.height = "60vh";
-           d.querySelector(".control-modal-body").innerHTML = `
-         <div class="container-fluid"> 
-         <table class="table table-sm" >
-         <thead class="table-dark text-center">
-           <tr class="text-wrap">
-             <th scope="col">UNIDAD</th>
-             <th scope="col">OPERADOR</th>
-             <th scope="col">MODELO</th>
-             <th scope="col">PLACA</th>
-             <th scope="col">AÑO</th>
-             <th scope="col">VERIFICACION</th>
-             <th scope="col">NO. POLIZA</th>
-             <th scope="col">INCISO</th>
-             <th scope="col">CONTACTO DEL SEGURO</th> 
-           </tr>
-         </thead>
-         <tbody class="text-center" class="text-wrap">
-         <tr>
-         <td>${unit[1].unidad}</td>
-         <td>${unit[1].operador}</td>
-         <td>${unit[1].modelo}</td>
-         <td>${unit[1].placa}</td>
-         <td>${unit[1].año}</td>
-         <td>${unit[1].verificacion}</td>
-         <td>${unit[1].poliza}</td>
-         <td>${unit[1].inciso}</td>
-         <td>${unit[1].contacto}</td>     
-         </tr>   
-         </tbody>      
-       </table>
-
-       <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #b9e1ff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
-       </div>
-         `;
-
-        d.getElementById("controlV").dataset.unit = unit[0];
-
+      </table>
+      </div>
+            `;
+        };      
+  
+        tabConv();
         
-
-           } 
-          });
-
-         },
-       });
-
-       await ajax({
-         url: `${api.SUBITEMS1}.json`,
-         method: "GET",
-         cbSuccess: (conv) => {
-         
-          let convArray = Object.entries(conv);
-          
-          convArray.forEach(conv => {
-         
-           if(e.target.dataset.conveyance === conv[1].caja){
-
-             d.getElementById("controlModal").style.height = "45vh";
-             d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
-             <div class="container-fluid"> 
-     
-                <table class="table table-sm" >
-                <thead class="table-dark text-center">
-                  <tr class="text-wrap">
-                  <th scope="col">CAJA</th>
-                  <th scope="col">TIPO</th>
-                  <th scope="col">MODELO</th>
-                  <th scope="col">PLACA</th>
-                  <th scope="col">AÑO</th>
-                  <th scope="col">VERIFICACION</th>
-                  <th scope="col">NO. POLIZA</th>
-                  <th scope="col">INCISO</th>
-                  <th scope="col">CONTACTO DEL SEGURO</th>
-                  <th scope="col">CIRCUITO</th>
-                  <th scope="col">FECHA</th>
-                  <th scope="col">UBICACION</th> 
-                  <th scope="col">ESTATUS</th>
-                  </tr>
-                </thead>
-                <tbody class="text-center text-wrap" >
-         <td>${conv[1].caja}</td>
-         <td>${conv[1].tipo}</td>
-         <td>${conv[1].modelo}</td>
-         <td>${conv[1].placa}</td>
-         <td>${conv[1].año}</td>
-         <td>${conv[1].verificacion}</td>
-         <td>${conv[1].poliza}</td>
-         <td>${conv[1].inciso}</td>
-         <td>${conv[1].contacto}</td>
-         <td><input name="circuito" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
-         <td><input name="ruta" style="background: #b9e1ff; font-weight: bold; color: black;" type="text"  value="${conv[1].fecha}"></td>
-         <td><input name="ubicacion" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
-         <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #b9e1ff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
-         </tbody>      
-               </div>` 
-       
-           );
-
-           d.getElementById("controlV").dataset.conveyance = conv[0];
-             
-           }
-         
-         });
-
-       
-        
-           
-         }
-
-       });
-   
-
-
       }else
+      if (e.target.matches(".unidad")) {
+        const tabUnit = ()=> {
+          //MODAL
+        d.querySelector(".hidden").style.display = "block";
+        d.getElementById("formulario").classList.add("register");
+        d.getElementById("formulario").classList.remove("edit");
+        d.getElementById("exampleModalLabel").innerHTML = `Registrar Unidad`;
+        d.getElementById("exampleModalLabel").classList.add("unit");
+        d.getElementById("exampleModalLabel").classList.remove("convoy");
+        d.querySelector(".modal-body").innerHTML = `
+            <div class="container-fluid"> 
+            <table class="table table-sm" >
+        <thead class="table-dark text-center">
+        <tr class="text-wrap">
+        <th scope="col">UNIDAD</th>
+        <th scope="col">OPERADOR</th>
+        <th scope="col">MODELO</th>
+        <th scope="col">PLACA</th>
+        <th scope="col">AÑO</th>
+         <th scope="col">VERIFICACION</th>
+         <th scope="col">NO. POLIZA</th>
+        <th scope="col">INCISO</th>
+        <th scope="col">CONTACTO DEL SEGURO</th>
+        <th scope="col">CIRCUITO</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">UBICACION</th> 
+        <th scope="col">ESTATUS</th>
+    
+        </tr>
+      </thead>
+      <tbody class="text-center text-wrap">
+      <td><input name="unidad" style="width: 35px;" type="text"></td>
+      <td><input name="operador" style="width: 60px;" type="text"></td>
+      <td><input name="modelo" style="width: 130px;" type="text"></td>
+      <td><input name="placa" style="width: 70px;" type="text"></td>
+      <td><input name="año" style="width: 80px;" type="text"></td>
+      <td><input name="verificacion" style="width: 75px;" type="text"></td>
+      <td><input name="poliza" style="width: 75px;" type="text"></td>
+      <td><input name="inciso" style="width: 95px;" type="text"></td>
+      <td><input name="contacto" type="text" style="width: 80px;"></td>
+      <td><input name="circuito" type="text"></td>
+      <td><input name="fecha" type="date"></td>
+      <td><input name="ubicacion" type="text"></td>
+      <td><input name="comentarios" type="text"></td>  
+      </tbody>
+        
+      </table>
+      </div>
+            `;
+        };
+  
+        tabUnit();
+      } else
       if (e.target.matches(".tablero")) {
        clearInterval(updateData);
        window.location.hash = "/"+ user+"/productivo";
@@ -6110,15 +6156,15 @@ export async function Router() {
     </tr>
   </thead>
   <tbody class="text-center text-wrap" >
-  <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" disabled></td>
-  <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" disabled></td>
-  <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-  <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-  <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" disabled></td>
-  <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" disabled></td>
-  <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-  <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-  <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" disabled></td>
+  <td><input name="caja" style="width: 60px;" type="text" value="${item.caja}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="tipo" style="width: 60px;" type="text"   value="${item.tipo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="verificacion" style="width: 100px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+  <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
   <td>
   <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
       <option value="${item.circuito}">${item.circuito}</option> 
@@ -6150,7 +6196,7 @@ export async function Router() {
       <option value="FCA - TENNECO">FCA - TENNECO</option>
       </select>
   </td>
-  <td><input name="fecha" style="width: 90px; background-color: #b9e1ff;" type="text"  value="${item.fecha}"></td>
+  <td><input name="fecha" style="width: 90px;" type="text"  value="${item.fecha}"></td>
   <td>
   <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="ubicacion" id="ubicacion">
       <option value="${item.ubicacion}">${item.ubicacion}</option> 
@@ -6215,15 +6261,15 @@ export async function Router() {
         </tr>
       </thead>
       <tbody class="text-center text-wrap" >
-      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" disabled></td>
-      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" disabled></td>
-      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" disabled></td>
-      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" disabled></td>
-      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" disabled></td>
-      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" disabled></td>
-      <td><input name="poliza" style="width: 150px;" type="text"  value="${item.poliza}" disabled></td>
-      <td><input name="inciso" style="width: 45px;" type="text"  value="${item.inciso}" disabled></td>
-      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" disabled></td>
+      <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="operador" style="width: 150px;" type="text"   value="${item.operador}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="modelo" style="width: 100px;" type="text"  value="${item.modelo}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="placa" style="width: 70px;" type="text"  value="${item.placa}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="año" style="width: 50px;" type="text"  value="${item.año}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="poliza" style="width: 100px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="inciso" style="width: 100px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
       <td>
       <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
       <option value="${item.circuito}">${item.circuito}</option> 
@@ -6255,7 +6301,7 @@ export async function Router() {
       <option value="FCA - TENNECO">FCA - TENNECO</option>
       </select>
       </td>
-      <td><input name="fecha" style="width: 100px; background-color: #b9e1ff;" type="text"  value="${item.fecha}"></td>
+      <td><input name="fecha" style="width: 100px;" type="text"  value="${item.fecha}"></td>
       <td>
       <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="ubicacion" id="ubicacion">
           <option value="${item.ubicacion}">${item.ubicacion}</option> 
@@ -6273,7 +6319,7 @@ export async function Router() {
           <option value="EN TRANSITO">EN TRANSITO</option>
           </select>
       </td>
-      <td><input name="comentarios" style="width: 250px; background-color: #b9e1ff;" type="text""  value="${item.comentarios}"></td>  
+      <td><input name="comentarios" style="width: 250px;" type="text""  value="${item.comentarios}"></td>  
       </tbody>
       
     </table>
@@ -6399,7 +6445,7 @@ export async function Router() {
           <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
           <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
           <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
-          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" disabled required></td>
+          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
           <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
           <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
           <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour"  value="${item.citaprogramada}" disabled></td>
@@ -6483,137 +6529,116 @@ export async function Router() {
 
       }
 
+    } else
+    if (e.target.matches(".remolque")) {
+      //  console.log(e.target);
+
+      const tabConv = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Remolque`;
+      d.getElementById("exampleModalLabel").classList.add("convoy");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">CAJA</th>
+      <th scope="col">TIPO</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">MARCHAMO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="caja" style="width: 35px;" type="text"></td>
+    <td><input name="tipo" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
+      
+    </table>
+    </div>
+          `;
+      };      
+
+      tabConv();
+      
     }else
-    if (e.target.matches(".control") || e.target.matches(".fa-car")) {
-     // console.log(e.target);
-
-   
-     await ajax({
-       url: `${api.SUBITEMS}.json`,
-       method: "GET",
-       cbSuccess: (unit) => {
+    if (e.target.matches(".unidad")) {
+      const tabUnit = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Unidad`;
+      d.getElementById("exampleModalLabel").classList.add("unit");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">UNIDAD</th>
+      <th scope="col">OPERADOR</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">CONTACTO DEL SEGURO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="unidad" style="width: 35px;" type="text"></td>
+    <td><input name="operador" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
       
-        // console.log(e.target);
-        let unitArray = Object.entries(unit);
-        
+    </table>
+    </div>
+          `;
+      };
 
-        unitArray.forEach(unit => {
-         if(e.target.id === unit[1].unidad){
-
-           d.getElementById("controlModal").style.height = "60vh";
-         d.querySelector(".control-modal-body").innerHTML = `
-       <div class="container-fluid"> 
-       <table class="table table-sm" >
-       <thead class="table-dark text-center">
-         <tr class="text-wrap">
-           <th scope="col">UNIDAD</th>
-           <th scope="col">OPERADOR</th>
-           <th scope="col">MODELO</th>
-           <th scope="col">PLACA</th>
-           <th scope="col">AÑO</th>
-           <th scope="col">VERIFICACION</th>
-           <th scope="col">NO. POLIZA</th>
-           <th scope="col">INCISO</th>
-           <th scope="col">CONTACTO DEL SEGURO</th> 
-         </tr>
-       </thead>
-       <tbody class="text-center" class="text-wrap">
-       <tr>
-       <td>${unit[1].unidad}</td>
-       <td>${unit[1].operador}</td>
-       <td>${unit[1].modelo}</td>
-       <td>${unit[1].placa}</td>
-       <td>${unit[1].año}</td>
-       <td>${unit[1].verificacion}</td>
-       <td>${unit[1].poliza}</td>
-       <td>${unit[1].inciso}</td>
-       <td>${unit[1].contacto}</td>     
-       </tr>   
-       </tbody>      
-     </table>
-
-     <input name="textarea" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #b9e1ff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
-     </div>
-       `;
-
-      d.getElementById("controlV").dataset.unit = unit[0];
-
-      
-
-         } 
-        });
-
-       },
-     });
-
-     await ajax({
-       url: `${api.SUBITEMS1}.json`,
-       method: "GET",
-       cbSuccess: (conv) => {
-       
-        let convArray = Object.entries(conv);
-        
-        convArray.forEach(conv => {
-       
-         if(e.target.dataset.conveyance === conv[1].caja){
-
-           d.getElementById("controlModal").style.height = "45vh";
-           d.querySelector(".control-modal-body").insertAdjacentHTML("beforeend", `
-           <div class="container-fluid"> 
-   
-              <table class="table table-sm" >
-              <thead class="table-dark text-center">
-                <tr class="text-wrap">
-                <th scope="col">CAJA</th>
-                <th scope="col">TIPO</th>
-                <th scope="col">MODELO</th>
-                <th scope="col">PLACA</th>
-                <th scope="col">AÑO</th>
-                <th scope="col">VERIFICACION</th>
-                <th scope="col">NO. POLIZA</th>
-                <th scope="col">INCISO</th>
-                <th scope="col">CONTACTO DEL SEGURO</th>
-                <th scope="col">CIRCUITO</th>
-                <th scope="col">FECHA</th>
-                <th scope="col">UBICACION</th> 
-                <th scope="col">ESTATUS</th>
-                </tr>
-              </thead>
-              <tbody class="text-center text-wrap" >
-       <td>${conv[1].caja}</td>
-       <td>${conv[1].tipo}</td>
-       <td>${conv[1].modelo}</td>
-       <td>${conv[1].placa}</td>
-       <td>${conv[1].año}</td>
-       <td>${conv[1].verificacion}</td>
-       <td>${conv[1].poliza}</td>
-       <td>${conv[1].inciso}</td>
-       <td>${conv[1].contacto}</td>
-       <td><input name="circuito" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].circuito}"></td>
-       <td><input name="ruta" style="background: #b9e1ff; font-weight: bold; color: black;" type="text"  value="${conv[1].fecha}"></td>
-       <td><input name="ubicacion" style="background: #b9e1ff; font-weight: bold; color: black;"  type="text"  value="${conv[1].ubicacion}"></td>
-       <td><input name="comentarios" style="${conv[1].comentarios.match("DAÑ") || conv[1].comentarios.match("FALLA") || conv[1].comentarios.match("CRITIC") ? "width: 300px; background-color: #862828; color: white; font-weight: bold;" : "width: 300px; background: #b9e1ff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].comentarios}"></td>  
-       </tbody>      
-             </div>` 
-     
-         );
-
-         d.getElementById("controlV").dataset.conveyance = conv[0];
-           
-         }
-       
-       });
-
-     
-      
-         
-       }
-
-     });
- 
-
-
-    }else
+      tabUnit();
+    } else
     if (e.target.matches(".tablero")) {
      clearInterval(updateData);
      window.location.hash = "/"+ user+"/productivo";
@@ -6902,7 +6927,8 @@ export async function Router() {
           generar_xls('table_xls', 'Reporte');
           location.reload();
 
-    }
+    } else
+    
     return;
   });
 
