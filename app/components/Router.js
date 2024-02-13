@@ -8,8 +8,6 @@ import {
   remove,
   onChildAdded, onChildChanged, onChildRemoved
 } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
-import api from "../helpers/wp_api.js";
-import { ajax } from "../helpers/ajax.js";
 import { generar_xls } from "../helpers/generar_xls.js";
 import { renderTable } from "./renderTable.js";
 import { renderTableCV } from "./renderTableCV.js";

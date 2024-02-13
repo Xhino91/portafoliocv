@@ -19,14 +19,22 @@ import { Router } from "./components/Router.js";
 import { Login } from "./components/login.js";
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyBWjS2VrmW7eFUd34YL13VACi_6OX9Q7VI",
+
   authDomain: "ontime-2956b.firebaseapp.com",
+
   databaseURL: "https://ontime-2956b-default-rtdb.firebaseio.com",
+
   projectId: "ontime-2956b",
+
   storageBucket: "ontime-2956b.appspot.com",
+
   messagingSenderId: "7596898763",
-  appId: "1:7596898763:web:2e32c7bf836d72846c9e4e",
+
+  appId: "1:7596898763:web:2e32c7bf836d72846c9e4e"
+
 };
 
 const d = document;
@@ -35,7 +43,7 @@ export function App() {
   const app = initializeApp(firebaseConfig);
 
   const auth = getAuth();
-  signInWithEmailAndPassword(auth, "gary.max700@gmail.com", "Ontime2024%")
+  signInWithEmailAndPassword(auth, "proyectosintlogis@gmail.com", "Ontime2024%")
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
