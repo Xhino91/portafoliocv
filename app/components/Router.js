@@ -709,6 +709,7 @@ export async function Router() {
           e.dataset.unit.includes(query) ||
             e.dataset.box.includes(query) ||
             e.dataset.operador.includes(query) ||
+            e.dataset.cporte.includes(query) ||
             e.dataset.track.includes(query) ||
             e.dataset.ruta.includes(query) ||
             e.dataset.cliente.includes(query) ||
@@ -721,55 +722,7 @@ export async function Router() {
           e.classList.add("filter");
         }
                       });
-      }
-      else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
-       //   console.log(e.target);
-     let query = localStorage.getItem("apiSearch").toUpperCase();
-
-       //  console.log(query);
-
-     let item = d.querySelectorAll(".item");
-         item.forEach((e) => {
-       //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-       if (!query) {
-         e.classList.remove("filter");
-         return false;
-       } 
-       else if (e.dataset.conv.includes(query) ||
-       e.dataset.circuito.includes(query) ||
-       e.dataset.ubicacion.includes(query)
-       ) {
-         e.classList.remove("filter");
-       } 
-       else {
-         e.classList.add("filter");
-       }
-                     });
       } 
-      else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
-   // console.log(e.target);
-    let query = localStorage.getItem("apiSearch").toUpperCase();
-
-    //console.log(query);
-
-    let item = d.querySelectorAll(".item");
-        item.forEach((e) => {
-    //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-      if (!query) {
-        e.classList.remove("filter");
-        return false;
-      } 
-      else if (e.dataset.unit.includes(query) ||
-      e.dataset.circuito.includes(query) ||
-      e.dataset.ubicacion.includes(query)
-      ) {
-        e.classList.remove("filter");
-      } 
-      else {
-        e.classList.add("filter");
-      }
-                    });
-      }  
       else if (e.target.matches(".register")) {
          //Create Register
         
@@ -1488,6 +1441,7 @@ export async function Router() {
        e.dataset.unit.includes(query) ||
          e.dataset.box.includes(query) ||
          e.dataset.operador.includes(query) ||
+         e.dataset.cporte.includes(query) ||
          e.dataset.track.includes(query) ||
          e.dataset.ruta.includes(query) ||
          e.dataset.cliente.includes(query) ||
@@ -1500,54 +1454,6 @@ export async function Router() {
        e.classList.add("filter");
      }
                    });
-   }
-   else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
-    //   console.log(e.target);
-  let query = localStorage.getItem("apiSearch").toUpperCase();
-
-    //  console.log(query);
-
-  let item = d.querySelectorAll(".item");
-      item.forEach((e) => {
-    //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-    if (!query) {
-      e.classList.remove("filter");
-      return false;
-    } 
-    else if (e.dataset.conv.includes(query) ||
-    e.dataset.circuito.includes(query) ||
-    e.dataset.ubicacion.includes(query)
-    ) {
-      e.classList.remove("filter");
-    } 
-    else {
-      e.classList.add("filter");
-    }
-                  });
-   } 
-   else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
-// console.log(e.target);
- let query = localStorage.getItem("apiSearch").toUpperCase();
-
- //console.log(query);
-
- let item = d.querySelectorAll(".item");
-     item.forEach((e) => {
- //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-   if (!query) {
-     e.classList.remove("filter");
-     return false;
-   } 
-   else if (e.dataset.unit.includes(query) ||
-   e.dataset.circuito.includes(query) ||
-   e.dataset.ubicacion.includes(query)
-   ) {
-     e.classList.remove("filter");
-   } 
-   else {
-     e.classList.add("filter");
-   }
-                 });
    }  
    else if (e.target.matches(".register")) {
       //Create Register
@@ -2267,6 +2173,7 @@ if (element[1].match("BRP")) {
         e.dataset.unit.includes(query) ||
           e.dataset.box.includes(query) ||
           e.dataset.operador.includes(query) ||
+          e.dataset.cporte.includes(query) ||
           e.dataset.track.includes(query) ||
           e.dataset.ruta.includes(query) ||
           e.dataset.cliente.includes(query) ||
@@ -2280,54 +2187,6 @@ if (element[1].match("BRP")) {
       }
                     });
     }
-    else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
-     //   console.log(e.target);
-   let query = localStorage.getItem("apiSearch").toUpperCase();
-
-     //  console.log(query);
-
-   let item = d.querySelectorAll(".item");
-       item.forEach((e) => {
-     //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-     if (!query) {
-       e.classList.remove("filter");
-       return false;
-     } 
-     else if (e.dataset.conv.includes(query) ||
-     e.dataset.circuito.includes(query) ||
-     e.dataset.ubicacion.includes(query)
-     ) {
-       e.classList.remove("filter");
-     } 
-     else {
-       e.classList.add("filter");
-     }
-                   });
-    } 
-    else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
- // console.log(e.target);
-  let query = localStorage.getItem("apiSearch").toUpperCase();
-
-  //console.log(query);
-
-  let item = d.querySelectorAll(".item");
-      item.forEach((e) => {
-  //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-    if (!query) {
-      e.classList.remove("filter");
-      return false;
-    } 
-    else if (e.dataset.unit.includes(query) ||
-    e.dataset.circuito.includes(query) ||
-    e.dataset.ubicacion.includes(query)
-    ) {
-      e.classList.remove("filter");
-    } 
-    else {
-      e.classList.add("filter");
-    }
-                  });
-    }  
     else if (e.target.matches(".edit")) {
 
       if(localStorage.tabViajes === "true") {
@@ -2712,6 +2571,7 @@ if (element[1].match("BRP")) {
           <th scope="col">FECHA</th>
           <th scope="col">UBICACION</th> 
           <th scope="col">ESTATUS</th>
+          <th scope="col">REPORTE</th>
     
         </tr>
       </thead>
@@ -2768,7 +2628,7 @@ if (element[1].match("BRP")) {
           <option value="BP CLOSURES">BP CLOSURES</option>
           <option value="BP TRIM">BP TRIM</option>
           <option value="BP CLC">BP CLC</option>
-          <option value="FRAMING">FRAMING</option>
+          <option value="BP FRAMING">BP FRAMING</option>
           <option value="PATIO RAMOS">PATIO RAMOS</option>
           <option value="PATIO MEXICO">PATIO MEXICO</option>
           <option value="PATIO HERMSILLO">PATIO HERMSILLO</option>
@@ -2790,7 +2650,8 @@ if (element[1].match("BRP")) {
         <option value="MANTENIMIENTO">MANTENIMIENTO</option>
         <option value="DISPONIBLE">DISPONIBLE</option>
         </select>
-      </td>  
+      </td>
+      <td><input name="reporte" style="width: 200px;" type="text"  value="${item.reporte}"></td>  
       </tbody>
       
     </table>
@@ -2941,36 +2802,7 @@ if (element[1].match("BRP")) {
        e.preventDefault();
     // console.log(e.target);
      
-    if (e.target.matches(".search-form") && localStorage.tabViajes === "true") {
-      //console.log(e.target);
-      let query = localStorage.getItem("apiSearch").toUpperCase();
-
-     //console.log(query);
-
-      let item = d.querySelectorAll(".item");
-          item.forEach((e) => {
-        //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-        if (!query) {
-          e.classList.remove("filter");
-          return false;
-        } else if (
-          e.dataset.unit.includes(query) ||
-            e.dataset.box.includes(query) ||
-            e.dataset.operador.includes(query) ||
-            e.dataset.track.includes(query) ||
-            e.dataset.ruta.includes(query) ||
-            e.dataset.cliente.includes(query) ||
-            e.dataset.proveedor.includes(query) ||
-            e.dataset.citaprogramada.includes(query) ||
-            e.dataset.status.includes(query)
-        ) {
-          e.classList.remove("filter");
-        } else {
-          e.classList.add("filter");
-        }
-                      });
-      }
-      else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
+      if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
        //   console.log(e.target);
      let query = localStorage.getItem("apiSearch").toUpperCase();
 
@@ -2994,30 +2826,6 @@ if (element[1].match("BRP")) {
        }
                      });
       } 
-      else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
-   // console.log(e.target);
-    let query = localStorage.getItem("apiSearch").toUpperCase();
-
-    //console.log(query);
-
-    let item = d.querySelectorAll(".item");
-        item.forEach((e) => {
-    //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-      if (!query) {
-        e.classList.remove("filter");
-        return false;
-      } 
-      else if (e.dataset.unit.includes(query) ||
-      e.dataset.circuito.includes(query) ||
-      e.dataset.ubicacion.includes(query)
-      ) {
-        e.classList.remove("filter");
-      } 
-      else {
-        e.classList.add("filter");
-      }
-                    });
-      }  
       else if (e.target.matches(".edit")) {
 
         if(localStorage.tabConveyance === "true" && localStorage.tabUnit == "false"){
@@ -3036,7 +2844,8 @@ if (element[1].match("BRP")) {
               fecha: e.target.fecha.value.toUpperCase(),
               ubicacion: e.target.ubicacion.value.toUpperCase(),
               verificacion: e.target.verificacion.value.toUpperCase(),
-              comentarios: e.target.comentarios.value.toUpperCase()
+              comentarios: e.target.comentarios.value.toUpperCase(),
+              reporte: e.target.reporte.value.toUpperCase()
             }, keyValue = d.getElementById("bt-save").dataset.value;
 
             update(ref(db), {["/subitem1/" + keyValue]: body,
@@ -3440,7 +3249,7 @@ if (element[1].match("BRP")) {
           <option value="BP CLOSURES">BP CLOSURES</option>
           <option value="BP TRIM">BP TRIM</option>
           <option value="BP CLC">BP CLC</option>
-          <option value="FRAMING">FRAMING</option>
+          <option value="BP FRAMING">BP FRAMING</option>
           <option value="PATIO RAMOS">PATIO RAMOS</option>
           <option value="PATIO MEXICO">PATIO MEXICO</option>
           <option value="PATIO HERMSILLO">PATIO HERMSILLO</option>
@@ -3601,60 +3410,7 @@ if (element[1].match("BRP")) {
      e.preventDefault();
   // console.log(e.target);
    
-  if (e.target.matches(".search-form") && localStorage.tabViajes === "true") {
-    //console.log(e.target);
-    let query = localStorage.getItem("apiSearch").toUpperCase();
-
-   //console.log(query);
-
-    let item = d.querySelectorAll(".item");
-        item.forEach((e) => {
-      //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-      if (!query) {
-        e.classList.remove("filter");
-        return false;
-      } else if (
-        e.dataset.unit.includes(query) ||
-          e.dataset.box.includes(query) ||
-          e.dataset.operador.includes(query) ||
-          e.dataset.track.includes(query) ||
-          e.dataset.ruta.includes(query) ||
-          e.dataset.cliente.includes(query) ||
-          e.dataset.proveedor.includes(query) ||
-          e.dataset.citaprogramada.includes(query) ||
-          e.dataset.status.includes(query)
-      ) {
-        e.classList.remove("filter");
-      } else {
-        e.classList.add("filter");
-      }
-                    });
-    }
-    else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
-     //   console.log(e.target);
-   let query = localStorage.getItem("apiSearch").toUpperCase();
-
-     //  console.log(query);
-
-   let item = d.querySelectorAll(".item");
-       item.forEach((e) => {
-     //  console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
-     if (!query) {
-       e.classList.remove("filter");
-       return false;
-     } 
-     else if (e.dataset.conv.includes(query) ||
-     e.dataset.circuito.includes(query) ||
-     e.dataset.ubicacion.includes(query)
-     ) {
-       e.classList.remove("filter");
-     } 
-     else {
-       e.classList.add("filter");
-     }
-                   });
-    } 
-    else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
+  if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
  // console.log(e.target);
   let query = localStorage.getItem("apiSearch").toUpperCase();
 

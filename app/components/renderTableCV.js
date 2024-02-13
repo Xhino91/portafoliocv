@@ -52,6 +52,7 @@ export function renderTableCV(items){
       <th scope="col">DIAS DETENIDO</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
+      <th scope="col">REPORTE</th>
       <th scope="col" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>             
       </tr>
     </thead>

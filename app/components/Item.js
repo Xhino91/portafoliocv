@@ -124,7 +124,7 @@ const alertColor = (item) => {
       let user = localStorage.username;
       //console.log(item);
       return `
-      <tr id="${itemId}" class="item ${travelStatus(item)} pending text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
+      <tr id="${itemId}" class="item ${travelStatus(item)} pending text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
           <td class="${item.unidad  ? "table-active1" : ""}" >${item.unidad}</td>
           <td class="${item.caja  ? "table-active1" : ""}">${item.caja}</td>
           <td class="${item.operador ? "table-active1" : ""}">${item.operador}</td>
@@ -156,7 +156,7 @@ const alertColor = (item) => {
    if(item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("PLANTA") || item.status.match("DETENIDO") || item.status.match("CARGA") || item.status.match("ESPERA") || item.status.match("DESCARGANDO")) {
       let user = localStorage.username;
 return `
-<tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
+<tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
     <td class="Unit">${item.unidad}</td>
     <td>${item.caja}</td>
     <td>${item.operador}</td>
