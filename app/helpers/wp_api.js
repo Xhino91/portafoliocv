@@ -1,7 +1,7 @@
 
- //https://developer.wordpress.org/rest-api/
+ //https://developer.wordpress.org/rest-api/ https://ontime-2956b-default-rtdb.firebaseio.com/
 
- const API_WP = `https://ontime-2956b-default-rtdb.firebaseio.com/`,
+ const API_WP = ``,
  USERS = `${API_WP}/users.json`,
  ITEMS = `${API_WP}/items`,
  SUBITEMS = `${API_WP}/subitem`,

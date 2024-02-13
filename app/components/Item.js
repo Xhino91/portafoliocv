@@ -69,7 +69,7 @@ const alertColor = (item) => {
       if(item.cliente.includes("FORD C")){
          if(item.status.includes("COMPLET")){         return "display: none"
       } else {
-         return 
+         return "";
       }
       } else {
          return "display: none"

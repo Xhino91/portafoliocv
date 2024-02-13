@@ -1,12 +1,16 @@
 import { App } from "./App.js";
+//import { firebaseData } from "./helpers/firebase.js";
+
+
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('../sw.js')
-  .then(reg=>console.log("Reg exitoso", reg))
-  .catch(err=>console.log("Error SW", err))
+  .then(reg=>reg)
+  .catch(err=>err)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+ // firebaseData();
   App();
 });
 

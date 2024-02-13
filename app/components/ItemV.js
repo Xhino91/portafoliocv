@@ -1,5 +1,5 @@
 export function ItemV(conv) {
-
+   //console.log(conv);
    
   const alertStatus = (comit) => {
 
@@ -68,7 +68,7 @@ export function ItemV(conv) {
 
 
 return  `
-<tr class="item text-center align-middle" data-run="${orderRun(conv[1])}" data-conv="${conv[1].caja}" data-circuito="${conv[1].circuito}" data-ubicacion="${conv[1].ubicacion}">
+<tr id="${conv[0]}" class="item text-center align-middle" data-run="${orderRun(conv[1])}" data-conv="${conv[1].caja}" data-circuito="${conv[1].circuito}" data-ubicacion="${conv[1].ubicacion}">
 
 
 <td style="font-weight: bold;">${conv[1].caja}</td>
@@ -84,9 +84,9 @@ return  `
 <td>${conv[1].fecha}</td>
 <td style="${orderUbi(conv[1])}" >${conv[1].ubicacion}</td> 
 <td style="${alertStatus(conv[1])}" >${conv[1].comentarios}</td> 
-<td  style="${localStorage.username === "Public"  ? "display: none;" : ""}">
+<td class="btn-hid" style="${localStorage.username === "Public"  ? "display: none;" : ""}">
        <button id="${conv[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${conv[0]}"></i></button>
-       <button id="${conv[0]}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${conv[0]}"></i></button>
+       <button id="${conv[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${conv[0]}"></i></button>
 </td>    
 </tr>
 `;

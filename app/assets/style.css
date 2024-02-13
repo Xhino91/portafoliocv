@@ -89,7 +89,7 @@ thead tr th {
 }
 
 .active-pending {
-  background-color: rgb(245, 223, 124);
+  background-color: #f5df7c;
 }
 
 .active-complete {
@@ -97,7 +97,7 @@ thead tr th {
 }
 
 .active-select {
-  background-color: rgba(25, 104, 182, 0.667);
+  background-color: #1968b6aa;
 }
 
 .active-error {
@@ -108,6 +108,24 @@ thead tr th {
 .btn, .font{
   font-size: 12px;
 }
+
+/*Animacion TR-Fila actualizada*/
+@keyframes parpadeo {
+  0% {
+    background-color: #1968b6b4; /* Color inicial */
+  }
+  50% {
+    background-color: #0e345a9c; /* Color intermedio */
+  }
+  100% {
+    background-color: #1968b6b4; /* Color final */
+  }
+}
+
+.parpadeo {
+  animation: parpadeo 1s ease infinite !important; /* Duración, tipo de interpolación y repetición */
+}
+
 
 
 /* style="color: var(--bs-btn-hover-color); background-color: #174993; border-color: var(--bs-btn-hover-border-color);" */

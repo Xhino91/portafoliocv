@@ -69,7 +69,7 @@ export function ItemUnit(unit) {
 
 
 return  `
-<tr class="item text-center align-middle" data-run="${orderRun(unit[1])}" data-unit="${unit[1].unidad}" data-circuito="${unit[1].circuito}" data-ubicacion="${unit[1].ubicacion}">
+<tr id="${unit[0]}" class="item text-center align-middle" data-run="${orderRun(unit[1])}" data-unit="${unit[1].unidad}" data-circuito="${unit[1].circuito}" data-ubicacion="${unit[1].ubicacion}">
 
 
 <td style="font-weight: bold;">${unit[1].unidad}</td>
@@ -85,9 +85,9 @@ return  `
 <td>${unit[1].fecha}</td>
 <td style="${orderUbi(unit[1])}" >${unit[1].ubicacion}</td> 
 <td style="${alertStatus(unit[1])}" >${unit[1].comentarios}</td> 
-<td  style="${localStorage.username === "Public" ? "display: none;" : ""}">
+<td class="btn-hid" style="${localStorage.username === "Public" ? "display: none;" : ""}">
 <button id="${unit[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${unit[0]}"></i></button>
-<button id="${unit[0]}" type="button" class="btn btn-sm btn-danger delete" style="${window.location.hash === "#/CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${unit[0]}"></i></button>  
+<button id="${unit[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${unit[0]}"></i></button>  
 </td>
 
 </tr>

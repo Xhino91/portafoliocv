@@ -40,7 +40,7 @@ export function Main() {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button id="bt-save" data-value="" type="submit" class="btn btn-primary hidden">Guardar cambios</button>
+        <button id="bt-save" data-value="" type="submit" class="btn btn-primary hidden" data-bs-dismiss="modal">Guardar cambios</button>
         <input type="hidden" name="id">
                </div>
              </div>
@@ -91,7 +91,7 @@ export function Main() {
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-      <button type="subtmit" id="controlV" data-unit="" data-conveyance="" class="btn btn-primary">Guardar cambios</button>
+      <button type="subtmit" id="controlV" data-unit="" data-conveyance="" class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
     
              </div>
            </div>
