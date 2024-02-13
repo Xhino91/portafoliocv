@@ -4,7 +4,7 @@ export function ItemUnit(unit) {
   const alertStatus = (comit) => {
 
 
-   if( comit.comentarios.match("MANTE") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("TIRADO") || comit.comentarios.match("CORRA")){
+   if( comit.comentarios.match("MANTE") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("CORRA")){
       return `
           background: #862828;
           color: white;
@@ -14,19 +14,16 @@ export function ItemUnit(unit) {
    }
    else {
       if( comit.comentarios.match("DISPONIBLE")){
-    return  `
-      background-color: #017d1a;
-      color: white;
-      font-weight: bold;
-      `;
-      }
-      else {
          return  `
-      background-color: #004c86;
-      color: white;
-      font-weight: bold;
-      `;
-      }
+           background-color: #017d1a;
+           color: white;
+           font-weight: bold;
+           `;
+           }
+           else {
+              return  `
+           `;
+           }
    }
   }
 
@@ -41,27 +38,35 @@ export function ItemUnit(unit) {
   }
 
   const orderUbi = (ubi) => { 
-   if(ubi.ubicacion.match("TRANSITO") || ubi.ubicacion.match("PROVEEDOR") || ubi.ubicacion.match("PLANTA")){
+   if(ubi.ubicacion.match("TALLER")){
       return `
-      background-color: #004c86;
+      background-color: #862828;
+      color: white;
+      font-weight: bold;
+      `;
+   }
+   if(ubi.ubicacion.match("TRANSITO")){
+      return `
+      background-color: #05888e;
       color: white;
       font-weight: bold;
       `;
    }
    if(ubi.ubicacion.match("PATIO")){
       return `
-      background-color: #845a35;
+      background-color: #684400;
       color: white;
+      
       `;
    }
-   if(ubi.ubicacion.match("BP") || ubi.ubicacion.match("FCA" || ubi.ubicacion.match("CSAP"))){
+   if(ubi.ubicacion.match("BP") || ubi.ubicacion.match("FCA")){
       return `
-      background-color: #6a6a6a;
+      background-color: #59105b;
       color: white;
       `;
    }
    else {
-      return
+      return ""
    }
   }
 

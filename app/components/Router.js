@@ -3242,6 +3242,8 @@ if (element[1].match("BRP")) {
       <td>
       <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="ubicacion" id="ubicacion">
           <option value="${item.ubicacion}">${item.ubicacion}</option> 
+          <option value="TALLER MX">TALLER MX</option>
+          <option value="TALLER EXTERNO">TALLER EXTERNO</option>
           <option value="BP NORTE">BP NORTE</option>  
           <option value="BP SUR">BP SUR</option>
           <option value="BP CLOSURES">BP CLOSURES</option>
