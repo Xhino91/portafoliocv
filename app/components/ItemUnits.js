@@ -80,7 +80,7 @@ return  `
 <td class="verificacion" >${unit[1].verificacion}</td>
 <td class="poliza" >${unit[1].poliza}</td>
 <td class="inciso">${unit[1].inciso}</td>
-<td class="contacto">${unit[1].contacto}</td>
+<td class="contacto">${parseInt(unit[1].contacto, 10).toLocaleString()}</td>
 <td>${unit[1].circuito}</td>
 <td>${unit[1].fecha}</td>
 <td style="${orderUbi(unit[1])}" >${unit[1].ubicacion}</td> 
