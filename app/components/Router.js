@@ -936,104 +936,163 @@ export async function Router() {
    if(e.target.matches(".importXlsx")){
 
 
-     dbXlsx.forEach((item)=>{
-       // console.log(item);
-     let hora = item[3].slice(11, 17),
-         arrF = item[3].slice(1,-6).split("/"),
-          concatF ="";
-          item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
-      });
+    dbXlsx.forEach((item)=>{
+      // console.log(item);
+        let hora = item[3].slice(11, 17),
+        arrF = item[3].slice(1,-6).split("/"),
+         concatF ="";
+         item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
+     });
 
-      
-           // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
-       dbXlsx.forEach(async (element) => {
-          //  console.log(element[1]);
-
-   if (element[1].match("24") || element[1].match("HS")) {
-       //console.log(element[1]);
-      
-       let options = {
-         method: "POST",
-         headers: {
-           "Content-type": "application/json; charset=utf-8",
-         },
-         body: JSON.stringify({
-           unidad: "",
-           caja: "",
-           cporte: "",
-           tracking: `${element[0]}`,
-           bol: "",
-           ruta: `${element[1]}`,
-           operador: "",
-           cliente: "FORD HERMOSILLO",
-           proveedor: `${element[2]}`,
-           citaprogramada: `${element[3]}`,
-           llegadareal: "01/01/0001 00:00",
-           salidareal: "01/01/0001 00:00",
-           eta: "01/01/0001 00:00",
-           llegadadestino: "01/01/0001 00:00",
-           salidadestino: "01/01/0001 00:00",
-           llegada: "EN TIEMPO",
-           status: "PENDIENTE",
-           comentarios: "SIN COMENTARIOS"
-         }),
-       };
-       await ajax({
-         url: `${api.ITEMS}.json`,
-         options,
-         cbSuccess: (res) => {
-           json = res.json();
-         },
-       });
-           
-
-   } else 
-   if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
      
-       //console.log(element[1]);
+          // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
+ dbXlsx.forEach(async (element) => {
+         //  console.log(element[1]);
 
-       let options = {
-         method: "POST",
-         headers: {
-           "Content-type": "application/json; charset=utf-8",
-         },
-         body: JSON.stringify({
-           unidad: "",
-           caja: "",
-           cporte: "",
-           tracking: `${element[0]}`,
-           bol: "",
-           ruta: `${element[1]}`,
-           operador: "",
-           cliente: "FORD CUAUTITLAN",
-           proveedor: `${element[2]}`,
-           citaprogramada: `${element[3]}`,
-           llegadareal: "01/01/0001 00:00",
-           salidareal: "01/01/0001 00:00",
-           eta: "01/01/0001 00:00",
-           llegadadestino: "01/01/0001 00:00",
-           salidadestino: "01/01/0001 00:00",
-           llegada: "EN TIEMPO",
-           status: "PENDIENTE",
-           comentarios: "SIN COMENTARIOS"
-         }),
-       };
-       await ajax({
-         url: `${api.ITEMS}.json`,
-         options,
-         cbSuccess: (res) => {
-           json = res.json();
-         }
-       });
-           
-   }
-     setTimeout(() => {
-       location.reload();
-     }, 3000);
+  if (element[1].match("24") || element[1].match("HS")) {
+      //console.log(element[1]);
+     
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "FORD HERMOSILLO",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"  
+      };
+      push(ref(db, "items"), body);
+     
+     /* await ajax({
+        url: `${api.ITEMS}.json`,
+        options,
+        cbSuccess: (res) => {
+          json = res.json();
+        },
+      });
+          */
 
-        });
-        
-    }else
+  } else 
+  if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "FORD CUAUTITLAN",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };
+      push(ref(db, "items"), body);
+          
+  }  else 
+  if (element[1].match("GMMEX")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "GM",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };     
+      push(ref(db, "items"), body); 
+          
+  } else 
+  if (element[2].match("MEX3")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "AMAZON",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };
+      push(ref(db, "items"), body);             
+  }  else 
+  if (element[1].match("BRP")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "BRP",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };
+      push(ref(db, "items"), body);         
+  }
+  });
+       
+   }else
       //GENERAR REPORTE XLS 
       if (e.target.matches(".modal_xls")){
         if(localStorage.tabViajes === "true"){
@@ -1654,12 +1713,12 @@ export async function Router() {
 //LEER CSV / XLS
 let date = new Date;
 
-    if(e.target.matches(".importXlsx")){
+if(e.target.matches(".importXlsx")){
 
 
   dbXlsx.forEach((item)=>{
     // console.log(item);
-  let hora = item[3].slice(11, 17),
+      let hora = item[3].slice(11, 17),
       arrF = item[3].slice(1,-6).split("/"),
        concatF ="";
        item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
@@ -1667,18 +1726,13 @@ let date = new Date;
 
    
         // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
-    dbXlsx.forEach(async (element) => {
+dbXlsx.forEach(async (element) => {
        //  console.log(element[1]);
 
 if (element[1].match("24") || element[1].match("HS")) {
     //console.log(element[1]);
    
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify({
+    let body = {
         unidad: "",
         caja: "",
         cporte: "",
@@ -1694,31 +1748,27 @@ if (element[1].match("24") || element[1].match("HS")) {
         eta: "01/01/0001 00:00",
         llegadadestino: "01/01/0001 00:00",
         salidadestino: "01/01/0001 00:00",
-        llegada: "EN TIEMPO",
+        llegada: "A TIEMPO",
         status: "PENDIENTE",
-        comentarios: "SIN COMENTARIOS"
-      }),
+        comentarios: "SIN COMENTARIOS"  
     };
-    await ajax({
+    push(ref(db, "items"), body);
+   
+   /* await ajax({
       url: `${api.ITEMS}.json`,
       options,
       cbSuccess: (res) => {
         json = res.json();
       },
     });
-        
+        */
 
 } else 
 if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
   
     //console.log(element[1]);
 
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify({
+    let body = {
         unidad: "",
         caja: "",
         cporte: "",
@@ -1734,27 +1784,95 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
         eta: "01/01/0001 00:00",
         llegadadestino: "01/01/0001 00:00",
         salidadestino: "01/01/0001 00:00",
-        llegada: "EN TIEMPO",
+        llegada: "A TIEMPO",
         status: "PENDIENTE",
         comentarios: "SIN COMENTARIOS"
-      }),
     };
-    await ajax({
-      url: `${api.ITEMS}.json`,
-      options,
-      cbSuccess: (res) => {
-        json = res.json();
-      }
-    });
+    push(ref(db, "items"), body);
         
-}
-  setTimeout(() => {
-    location.reload();
-  }, 3000);
+}  else 
+if (element[1].match("GMMEX")) {
+  
+    //console.log(element[1]);
 
-     });
+    let body = {
+        unidad: "",
+        caja: "",
+        cporte: "",
+        tracking: `${element[0]}`,
+        bol: "",
+        ruta: `${element[1]}`,
+        operador: "",
+        cliente: "GM",
+        proveedor: `${element[2]}`,
+        citaprogramada: `${element[3]}`,
+        llegadareal: "01/01/0001 00:00",
+        salidareal: "01/01/0001 00:00",
+        eta: "01/01/0001 00:00",
+        llegadadestino: "01/01/0001 00:00",
+        salidadestino: "01/01/0001 00:00",
+        llegada: "A TIEMPO",
+        status: "PENDIENTE",
+        comentarios: "SIN COMENTARIOS"
+    };     
+    push(ref(db, "items"), body); 
+        
+} else 
+if (element[2].match("MEX3")) {
+  
+    //console.log(element[1]);
+
+    let body = {
+        unidad: "",
+        caja: "",
+        cporte: "",
+        tracking: `${element[0]}`,
+        bol: "",
+        ruta: `${element[1]}`,
+        operador: "",
+        cliente: "AMAZON",
+        proveedor: `${element[2]}`,
+        citaprogramada: `${element[3]}`,
+        llegadareal: "01/01/0001 00:00",
+        salidareal: "01/01/0001 00:00",
+        eta: "01/01/0001 00:00",
+        llegadadestino: "01/01/0001 00:00",
+        salidadestino: "01/01/0001 00:00",
+        llegada: "A TIEMPO",
+        status: "PENDIENTE",
+        comentarios: "SIN COMENTARIOS"
+    };
+    push(ref(db, "items"), body);             
+}  else 
+if (element[1].match("BRP")) {
+  
+    //console.log(element[1]);
+
+    let body = {
+        unidad: "",
+        caja: "",
+        cporte: "",
+        tracking: `${element[0]}`,
+        bol: "",
+        ruta: `${element[1]}`,
+        operador: "",
+        cliente: "BRP",
+        proveedor: `${element[2]}`,
+        citaprogramada: `${element[3]}`,
+        llegadareal: "01/01/0001 00:00",
+        salidareal: "01/01/0001 00:00",
+        eta: "01/01/0001 00:00",
+        llegadadestino: "01/01/0001 00:00",
+        salidadestino: "01/01/0001 00:00",
+        llegada: "A TIEMPO",
+        status: "PENDIENTE",
+        comentarios: "SIN COMENTARIOS"
+    };
+    push(ref(db, "items"), body);         
+}
+});
      
-    }else
+ }else
    //GENERAR REPORTE XLS 
    if (e.target.matches(".modal_xls")){
      if(localStorage.tabViajes === "true"){
@@ -2328,104 +2446,163 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
      if(e.target.matches(".importXlsx")){
 
 
-       dbXlsx.forEach((item)=>{
-         // console.log(item);
-       let hora = item[3].slice(11, 17),
-           arrF = item[3].slice(1,-6).split("/"),
-            concatF ="";
-            item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
-        });
+      dbXlsx.forEach((item)=>{
+        // console.log(item);
+          let hora = item[3].slice(11, 17),
+          arrF = item[3].slice(1,-6).split("/"),
+           concatF ="";
+           item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
+       });
 
-        
-             // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
-         dbXlsx.forEach(async (element) => {
-            //  console.log(element[1]);
-
-     if (element[1].match("24") || element[1].match("HS")) {
-         //console.log(element[1]);
-        
-         let options = {
-           method: "POST",
-           headers: {
-             "Content-type": "application/json; charset=utf-8",
-           },
-           body: JSON.stringify({
-             unidad: "",
-             caja: "",
-             cporte: "",
-             tracking: `${element[0]}`,
-             bol: "",
-             ruta: `${element[1]}`,
-             operador: "",
-             cliente: "FORD HERMOSILLO",
-             proveedor: `${element[2]}`,
-             citaprogramada: `${element[3]}`,
-             llegadareal: "01/01/0001 00:00",
-             salidareal: "01/01/0001 00:00",
-             eta: "01/01/0001 00:00",
-             llegadadestino: "01/01/0001 00:00",
-             salidadestino: "01/01/0001 00:00",
-             llegada: "EN TIEMPO",
-             status: "PENDIENTE",
-             comentarios: "SIN COMENTARIOS"
-           }),
-         };
-         await ajax({
-           url: `${api.ITEMS}.json`,
-           options,
-           cbSuccess: (res) => {
-             json = res.json();
-           },
-         });
-             
-
-     } else 
-     if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
        
-         //console.log(element[1]);
+            // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
+   dbXlsx.forEach(async (element) => {
+           //  console.log(element[1]);
 
-         let options = {
-           method: "POST",
-           headers: {
-             "Content-type": "application/json; charset=utf-8",
-           },
-           body: JSON.stringify({
-             unidad: "",
-             caja: "",
-             cporte: "",
-             tracking: `${element[0]}`,
-             bol: "",
-             ruta: `${element[1]}`,
-             operador: "",
-             cliente: "FORD CUAUTITLAN",
-             proveedor: `${element[2]}`,
-             citaprogramada: `${element[3]}`,
-             llegadareal: "01/01/0001 00:00",
-             salidareal: "01/01/0001 00:00",
-             eta: "01/01/0001 00:00",
-             llegadadestino: "01/01/0001 00:00",
-             salidadestino: "01/01/0001 00:00",
-             llegada: "EN TIEMPO",
-             status: "PENDIENTE",
-             comentarios: "SIN COMENTARIOS"
-           }),
-         };
-         await ajax({
-           url: `${api.ITEMS}.json`,
-           options,
-           cbSuccess: (res) => {
-             json = res.json();
-           }
-         });
-             
-     }
-       setTimeout(() => {
-         location.reload();
-       }, 3000);
- 
-          });
-          
-      }else
+    if (element[1].match("24") || element[1].match("HS")) {
+        //console.log(element[1]);
+       
+        let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "FORD HERMOSILLO",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "SIN COMENTARIOS"  
+        };
+        push(ref(db, "items"), body);
+       
+       /* await ajax({
+          url: `${api.ITEMS}.json`,
+          options,
+          cbSuccess: (res) => {
+            json = res.json();
+          },
+        });
+            */
+
+    } else 
+    if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
+      
+        //console.log(element[1]);
+
+        let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "FORD CUAUTITLAN",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "SIN COMENTARIOS"
+        };
+        push(ref(db, "items"), body);
+            
+    }  else 
+    if (element[1].match("GMMEX")) {
+      
+        //console.log(element[1]);
+
+        let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "GM",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "SIN COMENTARIOS"
+        };     
+        push(ref(db, "items"), body); 
+            
+    } else 
+    if (element[2].match("MEX3")) {
+      
+        //console.log(element[1]);
+
+        let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "AMAZON",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "SIN COMENTARIOS"
+        };
+        push(ref(db, "items"), body);             
+    }  else 
+    if (element[1].match("BRP")) {
+      
+        //console.log(element[1]);
+
+        let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "BRP",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "SIN COMENTARIOS"
+        };
+        push(ref(db, "items"), body);         
+    }
+    });
+         
+     }else
       //GENERAR REPORTE XLS 
       if (e.target.matches(".modal_xls")){
        if(localStorage.tabConveyance === "true"){
@@ -2450,6 +2627,7 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
         <th scope="col">MARCHAMO</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
+        <th scope="col">DIAS DETENIDO</th>
         <th scope="col">UBICACION</th> 
         <th scope="col">ESTATUS</th>  
         </tr>
@@ -2549,7 +2727,7 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
       <td><input name="contacto" type="text" style="width: 150px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
       <td>
       <select class="form-select form-select-sm" style="height: 24px; width: 150px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
-          <option value="${item.circuito}">${item.circuito}</option> 
+          <option value="${item.circuito}">${item.circuito}</option>
           <option value="FUERA DE CIRCUITO">FUERA DE CIRCUITO</option>
           <option value="FORDC - HILEX">FORDC - HILEX</option>  
           <option value="FORDC - WINDSOR QRO">FORDC - WINDSOR QRO</option>
@@ -2583,6 +2761,7 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
       <td>
       <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="ubicacion" id="ubicacion">
           <option value="${item.ubicacion}">${item.ubicacion}</option> 
+          <option value=""></option>
           <option value="TALLER EXTERNO">TALLER EXTERNO</option>
           <option value="BP NORTE">BP NORTE</option>  
           <option value="BP SUR">BP SUR</option>
@@ -2591,9 +2770,9 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
           <option value="BP CLC">BP CLC</option>
           <option value="FRAMING">FRAMING</option>
           <option value="PATIO RAMOS">PATIO RAMOS</option>
-          <option value="PATIO MX">PATIO MX</option>
-          <option value="PATIO HMO">PATIO HMO</option>
-          <option value="PATIO PEDRO E">PATIO PEDRO E</option>
+          <option value="PATIO MEXICO">PATIO MEXICO</option>
+          <option value="PATIO HERMSILLO">PATIO HERMSILLO</option>
+          <option value="PATIO PEDRO ESCOBEDO">PATIO PEDRO ESCOBEDO</option>
           <option value="PATIO SILAO">PATIO SILAO</option>
           <option value="EN TRANSITO">EN TRANSITO</option>
           </select>
@@ -2943,104 +3122,163 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
    if(e.target.matches(".importXlsx")){
 
 
-     dbXlsx.forEach((item)=>{
-       // console.log(item);
-     let hora = item[3].slice(11, 17),
-         arrF = item[3].slice(1,-6).split("/"),
-          concatF ="";
-          item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
-      });
+    dbXlsx.forEach((item)=>{
+      // console.log(item);
+        let hora = item[3].slice(11, 17),
+        arrF = item[3].slice(1,-6).split("/"),
+         concatF ="";
+         item[3] = concatF.concat(arrF[1], "/0",arrF[0],"/",arrF[2], " ", hora);
+     });
 
-      
-           // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
-       dbXlsx.forEach(async (element) => {
-          //  console.log(element[1]);
-
-   if (element[1].match("24") || element[1].match("HS")) {
-       //console.log(element[1]);
-      
-       let options = {
-         method: "POST",
-         headers: {
-           "Content-type": "application/json; charset=utf-8",
-         },
-         body: JSON.stringify({
-           unidad: "",
-           caja: "",
-           cporte: "",
-           tracking: `${element[0]}`,
-           bol: "",
-           ruta: `${element[1]}`,
-           operador: "",
-           cliente: "FORD HERMOSILLO",
-           proveedor: `${element[2]}`,
-           citaprogramada: `${element[3]}`,
-           llegadareal: "01/01/0001 00:00",
-           salidareal: "01/01/0001 00:00",
-           eta: "01/01/0001 00:00",
-           llegadadestino: "01/01/0001 00:00",
-           salidadestino: "01/01/0001 00:00",
-           llegada: "EN TIEMPO",
-           status: "PENDIENTE",
-           comentarios: "SIN COMENTARIOS"
-         }),
-       };
-       await ajax({
-         url: `${api.ITEMS}.json`,
-         options,
-         cbSuccess: (res) => {
-           json = res.json();
-         },
-       });
-           
-
-   } else 
-   if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
      
-       //console.log(element[1]);
+          // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
+ dbXlsx.forEach(async (element) => {
+         //  console.log(element[1]);
 
-       let options = {
-         method: "POST",
-         headers: {
-           "Content-type": "application/json; charset=utf-8",
-         },
-         body: JSON.stringify({
-           unidad: "",
-           caja: "",
-           cporte: "",
-           tracking: `${element[0]}`,
-           bol: "",
-           ruta: `${element[1]}`,
-           operador: "",
-           cliente: "FORD CUAUTITLAN",
-           proveedor: `${element[2]}`,
-           citaprogramada: `${element[3]}`,
-           llegadareal: "01/01/0001 00:00",
-           salidareal: "01/01/0001 00:00",
-           eta: "01/01/0001 00:00",
-           llegadadestino: "01/01/0001 00:00",
-           salidadestino: "01/01/0001 00:00",
-           llegada: "EN TIEMPO",
-           status: "PENDIENTE",
-           comentarios: "SIN COMENTARIOS"
-         }),
-       };
-       await ajax({
-         url: `${api.ITEMS}.json`,
-         options,
-         cbSuccess: (res) => {
-           json = res.json();
-         }
-       });
-           
-   }
-     setTimeout(() => {
-       location.reload();
-     }, 3000);
+  if (element[1].match("24") || element[1].match("HS")) {
+      //console.log(element[1]);
+     
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "FORD HERMOSILLO",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"  
+      };
+      push(ref(db, "items"), body);
+     
+     /* await ajax({
+        url: `${api.ITEMS}.json`,
+        options,
+        cbSuccess: (res) => {
+          json = res.json();
+        },
+      });
+          */
 
-        });
-        
-    }else
+  } else 
+  if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "FORD CUAUTITLAN",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };
+      push(ref(db, "items"), body);
+          
+  }  else 
+  if (element[1].match("GMMEX")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "GM",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };     
+      push(ref(db, "items"), body); 
+          
+  } else 
+  if (element[2].match("MEX3")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "AMAZON",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };
+      push(ref(db, "items"), body);             
+  }  else 
+  if (element[1].match("BRP")) {
+    
+      //console.log(element[1]);
+
+      let body = {
+          unidad: "",
+          caja: "",
+          cporte: "",
+          tracking: `${element[0]}`,
+          bol: "",
+          ruta: `${element[1]}`,
+          operador: "",
+          cliente: "BRP",
+          proveedor: `${element[2]}`,
+          citaprogramada: `${element[3]}`,
+          llegadareal: "01/01/0001 00:00",
+          salidareal: "01/01/0001 00:00",
+          eta: "01/01/0001 00:00",
+          llegadadestino: "01/01/0001 00:00",
+          salidadestino: "01/01/0001 00:00",
+          llegada: "A TIEMPO",
+          status: "PENDIENTE",
+          comentarios: "SIN COMENTARIOS"
+      };
+      push(ref(db, "items"), body);         
+  }
+  });
+       
+   }else
     //GENERAR REPORTE XLS 
     if (e.target.matches(".modal_xls")){
      if(localStorage.tabUnit === "true"){
@@ -3204,10 +3442,9 @@ if (element[1].match("23") || element[1].match("CU") ||element[1].match("DH")) {
           <option value="BP CLC">BP CLC</option>
           <option value="FRAMING">FRAMING</option>
           <option value="PATIO RAMOS">PATIO RAMOS</option>
-          <option value="PATIO MX">PATIO MX</option>
-          <option value="PATIO HMO">PATIO HMO</option>
-          <option value="PATIO PEDRO E">PATIO PEDRO E</option>
-          <option value="PATIO SILAO">PATIO SILAO</option>
+          <option value="PATIO MEXICO">PATIO MEXICO</option>
+          <option value="PATIO HERMSILLO">PATIO HERMSILLO</option>
+          <option value="PATIO PEDRO ESCOBEDO">PATIO PEDRO ESCOBEDO</option>
           <option value="EN TRANSITO">EN TRANSITO</option>
           </select>
       </td>
