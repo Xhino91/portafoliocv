@@ -49,6 +49,7 @@ export function renderTableCV(items){
       <th class="contacto" scope="col">MARCHAMO</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
+      <th scope="col">DIAS DETENIDO</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
       <th scope="col" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>             

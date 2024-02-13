@@ -66,6 +66,20 @@ export function ItemV(conv) {
    }
   }
 
+  function diasTranscurridos(desdeFecha) {
+
+   let partesFecha = desdeFecha.split("/");
+   let dia = parseInt(partesFecha[0]);
+   let mes = parseInt(partesFecha[1]) - 1; 
+   let anio = parseInt(partesFecha[2]);
+   let fechaRegistrada = new Date(anio, mes, dia);
+   let fechaActual = new Date();
+   let diferenciaEnMilisegundos = fechaActual - fechaRegistrada;
+   let diasTranscurridos = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
+
+   return diasTranscurridos;
+}
+  
 
 return  `
 <tr id="${conv[0]}" class="item text-center align-middle" data-run="${orderRun(conv[1])}" data-conv="${conv[1].caja}" data-circuito="${conv[1].circuito}" data-ubicacion="${conv[1].ubicacion}">
@@ -82,6 +96,7 @@ return  `
 <td class="contacto">${conv[1].contacto}</td>
 <td>${conv[1].circuito}</td>
 <td>${conv[1].fecha}</td>
+<td style="${diasTranscurridos(conv[1].fecha) > 3 ? "background-color: #801111; color: white; font-weight: bold; width: 15px;" : "font-weight: bold; width: 15px;"}">${diasTranscurridos(conv[1].fecha)}</td>
 <td style="${orderUbi(conv[1])}" >${conv[1].ubicacion}</td> 
 <td style="${alertStatus(conv[1])}" >${conv[1].comentarios}</td> 
 <td class="btn-hid" style="${localStorage.username === "Public"  ? "display: none;" : ""}">
