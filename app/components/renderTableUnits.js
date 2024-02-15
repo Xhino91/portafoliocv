@@ -46,7 +46,11 @@ export function renderTableUnits(items){
        <th class="verificacion" scope="col">NO. SERIE</th>
        <th class="poliza" scope="col">NO. POLIZA</th>
       <th class="inciso" scope="col">INCISO</th>
-      <th class="contacto" scope="col">KILOMETRAJE</th>
+      <th class="contacto" scope="col">KM ÚLTIMO SERVICIO</th>
+      <th class="contacto" scope="col">KM PRÓXIMO SERVICIO</th>
+      <th class="contacto" scope="col">KM ODOMETRO</th>
+      <th class="contacto" scope="col">KM LINKER</th>
+      <th class="contacto" scope="col">MTTO PREVENTIVO</th>
       <th scope="col">CIRCUITO</th>
       <th scope="col">FECHA</th>
       <th scope="col">UBICACION</th> 

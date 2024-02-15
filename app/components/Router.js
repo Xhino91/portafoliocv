@@ -3178,23 +3178,25 @@ if (element[1].match("BRP")) {
           d.querySelector(".modal-body").innerHTML = `
           <div class="container-fluid font"> 
           <table class="table table-sm" >
-      <thead class="table-dark text-center">
-        <tr class="text-wrap">
-        <th scope="col">UNIDAD</th>
-    <th scope="col">OPERADOR</th>
-    <th scope="col">MODELO</th>
-    <th scope="col">PLACA</th>
-    <th scope="col">AÑO</th>
-     <th scope="col">VERIFICACION</th>
-     <th scope="col">NO. POLIZA</th>
-    <th scope="col">INCISO</th>
-    <th scope="col">KILOMETRAJE</th>
-    <th scope="col">CIRCUITO</th>
-    <th scope="col">FECHA</th>
-    <th scope="col">UBICACION</th> 
-    <th scope="col">ESTATUS</th>
+          <thead class="table-dark text-center">
+            <tr class="text-wrap">
+            <th scope="col">UNIDAD</th>
+           <th scope="col">OPERADOR</th>
+           <th scope="col">MODELO</th>
+           <th scope="col">PLACA</th>
+           <th scope="col">AÑO</th>
+           <th scope="col">VERIFICACION</th>
+           <th scope="col">NO. POLIZA</th>
+           <th scope="col">INCISO</th>
+           <th scope="col">KM ÚLTIMO SERVICIO</th>
+           <th scope="col">KM ODOMETRO</th>
+           <th scope="col">KM LINKER</th>
+           <th scope="col">CIRCUITO</th>
+           <th scope="col">FECHA</th>
+           <th scope="col">UBICACION</th> 
+           <th scope="col">ESTATUS</th>
 
-        </tr>
+          </tr>
       </thead>
       <tbody class="text-center text-wrap" >
       <td><input name="unidad" style="width: 35px;" type="text" value="${item.unidad}" ${user === "CVehicular" ? "" : "disabled"}></td>
@@ -3205,7 +3207,9 @@ if (element[1].match("BRP")) {
       <td><input name="verificacion" style="width: 150px;" type="text"  value="${item.verificacion}" ${user === "CVehicular" ? "" : "disabled"}></td>
       <td><input name="poliza" style="width: 100px;" type="text"  value="${item.poliza}" ${user === "CVehicular" ? "" : "disabled"}></td>
       <td><input name="inciso" style="width: 100px;" type="text"  value="${item.inciso}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="uservicio" type="text" style="width: 100px;"  value="${item.uservicio}" ${user === "CVehicular" ? "" : "disabled"}></td>
       <td><input name="contacto" type="text" style="width: 100px;"  value="${item.contacto}" ${user === "CVehicular" ? "" : "disabled"}></td>
+      <td><input name="linker" type="text" style="width: 100px;"  value="${item.linker}" ${user === "CVehicular" ? "" : "disabled"}></td>
       <td>
       <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="circuito" id="circuito">
       <option value="${item.circuito}">${item.circuito}</option> 
@@ -3251,7 +3255,6 @@ if (element[1].match("BRP")) {
           <option value="BP CLC">BP CLC</option>
           <option value="BP FRAMING">BP FRAMING</option>
           <option value="PATIO RAMOS">PATIO RAMOS</option>
-          <option value="PATIO SILAO">PATIO SILAO</option>
           <option value="PATIO MEXICO">PATIO MEXICO</option>
           <option value="PATIO HERMSILLO">PATIO HERMSILLO</option>
           <option value="PATIO PEDRO ESCOBEDO">PATIO PEDRO ESCOBEDO</option>
@@ -3449,7 +3452,9 @@ if (element[1].match("BRP")) {
             modelo: e.target.modelo.value.toUpperCase(),
             año: e.target.año.value.toUpperCase(),
             unidad: e.target.unidad.value.toUpperCase(),
-              contacto: e.target.contacto.value.toUpperCase(),
+            contacto: e.target.contacto.value.toUpperCase(),
+              uservicio: e.target.uservicio.value.toUpperCase(),
+              linker: e.target.linker.value.toUpperCase(),
              circuito: e.target.circuito.value.toUpperCase(),
              fecha: e.target.fecha.value.toUpperCase(),
              ubicacion: e.target.ubicacion.value.toUpperCase(),

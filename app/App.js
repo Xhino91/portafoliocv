@@ -22,19 +22,12 @@ import { Login } from "./components/login.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBWjS2VrmW7eFUd34YL13VACi_6OX9Q7VI",
-
   authDomain: "ontime-2956b.firebaseapp.com",
-
   databaseURL: "https://ontime-2956b-default-rtdb.firebaseio.com",
-
   projectId: "ontime-2956b",
-
   storageBucket: "ontime-2956b.appspot.com",
-
   messagingSenderId: "7596898763",
-
   appId: "1:7596898763:web:2e32c7bf836d72846c9e4e"
-
 };
 
 const d = document;
@@ -49,15 +42,7 @@ export function App() {
       const user = userCredential.user;
       //console.log(user);
       // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-
-  // console.log(db);
-  // console.log(refItems);
-
+      
   const $login = d.getElementById("login");
   const $root = d.getElementById("root");
   $root.innerHTML = null;
@@ -196,6 +181,15 @@ export function App() {
 
     Router();
   }
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+
+  // console.log(db);
+  // console.log(refItems);
+
 }
 
 /*
