@@ -3255,6 +3255,7 @@ if (element[1].match("BRP")) {
           <option value="BP CLC">BP CLC</option>
           <option value="BP FRAMING">BP FRAMING</option>
           <option value="PATIO RAMOS">PATIO RAMOS</option>
+          <option value="PATIO SILAO">PATIO SILAO</option>
           <option value="PATIO MEXICO">PATIO MEXICO</option>
           <option value="PATIO HERMSILLO">PATIO HERMSILLO</option>
           <option value="PATIO PEDRO ESCOBEDO">PATIO PEDRO ESCOBEDO</option>
