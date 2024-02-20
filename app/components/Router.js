@@ -2866,7 +2866,41 @@ if (element[1].match("BRP")) {
           }
              }    
 
-          }          
+     } else if (e.target.matches(".register")) {
+            //Create Register
+           
+   
+            if (!e.target.id.value) {
+   
+               
+              let body = {
+                tipo: e.target.tipo.value.toUpperCase(),
+                poliza: e.target.poliza.value.toUpperCase(),
+                placa: e.target.placa.value.toUpperCase(),
+                inciso: e.target.inciso.value.toUpperCase(),
+                modelo: e.target.modelo.value.toUpperCase(),
+                año: e.target.año.value.toUpperCase(),
+                caja: e.target.caja.value.toUpperCase(),
+                contacto: e.target.contacto.value.toUpperCase(),
+                circuito: e.target.circuito.value.toUpperCase(),
+                fecha: e.target.fecha.value.toUpperCase(),
+                ubicacion: e.target.ubicacion.value.toUpperCase(),
+                verificacion: e.target.verificacion.value.toUpperCase(),
+                comentarios: e.target.comentarios.value.toUpperCase(),
+                reporte: "SIN REPORTE"
+              };
+              push(ref(db, "subitem1"), body); 
+              /* await ajax({
+                url: `${api.ITEMS}.json`,
+                options,
+                cbSuccess: (res) => {
+                  json = res.json();
+                },
+               });*/
+            
+            }
+            // console.log(e.target);
+         }          
      });
  
      d.addEventListener("keyup", (e) => {
@@ -3485,7 +3519,43 @@ if (element[1].match("BRP")) {
   
   
       }
-        }
+        } else if (e.target.matches(".register")) {
+          //Create Register
+         
+ 
+          if (!e.target.id.value) {
+ 
+             
+            let body = {
+              verificacion: e.target.verificacion.value.toUpperCase(),
+              poliza: e.target.poliza.value.toUpperCase(),
+              inciso: e.target.inciso.value.toUpperCase(),
+              placa: e.target.placa.value.toUpperCase(),
+              operador: e.target.operador.value.toUpperCase(),
+              modelo: e.target.modelo.value.toUpperCase(),
+              año: e.target.año.value.toUpperCase(),
+              unidad: e.target.unidad.value.toUpperCase(),
+              contacto: "1",
+                uservicio: "1",
+                linker: "1",
+               circuito: e.target.circuito.value.toUpperCase(),
+               fecha: e.target.fecha.value.toUpperCase(),
+               ubicacion: e.target.ubicacion.value.toUpperCase(),
+               comentarios: e.target.comentarios.value.toUpperCase()
+  
+            };
+            push(ref(db, "subitem"), body); 
+            /* await ajax({
+              url: `${api.ITEMS}.json`,
+              options,
+              cbSuccess: (res) => {
+                json = res.json();
+              },
+             });*/
+          
+          }
+          // console.log(e.target);
+       } 
         
    });
 
