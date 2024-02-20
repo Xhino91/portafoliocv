@@ -167,6 +167,16 @@ export function App() {
             localStorage.username = data.username;
             $login.style = "display: none;";
             location.reload();
+          } else if (
+            res[9].user === `${data.username}` &&
+            res[9].pass === `${data.password}`
+          ) {
+            //console.log("Acceso Completo");
+            window.location.hash = "/Mtto";
+            sessionStorage.login = true;
+            localStorage.username = data.username;
+            $login.style = "display: none;";
+            location.reload();
           } else {
             // console.log("Acceso Denegado");
             alert("Usuario y/o Contraseña Incorrecto");

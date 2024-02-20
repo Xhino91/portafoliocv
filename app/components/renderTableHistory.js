@@ -54,7 +54,7 @@ export function renderTableHistory(items){
         <th scope="col">LLEGADA</th>
         <th scope="col">ESTATUS</th>
         <th scope="col">COMENTARIOS</th>
-        <th scope="col" style="${localStorage.username === "Public" || localStorage.username === "CVehicular" ? "display: none;" : ""}">OPCIONES</th>
+        <th scope="col" style="${localStorage.username === "Public" || localStorage.username === "CVehicular" || localStorage.username === "Mtto" ? "display: none;" : ""}">OPCIONES</th>
   
       </tr>
     </thead>

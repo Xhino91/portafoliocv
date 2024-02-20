@@ -112,7 +112,7 @@ const alertColor = (item) => {
        <td style="${item.llegada === "TARDE" || item.llegada.match("DESFASADA") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 183, 124)" : ""}">${item.llegada}</td>
        <td style="${alertColor(item)}">${item.status}</td>
        <td>${item.comentarios}</td>
-       <td class="btn-hid" style="${user === "Public" || user === "CVehicular" ? "display: none;" : ""}">
+       <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
           <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
           <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
        </td>
@@ -142,7 +142,7 @@ const alertColor = (item) => {
           <td style="${item.llegada.match("DESFASADA") || item.llegada.match("TARDE") || item.llegada.match("CRITICA") ? "background-color: rgb(245, 183, 124);" : ""}">${item.llegada}</td>
           <td style="${alertColor(item)}" >${item.status}</td>
           <td>${item.comentarios}</td>
-          <td class="btn-hid" style="${user === "Public" || user === "CVehicular" ? "display: none;" : ""}">
+          <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
              <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
              <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
           </td>

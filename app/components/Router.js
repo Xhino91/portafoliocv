@@ -99,6 +99,10 @@ export async function Router() {
       if(localStorage.username === "TrafficH") {
         window.location.hash = "/TrafficH/productivo";
         location.reload();
+      } else
+      if(localStorage.username === "Mtto") {
+        window.location.hash = "/Mtto/cajas";
+        location.reload();
       }else 
       if(localStorage.username === "CVehicular") {
         window.location.hash = "/CVehicular/cajas";
@@ -106,7 +110,7 @@ export async function Router() {
       }
     return;
   } else
-  if (!user || user === "Public" || user === "Tracking" || user === "Traffic" || user === "TrafficH" || user === "InhouseTOL" || user === "InhouseHMO" || user === "InhouseMX" || user === "InhouseGTO" || user === "CVehicular") {
+  if (!user || user === "Public" || user === "Tracking" || user === "Traffic" || user === "TrafficH" || user === "InhouseTOL" || user === "InhouseHMO" || user === "InhouseMX" || user === "InhouseGTO" || user === "CVehicular" || user === "Mtto") {
     
    if (hash === "#/" + user + "/productivo") {
          tabActive("tablero");

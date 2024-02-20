@@ -217,7 +217,7 @@ export function ItemUnit(unit) {
 <button id="${
     unit[0]
   }" type="button" class="btn btn-sm btn-danger delete" style="${
-    localStorage.username === "CVehicular" ? "" : "display: none;"
+    localStorage.username === "CVehicular" || localStorage.username === "Mtto" ? "" : "display: none;"
   }"><i class="fa-solid fa-trash" id="${unit[0]}"></i></button>  
 </td>
 

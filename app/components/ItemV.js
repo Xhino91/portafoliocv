@@ -93,7 +93,7 @@ return  `
 <td >${conv[1].reporte}</td> 
 <td class="btn-hid" style="${localStorage.username === "Public"  ? "display: none;" : ""}">
        <button id="${conv[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${conv[0]}"></i></button>
-       <button id="${conv[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${conv[0]}"></i></button>
+       <button id="${conv[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" || localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${conv[0]}"></i></button>
 </td>    
 </tr>
 `;
