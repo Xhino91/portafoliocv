@@ -188,8 +188,13 @@ export function App() {
     $root.appendChild(Header());
     $root.appendChild(Main());
     document.getElementById("thtable").appendChild(Loader());
-
     Router();
+
+    window.addEventListener("hashchange", () => {
+      //console.log(api.API_WP);
+      Router();
+      location.reload();
+    });
   }
     })
     .catch((error) => {

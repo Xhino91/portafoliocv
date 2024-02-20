@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   App();
 });
 
-window.addEventListener("hashchange", () => {
+/*window.addEventListener("hashchange", () => {
   //console.log(api.API_WP);
   App();
-});
+});*/
