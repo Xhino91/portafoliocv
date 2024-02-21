@@ -68,12 +68,12 @@ export function ItemUnit(unit) {
   // console.log(uservice.pservice, odometro);
     if (uservice.km === 28000) {
       //console.log(uservice);
-      if (uservice.pservice - odometro >= 28000) {
+      if (uservice.pservice - odometro >= 2000) {
          return `
          background: #017d1a4f;
          font-weight: bold;
          `;
-       } else if (uservice.pservice - odometro < 28000 && uservice.pservice - odometro >= 0) {
+       } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro >= 0) {
          return `
          background: #ee8e2875;
          font-weight: bold;
@@ -87,12 +87,12 @@ export function ItemUnit(unit) {
        }
     } else
     if (uservice.km === 45000) {
-      if (uservice.pservice - odometro >= 45000) {
+      if (uservice.pservice - odometro >= 2000) {
          return `
          background: #017d1a4f;
          font-weight: bold;
          `;
-       } else if (uservice.pservice - odometro < 45000 && uservice.pservice - odometro > 0) {
+       } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro > 0) {
          return `
          background: #ee8e2875;
          font-weight: bold;
@@ -106,12 +106,12 @@ export function ItemUnit(unit) {
        }
     } else
     if (uservice.km === 60000) {
-      if (uservice.pservice - odometro >= 60000) {
+      if (uservice.pservice - odometro >= 2000) {
          return `
          background: #017d1a4f;
          font-weight: bold;
          `;
-       } else if (uservice.pservice - odometro < 60000 && uservice.pservice - odometro > 0) {
+       } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro > 0) {
          return `
          background: #ee8e2875;
          font-weight: bold;
@@ -131,11 +131,11 @@ export function ItemUnit(unit) {
   const mttoPreventive = (uservice, odometro) => {
    if (uservice.km === 28000) {
       //console.log(uservice);
-      if (uservice.pservice - odometro >= 28000) {
+      if (uservice.pservice - odometro >= 2000) {
          return `
          VIGENTE
          `;
-       } else if (uservice.pservice - odometro < 28000 && uservice.pservice - odometro >= 0) {
+       } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro >= 0) {
          return `
          PROGRAMAR
          `;
@@ -147,11 +147,11 @@ export function ItemUnit(unit) {
        }
     } else
     if (uservice.km === 45000) {
-      if (uservice.pservice - odometro >= 45000) {
+      if (uservice.pservice - odometro >= 2000) {
          return `
          VIGENTE
          `;
-       } else if (uservice.pservice - odometro < 45000 && uservice.pservice - odometro > 0) {
+       } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro > 0) {
          return `
          PROGRAMAR
          `;
@@ -163,11 +163,11 @@ export function ItemUnit(unit) {
        }
     } else
     if (uservice.km === 60000) {
-      if (uservice.pservice - odometro >= 60000) {
+      if (uservice.pservice - odometro >= 2000) {
          return `
          VIGENTE
          `;
-       } else if (uservice.pservice - odometro < 60000 && uservice.pservice - odometro > 0) {
+       } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro > 0) {
          return `
          PROGRAMAR
          `;

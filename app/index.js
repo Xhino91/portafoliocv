@@ -1,4 +1,5 @@
 import { App } from "./App.js";
+import { Router } from "./components/Router.js";
 //import { firebaseData } from "./helpers/firebase.js";
 
 
@@ -13,8 +14,3 @@ document.addEventListener("DOMContentLoaded", () => {
  // firebaseData();
   App();
 });
-
-/*window.addEventListener("hashchange", () => {
-  //console.log(api.API_WP);
-  App();
-});*/
