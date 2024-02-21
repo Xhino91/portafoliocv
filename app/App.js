@@ -82,101 +82,120 @@ export function App() {
             res[0].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/Tracking";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router();  
           } else if (
             res[1].user === `${data.username}` &&
             res[1].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/InhouseTOL";
             sessionStorage.login = true;
             localStorage.username = data.username;
-            $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[2].user === `${data.username}` &&
             res[2].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/Traffic";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router();
           } else if (
             res[3].user === `${data.username}` &&
             res[3].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/Public";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[4].user === `${data.username}` &&
             res[4].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/CVehicular";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[5].user === `${data.username}` &&
             res[5].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/InhouseHMO";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[6].user === `${data.username}` &&
             res[6].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/InhouseMX";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[7].user === `${data.username}` &&
             res[7].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/InhouseGTO";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[8].user === `${data.username}` &&
             res[8].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/TrafficH";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else if (
             res[9].user === `${data.username}` &&
             res[9].pass === `${data.password}`
           ) {
             //console.log("Acceso Completo");
-            window.location.hash = "/Mtto";
             sessionStorage.login = true;
             localStorage.username = data.username;
             $login.style = "display: none;";
-            location.reload();
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
           } else {
             // console.log("Acceso Denegado");
             alert("Usuario y/o Contraseña Incorrecto");
@@ -186,15 +205,9 @@ export function App() {
     });
   } else {
     $root.appendChild(Header());
-    $root.appendChild(Main());
-    document.getElementById("thtable").appendChild(Loader());
-    Router();
-
-    window.addEventListener("hashchange", () => {
-      //console.log(api.API_WP);
-      Router();
-      location.reload();
-    });
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
   }
     })
     .catch((error) => {

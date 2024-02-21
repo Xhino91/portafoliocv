@@ -32,7 +32,7 @@ export function renderTableEV(items){
      
     
       d.getElementById("thtable").innerHTML =  `
-         <table class="table table-hover table-sm  table-striped" id="table_xls">
+         <table class="table table-hover table-sm  table-striped" id="table_ev">
       <thead class="table-dark text-center align-middle">
       <tr>
         <th scope="col">UNIDAD</th>

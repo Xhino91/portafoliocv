@@ -33,7 +33,7 @@ export function renderTableHistory(items){
      
     
       d.getElementById("thtable").innerHTML =  `
-         <table class="table table-hover table-sm  table-striped" id="table_xls">
+         <table class="table table-hover table-sm  table-striped" id="table_his">
       <thead class="table-dark text-center align-middle">
       <tr>
         <th scope="col">UNIDAD</th>
