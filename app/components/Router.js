@@ -552,13 +552,27 @@ export async function Router() {
       location.reload();
     } else if (e.target.matches(".delete") || e.target.matches(".fa-trash")) {
       // console.log(e.target);
+      if (localStorage.tabViajes === "true"){
+        let isConfirm = confirm("¿Eliminar Registro?");
 
-      let isConfirm = confirm("¿Eliminar Registro?");
+        if (isConfirm) {
+          remove(ref(db, `/items/${e.target.id}`));
+        }
+      } else if (localStorage.tabConveyance === "true"){
+        let isConfirm = confirm("¿Eliminar Registro?");
 
-      if (isConfirm) {
-        remove(ref(db, `/items/${e.target.id}`));
+        if (isConfirm) {
+          remove(ref(db, `/subitem1/${e.target.id}`));
+        }
+      } else if (localStorage.tabUnit === "true") {
+        let isConfirm = confirm("¿Eliminar Registro?");
+
+        if (isConfirm) {
+          remove(ref(db, `/subitem/${e.target.id}`));
+         } 
       }
-    } else if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
+      
+   } else if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
       if (localStorage.tabViajes === "true") {
         const db = getDatabase(),
           refItem = ref(db, `items/${e.target.id}`);
@@ -1144,6 +1158,111 @@ export async function Router() {
       localStorage.tabConveyance = false;
       localStorage.tabViajes = false;
       localStorage.tabUnit = true;
+    } else if (e.target.matches(".remolque")) {
+      //  console.log(e.target);
+
+      const tabConv = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Remolque`;
+      d.getElementById("exampleModalLabel").classList.add("convoy");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">CAJA</th>
+      <th scope="col">TIPO</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">MARCHAMO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="caja" style="width: 35px;" type="text"></td>
+    <td><input name="tipo" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="contacto" type="text" style="width: 80px;"></input></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
+      
+    </table>
+    </div>
+          `;
+      };      
+
+      tabConv();
+      
+    } else if (e.target.matches(".unidad")) {
+      const tabUnit = ()=> {
+        //MODAL
+      d.querySelector(".hidden").style.display = "block";
+      d.getElementById("formulario").classList.add("register");
+      d.getElementById("formulario").classList.remove("edit");
+      d.getElementById("exampleModalLabel").innerHTML = `Registrar Unidad`;
+      d.getElementById("exampleModalLabel").classList.add("unit");
+      d.getElementById("exampleModalLabel").classList.remove("convoy");
+      d.querySelector(".modal-body").innerHTML = `
+          <div class="container-fluid"> 
+          <table class="table table-sm" >
+      <thead class="table-dark text-center">
+      <tr class="text-wrap">
+      <th scope="col">UNIDAD</th>
+      <th scope="col">OPERADOR</th>
+      <th scope="col">MODELO</th>
+      <th scope="col">PLACA</th>
+      <th scope="col">AÑO</th>
+       <th scope="col">VERIFICACION</th>
+       <th scope="col">NO. POLIZA</th>
+      <th scope="col">INCISO</th>
+      <th scope="col">CIRCUITO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">UBICACION</th> 
+      <th scope="col">ESTATUS</th>
+  
+      </tr>
+    </thead>
+    <tbody class="text-center text-wrap">
+    <td><input name="unidad" style="width: 35px;" type="text"></td>
+    <td><input name="operador" style="width: 60px;" type="text"></td>
+    <td><input name="modelo" style="width: 130px;" type="text"></td>
+    <td><input name="placa" style="width: 70px;" type="text"></td>
+    <td><input name="año" style="width: 80px;" type="text"></td>
+    <td><input name="verificacion" style="width: 75px;" type="text"></td>
+    <td><input name="poliza" style="width: 75px;" type="text"></td>
+    <td><input name="inciso" style="width: 95px;" type="text"></td>
+    <td><input name="circuito" type="text"></td>
+    <td><input name="fecha" type="date"></td>
+    <td><input name="ubicacion" type="text"></td>
+    <td><input name="comentarios" type="text"></td>  
+    </tbody>
+      
+    </table>
+    </div>
+          `;
+      };
+
+      tabUnit();
     } else if (e.target.matches(".reg")) {
       //  console.log(e.target);
       //MODAL REGISTRO DE VIAJES
@@ -1282,10 +1401,7 @@ export async function Router() {
           e.classList.add("filter");
         }
       });
-    } else if (
-      e.target.matches(".search-form") &&
-      localStorage.tabConveyance === "true"
-    ) {
+    } else if (e.target.matches(".search-form") && localStorage.tabConveyance === "true") {
       //   console.log(e.target);
       let query = localStorage.getItem("apiSearch").toUpperCase();
 
@@ -1307,10 +1423,7 @@ export async function Router() {
           e.classList.add("filter");
         }
       });
-    } else if (
-      e.target.matches(".search-form") &&
-      localStorage.tabUnit === "true"
-    ) {
+    } else if (e.target.matches(".search-form") && localStorage.tabUnit === "true") {
       // console.log(e.target);
       let query = localStorage.getItem("apiSearch").toUpperCase();
 
