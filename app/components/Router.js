@@ -877,31 +877,31 @@ export async function Router() {
   <tbody class="text-center text-wrap" >
   <td><input name="caja" style="width: 60px;" type="text" value="${
     item.caja
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="tipo" style="width: 120px;" type="text"   value="${
     item.tipo
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="modelo" style="width: 100px;" type="text"  value="${
     item.modelo
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="placa" style="width: 70px;" type="text"  value="${
     item.placa
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="año" style="width: 45px;" type="text"  value="${item.año}" ${
-            user === "CVehicular" ? "" : "disabled"
+            user === "CVehicular" || user === "Mtto" ? "" : "disabled"
           }></td>
   <td><input name="verificacion" style="width: 150px;" type="text"  value="${
     item.verificacion
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="poliza" style="width: 100px;" type="text"  value="${
     item.poliza
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="inciso" style="width: 100px;" type="text"  value="${
     item.inciso
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td><input name="contacto" type="text" style="width: 150px;"  value="${
     item.contacto
-  }" ${user === "CVehicular" ? "" : "disabled"}></td>
+  }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
   <td>
   <select class="form-select form-select-sm" style="height: 24px; width: 150px; font-size: 12px; ${
     user === "Traffic" || user === "TrafficH"
@@ -1030,37 +1030,37 @@ export async function Router() {
     <tbody class="text-center text-wrap" >
     <td><input name="unidad" style="width: 35px;" type="text" value="${
       item.unidad
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="operador" style="width: 150px;" type="text"   value="${
       item.operador
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="modelo" style="width: 100px;" type="text"  value="${
       item.modelo
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="placa" style="width: 70px;" type="text"  value="${
       item.placa
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="año" style="width: 50px;" type="text"  value="${
       item.año
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="verificacion" style="width: 150px;" type="text"  value="${
       item.verificacion
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="poliza" style="width: 100px;" type="text"  value="${
       item.poliza
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="inciso" style="width: 100px;" type="text"  value="${
       item.inciso
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="uservicio" type="text" style="width: 100px;"  value="${
       item.uservicio
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="contacto" type="text" style="width: 100px;"  value="${
       item.contacto
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="linker" type="text" style="width: 100px;"  value="${
       item.linker
-    }" ${user === "CVehicular" ? "" : "disabled"}></td>
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td>
     <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${
       user === "Traffic" || user === "TrafficH"
