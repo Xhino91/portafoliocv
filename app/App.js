@@ -196,7 +196,44 @@ export function App() {
             $root.appendChild(Main());
             document.getElementById("thtable").appendChild(Loader());
             Router(); 
-          } else {
+          } else if (
+            res[10].user === `${data.username}` &&
+            res[10].pass === `${data.password}`
+          ) {
+            //console.log("Acceso Completo");
+            sessionStorage.login = true;
+            localStorage.username = data.username;
+            $login.style = "display: none;";
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
+          } else if (
+            res[11].user === `${data.username}` &&
+            res[11].pass === `${data.password}`
+          ) {
+            //console.log("Acceso Completo");
+            sessionStorage.login = true;
+            localStorage.username = data.username;
+            $login.style = "display: none;";
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
+          } else if (
+            res[12].user === `${data.username}` &&
+            res[12].pass === `${data.password}`
+          ) {
+            //console.log("Acceso Completo");
+            sessionStorage.login = true;
+            localStorage.username = data.username;
+            $login.style = "display: none;";
+            $root.appendChild(Header());
+            $root.appendChild(Main());
+            document.getElementById("thtable").appendChild(Loader());
+            Router(); 
+          }  
+          else {
             // console.log("Acceso Denegado");
             alert("Usuario y/o Contraseña Incorrecto");
           }

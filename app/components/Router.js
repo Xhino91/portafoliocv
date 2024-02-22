@@ -17,7 +17,6 @@ import { renderTableUnits } from "./renderTableUnits.js";
 import { renderTableEV } from "./renderTableEV.js";
 import { renderTableHistory } from "./renderTableHistory.js";
 import { tabActive } from "./tabActive.js";
-import { Item } from "./Item.js";
 
 export async function Router() {
   const d = document,
@@ -71,6 +70,9 @@ export async function Router() {
     user === "InhouseHMO" ||
     user === "InhouseGTO" ||
     user === "TrafficH" ||
+    user === "Evidencias1" ||
+    user === "Evidencias2" ||
+    user === "Calidad" ||
     user === "Traffic"
   ) {
     setTimeout(() => {

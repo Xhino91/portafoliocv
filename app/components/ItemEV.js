@@ -171,7 +171,7 @@ return `
     <td>${item.comentarios}</td>
     <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
        <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-       <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" || user === "InhouseTOL" || user === "InhouseHMO" || user === "InhouseGTO" || user === "InhouseMX" || user === "Tracking" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+       <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" || user === "InhouseTOL" || user === "InhouseHMO" || user === "InhouseGTO" || user === "InhouseMX" || user === "Tracking" || user === "Evidencias1" || user === "Evidencias2" || user === "Calidad" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
     </td>
  </tr>
           `;
