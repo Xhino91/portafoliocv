@@ -80,7 +80,7 @@ export async function Router() {
     }, 1200);
   } else if (user === "CVehicular" || user === "Mtto") {
     setTimeout(() => {
-      window.location.hash = `/${user}/Unidades`;
+      window.location.hash = `/${user}/unidades`;
     }, 1200);
   }
 
