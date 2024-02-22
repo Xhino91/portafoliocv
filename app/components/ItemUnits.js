@@ -45,7 +45,7 @@ export function ItemUnit(unit) {
       };
     } else if (
       parseInt(unit[1].unidad, 10) >= 300 &&
-      parseInt(unit[1].unidad, 10) <= 307
+      parseInt(unit[1].unidad, 10) <= 350
     ) {
       return {
         pservice: (parseInt(unit[1].uservicio, 10) + 60000),
@@ -53,7 +53,7 @@ export function ItemUnit(unit) {
       };
     } else if (
       parseInt(unit[1].unidad, 10) >= 400 &&
-      parseInt(unit[1].unidad, 10) <= 410
+      parseInt(unit[1].unidad, 10) <= 450
     ) {
       return {
         pservice: (parseInt(unit[1].uservicio, 10) + 45000),
