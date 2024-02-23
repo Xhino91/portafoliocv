@@ -96,6 +96,7 @@ export function App() {
             //console.log("Acceso Completo");
             sessionStorage.login = true;
             localStorage.username = data.username;
+            $login.style = "display: none;";
             $root.appendChild(Header());
             $root.appendChild(Main());
             document.getElementById("thtable").appendChild(Loader());
