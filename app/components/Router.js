@@ -73,6 +73,7 @@ export async function Router() {
     user === "Evidencias1" ||
     user === "Evidencias2" ||
     user === "Calidad" ||
+    user === "Public" ||
     user === "Traffic"
   ) {
     setTimeout(() => {

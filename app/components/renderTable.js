@@ -69,20 +69,20 @@ export function renderTable(items){
       //Helper de acceso a los items
       const $tr = d.querySelectorAll(".item");
       const newOrder = Array.from($tr);       
-          
-     //Run Order 
     
-     newOrder.sort((e1, e2) => {
-      if (e1.dataset.citaprogramada < e2.dataset.citaprogramada) {
-        return -1;
-      } else if (
-        e1.dataset.citaprogramada > e2.dataset.citaprogramada) {
-        return 1;
-      } else {
-        return 0;
-      }
-     });
-
+      // Función para convertir las fechas a objetos Date
+      function convertirAFecha(fechaString) {
+        let partes = fechaString.split(" ");
+         let fecha = partes[0].split("/");
+             let hora = partes[1].split(":");
+         return new Date(fecha[2], fecha[1] - 1, fecha[0], hora[0], hora[1]);
+        }
+      
+     //Run Order 
+        // Ordenar las fechas
+      newOrder.sort(function(a, b) {
+        return convertirAFecha(a.dataset.citaprogramada) - convertirAFecha(b.dataset.citaprogramada);
+         });   
 
      newOrder.sort((e1, e2) => {
       if (e1.dataset.run < e2.dataset.run || e1.dataset.run < e2.dataset.run) {
