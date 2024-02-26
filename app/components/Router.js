@@ -477,6 +477,7 @@ export async function Router() {
       <th scope="col">DIAS DETENIDO</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>  
+      <th scope="col">REPORTE</th> 
       </tr>
       </thead>
       <tbody id="table_bodyX" class="body_table">
@@ -519,13 +520,15 @@ export async function Router() {
         <th scope="col">NO. SERIE</th>
         <th scope="col">NO. POLIZA</th>
         <th scope="col">INCISO</th>
-        <th scope="col">KILOMETRAJE</th>
+        <th scope="col">KM ÚLTIMO SERVICIO</th>
+        <th scope="col">KM PRÓXIMO SERVICIO</th>
+        <th scope="col">KM ODOMETRO</th>
+        <th scope="col">KM LINKER</th>
+        <th scope="col">MTTO PREVENTIVO</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
-        <th scope="col">DIAS DETENIDO</th> 	
         <th scope="col">UBICACION</th> 
-        <th scope="col">ESTATUS</th>  
-        <th scope="col">REPORTE</th>  
+        <th scope="col">ESTATUS</th>   
         </tr>
         </thead>
         <tbody id="table_bodyX" class="body_table">
