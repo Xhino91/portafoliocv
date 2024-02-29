@@ -9,16 +9,19 @@ export function ItemUnit(unit) {
     ) {
       return `
           background: #99171787;
+          color: #620606;
          font-weight: bold;
       `;
     } else {
       if (comit.comentarios.match("DISPONIBLE")) {
         return `
            background-color: #017d1a4f;
+           color: #094a09;
            font-weight: bold;
            `;
       } else {
-        return `
+        return ` 
+        background-color: #f0e0cf;
         font-weight: bold;
            `;
       }
@@ -72,17 +75,20 @@ export function ItemUnit(unit) {
          return `
          background: #017d1a4f;
          font-weight: bold;
+         color: #094a09;
          `;
        } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro >= 0) {
          return `
          background: #ee8e2875;
          font-weight: bold;
+         color: #913c0af7;
          `;
        }
        if (uservice.pservice - odometro < 0) {
          return `
          background: #99171787;
          font-weight: bold;
+         color: #620606;
          `;
        }
     } else
@@ -91,17 +97,20 @@ export function ItemUnit(unit) {
          return `
          background: #017d1a4f;
          font-weight: bold;
+         color: #094a09;
          `;
        } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro > 0) {
          return `
          background: #ee8e2875;
          font-weight: bold;
+         color: #913c0af7;;
          `;
        }
        if (uservice.pservice - odometro <= 0) {
          return `
          background: #99171787;
          font-weight: bold;
+         color: #620606;
          `;
        }
     } else
@@ -110,17 +119,20 @@ export function ItemUnit(unit) {
          return `
          background: #017d1a4f;
          font-weight: bold;
+         color: #094a09;
          `;
        } else if (uservice.pservice - odometro < 2000 && uservice.pservice - odometro > 0) {
          return `
          background: #ee8e2875;
          font-weight: bold;
+         color: #913c0af7;
          `;
        }
        if (uservice.pservice - odometro <= 0) {
          return `
          background: #99171787;
          font-weight: bold;
+         color: #620606;
          `;
        }
     }
@@ -190,21 +202,21 @@ export function ItemUnit(unit) {
 
 
 <td style="font-weight: bold;">${unit[1].unidad}</td>
-<td>${unit[1].operador}</td>
 <td class="modelo">${unit[1].modelo}</td>
 <td class="placa" >${unit[1].placa}</td>
 <td class="año" >${unit[1].año}</td>
 <td class="verificacion" >${unit[1].verificacion}</td>
 <td class="poliza" >${unit[1].poliza}</td>
 <td class="inciso">${unit[1].inciso}</td>
-<td class="contacto">${parseInt(unit[1].uservicio, 10).toLocaleString()}</td>
-<td class="contacto">${compareKM(unit).pservice.toLocaleString()}</td>
-<td class="contacto">${parseInt(unit[1].contacto, 10).toLocaleString()}</td>
-<td class="contacto">${parseInt(unit[1].linker, 10).toLocaleString()}</td>
+<td class="fechauserv" style="font-weight: bold;">${unit[1].linker}</td>
+<td class="contacto" style="font-weight: bold;">${parseInt(unit[1].uservicio, 10).toLocaleString()}</td>
+<td class="contacto" style="font-weight: bold;">${compareKM(unit).pservice.toLocaleString()}</td>
+<td class="contacto" style="font-weight: bold;">${parseInt(unit[1].contacto, 10).toLocaleString()}</td>
+<td class="contacto" style="${alertService(compareKM(unit), parseInt(unit[1].contacto, 10))}">${(compareKM(unit).pservice - parseInt(unit[1].contacto, 10))}</td>
 <td class="contacto" style="${alertService(compareKM(unit), parseInt(unit[1].contacto, 10))}">${mttoPreventive(compareKM(unit), parseInt(unit[1].contacto, 10))}</td>
-<td>${unit[1].circuito}</td>
-<td>${unit[1].fecha}</td>
-<td style="" >${unit[1].ubicacion}</td> 
+<td style="font-weight: bold;">${unit[1].circuito}</td>
+<td style="font-weight: bold;">${unit[1].fecha}</td>
+<td style="font-weight: bold; ${unit[1].ubicacion.match("TRANSITO") ? "background-color: #badfff;" : ""}" >${unit[1].ubicacion}</td> 
 <td style="${alertStatus(unit[1])}" >${unit[1].comentarios}</td> 
 <td class="btn-hid" style="${
     localStorage.username === "Public" ? "display: none;" : ""

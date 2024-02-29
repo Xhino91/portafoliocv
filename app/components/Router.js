@@ -60,6 +60,39 @@ export async function Router() {
     }
   }
 
+  function updateItem (updateValue, keyUpdate){
+    if (!updateValue || !keyUpdate ) {
+      return;
+    }  else if(!updateValue.ruta && updateValue.placa) {
+      if(!d.getElementById(`${keyUpdate}`)){
+        return
+      }else {
+        d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
+      setTimeout(function () {
+        d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
+      }, 1000); }
+    } else if (updateValue.ruta.match("CU") || updateValue.ruta.match("HS") || updateValue.ruta.match("RT")) {
+      if(!d.getElementById(`${keyUpdate}`)){
+        return
+      }else {
+        d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
+      setTimeout(function () {
+        d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
+      }, 1000);
+      }
+    } else if (!updateValue.ruta.match("CU") || !updateValue.ruta.match("HS") || !updateValue.ruta.match("RT"))  {
+      if(!d.getElementById(`${keyUpdate}`)){
+        return
+      }else {
+        d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
+      setTimeout(function () {
+        d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
+      }, 1000); 
+    }
+    }
+    }
+
+
   //console.log(localStorage.username);
   let user = localStorage.username;
 
@@ -95,58 +128,43 @@ export async function Router() {
       localStorage.tabUnit = false;
 
       const refItems = ref(db, "items");
+      onChildChanged(refItems, (snapshot) => {
+        //console.log(snapshot.key);
+        //console.log(snapshot.val());
+        updateValue = snapshot.val();
+        keyUpdate = snapshot.key;
+        //console.log(d.getElementById(`${snapshot.key}`))
+      });
 
       onValue(refItems, (snapshot) => {
         let res = snapshot.val();
-        renderTable(res);
-        //console.log(res);
-        onChildChanged(refItems, (snapshot) => {
-          //console.log(snapshot.key);
-          //console.log(snapshot.val());
-          updateValue = snapshot.val();
-          keyUpdate = snapshot.key;
-          //console.log(d.getElementById(`${snapshot.key}`));
-        });
-        //if (updateValue.ruta.matches("CU") || updateValue.ruta.matches("HS") || updateValue.ruta.matches("RT")):
-
-        if (!updateValue.ruta) {
-          return;
-        } else {
-          d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
-          setTimeout(function () {
-            d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-          }, 1000);
-        }
+        renderTable(res); 
+        updateItem(updateValue, keyUpdate);         
+        //if (updateValue.ruta.matches("CU") || updateValue.ruta.matches("HS") || updateValue.ruta.matches("RT")):       
       });
+
+
     } else if (hash === "#/" + user + "/equipov") {
       tabActive("equipov");
       localStorage.tabConveyance = false;
       localStorage.tabViajes = true;
       localStorage.tabUnit = false;
-
       const refItems = ref(db, "items");
-
+      onChildChanged(refItems, (snapshot) => {
+        //console.log(snapshot.key);
+        //console.log(snapshot.val());
+        updateValue = snapshot.val();
+        keyUpdate = snapshot.key;
+        //console.log(d.getElementById(`${snapshot.key}`))
+      });
       onValue(refItems, (snapshot) => {
         let res = snapshot.val();
+        
         renderTableEV(res);
+        updateItem(updateValue, keyUpdate);
         //console.log(res);
-        onChildChanged(refItems, (snapshot) => {
-          //console.log(snapshot.key);
-          //console.log(snapshot.val());
-          updateValue = snapshot.val();
-          keyUpdate = snapshot.key;
-          //console.log(d.getElementById(`${snapshot.key}`));
-        });
-
-        if (!updateValue.ruta) {
-          return;
-        } else {
-          d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
-          setTimeout(function () {
-            d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-          }, 1000);
-        }
       });
+
     } else if (hash === "#/" + user + "/history") {
       tabActive("history");
       localStorage.tabConveyance = false;
@@ -154,56 +172,44 @@ export async function Router() {
       localStorage.tabUnit = false;
 
       const refItems = ref(db, "items");
-
+      onChildChanged(refItems, (snapshot) => {
+        //console.log(snapshot.key);
+        //console.log(snapshot.val());
+        updateValue = snapshot.val();
+        keyUpdate = snapshot.key;
+        //console.log(d.getElementById(`${snapshot.key}`))
+      });
       onValue(refItems, (snapshot) => {
+        
         let res = snapshot.val();
         renderTableHistory(res);
+        updateItem(updateValue, keyUpdate);
         //console.log(res);
-        onChildChanged(refItems, (snapshot) => {
-          //console.log(snapshot.key);
-          //console.log(snapshot.val());
-          keyUpdate = snapshot.key;
-          //console.log(d.getElementById(`${snapshot.key}`));
-        });
-
-        if (!updateValue.ruta) {
-          return;
-        } else {
-          d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
-          setTimeout(function () {
-            d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-          }, 1000);
-        }
       });
-    } else if (hash === "#/" + user + "/cajas") {
+
+    } else
+    
+    if (hash === "#/" + user + "/cajas") {
       tabActive("cajas");
       localStorage.tabConveyance = true;
       localStorage.tabViajes = false;
       localStorage.tabUnit = false;
 
       const refItems = ref(db, "subitem1");
+      onChildChanged(refItems, (snapshot) => {
+        //console.log(snapshot.key);
+        //console.log(snapshot.val());
+        updateValue = snapshot.val();
+        keyUpdate = snapshot.key;
+        //console.log(d.getElementById(`${snapshot.key}`));
+      });
 
       onValue(refItems, (snapshot) => {
         let res = snapshot.val();
         renderTableCV(res);
-        //console.log(res);
-        onChildChanged(refItems, (snapshot) => {
-          //console.log(snapshot.key);
-          //console.log(snapshot.val());
-          updateValue = snapshot.val();
-          keyUpdate = snapshot.key;
-          //console.log(d.getElementById(`${snapshot.key}`));
-        });
+        updateItem(updateValue, keyUpdate);
+        
         //if (updateValue.ruta.matches("CU") || updateValue.ruta.matches("HS") || updateValue.ruta.matches("RT")):
-
-        if (!updateValue.caja) {
-          return;
-        } else {
-          d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
-          setTimeout(function () {
-            d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-          }, 1000);
-        }
       });
     } else if (hash === "#/" + user + "/unidades") {
       tabActive("unidades");
@@ -212,27 +218,19 @@ export async function Router() {
       localStorage.tabUnit = true;
 
       const refItems = ref(db, "subitem");
+      onChildChanged(refItems, (snapshot) => {
+        //console.log(snapshot.key);
+        //console.log(snapshot.val());
+        updateValue = snapshot.val();
+        keyUpdate = snapshot.key;
+        //console.log(d.getElementById(`${snapshot.key}`));
+      });
+
       onValue(refItems, (snapshot) => {
         let res = snapshot.val();
         renderTableUnits(res);
-        //console.log(res);
-        onChildChanged(refItems, (snapshot) => {
-          //console.log(snapshot.key);
-          //console.log(snapshot.val());
-          updateValue = snapshot.val();
-          keyUpdate = snapshot.key;
-          //console.log(d.getElementById(`${snapshot.key}`));
-        });
+        updateItem(updateValue, keyUpdate);
         //if (updateValue.ruta.matches("CU") || updateValue.ruta.matches("HS") || updateValue.ruta.matches("RT")):
-
-        if (!updateValue.caja) {
-          return;
-        } else {
-          d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
-          setTimeout(function () {
-            d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-          }, 1000);
-        }
       });
     } else return;
   });
@@ -576,7 +574,7 @@ export async function Router() {
          } 
       }
       
-   } else if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
+    } else if (e.target.matches(".edit") || e.target.matches(".fa-pencil")) {
       if (localStorage.tabViajes === "true") {
         const db = getDatabase(),
           refItem = ref(db, `items/${e.target.id}`);
@@ -1021,11 +1019,11 @@ export async function Router() {
          <th scope="col">VERIFICACION</th>
          <th scope="col">NO. POLIZA</th>
          <th scope="col">INCISO</th>
+         <th scope="col">FECHA ULTIMO SERVICIO</th>
          <th scope="col">KM ÚLTIMO SERVICIO</th>
          <th scope="col">KM ODOMETRO</th>
-         <th scope="col">KM LINKER</th>
+         <th scope="col">FECHA INVENTARIO</th>
          <th scope="col">CIRCUITO</th>
-         <th scope="col">FECHA</th>
          <th scope="col">UBICACION</th> 
          <th scope="col">ESTATUS</th>
 
@@ -1056,17 +1054,19 @@ export async function Router() {
     <td><input name="inciso" style="width: 100px;" type="text"  value="${
       item.inciso
     }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
+    <td><input name="linker" type="text" style="width: 100px;"  value="${
+      item.linker
+    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="uservicio" type="text" style="width: 100px;"  value="${
       item.uservicio
     }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
     <td><input name="contacto" type="text" style="width: 100px;"  value="${
       item.contacto
     }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
-    <td><input name="linker" type="text" style="width: 100px;"  value="${
-      item.linker
-    }" ${user === "CVehicular" || user === "Mtto" ? "" : "disabled"}></td>
-    <td>
-    <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${
+    <td><input name="fecha" style="width: 100px;" type="text"  value="${
+      item.fecha
+    }"></td>
+    <td><select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${
       user === "Traffic" || user === "TrafficH"
         ? "background-color: #b9e1ff;"
         : ""
@@ -1101,11 +1101,7 @@ export async function Router() {
     <option value="FCA - TENNECO">FCA - TENNECO</option>
     </select>
     </td>
-    <td><input name="fecha" style="width: 100px;" type="text"  value="${
-      item.fecha
-    }"></td>
-    <td>
-    <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${
+    <td><select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${
       user === "Traffic" || user === "TrafficH"
         ? "background-color: #b9e1ff;"
         : ""
@@ -1592,18 +1588,20 @@ export async function Router() {
               llegada: e.target.llegada.value.toUpperCase(),
               status: e.target.status.value.toUpperCase(),
               comentarios: e.target.comentarios.value.toUpperCase(),
-            },
-            keyValue = d.getElementById("bt-save").dataset.value;
+            }, keyValue = d.getElementById("bt-save").dataset.value;
 
           update(ref(db), {
             ["/items/" + keyValue]: body,
           })
             .then(() => {
               //console.log(keyValue);
-              d.getElementById(`${keyValue}`).classList.add("parpadeo");
-              setTimeout(function () {
-                d.getElementById(`${keyValue}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-              }, 1000);
+              if (hash === "#/" + user + "/productivo" || hash === "#/" + user + "/equipov" || hash === "#/" + user + "/history") {
+                d.getElementById(`${keyValue}`).classList.add("parpadeo");
+                setTimeout(function () {
+                  d.getElementById(`${keyValue}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
+                }, 1000);
+              }
+            
             })
             .catch((error) => {
               // The write failed...
@@ -1633,10 +1631,13 @@ export async function Router() {
           update(ref(db), { ["/subitem1/" + keyValue]: body })
             .then(() => {
               // console.log("asignado");
-              d.getElementById(`${keyValue}`).classList.add("parpadeo");
-              setTimeout(function () {
-                d.getElementById(`${keyValue}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
-              }, 2000);
+              if (hash === "#/" + user + "/cajas") {
+                d.getElementById(`${keyValue}`).classList.add("parpadeo");
+                setTimeout(function () {
+                  d.getElementById(`${keyValue}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
+                }, 2000);
+              }
+             
             })
             .catch((error) => {
               // The write failed...
@@ -1668,10 +1669,13 @@ export async function Router() {
           })
             .then(() => {
               // console.log("asignado");
-              d.getElementById(`${keyValue}`).classList.add("parpadeo");
+              if (hash === "#/" + user + "/unidades") {
+                d.getElementById(`${keyValue}`).classList.add("parpadeo");
               setTimeout(function () {
                 d.getElementById(`${keyValue}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
               }, 1000);
+              }
+
             })
             .catch((error) => {
               // The write failed...

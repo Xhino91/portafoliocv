@@ -6,8 +6,8 @@ export function ItemV(conv) {
 
    if( comit.comentarios.match("MANTE") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("CORRA")){
       return `
-          background: #862828;
-          color: white;
+          background: #99171787;
+          color: #620606;
           font-weight: bold;
 
       ` ;
@@ -15,15 +15,14 @@ export function ItemV(conv) {
    else {
       if( comit.comentarios.match("DISPONIBLE")){
          return  `
-           background-color: #017d1a;
-           color: white;
+           background-color: #017d1a4f;
+           color: #094a09;
            font-weight: bold;
            `;
            }
            else {
               return  `
-           background-color: #004c86;
-           color: white;
+              background-color: #f0e0cf;
            font-weight: bold;
            `;
            }
@@ -34,26 +33,14 @@ export function ItemV(conv) {
   const colorUbi = (ubi) => { 
    if(ubi.ubicacion.match("TRANSITO")){
       return `
-      background-color: #05888e;
-      color: white;
+      background-color: #badfff;
       font-weight: bold;
       `;
    }
-   if(ubi.ubicacion.match("PATIO")){
-      return `
-      background-color: #684400;
-      color: white;
-      
-      `;
-   }
-   if(ubi.ubicacion.match("BP") || ubi.ubicacion.match("FCA")){
-      return `
-      background-color: #59105b;
-      color: white;
-      `;
-   }
    else {
-      return
+      return `
+      font-weight: bold;
+      `;
    }
   }
 
@@ -84,10 +71,10 @@ return  `
 <td class="verificacion" >${conv[1].verificacion}</td>
 <td class="poliza" >${conv[1].poliza}</td>
 <td class="inciso">${conv[1].inciso}</td>
-<td class="contacto">${conv[1].contacto}</td>
-<td>${conv[1].circuito}</td>
-<td>${conv[1].fecha}</td>
-<td style="${diasTranscurridos(conv[1].fecha) > 3 ? "background-color: #801111; color: white; font-weight: bold; width: 15px;" : "font-weight: bold; width: 15px;"}">${diasTranscurridos(conv[1].fecha)}</td>
+<td class="contacto" style="font-weight: bold;">${conv[1].contacto}</td>
+<td style="font-weight: bold;" >${conv[1].circuito}</td>
+<td style="font-weight: bold;" >${conv[1].fecha}</td>
+<td style="${diasTranscurridos(conv[1].fecha) > 3 ? "background-color: #99171787; color: #620606; font-weight: bold; width: 15px;" : "background-color: #017d1a4f; color: #094a09; font-weight: bold; width: 15px;"}">${diasTranscurridos(conv[1].fecha)}</td>
 <td style="${colorUbi(conv[1])}" >${conv[1].ubicacion}</td> 
 <td style="${alertStatus(conv[1])}" >${conv[1].comentarios}</td>
 <td >${conv[1].reporte}</td> 

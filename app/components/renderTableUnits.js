@@ -39,20 +39,20 @@ export function renderTableUnits(items){
       <tr>
      
       <th scope="col">UNIDAD</th>
-      <th scope="col">OPERADOR</th>
       <th class="modelo" scope="col">MARCA</th>
       <th class="placa" scope="col">PLACA</th>
       <th class="año" scope="col">AÑO</th>
        <th class="verificacion" scope="col">NO. SERIE</th>
        <th class="poliza" scope="col">NO. POLIZA</th>
       <th class="inciso" scope="col">INCISO</th>
+      <th scope="col">FECHA ÚLTIMO SERVICIO</th>
       <th class="contacto" scope="col">KM ÚLTIMO SERVICIO</th>
       <th class="contacto" scope="col">KM PRÓXIMO SERVICIO</th>
       <th class="contacto" scope="col">KM ODOMETRO</th>
-      <th class="contacto" scope="col">KM LINKER</th>
+      <th class="contacto" scope="col">KM PARA SERVICIO</th>
       <th class="contacto" scope="col">MTTO PREVENTIVO</th>
       <th scope="col">CIRCUITO</th>
-      <th scope="col">FECHA</th>
+      <th scope="col">FECHA INVENTARIO</th>
       <th scope="col">UBICACION</th> 
       <th scope="col">ESTATUS</th>
       <th scope="col" style="${localStorage.username === "Public" ? "display: none;" : ""}">OPCIONES</th>
