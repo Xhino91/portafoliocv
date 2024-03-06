@@ -511,17 +511,17 @@ export async function Router() {
         </tr>
         <tr style="background-color:black; color:white;">
         <th scope="col">UNIDAD</th>
-        <th scope="col">OPERADOR</th>
         <th scope="col">MARCA</th>
         <th scope="col">PLACA</th>
         <th scope="col">AÑO</th>
         <th scope="col">NO. SERIE</th>
         <th scope="col">NO. POLIZA</th>
         <th scope="col">INCISO</th>
+        <th scope="col">FECHA ÚLTIMO SERVICIO</th>
         <th scope="col">KM ÚLTIMO SERVICIO</th>
         <th scope="col">KM PRÓXIMO SERVICIO</th>
         <th scope="col">KM ODOMETRO</th>
-        <th scope="col">KM LINKER</th>
+        <th scope="col">KM PARA SERVICIO</th>
         <th scope="col">MTTO PREVENTIVO</th>
         <th scope="col">CIRCUITO</th>
         <th scope="col">FECHA</th>
