@@ -52,33 +52,7 @@ export function itemPublic(item) {
      }
    
      const filterUser = (item) => {
-      if(localStorage.username === "InhouseHMO"){
-         if(item.cliente.includes("FORDH")){         return ""
-         } else {
-            return "display: none"
-         }
-      }
-      if(localStorage.username === "InhouseMX"){
-         if(item.cliente.includes("FORDC")){         return ""
-         } else {
-            return "display: none"
-         }
-      }
-      if(localStorage.username === "InhouseTOL"){
-         if(item.cliente.includes("FCA") || item.cliente.includes("BRP")){         return ""
-         } else {
-            return "display: none"
-         }
-      }
-      if(localStorage.username === "InhouseGTO"){
-         if(item.cliente.includes("MULTILOG")){         return ""
-         } else {
-            return "display: none"
-         }
-      }
-      else {
-         return ""
-      }
+      return
       }
     
 

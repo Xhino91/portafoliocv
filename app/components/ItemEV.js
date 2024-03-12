@@ -54,62 +54,10 @@ export function itemEV(item) {
       }
     
       const filterUser = (item) => {
-       if(localStorage.username === "InhouseHMO" || localStorage.username === "TrafficH"){
-          if(item.cliente.includes("FORD H")){
-             if(item.status.includes("COMPLET")){         return "display: none"
-          } else {
-             return 
-          }
-          } else {
-             return "display: none"
-          }
-       } else
-       if(localStorage.username === "InhouseMX"){
-          if(item.cliente.includes("FORD C")){
-             if(item.status.includes("COMPLET")){         return "display: none"
-          } else {
-             return 
-          }
-          } else {
-             return "display: none"
-          }
-       } else
-       if(localStorage.username === "InhouseTOL"){
-          if(item.cliente.includes("STELLANTIS") || item.cliente.includes("BRP") || item.cliente.includes("GM")){
-             if(item.status.includes("COMPLET")){         return "display: none"
-          } else {
-             return 
-          }
-          } else {
-             return "display: none"
-          }
-       } else
-       if(localStorage.username === "InhouseGTO"){
-          if(item.cliente.includes("MULTILOG")){  
-             if(item.status.includes("COMPLET")){         return "display: none"
-          } else {
-             return 
-          }
-          } else {
-             return "display: none"
-          }
-       } else
-       if(localStorage.username === "Traffic"){
-          if(item.cliente.includes("FORD H")){
-             return "display: none" 
-          } else {
-             if(item.status.includes("COMPLET")){         return "display: none"
-          } else {
-             return 
-          }
-          }
-       }
-       else {
          if(item.status.includes("COMPLET")){         return 
-          } else {
-             return 
-          }
-       }
+         } else {
+            return 
+         }
        }
     
       if(item.ruta.match("CU") || item.ruta.match("HS") || item.ruta.match("RT")) { 

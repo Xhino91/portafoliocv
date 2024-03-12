@@ -57,32 +57,7 @@ const alertColor = (item) => {
   }
 
   const filterUser = (item) => {
-   if(localStorage.username === "InhouseHMO" || localStorage.username === "TrafficH"){
-      if(!item.cliente.includes("FORD H")) {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "InhouseMX"){
-      if(!item.cliente.includes("FORD C")) {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "InhouseTOL"){
-      if(item.cliente.includes("STELLANTIS") || item.cliente.includes("BRP") || item.cliente.includes("GM")){
-         return 
-      }else {
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "InhouseGTO"){
-      if(!item.cliente.includes("MULTILOG")){
-         return "display: none"
-      }
-   } else
-   if(localStorage.username === "Traffic"){
-      if(item.cliente.includes("FORD H")){
-         return "display: none" 
-      }    }
+   return
    }
 
   
