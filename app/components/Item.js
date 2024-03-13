@@ -5,6 +5,7 @@ export function Item(item) {
 
 let itemId = item[0];
 item = item[1];
+let user = localStorage.username;
 
 
 
@@ -55,10 +56,20 @@ const alertColor = (item) => {
   }
 
   const filterUser = (item) => {
-        if(item.status.includes("COMPLET")){         return 
-      } else {
-         return 
+   if(user === "InhouseMX"){
+      if(!item.ruta.match("232") && !item.ruta.match("23K")){
+         return "display: none;"
       }
+   }
+   if(user === "InhouseHMO"){
+      if(!item.ruta.match("242") && !item.ruta.match("24K")){
+         return "display: none;"
+      } 
+   }
+   if(item.status.includes("COMPLET")){         return 
+   } else {
+      return 
+   }
    }
 
   
@@ -69,7 +80,7 @@ const alertColor = (item) => {
 
 //ALERTA DE WARNING (RUTAS PENDIENTES)
    if(item.status.match("PENDIENTE") || item.status.match("ACTIVA")) {
-      let user = localStorage.username;
+      
       //console.log(item);
       return `
       <tr id="${itemId}" class="item ${travelStatus(item)} pending text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
@@ -92,7 +103,6 @@ const alertColor = (item) => {
           <td >${item.status}</td>
           <td>${item.comentarios}</td>
           <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
-             <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
              <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
              
           </td>
@@ -102,9 +112,9 @@ const alertColor = (item) => {
 
    //CORRIENDO
    if(item.status.match("TRANSITO") || item.status.match("PROVEEDOR") || item.status.match("PLANTA") || item.status.match("DETENIDO") || item.status.match("CARGA") || item.status.match("ESPERA") || item.status.match("DESCARGANDO")) {
-      let user = localStorage.username;
+
 return `
-<tr id="${itemId}" class="item active-run text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
+<tr id="${itemId}" class="item active-run text-center align-middle" data-bs-toggle="" data-bs-target="#exampleModal" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" style="${filterUser(item)}">
     <td class="Unit">${item.unidad}</td>
     <td>${item.caja}</td>
     <td>${item.operador}</td>
@@ -124,8 +134,7 @@ return `
     <td style="${alertColor(item)}" >${item.status}</td>
     <td>${item.comentarios}</td>
     <td class="btn-hid" <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
-       <button id="${itemId}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${itemId}"></i></button>
-       <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" || user === "InhouseTOL" || user === "InhouseHMO" || user === "InhouseGTO" || user === "InhouseMX" || user === "Tracking" || user === "Evidencias1" || user === "Evidencias2" || user === "Calidad" ? "display: none;" : ""}"; ><i class="fa-solid fa-trash" id="${item.id}"></i></button>
+       <button id="${itemId}" type="button" class="btn btn-sm btn-warning alert3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-bell" id="${itemId}"></i>&nbsp;<b>3.5</b></button>
     </td>
  </tr>
           `;

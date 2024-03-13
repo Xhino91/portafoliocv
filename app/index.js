@@ -1,5 +1,5 @@
 import { App } from "./App.js";
-import { Router } from "./components/Router.js";
+import dropAreaLabel from "./helpers/dropArea.js";
 //import { firebaseData } from "./helpers/firebase.js";
 
 

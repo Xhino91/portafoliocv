@@ -1,7 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
 import {
   getDatabase,
   ref,
@@ -18,7 +16,6 @@ import { Main } from "./components/Main.js";
 import { Router } from "./components/Router.js";
 import { Login } from "./components/login.js";
 
-// Your web app's Firebase configuration
 
 const firebaseConfig = {
   apiKey: "AIzaSyBWjS2VrmW7eFUd34YL13VACi_6OX9Q7VI",
@@ -43,211 +40,63 @@ export function App() {
       //console.log(user);
       // ...
       
-  const $login = d.getElementById("login");
-  const $root = d.getElementById("root");
-  $root.innerHTML = null;
-  $login.innerHTML = null;
+     const $login = d.getElementById("login");
+     const $root = d.getElementById("root");
+      $root.innerHTML = null;
+      $login.innerHTML = null;
 
-  const db = getDatabase(app),
-    refUsers = ref(db, "users");
+       const db = getDatabase(app),
+         refUsers = ref(db, "users");
 
-  if (!sessionStorage.login) {
+       if (!sessionStorage.login) {
     //console.log("sesion activa");
-    localStorage.clear();
-    Login();
+           localStorage.clear();
+           Login();
 
-    const $form = d.querySelector("#form");
+           const $form = d.querySelector("#form");
 
-    $form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+        $form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-      const username = d.querySelector("#typeEmailX-2").value,
-        password = d.querySelector("#typePasswordX-2").value;
+            const username = d.querySelector("#typeEmailX-2").value,
+               password = d.querySelector("#typePasswordX-2").value;
 
-      const data = {
-        username: username,
-        password: password,
-      };
+            const data = {
+               username: username,
+               password: password,
+              };
 
-      //console.log(data);
-      if (e.target.id === "form") {
-        onValue(refUsers, (snapshot) => {
-          //console.log(snapshot);
-          //console.log(snapshot.key, snapshot.val());
-          //$message.textContent = snapshot.val();
+           if (e.target.id === "form") {
+           onValue(refUsers, (snapshot) => {
+
           let res = snapshot.val();
-          //Admin
-          if (
-            res[0].user === `${data.username}` &&
-            res[0].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
+            for (let i = 0; i < res.length; i++) {
+              const e = res[i];
+              
+              if (e.user === `${data.username}` && e.pass === `${data.password}`) {
+                //console.log("Acceso Completo");
+                sessionStorage.login = true;
+                localStorage.username = data.username;
+                $login.style = "display: none;";
+                $root.appendChild(Header());
+                $root.appendChild(Main());
+                document.getElementById("thtable").appendChild(Loader());
+                Router();
+                return  
+              } 
+                }
+               // console.log("Acceso Denegado");
+               return alert("Usuario y/o Contraseña Incorrecto");         
+               });
+                }
+          });
+           } else {
             $root.appendChild(Header());
             $root.appendChild(Main());
             document.getElementById("thtable").appendChild(Loader());
-            Router();  
-          } else if (
-            res[1].user === `${data.username}` &&
-            res[1].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[2].user === `${data.username}` &&
-            res[2].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router();
-          } else if (
-            res[3].user === `${data.username}` &&
-            res[3].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[4].user === `${data.username}` &&
-            res[4].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[5].user === `${data.username}` &&
-            res[5].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[6].user === `${data.username}` &&
-            res[6].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[7].user === `${data.username}` &&
-            res[7].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[8].user === `${data.username}` &&
-            res[8].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[9].user === `${data.username}` &&
-            res[9].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[10].user === `${data.username}` &&
-            res[10].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[11].user === `${data.username}` &&
-            res[11].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          } else if (
-            res[12].user === `${data.username}` &&
-            res[12].pass === `${data.password}`
-          ) {
-            //console.log("Acceso Completo");
-            sessionStorage.login = true;
-            localStorage.username = data.username;
-            $login.style = "display: none;";
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-          }  
-          else {
-            // console.log("Acceso Denegado");
-            alert("Usuario y/o Contraseña Incorrecto");
-          }
-        });
-      }
-    });
-  } else {
-    $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-            Router(); 
-  }
-    })
+             Router(); 
+        }
+     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

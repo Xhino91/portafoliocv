@@ -45,7 +45,6 @@ export function ItemV(conv) {
   }
 
   function diasTranscurridos(desdeFecha) {
-
    let partesFecha = desdeFecha.split("/");
    let dia = parseInt(partesFecha[0]);
    let mes = parseInt(partesFecha[1]) - 1; 
@@ -79,7 +78,7 @@ return  `
 <td style="${alertStatus(conv[1])}" >${conv[1].comentarios}</td>
 <td >${conv[1].reporte}</td> 
 <td class="btn-hid" style="${localStorage.username === "Public"  ? "display: none;" : ""}">
-       <button id="${conv[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${conv[0]}"></i></button>
+       <button id="${conv[0]}" type="button" class="btn btn-sm btn-warning ordenServ" data-bs-toggle="" data-bs-target=""><i class="fa-solid fa-triangle-exclamation" id="${conv[0]}"></i></button>
        <button id="${conv[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${conv[0]}"></i></button>
 </td>    
 </tr>

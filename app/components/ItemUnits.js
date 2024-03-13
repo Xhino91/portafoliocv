@@ -218,19 +218,9 @@ export function ItemUnit(unit) {
 <td style="font-weight: bold;">${unit[1].fecha}</td>
 <td style="font-weight: bold; ${unit[1].ubicacion.match("TRANSITO") ? "background-color: #badfff;" : ""}" >${unit[1].ubicacion}</td> 
 <td style="${alertStatus(unit[1])}" >${unit[1].comentarios}</td> 
-<td class="btn-hid" style="${
-    localStorage.username === "Public" ? "display: none;" : ""
-  }">
-<button id="${
-    unit[0]
-  }" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${
-    unit[0]
-  }"></i></button>
-<button id="${
-    unit[0]
-  }" type="button" class="btn btn-sm btn-danger delete" style="${
-    localStorage.username === "CVehicular" ? "" : "display: none;"
-  }"><i class="fa-solid fa-trash" id="${unit[0]}"></i></button>  
+<td class="btn-hid" style="${localStorage.username === "Public" ? "display: none;" : ""}">
+<button id="${unit[0]}" type="button" class="btn btn-sm btn-warning ordenServ" data-bs-toggle="" data-bs-target=""><i class="fa-solid fa-triangle-exclamation" id="${unit[0]}"></i></button>
+<button id="${unit[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${unit[0]}"></i></button>  
 </td>
 
 </tr>
@@ -238,3 +228,4 @@ export function ItemUnit(unit) {
 }
 
 //BOTON CONTROL VEHICULAR <button id="${item.unidad}" style="${item.unidad || item.caja ? "display: inherit;" : "display: none;"}" data-uniteyance="${item.caja}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-uniteyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>
+// <button id="${unit[0]}" type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil" id="${unit[0]}"></i></button>

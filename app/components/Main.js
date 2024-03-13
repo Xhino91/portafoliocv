@@ -21,14 +21,14 @@ export function Main() {
   <button id="unidades" class="btn btn-primary fw-bold unidades" type="button" >Inv de Unidades</button>
   <button class="btn btn-primary fw-bold  modal_xls" type="button" data-bs-toggle="modal" data-bs-target="#exportModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic"  ? "display: none;" : ""}" >Generar Reporte</button>
   <button class="btn btn-primary fw-bold  importModal" type="button" data-bs-toggle="modal" data-bs-target="#importModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic" || localStorage.username === "TrafficH" || localStorage.username === "CVehicular" ? "display: none;" : ""}" >Importar Excel</button>
-  <button class="btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "Public" || localStorage.username === "Traffic" || localStorage.username === "TrafficH" || localStorage.username === "CVehicular" ? "display: none;" : ""}">Agregar Registro</button>
+  <button class="btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "Public" || localStorage.username === "TrafficH" || localStorage.username === "CVehicular" ? "display: none;" : ""}">Agregar Registro</button>
   <button  class="remolque btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}">Agregar Remolque</button>
   <button  class="unidad btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}">Agregar Unidad</button>
   </div>  
 
   <form id="formulario">
     <div class="container">
-     <div class="modal fade" id="exampleModal" style="height: 30vh; margin:3rem; width:95%; margin-top: 10rem; border-radius:10px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="exampleModal" margin:3rem; width:95%; margin-top: 10rem; border-radius:10px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen">
        <div class="modal-content" style="width: 95%;padding: 0.5rem;">
         <div class="modal-header">
@@ -49,6 +49,20 @@ export function Main() {
        </div>
   </form>
 
+  <form id="formulario-tr" class="edit-tr">
+  <div id="myModal" class="modal-tr">
+  <div class="modal-content-tr">
+    <span class="close">&times;</span>
+    <div class="modal-body-tr">
+    
+    </div>
+    <div class="modal-footer">
+          <button id="bt-tr" data-value="" type="submit" class="btn btn-primary">Guardar cambios</button>
+          <input type="hidden" name="id">
+                 </div>
+  </div>
+</div>
+ </form>
 
 
   <form id="formulario" class="exportXls">
