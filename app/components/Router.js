@@ -1229,7 +1229,7 @@ export async function Router() {
               comentarios: e.target.comentarios.value.toUpperCase(),
             }, keyValue = d.getElementById("bt-tr").dataset.value;
 
-            if(body.status === "COMPLETO" && body.bol === "" || body.status === "COMPLETO" && body.tracking === ""){
+            if(body.status === "COMPLETO" && body.bol === "" || body.status === "COMPLETO" && body.tracking === "" || body.status === "EXPEDITADO COMPLETO" && body.tracking === "" || body.status === "EXPEDITADO COMPLETO" && body.bol === ""){
               alert("Ingrese Núm. de BOL / Tracking");
             } else {
               update(ref(db), {["/items/" + keyValue]: body})
