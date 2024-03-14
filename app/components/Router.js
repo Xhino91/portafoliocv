@@ -900,10 +900,13 @@ export async function Router() {
       //  console.log(e.target);
       //MODAL REGISTRO DE VIAJES
       d.querySelector(".hidden").style.display = "block";
-      d.querySelector(".modal").style.height= "27vh";
+      d.querySelector(".modal").style.height= "25vh";
       d.querySelector(".modal").style.margin= "2%";
       d.getElementById("formulario").classList.add("register");
       d.getElementById("formulario").classList.remove("edit");
+      d.querySelector(".modal-header").style.padding = "3px 15px 6px 25px";
+      d.querySelector(".modal-title").style.fontSize = "17px";
+      d.querySelector(".modal-footer").style.padding = "0px 8px 1px 1px";
       d.getElementById("exampleModalLabel").innerHTML = `Programación de rutas`;
       d.querySelector(".modal-body").innerHTML = `
        <div class="container-fluid font"> 
