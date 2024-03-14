@@ -1229,14 +1229,20 @@ export async function Router() {
               comentarios: e.target.comentarios.value.toUpperCase(),
             }, keyValue = d.getElementById("bt-tr").dataset.value;
 
-          update(ref(db), {["/items/" + keyValue]: body})
-            .then(() => {
-              //console.log(keyValue);
-                
-            })
-            .catch((error) => {
-              // The write failed...
-            });
+            if(body.status === "COMPLETO" && body.bol === "" || body.status === "COMPLETO" && body.tracking === ""){
+              alert("Ingrese Núm. de BOL / Tracking");
+            } else {
+              update(ref(db), {["/items/" + keyValue]: body})
+              .then(() => {
+                //console.log(keyValue);
+                  
+              })
+              .catch((error) => {
+                // The write failed...
+              });
+            }
+              
+          
         }
         modal.style.display = "none";
       } else if (localStorage.tabConveyance === "true") {
