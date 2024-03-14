@@ -132,7 +132,7 @@ export function itemEV(item) {
     <td style="${alertColor(item)}" >${item.status}</td>
     <td>${item.comentarios}</td>
     <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
-    <button id="${itemId}" type="button" class="btn btn-sm btn-warning alert3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-bell" id="${itemId}"></i>&nbsp;<b>3.5</b></button>
+    <button id="${itemId}" type="button" class="btn btn-sm btn-warning alert3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-bell" id="${itemId}"></i></button>
     </td>
     </tr>
           `;
