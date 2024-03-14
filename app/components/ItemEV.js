@@ -65,6 +65,11 @@ export function itemEV(item) {
                return "display: none;"
             }   
          }
+         if(user === "InhouseTOL"){
+            if(!item.ruta.match("RTE")){
+               return "display: none;"
+            }
+         }
          if(item.status.includes("COMPLET")){         return 
          } else {
             return 
