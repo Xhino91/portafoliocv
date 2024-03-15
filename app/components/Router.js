@@ -1771,6 +1771,7 @@ pdf.save('Orden_de_Trabajo.pdf');
       <option value="FORDH - SA AUTOMOTIVE">FORDH - SA AUTOMOTIVE</option>
       <option value="FORDH - NTN BEARING">FORDH - NTN BEARING</option>
       <option value="FORDH - CARCOUSTIC">FORDH - CARCOUSTIC</option>
+      <option value="MULTILOG - NIVEA">MULTILOG - NIVEA</option>
       <option value="AMAZON">AMAZON</option>
       <option value="BRP">BRP</option>
       <option value="GM">GM</option>
@@ -1928,6 +1929,7 @@ pdf.save('Orden_de_Trabajo.pdf');
     <option value="FORDH - SA AUTOMOTIVE">FORDH - SA AUTOMOTIVE</option>
     <option value="FORDH - NTN BEARING">FORDH - NTN BEARING</option>
     <option value="FORDH - CARCOUSTIC">FORDH - CARCOUSTIC</option>
+    <option value="MULTILOG - NIVEA">MULTILOG - NIVEA</option>
     <option value="AMAZON">AMAZON</option>
     <option value="BRP">BRP</option>
     <option value="GM">GM</option>
