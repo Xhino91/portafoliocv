@@ -383,7 +383,7 @@ export async function Router() {
     <tr style="background-color:black; color:white;">
     <th scope="col">UNIDAD</th>
     <th scope="col">CAJA</th>
-
+    <th scope="col">OPERADOR</th>
     <th scope="col">C.PORTE</th>
     <th scope="col">TRACKING</th>
     <th scope="col">BOL / SHIPPER</th>
