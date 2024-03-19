@@ -59,7 +59,7 @@ export function itemEV(item, keyUpdate) {
                return "display: none;"
             }   
          }
-         if(user === "InhouseHMO"){
+         if(user === "InhouseHMO" || user === "TrafficH"){
             if(!item.ruta.match("HS") && !item.ruta.match("HSK")){
                return "display: none;"
             }   
