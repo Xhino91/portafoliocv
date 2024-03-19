@@ -62,7 +62,7 @@ const alertColor = (item) => {
          return "display: none;"
       }
    }
-   if(user === "InhouseHMO"){
+   if(user === "InhouseHMO" || user === "TrafficH"){
       if(!item.ruta.match("242") && !item.ruta.match("24K")){
          return "display: none;"
       } 
