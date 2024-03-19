@@ -1,9 +1,15 @@
-export function ItemV(conv) {
+export function ItemV(conv, keyUpdate) {
+   let convId, user = localStorage.username;
    //console.log(conv);
    
+   if(!keyUpdate){
+      convId = conv[0];
+      conv = conv[1];
+   } else {
+      convId = keyUpdate;
+   }
+   
   const alertStatus = (comit) => {
-
-
    if( comit.comentarios.match("MANTE") || comit.comentarios.match("FALLA") || comit.comentarios.match("DAÑ") || comit.comentarios.match("CORRA")){
       return `
           background: #99171787;
@@ -29,7 +35,6 @@ export function ItemV(conv) {
    }
   }
 
-  
   const colorUbi = (ubi) => { 
    if(ubi.ubicacion.match("TRANSITO")){
       return `
@@ -59,27 +64,27 @@ export function ItemV(conv) {
   
 
 return  `
-<tr id="${conv[0]}" class="item text-center align-middle"  data-conv="${conv[1].caja}" data-circuito="${conv[1].circuito}" data-ubicacion="${conv[1].ubicacion}">
+<tr id="${convId}" class="item text-center align-middle"  data-conv="${conv.caja}" data-circuito="${conv.circuito}" data-ubicacion="${conv.ubicacion}">
 
 
-<td style="font-weight: bold;">${conv[1].caja}</td>
-<td>${conv[1].tipo}</td>
-<td class="modelo">${conv[1].modelo}</td>
-<td class="placa" >${conv[1].placa}</td>
-<td class="año" >${conv[1].año}</td>
-<td class="verificacion" >${conv[1].verificacion}</td>
-<td class="poliza" >${conv[1].poliza}</td>
-<td class="inciso">${conv[1].inciso}</td>
-<td class="contacto" style="font-weight: bold;">${conv[1].contacto}</td>
-<td style="font-weight: bold;" >${conv[1].circuito}</td>
-<td style="font-weight: bold;" >${conv[1].fecha}</td>
-<td style="${diasTranscurridos(conv[1].fecha) > 3 ? "background-color: #99171787; color: #620606; font-weight: bold; width: 15px;" : "background-color: #017d1a4f; color: #094a09; font-weight: bold; width: 15px;"}">${diasTranscurridos(conv[1].fecha)}</td>
-<td style="${colorUbi(conv[1])}" >${conv[1].ubicacion}</td> 
-<td style="${alertStatus(conv[1])}" >${conv[1].comentarios}</td>
-<td >${conv[1].reporte}</td> 
-<td class="btn-hid" style="${localStorage.username === "Public"  ? "display: none;" : ""}">
-       <button id="${conv[0]}" type="button" class="btn btn-sm btn-warning ordenServ" data-bs-toggle="" data-bs-target=""><i class="fa-solid fa-triangle-exclamation" id="${conv[0]}"></i></button>
-       <button id="${conv[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${conv[0]}"></i></button>
+<td style="font-weight: bold;">${conv.caja}</td>
+<td>${conv.tipo}</td>
+<td class="modelo">${conv.modelo}</td>
+<td class="placa" >${conv.placa}</td>
+<td class="año" >${conv.año}</td>
+<td class="verificacion" >${conv.verificacion}</td>
+<td class="poliza" >${conv.poliza}</td>
+<td class="inciso">${conv.inciso}</td>
+<td class="contacto" style="font-weight: bold;">${conv.contacto}</td>
+<td style="font-weight: bold;" >${conv.circuito}</td>
+<td style="font-weight: bold;" >${conv.fecha}</td>
+<td style="${diasTranscurridos(conv.fecha) > 3 ? "background-color: #99171787; color: #620606; font-weight: bold; width: 15px;" : "background-color: #017d1a4f; color: #094a09; font-weight: bold; width: 15px;"}">${diasTranscurridos(conv.fecha)}</td>
+<td style="${colorUbi(conv)}" >${conv.ubicacion}</td> 
+<td style="${alertStatus(conv)}" >${conv.comentarios}</td>
+<td >${conv.reporte}</td> 
+<td class="btn-hid" style="${user === "Public"  ? "display: none;" : ""}">
+       <button id="${convId}" type="button" class="btn btn-sm btn-warning ordenServ" data-bs-toggle="" data-bs-target=""><i class="fa-solid fa-triangle-exclamation" id="${convId}"></i></button>
+       <button id="${convId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${convId}"></i></button>
 </td>    
 </tr>
 `;

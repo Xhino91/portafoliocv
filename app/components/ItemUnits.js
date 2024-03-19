@@ -1,4 +1,13 @@
-export function ItemUnit(unit) {
+export function ItemUnit(unit, keyUpdate) {
+  let unitId, user = localStorage.username;
+
+  if(!keyUpdate){
+    unitId = unit[0];
+    unit = unit[1];
+ } else {
+    unitId = keyUpdate;
+ }
+  
   const alertStatus = (comit) => {
     if (
       comit.comentarios.match("MANTE") ||
@@ -31,35 +40,35 @@ export function ItemUnit(unit) {
   const compareKM = (unit) => {
     // console.log((parseInt(unit[1].uservicio, 10) + 28000).toLocaleString());
     if (
-      parseInt(unit[1].unidad, 10) >= 1 &&
-      parseInt(unit[1].unidad, 10) <= 31
+      parseInt(unit.unidad, 10) >= 1 &&
+      parseInt(unit.unidad, 10) <= 31
     ) {
       return {
-        pservice: (parseInt(unit[1].uservicio, 10) + 28000),
+        pservice: (parseInt(unit.uservicio, 10) + 28000),
         km: 28000,
       };
     } else if (
-      parseInt(unit[1].unidad, 10) >= 33 &&
-      parseInt(unit[1].unidad, 10) <= 258
+      parseInt(unit.unidad, 10) >= 33 &&
+      parseInt(unit.unidad, 10) <= 258
     ) {
       return {
-        pservice: (parseInt(unit[1].uservicio, 10) + 45000),
+        pservice: (parseInt(unit.uservicio, 10) + 45000),
         km: 45000,
       };
     } else if (
-      parseInt(unit[1].unidad, 10) >= 300 &&
-      parseInt(unit[1].unidad, 10) <= 350
+      parseInt(unit.unidad, 10) >= 300 &&
+      parseInt(unit.unidad, 10) <= 350
     ) {
       return {
-        pservice: (parseInt(unit[1].uservicio, 10) + 60000),
+        pservice: (parseInt(unit.uservicio, 10) + 60000),
         km: 60000,
       };
     } else if (
-      parseInt(unit[1].unidad, 10) >= 400 &&
-      parseInt(unit[1].unidad, 10) <= 450
+      parseInt(unit.unidad, 10) >= 400 &&
+      parseInt(unit.unidad, 10) <= 450
     ) {
       return {
-        pservice: (parseInt(unit[1].uservicio, 10) + 45000),
+        pservice: (parseInt(unit.uservicio, 10) + 45000),
         km: 45000,
       };
     } else {
@@ -196,31 +205,29 @@ export function ItemUnit(unit) {
   //console.log(unit);
 
   return `
-<tr id="${unit[0]}" class="item text-center align-middle" data-unit="${
-    unit[1].unidad
-  }" data-circuito="${unit[1].circuito}" data-ubicacion="${unit[1].ubicacion}">
+<tr id="${unitId}" class="item text-center align-middle" data-unit="${unit.unidad}" data-circuito="${unit.circuito}" data-ubicacion="${unit.ubicacion}">
 
 
-<td style="font-weight: bold;">${unit[1].unidad}</td>
-<td class="modelo">${unit[1].modelo}</td>
-<td class="placa" >${unit[1].placa}</td>
-<td class="año" >${unit[1].año}</td>
-<td class="verificacion" >${unit[1].verificacion}</td>
-<td class="poliza" >${unit[1].poliza}</td>
-<td class="inciso">${unit[1].inciso}</td>
-<td class="fechauserv" style="font-weight: bold;">${unit[1].linker}</td>
-<td class="contacto" style="font-weight: bold;">${parseInt(unit[1].uservicio, 10).toLocaleString()}</td>
+<td style="font-weight: bold;">${unit.unidad}</td>
+<td class="modelo">${unit.modelo}</td>
+<td class="placa" >${unit.placa}</td>
+<td class="año" >${unit.año}</td>
+<td class="verificacion" >${unit.verificacion}</td>
+<td class="poliza" >${unit.poliza}</td>
+<td class="inciso">${unit.inciso}</td>
+<td class="fechauserv" style="font-weight: bold;">${unit.linker}</td>
+<td class="contacto" style="font-weight: bold;">${parseInt(unit.uservicio, 10).toLocaleString()}</td>
 <td class="contacto" style="font-weight: bold;">${compareKM(unit).pservice.toLocaleString()}</td>
-<td class="contacto" style="font-weight: bold;">${parseInt(unit[1].contacto, 10).toLocaleString()}</td>
-<td class="contacto" style="${alertService(compareKM(unit), parseInt(unit[1].contacto, 10))}">${(compareKM(unit).pservice - parseInt(unit[1].contacto, 10))}</td>
-<td class="contacto" style="${alertService(compareKM(unit), parseInt(unit[1].contacto, 10))}">${mttoPreventive(compareKM(unit), parseInt(unit[1].contacto, 10))}</td>
-<td style="font-weight: bold;">${unit[1].circuito}</td>
-<td style="font-weight: bold;">${unit[1].fecha}</td>
-<td style="font-weight: bold; ${unit[1].ubicacion.match("TRANSITO") ? "background-color: #badfff;" : ""}" >${unit[1].ubicacion}</td> 
-<td style="${alertStatus(unit[1])}" >${unit[1].comentarios}</td> 
-<td class="btn-hid" style="${localStorage.username === "Public" ? "display: none;" : ""}">
-<button id="${unit[0]}" type="button" class="btn btn-sm btn-warning ordenServ" data-bs-toggle="" data-bs-target=""><i class="fa-solid fa-triangle-exclamation" id="${unit[0]}"></i></button>
-<button id="${unit[0]}" type="button" class="btn btn-sm btn-danger delete" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${unit[0]}"></i></button>  
+<td class="contacto" style="font-weight: bold;">${parseInt(unit.contacto, 10).toLocaleString()}</td>
+<td class="contacto" style="${alertService(compareKM(unit), parseInt(unit.contacto, 10))}">${(compareKM(unit).pservice - parseInt(unit.contacto, 10))}</td>
+<td class="contacto" style="${alertService(compareKM(unit), parseInt(unit.contacto, 10))}">${mttoPreventive(compareKM(unit), parseInt(unit.contacto, 10))}</td>
+<td style="font-weight: bold;">${unit.circuito}</td>
+<td style="font-weight: bold;">${unit.fecha}</td>
+<td style="font-weight: bold; ${unit.ubicacion.match("TRANSITO") ? "background-color: #badfff;" : ""}" >${unit.ubicacion}</td> 
+<td style="${alertStatus(unit)}" >${unit.comentarios}</td> 
+<td class="btn-hid" style="${user === "Public" ? "display: none;" : ""}">
+<button id="${unitId}" type="button" class="btn btn-sm btn-warning ordenServ" data-bs-toggle="" data-bs-target=""><i class="fa-solid fa-triangle-exclamation" id="${unitId}"></i></button>
+<button id="${unitId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "CVehicular" ? "" : "display: none;"}"><i class="fa-solid fa-trash" id="${unitId}"></i></button>  
 </td>
 
 </tr>

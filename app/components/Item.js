@@ -1,11 +1,12 @@
-export function Item(item) {
-//console.log(item);
+export function Item(item, keyUpdate) {
+    let itemId, user = localStorage.username;
 
-//console.log(Object.values(item));
-
-let itemId = item[0];
-item = item[1];
-let user = localStorage.username;
+if(!keyUpdate){
+   itemId = item[0];
+   item = item[1];
+} else {
+   itemId = keyUpdate;
+}
 
 
 
@@ -107,9 +108,7 @@ const alertColor = (item) => {
           <td >${item.llegada}</td>
           <td >${item.status}</td>
           <td>${item.comentarios}</td>
-          <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
-             <button id="${itemId}" type="button" class="btn btn-sm btn-danger delete" style="${user === "Traffic" || user === "TrafficH" ? "display: none;" : ""}"><i class="fa-solid fa-trash" id="${itemId}"></i></button>
-             
+          <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">             
           </td>
        </tr>
          `;

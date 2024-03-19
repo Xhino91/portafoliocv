@@ -1,5 +1,4 @@
 import { App } from "./App.js";
-import dropAreaLabel from "./helpers/dropArea.js";
 //import { firebaseData } from "./helpers/firebase.js";
 
 
