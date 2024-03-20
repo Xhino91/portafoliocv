@@ -6,7 +6,7 @@ const d = document;
 export function renderTable(items){
   
 
-      //console.log(items); 
+       
     
       let itemsArray = Object.entries(items);
 
@@ -27,7 +27,7 @@ export function renderTable(items){
 
       let html = "";
      
-    
+      //console.log(orderItems);
       orderItems.forEach((item) => (html += Item(item)));
      
     

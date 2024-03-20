@@ -47,15 +47,12 @@ export function App() {
 
        const db = getDatabase(app),
          refUsers = ref(db, "users");
-
-       if (!sessionStorage.login) {
-    //console.log("sesion activa");
-           localStorage.clear();
-           Login();
+         if(!sessionStorage.login || !localStorage.username){
+          Login();
 
            const $form = d.querySelector("#form");
 
-        $form.addEventListener("submit", async (e) => {
+          $form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const username = d.querySelector("#typeEmailX-2").value,
@@ -69,7 +66,7 @@ export function App() {
            if (e.target.id === "form") {
            onValue(refUsers, (snapshot) => {
 
-          let res = snapshot.val();
+            let res = snapshot.val();
             for (let i = 0; i < res.length; i++) {
               const e = res[i];
               
@@ -81,6 +78,7 @@ export function App() {
                 $root.appendChild(Header());
                 $root.appendChild(Main());
                 document.getElementById("thtable").appendChild(Loader());
+                window.location.hash = "#/productivo";
                 Router();
                 return  
               } 
@@ -89,13 +87,18 @@ export function App() {
                return alert("Usuario y/o Contraseña Incorrecto");         
                });
                 }
-          });
-           } else {
-            $root.appendChild(Header());
-            $root.appendChild(Main());
-            document.getElementById("thtable").appendChild(Loader());
-             Router(); 
-        }
+             });
+         } else {
+              if(!window.location.hash) {
+                sessionStorage.login = false;
+                localStorage.clear();
+              } else {
+                $root.appendChild(Header());
+                $root.appendChild(Main());
+                document.getElementById("thtable").appendChild(Loader());
+                Router();
+              }
+         }
      })
     .catch((error) => {
       const errorCode = error.code;

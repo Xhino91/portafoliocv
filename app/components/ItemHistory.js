@@ -1,11 +1,12 @@
-export function ItemHistory(item) {
-//console.log(item);
-
-//console.log(Object.values(item));
-
-let itemId = item[0];
-item = item[1];
-
+export function ItemHistory(item, keyUpdate) {
+   let itemId, user = localStorage.username;
+    
+   if(!keyUpdate){
+      itemId = item[0];
+      item = item[1];
+   } else {
+      itemId = keyUpdate;
+   }
 
 const travelStatus = (item) => {
    if(item.status.match("COMPLET")) {
@@ -66,7 +67,6 @@ const alertColor = (item) => {
   
 //ALERTA DE COMPLETE (RUTA COMPLETA)
    if(item.status.match("COMPLET")) {
-      let user = localStorage.username;
    return `
    <tr id="${itemId}" class="item text-center align-middle ${travelStatus(item)}" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}" data-hour="${item.ventana}" style="${filterUser(item)}">
        <td class="Unit">${item.unidad}</td>
@@ -95,7 +95,6 @@ const alertColor = (item) => {
    } else
 
    if(item.status.match("CANCEL") || item.status.match("DRY") || item.status.match("TONU") || item.status.match("BROKE")) {
-      let user = localStorage.username;
       return `
       <tr id="${itemId}" class="item active-error text-center align-middle" data-run="${alertStatus(item)}" data-unit="${item.unidad}" data-box="${item.caja}" data-operador="${item.operador}" data-cporte="${item.cporte}" data-track="${item.tracking}" data-ruta="${item.ruta}" data-cliente="${item.cliente}" data-proveedor="${item.proveedor}" data-status="${item.status}" data-citaprogramada="${item.citaprogramada}"  style="${filterUser(item)}">
           <td class="Unit">${item.unidad}</td>
