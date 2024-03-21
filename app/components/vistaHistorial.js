@@ -50,12 +50,8 @@ import { ItemHistory } from "./ItemHistory.js";
      }
       })
     .catch((error) => {
-<<<<<<< HEAD
       if(d.getElementById(`${keyUpdate}`).classList.add("parpadeo") === null) return
        // console.error("Error al obtener los datos:", error);
-=======
-        console.error("Error al obtener los datos:", error);
->>>>>>> 2db7223862ddbfe366a6e7770a0b6b91d1754691
          });
      
     }
