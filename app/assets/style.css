@@ -123,8 +123,10 @@ thead tr th {
 }
 
 .parpadeo {
-  animation: parpadeo 1s ease infinite !important; /* Duración, tipo de interpolación y repetición */
+  animation: parpadeo 1s ease-in infinite !important; /* Duración, tipo de interpolación y repetición */
 }
+
+/*/////// */
 
 
 

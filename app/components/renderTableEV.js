@@ -4,22 +4,11 @@ import { itemEV } from "./ItemEV.js";
 const d = document;
 
 export function renderTableEV(items){
-  
-
-      //console.log(items); 
-    
       let itemsArray = Object.entries(items);
 
-    
-
-
-    
-
-      
 
       let html = "";
-     
-    
+      
       itemsArray.forEach((item) => (html += itemEV(item)));
      
     
@@ -70,12 +59,13 @@ export function renderTableEV(items){
        return new Date(fecha[2], fecha[1] - 1, fecha[0], hora[0], hora[1]);
       }
     
-   //Run Order 
-      // Ordenar las fechas
+
+       // Ordenar las fechas
     newOrder.sort(function(a, b) {
       return convertirAFecha(a.dataset.citaprogramada) - convertirAFecha(b.dataset.citaprogramada);
-       });   
-
+       }); 
+       
+   //Run Order 
    newOrder.sort((e1, e2) => {
     if (e1.dataset.run < e2.dataset.run || e1.dataset.run < e2.dataset.run) {
       return -1;
@@ -86,6 +76,7 @@ export function renderTableEV(items){
       return 0;
     }
    });
+   
    
      
 

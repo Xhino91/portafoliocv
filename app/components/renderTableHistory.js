@@ -15,9 +15,9 @@ export function renderTableHistory(items){
 
 
       let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].citaprogramada < o2[1].citaprogramada) {
+        if (o1[1].citaprogramada > o2[1].citaprogramada) {
           return -1;
-        } else if (o1[1].citaprogramada > o2[1].citaprogramada) {
+        } else if (o1[1].citaprogramada < o2[1].citaprogramada) {
           return 1;
         } else {
           return 0;
@@ -82,7 +82,7 @@ export function renderTableHistory(items){
      //Run Order 
         // Ordenar las fechas
       newOrder.sort(function(a, b) {
-        return convertirAFecha(a.dataset.citaprogramada) - convertirAFecha(b.dataset.citaprogramada);
+        return convertirAFecha(b.dataset.citaprogramada) - convertirAFecha(a.dataset.citaprogramada);
          });   
 
      newOrder.sort((e1, e2) => {
@@ -96,9 +96,6 @@ export function renderTableHistory(items){
       }
      });
      
-     
-
-
         newOrder.forEach((e) => {
           d.getElementById("table_body").insertAdjacentElement("beforeend", e);          
          });     

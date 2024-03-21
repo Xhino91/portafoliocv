@@ -40,17 +40,12 @@ const alertColor = (item) => {
   const alertStatus = (item) => {
 
 
-   if( item.status.match("PROVEEDOR") || item.status.match("TRANSITO") || item.status.match("PLANTA") || item.status.match("ESPERA") || item.status.match("DETENIDO")){
-      return "1" ;
-   } else
-   if(item.status.match("PENDIENTE") || item.status.match("ACTIVA")){
-      return "2" ;
-   } else
+ 
    if (item.status.match("COMPLET")) {
-      return "4" ;
+      return "0" ;
    }
    if(item.status.match("CANCEL") || item.status.match("DRY") || item.status.match("TONU") || item.status.match("BROKE")){
-      return "5";
+      return "1";
    }
    else {
       return "";
