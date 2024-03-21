@@ -39,7 +39,11 @@ import {
             .then((snapshot) => {
              if (snapshot.exists()) {
              initialData = snapshot.val();
+<<<<<<< HEAD
                renderTable(initialData);  
+=======
+               renderTable(initialData); 
+>>>>>>> 2db7223862ddbfe366a6e7770a0b6b91d1754691
                d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
                setTimeout(function () {
                  d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
@@ -49,9 +53,14 @@ import {
              }
               })
             .catch((error) => {
+<<<<<<< HEAD
               if(d.getElementById(`${keyUpdate}`).classList.add("parpadeo") === null) return
                 //console.error("Error al obtener los datos:", error);
                });
+=======
+                console.error("Error al obtener los datos:", error);
+                 });
+>>>>>>> 2db7223862ddbfe366a6e7770a0b6b91d1754691
       }
 
 
