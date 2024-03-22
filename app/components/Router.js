@@ -101,67 +101,97 @@ export async function Router() {
     }
   }
 
+  function sugerencias () {
+    const operadores = [
+      "ANTONIO GLENN VASQUEZ LOPEZ",
+      "JOSE TRINIDAD ANGELES VELAZQUEZ",
+      "FERNANDO MENDOZA GUTIERREZ",
+      "SERGIO RUBEN CAMACHO SEGOVIANO",
+      "CARLOS MARTIN MARTINEZ LOZA",
+      "JESUS EDUARDO VARGAS CRUZ",
+      "JOSE JUAN CHAVEZ GOMEZ",
+      "CRISTIAN ANGEL CLETO CRUZ",
+      "GONZALO ARMANDO RASGADO SOMBRA",
+      "EDUARDO OSVALDO CHAVEZ RODRIGUEZ",
+      "DYLAN ROGELIO JUAREZ SANCHEZ",
+      "VICTOR GONZALEZ JUAREZ",
+      "FELIPE MEJIA NOVO",
+      "MIGUEL ANGEL BOLANOS ALCANTARA",
+      "ALEJANDRO ESPINOZA SANTAMARIA",
+      "ANGEL REMIGIO JUAREZ ALVAREZ",
+      "MIGUEL ANGEL SOLIS VEGA",
+      "EFRAIN BARRETO DONIZ",
+      "FRANCISCO JULIAN TAPIA CASASOLA",
+      "ROGELIO JUAREZ PEREZ",
+      "EDGAR RENE LOPEZ CRUZ",
+      "OSCAR RIOS ESPINOSA",
+      "JUAN GARCIA GUTIERREZ",
+      "ERIC VAZQUEZ ARRATIA",
+      "FERNANDO BECERRIL ALCANTARA",
+      "ROBERTO ANGELES LAGUNAS",
+      "JOSUE ARMANDO JIMENEZ ANGELES",
+      "MIGUEL ANGEL JUAREZ ALVAREZ",
+      "ARMANDO FLORES VILLAFANA",
+      "DAVID ALEJANDRO MENDEZ MATA",
+      "MARCO URIEL HERNANDEZ FLORES",
+      "GUSTAVO HERNANDEZ FLORES",
+      "TITO AGUSTIN CARRANZA ROMERO",
+      "ROBERTO CARLOS JIMENEZ VELAZQUEZ",
+      "VICTOR MANUEL TOVAR PEREZ",
+      "ANGEL VASQUEZ LOPEZ",
+      "MARTIN SERRANO CERVANTES",
+      "JUAN MANUEL LOPEZ RAMIREZ",
+      "ABRAHAM ESPINOSA RODRIGUEZ",
+      "JUAN BECERRIL ALCANTARA",
+      "CHRISTIAN UBALDO SOLIS SANCHEZ",
+      "JESUS FRANCISCO SANCHEZ BECERRA",
+      "FERNANDO GONZALO GIL TREJO",
+      "MARGARITO GARCIA ROSAS",
+      "ENRIQUE CALVILLO HERNANDEZ",
+      "FERNANDO GARCIA ACOSTA",
+      "ISAC BARRETO CUANDON",
+      "MARCOS QUIJADA QUIJADA",
+      "CESAR BERNAL GOMEZTAGLE",
+      "LORENZO MERCADO MALDONADO",
+      "MIGUEL ANGEL CALVILLO ESQUIVEL",
+      "JAVIER RAFAEL ISLAS",
+      "GUILLERMO CRUZ FRAGOSO",
+      "SAMUEL FRAGOSO GARCIA",
+      "ANGEL FRANCISCO MENDEZ LOPEZ",
+      "ARMANDO SOMBRA LAZCANO",
+      "ARTURO GARCIA DAVILA",
+      "SANTOS JULIAN SANCHEZ BECERRA",
+      "HECTOR DONOVAN CASAS COYOI",
+      "DIEGO RUEDA VARGAS"
+    ];
+    let operadorInput = d.getElementById("operador");
+    let sugerenciasDatalist = d.getElementById("sugerencias");
+
+
+    operadorInput.addEventListener("input", function() {
+    let valorInput = this.value.toUpperCase();
+    let sugerenciasHTML = '';
+
+    if (valorInput) {
+
+    let sugerencias = operadores.filter(function(operador) {
+    return operador.toUpperCase().includes(valorInput);
+      });
+
+    sugerenciasHTML = sugerencias.map(function(op) {
+      return `<option value="${op}">${op}</option>`;
+      }).join('');
+   }
+
+    sugerenciasDatalist.innerHTML = '';
+    sugerenciasDatalist.insertAdjacentHTML("beforeend", sugerenciasHTML);
+    });
+  }
+
 
    let  user = localStorage.username,
   hash = window.location.hash;
     cambiarVista(user, hash);
- /*if (hash === "#/" + user + "/productivo") {
-    tabActive("tablero"); 
-    const refItems = ref(db, "items");
-    onValue(refItems, (snapshot) => {
-      let res = snapshot.val();
-      renderTable(res);   
-      childChange(refItems);
-      updateItem(updateValue, keyUpdate);
-      keyUpdate = "",
-      updateValue = {};                
-    });
-  } else if (hash === "#/" + user + "/equipov") {
-    tabActive("equipov");
-    const refItems = ref(db, "items");
-    onValue(refItems, (snapshot) => {
-      let res = snapshot.val();
-      renderTableEV(res);
-      childChange(refItems);
-      updateItem(updateValue, keyUpdate);
-      keyUpdate = "",
-      updateValue = {};
-    });
-  } else if (hash === "#/" + user + "/history") {
-    tabActive("history");
-    const refItems = ref(db, "items");
-    onValue(refItems, (snapshot) => {
-      let res = snapshot.val();
-      renderTableHistory(res);
-      childChange(refItems);
-      updateItem(updateValue, keyUpdate);
-      keyUpdate = "",
-      updateValue = {};
-    });
-  } else if (hash === "#/" + user + "/cajas") {
-    tabActive("cajas");
-    const refItems = ref(db, "subitem1");
-    onValue(refItems, (snapshot) => {
-      let res = snapshot.val();
-      renderTableCV(res);
-      childChange(refItems);
-      updateItem(updateValue, keyUpdate);
-      keyUpdate = "",
-      updateValue = {};
-    });
-  } else if (hash === "#/" + user + "/unidades") {
-    tabActive("unidades");
-    const refItems = ref(db, "subitem");
-    onValue(refItems, (snapshot) => {
-      let res = snapshot.val();
-      renderTableUnits(res);
-      childChange(refItems);
-      updateItem(updateValue, keyUpdate);
-      keyUpdate = "",
-      updateValue = {};
-    });
-  } else return;*/
-
   
   d.addEventListener("click", async (e) => {
     if (e.target == modal) {
@@ -1383,8 +1413,9 @@ export async function Router() {
         }
     });
 
-// Guardar el PDF
-pdf.save('Orden_de_Trabajo.pdf');
+      // Guardar el PDF
+      pdf.save('Orden_de_Trabajo.pdf');
+      //generar datos a la BD para el seguimiento a los servicion por medio de mantenimiento
 
     } else if (e.target.matches(".edit-tr")) {
       if (localStorage.tabViajes === "true") {
@@ -1428,6 +1459,12 @@ pdf.save('Orden_de_Trabajo.pdf');
             comentarios: e.target.comentarios.value.toUpperCase(),
           };
 
+          if(body.status === "COMPLETO" || body.status === "EXPEDITADO COMPLETO"){
+            if(!body.bol || !body.cporte){
+              alert("Ingresar BOL / CPORTE");
+              return
+            } else update(ref(db), { ["/items/" + keyValue]: body });  
+          }
           update(ref(db), { ["/items/" + keyValue]: body });
           modal.style.display = "none";
         }
@@ -1506,6 +1543,7 @@ pdf.save('Orden_de_Trabajo.pdf');
           const db = getDatabase(),
           refItem = ref(db, `items/${e.target.parentNode.id}`);
           modal.style.display = "block";
+
              onValue(refItem, (snapshot) => {
                let item = snapshot.val();
                // console.log(item);
@@ -1557,69 +1595,8 @@ pdf.save('Orden_de_Trabajo.pdf');
          <td><input name="unidad" style="width: 35px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text" value="${item.unidad}"></td>
          <td><input name="caja" style="width: 60px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"   value="${item.caja}"></td>
          <td>
-         <select class="form-select form-select-sm" style="height: 24px; width: 130px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="operador" id="operador">
-         <option value="${item.operador}">${item.operador}</option> 
-         <option value="ASIGNAR">ASIGNAR</option>
-         <option value="ANTONIO GLENN VASQUEZ LOPEZ">ANTONIO GLENN VASQUEZ LOPEZ</option> 
-         <option value="JOSE TRINIDAD ANGELES VELAZQUEZ">JOSE TRINIDAD ANGELES VELAZQUEZ</option> 
-         <option value="FERNANDO MENDOZA GUTIERREZ">FERNANDO MENDOZA GUTIERREZ</option> 
-         <option value="SERGIO RUBEN CAMACHO SEGOVIANO">SERGIO RUBEN CAMACHO SEGOVIANO</option> 
-         <option value="CARLOS MARTIN MARTINEZ LOZA">CARLOS MARTIN MARTINEZ LOZA</option> 
-         <option value="JESUS EDUARDO VARGAS CRUZ">JESUS EDUARDO VARGAS CRUZ</option> 
-         <option value="JOSE JUAN CHAVEZ GOMEZ">JOSE JUAN CHAVEZ GOMEZ</option> 
-         <option value="CRISTIAN ANGEL CLETO CRUZ">CRISTIAN ANGEL CLETO CRUZ</option>
-         <option value="GONZALO ARMANDO RASGADO SOMBRA">GONZALO ARMANDO RASGADO SOMBRA</option> 
-         <option value="EDUARDO OSVALDO CHAVEZ RODRIGUEZ">EDUARDO OSVALDO CHAVEZ RODRIGUEZ</option> 
-         <option value="DYLAN ROGELIO JUAREZ SANCHEZ">DYLAN ROGELIO JUAREZ SANCHEZ</option> 
-         <option value="VICTOR GONZALEZ JUAREZ">VICTOR GONZALEZ JUAREZ</option> 
-         <option value="FELIPE MEJIA NOVO">FELIPE MEJIA NOVO</option> 
-         <option value="MIGUEL ANGEL BOLANOS ALCANTARA">MIGUEL ANGEL BOLANOS ALCANTARA</option> 
-         <option value="ALEJANDRO ESPINOZA SANTAMARIA">ALEJANDRO ESPINOZA SANTAMARIA</option> 
-         <option value="ANGEL REMIGIO JUAREZ ALVAREZ">ANGEL REMIGIO JUAREZ ALVAREZ</option> 
-         <option value="MIGUEL ANGEL SOLIS VEGA">MIGUEL ANGEL SOLIS VEGA</option> 
-         <option value="EFRAIN BARRETO DONIZ">EFRAIN BARRETO DONIZ</option> 
-         <option value="FRANCISCO JULIAN TAPIA CASASOLA">FRANCISCO JULIAN TAPIA CASASOLA</option> 
-         <option value="ROGELIO JUAREZ PEREZ">ROGELIO JUAREZ PEREZ</option> 
-         <option value="EDGAR RENE LOPEZ CRUZ">EDGAR RENE LOPEZ CRUZ</option> 
-         <option value="OSCAR RIOS ESPINOSA">OSCAR RIOS ESPINOSA</option> 
-         <option value="JUAN GARCIA GUTIERREZ">JUAN GARCIA GUTIERREZ</option> 
-         <option value="ERIC VAZQUEZ ARRATIA">ERIC VAZQUEZ ARRATIA</option> 
-         <option value="FERNANDO BECERRIL ALCANTARA">FERNANDO BECERRIL ALCANTARA</option> 
-         <option value="ROBERTO ANGELES LAGUNAS">ROBERTO ANGELES LAGUNAS</option> 
-         <option value="JOSUE ARMANDO JIMENEZ ANGELES">JOSUE ARMANDO JIMENEZ ANGELES</option> 
-         <option value="MIGUEL ANGEL JUAREZ ALVAREZ">MIGUEL ANGEL JUAREZ ALVAREZ</option> 
-         <option value="ARMANDO FLORES VILLAFANA">ARMANDO FLORES VILLAFANA</option> 
-         <option value="DAVID ALEJANDRO MENDEZ MATA">DAVID ALEJANDRO MENDEZ MATA</option> 
-         <option value="MARCO URIEL HERNANDEZ FLORES">MARCO URIEL HERNANDEZ FLORES</option> 
-         <option value="GUSTAVO HERNANDEZ FLORES">GUSTAVO HERNANDEZ FLORES</option> 
-         <option value="TITO AGUSTIN CARRANZA ROMERO">TITO AGUSTIN CARRANZA ROMERO</option> 
-         <option value="ROBERTO CARLOS JIMENEZ VELAZQUEZ">ROBERTO CARLOS JIMENEZ VELAZQUEZ</option> 
-         <option value="VICTOR MANUEL TOVAR PEREZ">VICTOR MANUEL TOVAR PEREZ</option> 
-         <option value="ANGEL VASQUEZ LOPEZ">ANGEL VASQUEZ LOPEZ</option> 
-         <option value="MARTIN SERRANO CERVANTES">MARTIN SERRANO CERVANTES</option> 
-         <option value="JUAN MANUEL LOPEZ RAMIREZ">JUAN MANUEL LOPEZ RAMIREZ</option> 
-         <option value="ABRAHAM ESPINOSA RODRIGUEZ">ABRAHAM ESPINOSA RODRIGUEZ</option> 
-         <option value="JUAN BECERRIL ALCANTARA">JUAN BECERRIL ALCANTARA</option> 
-         <option value="CHRISTIAN UBALDO SOLIS SANCHEZ">CHRISTIAN UBALDO SOLIS SANCHEZ</option> 
-         <option value="JESUS FRANCISCO SANCHEZ BECERRA">JESUS FRANCISCO SANCHEZ BECERRA</option> 
-         <option value="FERNANDO GONZALO GIL TREJO">FERNANDO GONZALO GIL TREJO</option> 
-         <option value="MARGARITO GARCIA ROSAS">ARGARITO GARCIA ROSAS</option> 
-         <option value="ENRIQUE CALVILLO HERNANDEZ">ENRIQUE CALVILLO HERNANDEZ</option> 
-         <option value="FERNANDO GARCIA ACOSTA">FERNANDO GARCIA ACOSTA</option> 
-         <option value="ISAC BARRETO CUANDON">ISAC BARRETO CUANDON</option> 
-         <option value="MARCOS QUIJADA QUIJADA">MARCOS QUIJADA QUIJADA</option> 
-         <option value="CESAR BERNAL GOMEZTAGLE">CESAR BERNAL GOMEZTAGLE</option> 
-         <option value="LORENZO MERCADO MALDONADO">LORENZO MERCADO MALDONADO</option> 
-         <option value="MIGUEL ANGEL CALVILLO ESQUIVEL">MIGUEL ANGEL CALVILLO ESQUIVEL</option> 
-         <option value="JAVIER RAFAEL ISLAS">JAVIER RAFAEL ISLAS</option> 
-         <option value="GUILLERMO CRUZ FRAGOSO">GUILLERMO CRUZ FRAGOSO</option> 
-         <option value="SAMUEL FRAGOSO GARCIA">SAMUEL FRAGOSO GARCIA</option> 
-         <option value="ANGEL FRANCISCO MENDEZ LOPEZ">ANGEL FRANCISCO MENDEZ LOPEZ</option> 
-         <option value="ARMANDO SOMBRA LAZCANO">ARMANDO SOMBRA LAZCANO</option> 
-         <option value="ARTURO GARCIA DAVILA">ARTURO GARCIA DAVILA</option> 
-         <option value="SANTOS JULIAN SANCHEZ BECERRA">SANTOS JULIAN SANCHEZ BECERRA</option> 
-         <option value="HECTOR DONOVAN CASAS COYOI">HECTOR DONOVAN CASAS COYOI</option> 
-         </select>
+         <input id="operador" name="operador" list="sugerencias" type="search" style="height: 24px; width: 130px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" value="${item.operador}">
+         <datalist id="sugerencias"></datalist>
          </td>
          <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
          <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
@@ -1648,7 +1625,17 @@ pdf.save('Orden_de_Trabajo.pdf');
              ? "background-color: #b9e1ff;"
              : ""
          }" name="status" id="status">
-         <option value="${item.status}">${item.status}</option> 
+         <option value="${item.status}">${item.status}</option>
+         <option value="PENDIENTE">PENDIENTE</option>
+         <option value="COMPLETO">COMPLETO</option>
+         <option value="CANCELADO">CANCELADO</option>
+         <option value="DETENIDO">DETENIDO</option>
+         <option value="CARGANDO">CARGANDO</option>
+         <option value="DESCARGANDO">DESCARGANDO</option>
+         <option value="EN ESPERA">EN ESPERA</option>
+         <option value="DRY RUN">DRY RUN</option>
+         <option value="BROKEREADO">BROKEREADO</option>
+         <option value="TONU">TONU</option>
          <option value="TRANSITO A PROVEEDOR">TRANSITO A PROVEEDOR</option>
          <option value="TRANSITO A FORD HMO">TRANSITO A FORD HMO</option>
          <option value="TRANSITO A FORD CSAP">TRANSITO A FORD CSAP</option>
@@ -1663,16 +1650,6 @@ pdf.save('Orden_de_Trabajo.pdf');
          <option value="EXPEDITADO CARGANDO">EXPEDITADO CARGANDO</option>
          <option value="EXPEDITADO DESCARGANDO">EXPEDITADO DESCARGANDO</option>
          <option value="EXPEDITADO COMPLETO">EXPEDITADO COMPLETO</option>
-         <option value="DETENIDO">DETENIDO</option>
-         <option value="PENDIENTE">PENDIENTE</option>
-         <option value="CARGANDO">CARGANDO</option>
-         <option value="DESCARGANDO">DESCARGANDO</option>
-         <option value="EN ESPERA">EN ESPERA</option>
-         <option value="DRY RUN">DRY RUN</option>
-         <option value="BROKEREADO">BROKEREADO</option>
-         <option value="TONU">TONU</option>
-         <option value="CANCELADO">CANCELADO</option>
-         <option value="COMPLETO">COMPLETO</option>
          </td>
          <td>
          <input name="comentarios" style="width: 150px; ${
@@ -1686,7 +1663,9 @@ pdf.save('Orden_de_Trabajo.pdf');
        </table>
        </div>
              `;
-             }); 
+            }); 
+            
+            sugerencias();
        } else 
      if (localStorage.tabConveyance === "true") {
         if(localStorage.username === "Public") return null;
@@ -1956,12 +1935,9 @@ pdf.save('Orden_de_Trabajo.pdf');
   span.addEventListener("click", function() {
     modal.style.display = "none";
   });
-
-  window.addEventListener("hashchange", (e) => {
-    //console.log(e);
+  window.addEventListener("hashchange", () => {
     let  user = localStorage.username,
     hash = window.location.hash;
-
     cambiarVista(user, hash);
   });
 }

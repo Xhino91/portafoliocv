@@ -99,11 +99,11 @@ export function App() {
                 Router();
               }
          }
-     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+        })
+        .catch((error) => {
+         const errorCode = error.code;
+         const errorMessage = error.message;
+        });
 
   // console.log(db);
   // console.log(refItems);
