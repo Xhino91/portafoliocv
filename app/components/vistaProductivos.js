@@ -2,15 +2,12 @@ import {
     getDatabase,
     ref,
     get,
-    onValue,
-    onChildChanged,
-    update,
-    remove
+    onChildChanged
   } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
   import { renderTable } from "./renderTable.js";
   import { tabActive } from "./tabActive.js";
-  import { Item } from "./Item.js";
-  // Función para cargar la vista productiva para el usuario dado
+
+
   export function cargarVistaProductiva(user) {
     const db = getDatabase(), d = document;
     const refItems = ref(db, "items");
@@ -18,6 +15,34 @@ import {
     let keyUpdate = null, initialData = {},
     updateValue = {}; 
     tabActive("tablero"); 
+
+   /* get(ref(db, "viajes"))
+    .then((snapshot) => {
+        if (snapshot.exists()) {
+        initialData = snapshot.val();
+        let itemsArray = Object.entries(initialData);
+       // console.log(initialData); 
+       
+        for (var clave in initialData) {
+          if (initialData.hasOwnProperty(clave) && initialData[clave].length > 1) {
+       // console.log("Ruta Lechera:", repetidos[clave]);
+             let viaje = initialData[clave];
+             console.log(viaje);
+            } else {
+              let viaje = initialData[clave];
+              console.log(viaje);
+            }
+            }
+
+
+       } else {
+         console.log("No se encontraron datos.");
+       }
+      })
+    .catch((error) => {
+        console.error("Error al obtener los datos:", error);
+         });*/
+
 
     get(refItems)
    .then((snapshot) => {
@@ -42,7 +67,7 @@ import {
                renderTable(initialData);  
                d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
                setTimeout(function () {
-                 d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
+                 d.getElementById(`${keyUpdate}`).classList.remove("parpadeo");
                }, 1000); 
              } else {
               console.log("No se encontraron datos.");

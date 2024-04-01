@@ -34,7 +34,7 @@ import { Login } from "./login.js";
 export async function Router() {
   const d = document,
        db = getDatabase(); 
-  let modal = document.getElementById("myModal"),
+  let modal = document.getElementById("myModal"), repetidos = {},
       span = document.getElementsByClassName("close")[0],
       dbXlsx, date = new Date();
 
@@ -100,6 +100,18 @@ export async function Router() {
       reader.readAsArrayBuffer(file);
     }
   }
+
+   // Función para agrupar elementos repetidos
+  function agruparRepetidos(objeto) {
+    for (var key in objeto) {
+        var valor = objeto[key][0];
+       if (!repetidos[valor]) {
+       repetidos[valor] = [objeto[key]];
+         } else {
+       repetidos[valor].push(objeto[key]);
+       }
+      }
+    }
 
   function sugerencias () {
     const operadores = [
@@ -191,7 +203,8 @@ export async function Router() {
 
    let  user = localStorage.username,
   hash = window.location.hash;
-    cambiarVista(user, hash);
+
+ cambiarVista(user, hash);
   
   d.addEventListener("click", async (e) => {
     if (e.target == modal) {
@@ -213,7 +226,105 @@ export async function Router() {
     }
     
     if (e.target.matches(".importXlsx")) {
-      dbXlsx.forEach((item) => {
+     // console.log(dbXlsx);
+     // agruparRepetidos(dbXlsx);
+
+     /* for (var clave in repetidos) {
+        if (repetidos.hasOwnProperty(clave) && repetidos[clave].length > 1) {
+     // console.log("Ruta Lechera:", repetidos[clave]);
+           let lechera = repetidos[clave];
+     //    console.log(clave);
+
+      //  await set(ref(db, "viajes/" + clave), lechera);
+
+          lechera.forEach(async element => {
+            // console.log(item);
+            let hora = element[5].slice(11, 17),
+              arrF = element[5].slice(1, -6).split("/"),
+              concatF = "";
+            element[5] = concatF.concat(
+              arrF[1],
+              "/0",
+              arrF[0],
+              "/",
+              arrF[2],
+              " ",
+              hora
+            );
+
+            let body = {
+              unidad: "",
+              caja: "",
+              cporte: "",
+              tracking: `${element[0]}`,
+              bol: "",
+              ruta: `${element[1]}`,
+              operador: "",
+              cliente: "BRP",
+              proveedor: `${element[4]}`,
+              citaprogramada: `${element[5]}`,
+              llegadareal: "01/01/0001 00:00",
+              salidareal: "01/01/0001 00:00",
+              eta: "01/01/0001 00:00",
+              llegadadestino: "01/01/0001 00:00",
+              salidadestino: "01/01/0001 00:00",
+              llegada: "A TIEMPO",
+              status: "PENDIENTE",
+              comentarios: "SIN COMENTARIOS",
+            };
+           // console.log(body);
+           await push(ref(db, `viajes/${clave}`), body);
+          });
+       
+      } else {
+      //  console.log("Ruta sencilla:", repetidos[clave]);
+      let sencilla = repetidos[clave][0];
+    
+          
+            // console.log(item);
+            let hora = sencilla[5].slice(11, 17),
+              arrF = sencilla[5].slice(1, -6).split("/"),
+              concatF = "";
+            sencilla[5] = concatF.concat(
+              arrF[1],
+              "/0",
+              arrF[0],
+              "/",
+              arrF[2],
+              " ",
+              hora
+            );
+          
+
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${sencilla[0]}`,
+            bol: "",
+            ruta: `${sencilla[1]}`,
+            operador: "",
+            cliente: "BRP",
+            proveedor: `${sencilla[4]}`,
+            citaprogramada: `${sencilla[5]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "SIN COMENTARIOS",
+          };
+        //  console.log(body);
+        await push(ref(db, `viajes/${clave}`), body);
+      
+        }
+
+         
+     }*/
+      
+     dbXlsx.forEach((item) => {
         // console.log(item);
         let hora = item[3].slice(11, 17),
           arrF = item[3].slice(1, -6).split("/"),
@@ -229,8 +340,8 @@ export async function Router() {
         );
       });
 
-      // Mostrar el resultado en la consola o en la página //Manipulacion de los Datos
-      dbXlsx.forEach(async (element) => {
+      //Manipulacion de los Datos
+     dbXlsx.forEach(async (element) => {
         //  console.log(element[1]);
 
         if (element[1].match("24") || element[1].match("HS")) {
@@ -258,14 +369,6 @@ export async function Router() {
           };
           push(ref(db, "items"), body);
 
-          /* await ajax({
-       url: `${api.ITEMS}.json`,
-       options,
-       cbSuccess: (res) => {
-         json = res.json();
-       },
-     });
-         */
         } else if (
           element[1].match("23") ||
           element[1].match("CU") ||
@@ -368,6 +471,7 @@ export async function Router() {
           push(ref(db, "items"), body);
         }
       });
+      
     } else if (e.target.matches(".modal_xls")) {
       if (localStorage.tabViajes === "true") {
         d.querySelector(".export-modal-body").innerHTML = `

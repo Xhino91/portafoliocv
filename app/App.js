@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-
 import {
   getDatabase,
   ref,
@@ -15,16 +14,17 @@ import { Header } from "./components/Header.js";
 import { Main } from "./components/Main.js";
 import { Router } from "./components/Router.js";
 import { Login } from "./components/login.js";
+import wp_api from "./helpers/wp_api.js";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBWjS2VrmW7eFUd34YL13VACi_6OX9Q7VI",
-  authDomain: "ontime-2956b.firebaseapp.com",
-  databaseURL: "https://ontime-2956b-default-rtdb.firebaseio.com",
-  projectId: "ontime-2956b",
-  storageBucket: "ontime-2956b.appspot.com",
-  messagingSenderId: "7596898763",
-  appId: "1:7596898763:web:2e32c7bf836d72846c9e4e"
+  apiKey: wp_api.API_KEY,
+  authDomain: wp_api.AUTH_DOMAIN,
+  databaseURL: wp_api.DB_URL,
+  projectId: wp_api.PROJECT_ID,
+  storageBucket: wp_api.STORAGE_BUCKET,
+  messagingSenderId: wp_api.MESSAGIN_SENDERING_ID,
+  appId: wp_api.APP_ID
 };
 
 const d = document;
@@ -33,7 +33,7 @@ export function App() {
   const app = initializeApp(firebaseConfig);
 
   const auth = getAuth();
-  signInWithEmailAndPassword(auth, "proyectosintlogis@gmail.com", "Ontime2024%")
+  signInWithEmailAndPassword(auth, wp_api.USER, wp_api.PASS)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
