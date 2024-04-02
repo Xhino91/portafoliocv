@@ -365,7 +365,7 @@ export async function Router() {
             salidadestino: "01/01/0001 00:00",
             llegada: "A TIEMPO",
             status: "PENDIENTE",
-            comentarios: "SIN COMENTARIOS",
+            comentarios: "",
           };
           push(ref(db, "items"), body);
 
@@ -394,7 +394,7 @@ export async function Router() {
             salidadestino: "01/01/0001 00:00",
             llegada: "A TIEMPO",
             status: "PENDIENTE",
-            comentarios: "SIN COMENTARIOS",
+            comentarios: "",
           };
           push(ref(db, "items"), body);
         } else if (element[1].match("GMMEX")) {
@@ -418,7 +418,7 @@ export async function Router() {
             salidadestino: "01/01/0001 00:00",
             llegada: "A TIEMPO",
             status: "PENDIENTE",
-            comentarios: "SIN COMENTARIOS",
+            comentarios: "",
           };
           push(ref(db, "items"), body);
         } else if (element[2].match("MEX3")) {
@@ -442,7 +442,7 @@ export async function Router() {
             salidadestino: "01/01/0001 00:00",
             llegada: "A TIEMPO",
             status: "PENDIENTE",
-            comentarios: "SIN COMENTARIOS",
+            comentarios: "",
           };
           push(ref(db, "items"), body);
         } else if (element[1].match("BRP")) {
@@ -466,7 +466,7 @@ export async function Router() {
             salidadestino: "01/01/0001 00:00",
             llegada: "A TIEMPO",
             status: "PENDIENTE",
-            comentarios: "SIN COMENTARIOS",
+            comentarios: "",
           };
           push(ref(db, "items"), body);
         }
