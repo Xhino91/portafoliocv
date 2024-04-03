@@ -1033,6 +1033,7 @@ export async function Router() {
      <option value="MULTILOG">MULTILOG</option>
      <option value="GM">GM</option>
      <option value="STELLANTIS">STELLANTIS</option>
+     <option value="SENDENGO">SENDENGO</option>
      <option value="ACTIVE">ACTIVE</option>
      <option value="BRP">BRP</option>
      <option value="AMAZON">AMAZON</option>
