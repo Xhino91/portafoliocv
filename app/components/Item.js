@@ -58,7 +58,7 @@ const alertColor = (item) => {
 
   const filterUser = (item) => {
    if(user === "InhouseMX"){
-      if(!item.ruta.match("232") && !item.ruta.match("23K")){
+      if(!item.ruta.match("232") && !item.ruta.match("23K") && !item.ruta.match("DH")){
          return "display: none;"
       }
    }
