@@ -289,7 +289,10 @@ thead tr th {
   overflow: scroll;
 }
 
-
+.fa-stopwatch:hover{
+  font-size: 13px;
+  cursor: pointer;
+}
 
 .close {
   color: #aaaaaa;

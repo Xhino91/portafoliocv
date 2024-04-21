@@ -1139,6 +1139,9 @@ export async function Router() {
         });
         }
       }
+    } else if (e.target.matches(".fa-stopwatch")){
+      let date = new Date();
+      d.getElementById(`${e.target.previousSibling.id}`).value = `${date.toLocaleString().slice(0, 16)}`;
     }
     return;
   });
@@ -1554,11 +1557,11 @@ export async function Router() {
             cliente: e.target.cliente.value.toUpperCase(),
             proveedor: e.target.proveedor.value.toUpperCase(),
             citaprogramada: e.target.llegadaprogramada.value,
-            llegadareal: dateConvert(e.target.llegadareal.value),
-            salidareal: dateConvert(e.target.salidareal.value),
-            eta: dateConvert(e.target.eta.value),
-            llegadadestino: dateConvert(e.target.llegadadestino.value),
-            salidadestino: dateConvert(e.target.salidadestino.value),
+            llegadareal: e.target.llegadareal.value,
+            salidareal: e.target.salidareal.value,
+            eta: e.target.eta.value,
+            llegadadestino: e.target.llegadadestino.value,
+            salidadestino: e.target.salidadestino.value,
             llegada: e.target.llegada.value.toUpperCase(),
             status: e.target.status.value.toUpperCase(),
             comentarios: e.target.comentarios.value.toUpperCase(),
@@ -1652,22 +1655,7 @@ export async function Router() {
              onValue(refItem, (snapshot) => {
                let item = snapshot.val();
                // console.log(item);
-               const dateConvert = (date) => {
-                 let hora = date.slice(11, 17),
-                   arrF = date.slice(0, 10).split("/"),
-                   concatF = "";
-     
-                 return concatF.concat(
-                   arrF[2],
-                   "-",
-                   arrF[1],
-                   "-",
-                   arrF[0],
-                   "T",
-                   hora
-                 );
-               };
-               
+                             
                d.getElementById("formulario-tr").dataset.value = `${e.target.parentNode.id}`;
                d.querySelector(".modal-body-tr").innerHTML = `
              <div class="container-fluid font" style="padding: 0;"> 
@@ -1710,11 +1698,12 @@ export async function Router() {
          <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
          <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
          <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour" ${user === "Traffic" ? "disabled" : ""} value="${item.citaprogramada}"></td>
-         <td><input name="llegadareal" style="width: 150px; ${user === "TrafficH" || user === "Traffic" ? "background-color: #b9e1ff;" : ""}"   name="hour" type="datetime-local" id="hour"  value="${dateConvert(item.llegadareal)}"></td>
-         <td><input name="salidareal" style="width: 150px; ${user === "TrafficH" || user === "Traffic" ? "background-color: #b9e1ff;" : ""}" type="datetime-local" name="hour" id="hour"  value="${dateConvert(item.salidareal)}"></td>
-         <td><input name="eta" style="width: 150px; ${user === "TrafficH" || user === "Traffic" ? "background-color: #b9e1ff;" : ""}" type="datetime-local" name="hour" id="hour"  value="${dateConvert(item.eta)}"></td>
-         <td><input name="llegadadestino" style="width: 150px; ${user === "TrafficH" || user === "Traffic" ? "background-color: #b9e1ff;" : ""}" type="datetime-local" name="hour" id="hour"  value="${dateConvert(item.llegadadestino)}"></td>
-         <td><input name="salidadestino" style="width: 150px; ${user === "TrafficH" || user === "Traffic" ? "background-color: #b9e1ff;" : ""}" type="datetime-local" name="hour" id="hour"  value="${dateConvert(item.salidadestino)}"></td>
+         <td class="" ><input id="llegadareal" name="llegadareal" style="width: 150px; ${item.llegadareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}"   name="hour" type="text" id="hour"  value="${item.llegadareal === "01/01/0001 00:00" ? item.llegadareal : item.llegadareal}">${item.llegadareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         <td class="" ><input id="salidareal" name="salidareal" style="width: 150px; ${item.salidareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.salidareal === "01/01/0001 00:00" ? item.salidareal : item.salidareal}">${item.salidareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         <td class="" ><input id="eta" name="eta" style="width: 150px; ${item.eta === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.eta === "01/01/0001 00:00" ? item.eta : item.eta}">${item.eta === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         <td class="" ><input id="llegadadestino" name="llegadadestino" style="width: 150px; ${item.llegadadestino === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.llegadadestino === "01/01/0001 00:00" ? item.llegadadestino : item.llegadadestino}">${item.llegadadestino === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         <td class="" ><input id="salidadestino" name="salidadestino" style="width: 150px; ${item.salidadestino === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.salidadestino === "01/01/0001 00:00" ? item.salidadestino : item.salidadestino}">${item.salidadestino === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         
          <td>
          <select class="form-select form-select-sm" style="height: 24px; width: 120px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" name="llegada" id="arribo">
          <option value="${item.llegada}">${item.llegada}</option> 
@@ -1724,6 +1713,7 @@ export async function Router() {
          <option value="CRITICA">CRITICA</option>
          </select>
          </td>
+
          <td>
          <select class="form-select form-select-sm" style="height: 24px; width: 230px; font-size: 12px; ${
            user === "Traffic" || user === "TrafficH"
