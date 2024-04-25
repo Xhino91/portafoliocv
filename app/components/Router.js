@@ -37,6 +37,7 @@ export async function Router() {
   let modal = document.getElementById("myModal"), repetidos = {},
       span = document.getElementsByClassName("close")[0],
       dbXlsx, date = new Date();
+     localStorage.filter = "false";
 
   function cambiarVista(user, hash) {
 
@@ -224,7 +225,33 @@ export async function Router() {
         tr.classList.add("active-select");
       }
     }
+    /*if(e.target.matches(".fa-filter")){
+      d.getElementById("filtro").classList.toggle("filtro");
     
+      if(localStorage.filter === "false"){
+        localStorage.filter = "true";
+      let html = [];
+      let items = d.querySelectorAll(".item");
+      items.forEach(item => {
+        if(!item.classList.contains("filter")){
+          html.push(item);
+        }
+      });
+      //console.log(html);
+      d.getElementById("table_body").innerHTML="";
+      html.forEach(element => {
+        d.getElementById("table_body").insertAdjacentElement("beforeend", element);
+      });       
+      } else if(localStorage.filter === "true"){
+        localStorage.filter = "false";
+        if(localStorage.tabViajes === "true"){
+          if(localStorage.vpro === "true") cargarVistaProductiva();
+          if(localStorage.vret === "true") cargarVistaEquipoV();
+        }
+      }
+        
+      
+    }*/
     if (e.target.matches(".importXlsx")) {
      // console.log(dbXlsx);
      // agruparRepetidos(dbXlsx);
@@ -1166,6 +1193,9 @@ export async function Router() {
         //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
         if (!query) {
           e.classList.remove("filter");
+          if(localStorage.vpro === "true") renderTable();
+          if(localStorage.vret === "true") cargarVistaEquipoV();
+         // if(localStorage.vhis === "true") cargarVistaHistorial();
           return false;
         } else if (
           e.dataset.unit.includes(query) ||

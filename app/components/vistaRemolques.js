@@ -17,7 +17,7 @@ import { ItemV } from "./ItemV.js";
   let modal = document.getElementById("myModal");
   let keyUpdate = null,
   updateValue = {};  
-  tabActive("cajas"); 
+  
 
   get(refItems)
   .then((snapshot) => {
@@ -51,5 +51,5 @@ import { ItemV } from "./ItemV.js";
         updateItem(updateValue, keyUpdate);
        });
     }
-        
+    tabActive("cajas");  
 }

@@ -78,7 +78,6 @@ const alertColor = (item) => {
    }
    }
 
-  
    
    if(item.ruta.match("CU") || item.ruta.match("HS") || item.ruta.match("RT")) { 
       return ``;

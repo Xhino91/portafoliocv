@@ -18,7 +18,10 @@ import { ItemHistory } from "./ItemHistory.js";
   let modal = document.getElementById("myModal");
   let keyUpdate = null, initialData = {},
   updateValue = {};  
-  tabActive("history"); 
+  localStorage.vret = "false";
+    localStorage.vpro = "false";
+    localStorage.vhis = "true";
+  
 
   get(refItems)
  .then((snapshot) => {
@@ -36,23 +39,13 @@ import { ItemHistory } from "./ItemHistory.js";
   function updateItem (updateValue, keyUpdate){
     if (!updateValue || !keyUpdate ) return;
     if(!d.getElementById(`${keyUpdate}`) || d.getElementById(`${keyUpdate}`) === null) return;
-    get(refItems)
-    .then((snapshot) => {
-     if (snapshot.exists()) {
-     initialData = snapshot.val();
-       renderTableHistory(initialData); 
-       d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
+   
+    d.getElementById(`${keyUpdate}`).innerHTML = `${ItemHistory(updateValue, keyUpdate)}`;
+    d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
        setTimeout(function () {
          d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo
        }, 1000); 
-     } else {
-      console.log("No se encontraron datos.");
-     }
-      })
-    .catch((error) => {
-      if(d.getElementById(`${keyUpdate}`).classList.add("parpadeo") === null) return
-       // console.error("Error al obtener los datos:", error);
-         });
+   
      
     }
 
@@ -65,5 +58,5 @@ import { ItemHistory } from "./ItemHistory.js";
        updateItem(updateValue, keyUpdate);
       });
     }
-
+    tabActive("history"); 
 }

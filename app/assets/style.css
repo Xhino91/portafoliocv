@@ -22,7 +22,24 @@
 .filter {
   display: none;
 }
+
+.fa-filter{
+  font-size: 1.5rem;
+  color: #dbebf2;
+}
+.fa-filter:hover{
+  cursor: pointer;
+}
+.filtro{
+  color: #030d35;
+  font-size: 1.8rem;
+}
+
 .search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
   margin: auto 0;
   text-align: center;
 }

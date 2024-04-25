@@ -6,6 +6,7 @@ import {
   } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
   import { renderTable } from "./renderTable.js";
   import { tabActive } from "./tabActive.js";
+import { Item } from "./Item.js";
 
 
   export function cargarVistaProductiva(user) {
@@ -14,7 +15,9 @@ import {
     let modal = document.getElementById("myModal");
     let keyUpdate = null, initialData = {},
     updateValue = {}; 
-    tabActive("tablero"); 
+    localStorage.vret = "false";
+    localStorage.vhis = "false";
+    localStorage.vpro = "true";
 
    /* get(ref(db, "viajes"))
     .then((snapshot) => {
@@ -47,6 +50,7 @@ import {
     get(refItems)
    .then((snapshot) => {
        if (snapshot.exists()) {
+        localStorage.onValue = "true";
        initialData = snapshot.val();
        renderTable(initialData); 
       } else {
@@ -60,32 +64,22 @@ import {
     function updateItem (updateValue, keyUpdate){
       if (!updateValue || !keyUpdate ) return;
       if(!d.getElementById(`${keyUpdate}`) || d.getElementById(`${keyUpdate}`) === null) return;
-            get(refItems)
-            .then((snapshot) => {
-             if (snapshot.exists()) {
-             initialData = snapshot.val();
-               renderTable(initialData);  
-               d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
+            
+      d.getElementById(`${keyUpdate}`).innerHTML = `${Item(updateValue, keyUpdate)}`;
+      d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
                setTimeout(function () {
                  d.getElementById(`${keyUpdate}`).classList.remove("parpadeo");
                }, 1000); 
-             } else {
-              console.log("No se encontraron datos.");
-             }
-              })
-            .catch((error) => {
-              if(d.getElementById(`${keyUpdate}`).classList.add("parpadeo") === null) return
-                //console.error("Error al obtener los datos:", error);
-               });
+           
       }
 
 
-    if(localStorage.tabViajes === "true"){      
+    if(localStorage.onValue === "true"){      
        onChildChanged(refItems, (snapshot) => {
          updateValue = snapshot.val();
          keyUpdate = snapshot.key;
          updateItem(updateValue, keyUpdate);
         });   
       }
-
+      tabActive("tablero"); 
 }

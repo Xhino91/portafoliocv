@@ -13,7 +13,7 @@ export function Main() {
   <div class="d-grid gap-2 d-md-flex d-sm-flex justify-content-md-end margin">
   <button class="publico btn btn-dark fw-bold"><i class="fa-solid fa-calendar me-1"></i> <span class="date">${date.toLocaleDateString('es-MX', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</span></button> 
   <button class="publico btn btn-dark fw-bold me-auto"> <i class="fa-solid fa-clock ms-1 pe-1"></i> <span class="clock"></span> </button>
-  
+
   <button id="tablero"  class="btn btn-primary fw-bold tablero" type="button" >Viajes Productivos</button>
   <button id="equipov"  class="btn btn-primary fw-bold equipov" type="button" >Viajes Retornables</button>
   <button id="history"  class="btn btn-primary fw-bold history" type="button" >Historial de Viajes</button>

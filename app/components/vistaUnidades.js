@@ -16,7 +16,7 @@ import { ItemUnit } from "./ItemUnits.js";
   let modal = document.getElementById("myModal");
   let keyUpdate = null,
   updateValue = {}; 
-  tabActive("unidades"); 
+  
 
   get(refItems)
   .then((snapshot) => {
@@ -51,6 +51,6 @@ import { ItemUnit } from "./ItemUnits.js";
         updateItem(updateValue, keyUpdate);
        });
     }
-        
+    tabActive("unidades");   
 }
 
