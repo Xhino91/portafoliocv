@@ -1837,6 +1837,9 @@ export async function Router() {
           <option value="${item.circuito}">${item.circuito}</option>
           <option value="FUERA DE CIRCUITO">FUERA DE CIRCUITO</option>
           <option value="FORDC - HILEX">FORDC - HILEX</option>  
+          <option value="FORDC - CLIMATE">FORDC - CLIMATE</option> 
+          <option value="FORDC - ULTRA">FORDC - ULTRA</option> 
+          <option value="FORDC - BENTELER">FORDC - BENTELER</option> 
           <option value="FORDC - WINDSOR QRO">FORDC - WINDSOR QRO</option>
           <option value="FORDC - WINDSOR AEROPUERTO">FORDC - WINDSOR AEROPUERTO</option>
           <option value="FORDC - MUBEA">FORDC - MUBEA</option>
