@@ -58,12 +58,12 @@ const alertColor = (item) => {
 
   const filterUser = (item) => {
    if(user === "InhouseMX"){
-      if(!item.ruta.match("232") && !item.ruta.match("23K") && !item.ruta.match("DH")){
+      if(!item.cliente.match("FORD CUAUTITLAN")){
          return "display: none;"
       }
    }
    if(user === "InhouseHMO" || user === "TrafficH"){
-      if(!item.ruta.match("242") && !item.ruta.match("24K")){
+      if(!item.cliente.match("FORD HERMOSILLO")){
          return "display: none;"
       } 
    }
