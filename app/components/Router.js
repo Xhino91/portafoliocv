@@ -1722,7 +1722,7 @@ export async function Router() {
          <datalist id="sugerencias"></datalist>
          </td>
          <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
-         <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" disabled></td>
+         <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""}></td>
          <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
          <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
