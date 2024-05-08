@@ -1116,12 +1116,8 @@ export async function Router() {
         if (isConfirm) {
           await remove(ref(db, keyDelete))
           .then(()=>{
-            const refItems = ref(db, "items");
-            onValue(refItems, (snapshot) => {
-              let res = snapshot.val();
-                renderTableHistory(res);
-                keyDelete = ``;
-            });
+            d.getElementById(`${e.target.id}`).style.display="none";
+                keyDelete = ``;    
           })
           .catch(error => {
             console.error('Error al intentar eliminar:', error);
