@@ -102,7 +102,7 @@ export function itemEV(item, keyUpdate) {
           <td >${item.status}</td>
           <td>${item.comentarios}</td>
           <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
-            
+          <button id="${item.unidad}" data-conveyance="${item.caja}" style="${item.unidad || item.caja ? "display: inline;" : "display: none;"}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>             
            </td>
            </tr>
             `;
@@ -131,6 +131,7 @@ export function itemEV(item, keyUpdate) {
     <td style="${alertColor(item)}" >${item.status}</td>
     <td>${item.comentarios}</td>
     <td class="btn-hid" style="${user === "Public" || user === "CVehicular" || user === "Mtto"  ? "display: none;" : ""}">
+    <button id="${item.unidad}" data-conveyance="${item.caja}" style="${item.unidad || item.caja ? "display: inline;" : "display: none;"}" type="button" class="btn btn-sm btn-dark control" data-bs-toggle="modal" data-bs-target="#controlModal"><i data-conveyance="${item.caja}" class="fa-solid fa-car" id="${item.unidad}"></i></button>             
     <button id="${itemId}" type="button" class="btn btn-sm btn-warning alert3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-bell" id="${itemId}"></i></button>
     </td>
     </tr>

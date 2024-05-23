@@ -1165,7 +1165,229 @@ export async function Router() {
     } else if (e.target.matches(".fa-stopwatch")){
       let date = new Date();
       d.getElementById(`${e.target.previousSibling.id}`).value = `${date.toLocaleString().slice(0, 16)}`;
-    }
+    } else if (e.target.matches(".control") || e.target.matches(".fa-car")) {
+      
+      const refItemUnits = ref(db, "subitem");
+      const refItemConvs = ref(db, "subitem1");
+      let modal = d.querySelector(".control-modal-body");
+      
+      
+
+      if(e.target.id && e.target.dataset.conveyance) {
+        d.getElementById("controlModal").style.height = "42vh"
+        d.getElementById("controlModal").style.marginTop = "20rem"
+      }else{
+        d.getElementById("controlModal").style.height = "27vh"
+        d.getElementById("controlModal").style.marginTop = "20rem"
+      };
+
+
+      if(e.target.id){
+        d.getElementById("controlV").dataset.unit = "";
+        get(refItemUnits)
+      .then((snapshot) => {
+          if (snapshot.exists()) {
+          let unit = snapshot.val();
+          
+
+          let unitArray = Object.entries(unit);
+         
+
+          unitArray.forEach(unit => {
+     
+           if(e.target.id === unit[1].unidad){      
+             modal.innerHTML = `
+         <div class="container-fluid"> 
+         <table class="table table-sm" >
+         <thead class="table-dark text-center">
+           <tr class="text-wrap">
+             <th scope="col">UNIDAD</th>
+             <th scope="col">OPERADOR</th>
+             <th scope="col">MODELO</th>
+             <th scope="col">PLACA</th>
+             <th scope="col">AÑO</th>
+             <th scope="col">VERIFICACION</th>
+             <th scope="col">NO. POLIZA</th>
+             <th scope="col">INCISO</th>
+           </tr>
+         </thead>
+         <tbody class="text-center" class="text-wrap">
+         <tr>
+         <td>${unit[1].unidad}</td>
+         <td>${unit[1].operador}</td>
+         <td>${unit[1].modelo}</td>
+         <td>${unit[1].placa}</td>
+         <td>${unit[1].año}</td>
+         <td>${unit[1].verificacion}</td>
+         <td>${unit[1].poliza}</td>
+         <td>${unit[1].inciso}</td>     
+         </tr>   
+         </tbody>      
+       </table>
+ 
+       <input name="statusunit" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
+       </div>
+         `;
+ 
+        d.getElementById("controlV").dataset.unit = unit[0];
+ 
+        
+ 
+           } 
+          });
+
+
+
+         } else {
+           console.log("No se encontraron datos.");
+         }
+        })
+      .catch((error) => {
+          console.error("Error al obtener los datos:", error);
+           });
+      }
+      if(e.target.dataset.conveyance){
+        modal.innerHTML = ``;
+        d.getElementById("controlV").dataset.conveyance = "";
+        get(refItemConvs)
+      .then((snapshot) => {
+          if (snapshot.exists()) {
+          let conv = snapshot.val();
+          
+
+          let convArray = Object.entries(conv);
+         
+         convArray.forEach(conv => {
+        
+          if(e.target.dataset.conveyance === conv[1].caja){
+
+            
+            modal.insertAdjacentHTML("beforeend", `
+            <div class="container-fluid"> 
+    
+               <table class="table table-sm" >
+               <thead class="table-dark text-center">
+                 <tr class="text-wrap">
+                 <th scope="col">CAJA</th>
+                 <th scope="col">TIPO</th>
+                 <th scope="col">MODELO</th>
+                 <th scope="col">PLACA</th>
+                 <th scope="col">AÑO</th>
+                 <th scope="col">VERIFICACION</th>
+                 <th scope="col">NO. POLIZA</th>
+                 <th scope="col">INCISO</th>
+                 <th scope="col">CIRCUITO</th>
+                 <th scope="col">FECHA</th>
+                 <th scope="col">UBICACION</th> 
+                 <th scope="col">ESTATUS</th>
+                 <th scope="col">REPORTE</th>
+                 </tr>
+               </thead>
+               <tbody class="text-center text-wrap" >
+        <td>${conv[1].caja}</td>
+        <td>${conv[1].tipo}</td>
+        <td>${conv[1].modelo}</td>
+        <td>${conv[1].placa}</td>
+        <td>${conv[1].año}</td>
+        <td>${conv[1].verificacion}</td>
+        <td>${conv[1].poliza}</td>
+        <td>${conv[1].inciso}</td>
+  
+        <td>
+        <select class="form-select form-select-sm" style="background: #69beff; font-weight: bold; color: black; padding-right: 0;" name="circuito" id="circuito">
+          <option value="${conv[1].circuito}">${conv[1].circuito}</option>
+          <option value="FUERA DE CIRCUITO">FUERA DE CIRCUITO</option>
+          <option value="FORDC - HILEX">FORDC - HILEX</option>  
+          <option value="FORDC - CLIMATE">FORDC - CLIMATE</option> 
+          <option value="FORDC - ULTRA">FORDC - ULTRA</option> 
+          <option value="FORDC - BENTELER">FORDC - BENTELER</option> 
+          <option value="FORDC - WINDSOR QRO">FORDC - WINDSOR QRO</option>
+          <option value="FORDC - WINDSOR AEROPUERTO">FORDC - WINDSOR AEROPUERTO</option>
+          <option value="FORDC - MUBEA">FORDC - MUBEA</option>
+          <option value="FORDC - BROSE">FORDC - BROSE</option>
+          <option value="FORDC - MEXAURIA">FORDC - MEXAURIA</option>
+          <option value="FORDC - STANDAR">FORDC - STANDAR</option>
+          <option value="FORDC - FLEX N GATE">FORDC - FLEX N GATE</option>
+          <option value="FORDC - DHL">FORDC - DHL</option>
+          <option value="FORDC - MARTIN REA">FORDC - MARTIN REA</option>
+          <option value="FORDC - AUTOTEK">FORDC - AUTOTEK</option>
+          <option value="FORDH - CARCOUSTIC">FORDH - CARCOUSTIC</option>
+          <option value="FORDH - BROSE">FORDH - BROSE MX</option>
+          <option value="FORDH - BROSE PUEBLA">FORDH - BROSE PUEBLA</option>
+          <option value="FORDH - THYSSENKRUP">FORDH - THYSSENKRUP</option>
+          <option value="FORDH - SA AUTOMOTIVE">FORDH - SA AUTOMOTIVE</option>
+          <option value="FORDH - NTN BEARING">FORDH - NTN BEARING</option>
+          <option value="FORDH - CARCOUSTIC">FORDH - CARCOUSTIC</option>
+          <option value="AMAZON">AMAZON</option>
+          <option value="BRP">BRP</option>
+          <option value="GM">GM</option>
+          <option value="ACTIVE ON D">ACTIVE ON D</option>
+          <option value="FCA - NARMEX">FCA - NARMEX</option>
+          <option value="FCA - TI GROUP">FCA - TI GROUP</option>
+          <option value="FCA - WEBASTO">FCA - WEBASTO</option>
+          <option value="FCA - TENNECO">FCA - TENNECO</option>
+          </select>
+        </td>
+        <td><input id="fechainv" name="fechainv" style="width: 6rem; background: #69beff; font-weight: bold; color: black;" type="text"  value="${conv[1].fecha}"><i class="fa-solid fa-stopwatch"></i></td>
+        <td>
+        <select name="ubicacion" class="form-select form-select-sm" style="width: 8rem; background: #69beff; font-weight: bold; color: black; padding-right: 0;" id="ubicacion">
+            <option value="${conv[1].ubicacion}">${conv[1].ubicacion}</option> 
+            <option value="EN TRANSITO">EN TRANSITO</option>
+            <option value="PATIO MEXICO">PATIO MEXICO</option>
+            <option value="PATIO PEDRO ESCOBEDO">PATIO PEDRO ESCOBEDO</option>
+            <option value="PATIO SILAO">PATIO SILAO</option>
+            <option value="PATIO RAMOS">PATIO RAMOS</option>
+            <option value="PATIO HERMOSILLO">PATIO HERMOSILLO</option>
+            <option value="TALLER EXTERNO">TALLER EXTERNO</option>
+            <option value="BP NORTE">BP NORTE</option>  
+            <option value="BP SUR">BP SUR</option>
+            <option value="BP CLOSURES">BP CLOSURES</option>
+            <option value="BP TRIM">BP TRIM</option>
+            <option value="BP CLC">BP CLC</option>
+            <option value="BP FRAMING">BP FRAMING</option>
+            </select>
+        <td>
+        <select name="statusconv" class="form-select form-select-sm" style="width: 10rem;padding-right: 0; ${conv[1].comentarios.match("DAÑ")|| conv[1].comentarios.match("MANTE") ? "background-color: #862828; color: white; font-weight: bold;" : "background: #69beff; font-weight: bold; color: black;"}">
+        <option value="${conv[1].comentarios}">${conv[1].comentarios}</option> 
+        <option value="CARGADA CON MP">CARGADA CON MP</option> 
+        <option value="CARGADA CON EV">CARGADA CON EV</option>  
+        <option value="PARCIAL">PARCIAL</option>
+        <option value="EV - SHIPPER EN CAJA">EV - SHIPPER EN CAJA</option>
+        <option value="EV - FALTA SHIPPER">EV - FALTA SHIPPER</option>
+        <option value="VACIA">VACIA</option>
+        <option value="DAÑADA">DAÑADA</option>
+        <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+        <option value="DISPONIBLE">DISPONIBLE</option>
+        </select>
+        <td><input name="reporteconv" style="width: 10rem; ${conv[1].reporte.match("DAÑ") || conv[1].reporte.match("FALLA") || conv[1].reporte.match("CRITIC") ? "background-color: #862828; color: white; font-weight: bold;" : "background: #69beff; font-weight: bold; color: black;"}"  type="text""  value="${conv[1].reporte}"></td> 
+        </tbody>      
+              </div>` 
+      
+          );
+
+          d.getElementById("controlV").dataset.conveyance = conv[0];
+            
+          }
+        
+        });
+
+
+
+
+         } else {
+           console.log("No se encontraron datos.");
+         }
+        })
+      .catch((error) => {
+          console.error("Error al obtener los datos:", error);
+           });
+
+      }
+      
+          
+
+
+     }
     return;
   });
   d.getElementById("excelFileInput").addEventListener("change", (e) => {
@@ -1653,7 +1875,91 @@ export async function Router() {
          modal.style.display = "none";
        }
      } 
-    }
+    } else if (e.target.matches(".update")) {
+          console.log(e.target);
+
+        //UPDATE
+         //console.log(e.target.textarea[0].value.toUpperCase());
+         //console.log(e.target.textarea[1].value.toUpperCase());
+
+         let keyUnit = d.getElementById("controlV").dataset.unit;
+         let keyConv = d.getElementById("controlV").dataset.conveyance;
+
+        // console.log(keyUnit);
+
+         
+         if (!e.target.id.value) {
+         
+          if(keyUnit !== ""){
+            let body = {}
+            let refUnit = ref(db, `subitem/${keyUnit}`);
+            modal.style.display = "block"; 
+              onValue(refUnit, (snapshot) => {
+              let unit = snapshot.val();
+              body = {
+                año: unit.año,
+                circuito: unit.circuito,
+                comentarios: e.target.statusunit.value.toUpperCase(),
+                contacto: unit.contacto,
+                fecha: unit.fecha,
+                inciso: unit.inciso,
+                linker: unit.linker,
+                modelo: unit.modelo,
+                operador: unit.operador,
+                placa: unit.placa,
+                poliza: unit.poliza,
+                ubicacion: unit.ubicacion,
+                unidad: unit.unidad,
+                uservicio: unit.uservicio,
+                verificacion: unit.verificacion
+              };
+
+              update(ref(db), { ["/subitem/" + keyUnit]: body }); 
+              },{
+                onlyOnce: true
+              });
+
+              
+            }
+
+
+          if(keyConv !== ""){
+
+          let body = {}
+          let refRem = ref(db, `subitem1/${keyConv}`);
+          modal.style.display = "block"; 
+            onValue(refRem, (snapshot) => {
+            let conv = snapshot.val();
+            body = {
+              año: conv.año,
+              caja: conv.caja,
+              circuito: e.target.circuito.value.toUpperCase(),
+              comentarios: e.target.statusconv.value.toUpperCase(),
+              contacto: conv.contacto,
+              fecha: e.target.fechainv.value.toUpperCase(),
+              inciso: conv.inciso,
+              modelo: conv.modelo,
+              placa: conv.placa,
+              poliza: conv.poliza,
+              reporte: e.target.reporteconv.value.toUpperCase(),
+              tipo: conv.tipo,
+              ubicacion: e.target.ubicacion.value.toUpperCase(),
+              verificacion: conv.verificacion,
+            };
+
+            update(ref(db), { ["/subitem1/" + keyConv]: body });
+            },{
+              onlyOnce: true
+            });
+        
+
+              }
+            
+        }
+        
+        d.querySelector(".modal-tr").style.display = "none";
+
+      }
 
   });
   d.addEventListener("keyup", (e) => {
@@ -1686,7 +1992,7 @@ export async function Router() {
                d.querySelector(".modal-body-tr").innerHTML = `
              <div class="container-fluid font" style="padding: 0;"> 
              <table class="table table-sm" >
-         <thead class="table-dark text-center">
+           <thead class="table-dark text-center">
            <tr class="text-wrap">
            <th scope="col">UNIDAD</th>
            <th scope="col">CAJA</th>
@@ -1709,7 +2015,7 @@ export async function Router() {
            
        
            </tr>
-         </thead>
+           </thead>
          <tbody class="text-center text-wrap">
          <td><input name="unidad" style="width: 35px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text" value="${item.unidad}"></td>
          <td><input name="caja" style="width: 60px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"   value="${item.caja}"></td>
