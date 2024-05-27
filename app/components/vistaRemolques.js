@@ -15,15 +15,19 @@ import { ItemV } from "./ItemV.js";
   const db = getDatabase(), d = document;
   const refItems = ref(db, "subitem1");
   let modal = document.getElementById("myModal");
-  let keyUpdate = null,
-  updateValue = {};  
+  let keyUpdate = null, initialData = {},
+  updateValue = {}; 
+  localStorage.vret = "false";
+    localStorage.vhis = "false";
+    localStorage.vpro = "false";  
   
 
   get(refItems)
   .then((snapshot) => {
       if (snapshot.exists()) {
-      const data = snapshot.val();
-      renderTableCV(data); 
+        localStorage.onValue = "true";
+        initialData = snapshot.val();
+      renderTableCV(initialData); 
      } else {
        console.log("No se encontraron datos.");
      }
@@ -44,7 +48,7 @@ import { ItemV } from "./ItemV.js";
       
      }
 
-    if(localStorage.tabConveyance === "true"){
+    if(localStorage.onValue === "true"){
       onChildChanged(refItems, (snapshot) => {
         updateValue = snapshot.val();
         keyUpdate = snapshot.key;

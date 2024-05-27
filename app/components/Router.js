@@ -1402,16 +1402,16 @@ export async function Router() {
 
     if (e.target.matches(".search-form") && localStorage.tabViajes === "true") {
       //console.log(e.target);
-      let query = localStorage.getItem("apiSearch").toUpperCase();
+      let query = localStorage.getItem("apiSearch").toUpperCase() || "";
 
-      //console.log(query);
+      console.log(query);
 
       let item = d.querySelectorAll(".item");
       item.forEach((e) => {
         //console.log(e.dataset.unit, e.dataset.box, e.dataset.track);
         if (!query) {
           e.classList.remove("filter");
-          if(localStorage.vpro === "true") renderTable();
+          if(localStorage.vpro === "true") cargarVistaProductiva();
           if(localStorage.vret === "true") cargarVistaEquipoV();
          // if(localStorage.vhis === "true") cargarVistaHistorial();
           return false;
@@ -1986,7 +1986,7 @@ export async function Router() {
 
              onValue(refItem, (snapshot) => {
                let item = snapshot.val();
-               // console.log(item);
+               //¿ console.log(item);
                              
                d.getElementById("formulario-tr").dataset.value = `${e.target.parentNode.id}`;
                d.querySelector(".modal-body-tr").innerHTML = `
@@ -2090,6 +2090,8 @@ export async function Router() {
        </table>
        </div>
              `;
+            },{
+              onlyOnce: true
             }); 
             
             sugerencias();
@@ -2221,6 +2223,8 @@ export async function Router() {
     </table>
     </div>
                 `;
+               },{
+                onlyOnce: true
                });
                         
       } else
@@ -2358,6 +2362,8 @@ export async function Router() {
   </table>
   </div>
         `;
+          },{
+            onlyOnce: true
           });
       }                
      }

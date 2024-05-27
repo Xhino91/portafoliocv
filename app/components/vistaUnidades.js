@@ -14,15 +14,19 @@ import { ItemUnit } from "./ItemUnits.js";
   const db = getDatabase(), d = document;
   const refItems = ref(db, "subitem");
   let modal = document.getElementById("myModal");
-  let keyUpdate = null,
-  updateValue = {}; 
+  let keyUpdate = null, initialData = {},
+  updateValue = {};
+  localStorage.vret = "false";
+    localStorage.vhis = "false";
+    localStorage.vpro = "false"; 
   
 
   get(refItems)
   .then((snapshot) => {
       if (snapshot.exists()) {
-      const data = snapshot.val();
-      renderTableUnits(data); 
+        localStorage.onValue = "true";
+        initialData = snapshot.val();
+      renderTableUnits(initialData); 
      } else {
        console.log("No se encontraron datos.");
      }
@@ -43,8 +47,7 @@ import { ItemUnit } from "./ItemUnits.js";
       
      }
 
-    if(localStorage.tabUnit === "true" && localStorage.tabConveyance === "false" && localStorage.tabViajes === "false"){
-    
+    if(localStorage.onValue === "true"){
       onChildChanged(refItems, (snapshot) => {
         updateValue = snapshot.val();
         keyUpdate = snapshot.key;
