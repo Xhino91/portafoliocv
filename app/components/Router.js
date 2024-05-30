@@ -36,7 +36,7 @@ export async function Router() {
        db = getDatabase(); 
   let modal = document.getElementById("myModal"), repetidos = {},
       span = document.getElementsByClassName("close")[0],
-      dbXlsx, date = new Date();
+      dbXlsx, date = new Date(), $inputLlegada = false;
      localStorage.filter = "false";
 
   function cambiarVista(user, hash) {
@@ -1165,6 +1165,7 @@ export async function Router() {
     } else if (e.target.matches(".fa-stopwatch")){
       let date = new Date();
       d.getElementById(`${e.target.previousSibling.id}`).value = `${date.toLocaleString().slice(0, 16)}`;
+      d.getElementById(`${e.target.previousSibling.id}`).focus();
     } else if (e.target.matches(".control") || e.target.matches(".fa-car")) {
       
       const refItemUnits = ref(db, "subitem");
@@ -1778,20 +1779,14 @@ export async function Router() {
         if (e.target.dataset.value) {
           let keyValue = e.target.dataset.value;
           const db = getDatabase();
-          const dateConvert = (date) => {
-            let hora = date.slice(11, 17),
-              arrF = date.slice(0, 10).split("-"),
-              concatF = "";
 
-            return concatF.concat(
-              arrF[2],
-              "/",
-              arrF[1],
-              "/",
-              arrF[0],
-              " ",
-              hora
-            );
+          const dateConvert = (e) => {
+            if(e.target.llegadareal.value !== "01/01/0001 00:00" && e.target.salidareal.value === "01/01/0001 00:00"){
+              e.target.status.value = "CARGADA CON MATERIAL";
+            } else {
+              e.target.status.value.toUpperCase();
+            }
+
           };
 
           let body = {
@@ -2025,12 +2020,12 @@ export async function Router() {
          </td>
          <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
          <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""}></td>
-         <td><input name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
+         <td><input class="bol-tr" name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
          <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
          <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
          <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour" ${user === "Traffic" ? "disabled" : ""} value="${item.citaprogramada}"></td>
-         <td class="" ><input id="llegadareal" name="llegadareal" style="width: 150px; ${item.llegadareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}"   name="hour" type="text" id="hour"  value="${item.llegadareal === "01/01/0001 00:00" ? item.llegadareal : item.llegadareal}">${item.llegadareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         <td  ><input id="llegadareal" class="llegadareal" name="llegadareal" style="width: 150px; ${item.llegadareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}"   name="hour" type="text" id="hour"  value="${item.llegadareal === "01/01/0001 00:00" ? item.llegadareal : item.llegadareal}">${item.llegadareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
          <td class="" ><input id="salidareal" name="salidareal" style="width: 150px; ${item.salidareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.salidareal === "01/01/0001 00:00" ? item.salidareal : item.salidareal}">${item.salidareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
          <td class="" ><input id="eta" name="eta" style="width: 150px; ${item.eta === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.eta === "01/01/0001 00:00" ? item.eta : item.eta}">${item.eta === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
          <td class="" ><input id="llegadadestino" name="llegadadestino" style="width: 150px; ${item.llegadadestino === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.llegadadestino === "01/01/0001 00:00" ? item.llegadadestino : item.llegadadestino}">${item.llegadadestino === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
@@ -2047,11 +2042,7 @@ export async function Router() {
          </td>
 
          <td>
-         <select class="form-select form-select-sm" style="height: 24px; width: 230px; font-size: 12px; ${
-           user === "Traffic" || user === "TrafficH"
-             ? "background-color: #b9e1ff;"
-             : ""
-         }" name="status" id="status">
+         <select id="status" name="status" class="form-select form-select-sm" style="height: 24px; width: 230px; font-size: 12px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}">
          <option value="${item.status}">${item.status}</option>
          <option value="PENDIENTE">PENDIENTE</option>
          <option value="COMPLETO">COMPLETO</option>
@@ -2059,6 +2050,7 @@ export async function Router() {
          <option value="DETENIDO">DETENIDO</option>
          <option value="CARGANDO">CARGANDO</option>
          <option value="DESCARGANDO">DESCARGANDO</option>
+         <option value="CARGADA CON MATERIAL">CARGADA CON MATERIAL</option>
          <option value="EN ESPERA">EN ESPERA</option>
          <option value="DRY RUN">DRY RUN</option>
          <option value="BROKEREADO">BROKEREADO</option>
@@ -2079,7 +2071,7 @@ export async function Router() {
          <option value="EXPEDITADO COMPLETO">EXPEDITADO COMPLETO</option>
          </td>
          <td>
-         <input name="comentarios" style="width: 150px; ${
+         <input id="comentarios-tr" name="comentarios" style="width: 150px; ${
            user === "Traffic" || user === "TrafficH"
              ? "background-color: #b9e1ff;"
              : ""
@@ -2094,7 +2086,7 @@ export async function Router() {
               onlyOnce: true
             }); 
             
-            sugerencias();
+            sugerencias();            
        } else 
      if (localStorage.tabConveyance === "true") {
         if(localStorage.username === "Public") return null;
@@ -2368,6 +2360,19 @@ export async function Router() {
       }                
      }
   });
+
+  d.addEventListener('focusin', (event) => {
+    const focusedElement = event.target;
+        if(focusedElement.matches(".llegadareal")){
+         if(focusedElement.value !== "01/01/0001 00:00"){
+           //console.log(focusedElement.value);
+           d.getElementById("comentarios-tr").value = "CARGADA CON MP";
+         }
+        } else if(focusedElement.matches(".bol-tr")){
+          d.getElementById("comentarios-tr").value = "SHIPPER EN CAJA";
+        }
+});
+ 
   span.addEventListener("click", function() {
     modal.style.display = "none";
   });

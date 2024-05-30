@@ -55,6 +55,7 @@ import { itemEV } from "./ItemEV.js";
        keyUpdate = snapshot.key;
        updateItem(updateValue, keyUpdate);
       });
+
     }    
     tabActive("equipov"); 
     
