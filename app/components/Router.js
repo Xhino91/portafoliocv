@@ -1981,7 +1981,7 @@ export async function Router() {
 
              onValue(refItem, (snapshot) => {
                let item = snapshot.val();
-               //¿ console.log(item);
+               // console.log(item);
                              
                d.getElementById("formulario-tr").dataset.value = `${e.target.parentNode.id}`;
                d.querySelector(".modal-body-tr").innerHTML = `
@@ -2020,7 +2020,7 @@ export async function Router() {
          </td>
          <td><input name="cporte" style="width: 70px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.cporte}"></td>
          <td><input name="tracking" style="width: 90px;" type="text"  value="${item.tracking}" value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""}></td>
-         <td><input class="bol-tr" name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
+         <td><input class="bol-tr" data-ev="${item.ruta}" name="bol" style="width: 75px; ${user === "Traffic" || user === "TrafficH" ? "background-color: #b9e1ff;" : ""}" type="text"  value="${item.bol}"></td>
          <td><input name="ruta" style="width: 75px;" type="text"  value="${item.ruta}" ${user === "Traffic" || user === "TrafficH" ? "disabled" : ""} required></td>
          <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
          <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
@@ -2365,11 +2365,17 @@ export async function Router() {
     const focusedElement = event.target;
         if(focusedElement.matches(".llegadareal")){
          if(focusedElement.value !== "01/01/0001 00:00"){
-           //console.log(focusedElement.value);
-           d.getElementById("comentarios-tr").value = "CARGADA CON MP";
+          if(focusedElement.dataset.ev.includes("HS") || focusedElement.dataset.ev.includes("CU")){
+            console.log(focusedElement);
+            d.getElementById("comentarios-tr").value = "CARGADA CON MP";
+
+          }
          }
         } else if(focusedElement.matches(".bol-tr")){
-          d.getElementById("comentarios-tr").value = "SHIPPER EN CAJA";
+          if(focusedElement.dataset.ev.includes("HS") || focusedElement.dataset.ev.includes("CU")){
+            console.log(focusedElement);
+            d.getElementById("comentarios-tr").value = "SHIPPER EN CAJA";
+          }
         }
 });
  
