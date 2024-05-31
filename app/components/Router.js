@@ -2025,7 +2025,7 @@ export async function Router() {
          <td><input name="cliente" style="width: 150px;" type="text"  value="${item.cliente}" disabled></td>
          <td><input name="proveedor" type="text" style="width: 150px;"  value="${item.proveedor}" ${user === "Traffic" ? "disabled" : ""}></td>
          <td><input name="llegadaprogramada" style="width: 150px;" type="text" name="hour" id="hour" ${user === "Traffic" ? "disabled" : ""} value="${item.citaprogramada}"></td>
-         <td  ><input id="llegadareal" class="llegadareal" name="llegadareal" style="width: 150px; ${item.llegadareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}"   name="hour" type="text" id="hour"  value="${item.llegadareal === "01/01/0001 00:00" ? item.llegadareal : item.llegadareal}">${item.llegadareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
+         <td  ><input id="llegadareal" data-ev="${item.ruta}" class="llegadareal" name="llegadareal" style="width: 150px; ${item.llegadareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}"   name="hour" type="text" id="hour"  value="${item.llegadareal === "01/01/0001 00:00" ? item.llegadareal : item.llegadareal}">${item.llegadareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
          <td class="" ><input id="salidareal" name="salidareal" style="width: 150px; ${item.salidareal === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.salidareal === "01/01/0001 00:00" ? item.salidareal : item.salidareal}">${item.salidareal === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
          <td class="" ><input id="eta" name="eta" style="width: 150px; ${item.eta === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.eta === "01/01/0001 00:00" ? item.eta : item.eta}">${item.eta === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
          <td class="" ><input id="llegadadestino" name="llegadadestino" style="width: 150px; ${item.llegadadestino === "01/01/0001 00:00" ? "background-color: #9bbeff;" : ""}" type="text" name="hour" id="hour"  value="${item.llegadadestino === "01/01/0001 00:00" ? item.llegadadestino : item.llegadadestino}">${item.llegadadestino === "01/01/0001 00:00" ? `<i class="fa-solid fa-stopwatch"></i>` : ""}</td>
@@ -2374,7 +2374,7 @@ export async function Router() {
         } else if(focusedElement.matches(".bol-tr")){
           if(focusedElement.dataset.ev.includes("HS") || focusedElement.dataset.ev.includes("CU")){
             console.log(focusedElement);
-            d.getElementById("comentarios-tr").value = "SHIPPER EN CAJA";
+            d.getElementById("comentarios-tr").value = "SHIPPER EN SISTEMA";
           }
         }
 });
