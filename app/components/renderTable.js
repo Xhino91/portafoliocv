@@ -10,25 +10,13 @@ export function renderTable(items){
     
       let itemsArray = Object.entries(items);
 
-    
-
-
-      let orderItems = itemsArray.sort((o1, o2) => {
-        if (o1[1].citaprogramada < o2[1].citaprogramada || o1[1].citaprogramada < o2[1].citaprogramada) {
-          return -1;
-        } else if (o1[1].citaprogramada > o2[1].citaprogramada || o1[1].citaprogramada > o2[1].citaprogramada) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
 
       
 
       let html = "";
      
       //console.log(orderItems);
-      orderItems.forEach((item) => (html += Item(item)));
+      itemsArray.forEach((item) => (html += Item(item)));
      
     
       d.getElementById("thtable").innerHTML =  `
