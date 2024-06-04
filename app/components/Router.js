@@ -255,7 +255,69 @@ export async function Router() {
     if (e.target.matches(".importXlsx")) {
      // console.log(dbXlsx);
      // agruparRepetidos(dbXlsx);
+    function rutaProveedor(e){
+      let valor = "";
+      const rutasretornables = [
+        "CU2074 - HI LEX, EL MARQUES",
+        "CU2673 - HI LEX, EL MARQUES",
+        "CU2077 - MUBEA DE MEXICO",
+        "CU2082 - WINDSOR MOLD",
+        "CU2214 - WINDSOR MOLD, AEROPUERTO",
+        "CU2005 - WINDSOR MOLD, AEROPUERTO",
+        "CUK005 - WINDSOR MOLD, AEROPUERTO",
+        "CUX005 - WINDSOR MOLD, AEROPUERTO",
+        "CU2037 - MEXAURIA S DE RL",
+        "CU2985 - MEXAURIA S DE RL",
+        "CU2079 - MARTINREA HONSEL MEXICO",
+        "CU2166 - MARTINREA HONSEL MEXICO",
+        "CU2179 - STANDARD PROFIL",
+        "CU2020 - AUTOTEK MEXICO",
+        "CU2143 - AUTOTEK MEXICO",
+        "CU2144 - AUTOTEK MEXICO",
+        "CU2682 - AUTOTEK MEXICO",
+        "CU2036 - BENTELER DE MEXICO",
+        "CU2038 - BENTELER DE MEXICO",
+        "CU2001 - ULTRA MFG SA DE CV",
+        "CU2014 - ULTRA MFG SA DE CV",
+        "CU2216 - CLIMATE SYSTEMS",
+        "CU2589 - BROSE MEXICO, EL MARQUES",
+        "CU2034 - FLEX N GATE MEXICO",
+        "CU2041 - FLEX N GATE MEXICO",
+        "CU2042 - FLEX N GATE MEXICO",
+        "CU2043 - FLEX N GATE MEXICO",
+        "CU2044 - FLEX N GATE MEXICO",
+        "CU2045 - FLEX N GATE MEXICO",
+        "CU2046 - FLEX N GATE MEXICO",
+        "CU2047 - FLEX N GATE MEXICO",
+        "CU2048 - FLEX N GATE MEXICO",
+        "CU2137 - FLEX N GATE MEXICO",
+        "CU2138 - FLEX N GATE MEXICO",
+        "CU2230 - FLEX N GATE MEXICO",
+        "CU2232 - FLEX N GATE MEXICO",
+        "CU2233 - FLEX N GATE MEXICO",
+        "CUK044 - FLEX N GATE MEXICO",
+        "CUK137 - FLEX N GATE MEXICO",
+        "HS2004 - SA AUTOMOTIVE PUEBLA",
+        "HS2045 - CARCOUSTIC IND QUERETARO",
+        "HS2072 - THYSSENKRUPP PUEBLA",
+        "HS2252 - THYSSENKRUPP PUEBLA",
+        "HS2078 - BROSE PUEBLA",
+        "HS2079 - BROSE PUEBLA",
+        "HS2280 - BROSE PUEBLA",
+        "HSK078 - BROSE PUEBLA",
+        "HS2100 - NTN BEARING CORP AGUASCALIENTES",
+        "HS2106 - BROSE MEXICO EL MARQUES"
+      ];
 
+      rutasretornables.forEach(element => {
+
+        if(element.includes(e.slice(2,6))){
+        valor = element.slice(8,33);
+        }
+      });
+
+      return valor;
+    }
      /* for (var clave in repetidos) {
         if (repetidos.hasOwnProperty(clave) && repetidos[clave].length > 1) {
      // console.log("Ruta Lechera:", repetidos[clave]);
@@ -372,8 +434,7 @@ export async function Router() {
         //  console.log(element[1]);
 
         if (element[1].match("24") || element[1].match("HS")) {
-          //console.log(element[1]);
-
+          
           let body = {
             unidad: "",
             caja: "",
@@ -383,7 +444,7 @@ export async function Router() {
             ruta: `${element[1]}`,
             operador: "",
             cliente: "FORD HERMOSILLO",
-            proveedor: `${element[2]}`,
+            proveedor: `${element[1].match("HS") ? rutaProveedor(element[1]) : element[2]}`,
             citaprogramada: `${element[3]}`,
             llegadareal: "01/01/0001 00:00",
             salidareal: "01/01/0001 00:00",
@@ -394,6 +455,7 @@ export async function Router() {
             status: "PENDIENTE",
             comentarios: "",
           };
+
           push(ref(db, "items"), body);
 
         } else if (
@@ -401,7 +463,6 @@ export async function Router() {
           element[1].match("CU") ||
           element[1].match("DH")
         ) {
-          //console.log(element[1]);
 
           let body = {
             unidad: "",
@@ -412,7 +473,7 @@ export async function Router() {
             ruta: `${element[1]}`,
             operador: "",
             cliente: "FORD CUAUTITLAN",
-            proveedor: `${element[2]}`,
+            proveedor: `${element[1].match("CU") ? rutaProveedor(element[1]) : element[2]}`,
             citaprogramada: `${element[3]}`,
             llegadareal: "01/01/0001 00:00",
             salidareal: "01/01/0001 00:00",
@@ -423,7 +484,8 @@ export async function Router() {
             status: "PENDIENTE",
             comentarios: "",
           };
-          push(ref(db, "items"), body);
+            push(ref(db, "items"), body);
+
         } else if (element[1].match("GMMEX")) {
           //console.log(element[1]);
 
@@ -1404,8 +1466,6 @@ export async function Router() {
     if (e.target.matches(".search-form") && localStorage.tabViajes === "true") {
       //console.log(e.target);
       let query = localStorage.getItem("apiSearch").toUpperCase() || "";
-
-      console.log(query);
 
       let item = d.querySelectorAll(".item");
       item.forEach((e) => {
