@@ -13,7 +13,7 @@ import { itemEV } from "./ItemEV.js";
  export function cargarVistaEquipoV(user) {
 
   const db = getDatabase(), d = document;
-  const refItems = ref(db, "items");
+  const refItems = ref(db, "retornables");
   let modal = document.getElementById("myModal");
   let keyUpdate = null, initialData = {},
   updateValue = {}; 
@@ -40,6 +40,16 @@ import { itemEV } from "./ItemEV.js";
     if(!d.getElementById(`${keyUpdate}`) || d.getElementById(`${keyUpdate}`) === null) return;
    
     d.getElementById(`${keyUpdate}`).innerHTML = `${itemEV(updateValue, keyUpdate)}`;
+
+    if(updateValue.status !== "PENDIENTE"){
+      d.getElementById(`${keyUpdate}`).classList.remove("active-pending");
+    d.getElementById(`${keyUpdate}`).classList.add("active-run");
+    } else{
+      d.getElementById(`${keyUpdate}`).classList.remove("active-run");
+      d.getElementById(`${keyUpdate}`).classList.add("active-pending");
+    }
+    
+
     d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
        setTimeout(function () {
          d.getElementById(`${keyUpdate}`).classList.remove("parpadeo"); // Elimina la clase de parpadeo después de 1 segundo

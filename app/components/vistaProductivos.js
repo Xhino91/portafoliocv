@@ -11,7 +11,7 @@ import { Item } from "./Item.js";
 
   export function cargarVistaProductiva(user) {
     const db = getDatabase(), d = document;
-    const refItems = ref(db, "items");
+    const refItems = ref(db, "productivos");
     let modal = document.getElementById("myModal");
     let keyUpdate = null, initialData = {},
     updateValue = {}; 
@@ -66,8 +66,18 @@ import { Item } from "./Item.js";
       if(!d.getElementById(`${keyUpdate}`) || d.getElementById(`${keyUpdate}`) === null) return;
             
       d.getElementById(`${keyUpdate}`).innerHTML = `${Item(updateValue, keyUpdate)}`;
+      
+      if(updateValue.status !== "PENDIENTE"){
+        d.getElementById(`${keyUpdate}`).classList.remove("active-pending");
+      d.getElementById(`${keyUpdate}`).classList.add("active-run");
+      } else{
+        d.getElementById(`${keyUpdate}`).classList.remove("active-run");
+        d.getElementById(`${keyUpdate}`).classList.add("active-pending");
+      }
+      
+
       d.getElementById(`${keyUpdate}`).classList.add("parpadeo");
-               setTimeout(function () {
+      setTimeout(function () {
                  d.getElementById(`${keyUpdate}`).classList.remove("parpadeo");
                }, 1000); 
            

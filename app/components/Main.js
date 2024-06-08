@@ -24,6 +24,7 @@ export function Main() {
   <button class="btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "Public" || localStorage.username === "TrafficH" || localStorage.username === "CVehicular" ? "display: none;" : ""}">Agregar Registro</button>
   <button  class="remolque btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}">Agregar Remolque</button>
   <button  class="unidad btn btn-primary fw-bold  reg" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${localStorage.username === "CVehicular" ? "" : "display: none;"}">Agregar Unidad</button>
+  <button class="btn btn-primary fw-bold  cap_xls" type="button"style="${localStorage.username === "Calidad"  ? "" : "display: none;"}" >Reporte Capturas</button>
   </div>  
 
   <form id="formulario">

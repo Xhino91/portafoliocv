@@ -27,6 +27,7 @@ import { cargarVistaRemolques } from "../components/vistaRemolques.js";
 import { cargarVistaEquipoV } from "../components/vistaRetornables.js";
 import { cargarVistaUnidades } from "../components/vistaUnidades.js";
 import { Login } from "./login.js";
+import { repHistorial } from "./repCapturas.js";
 
 
 
@@ -203,7 +204,7 @@ export async function Router() {
 
 
    let  user = localStorage.username,
-  hash = window.location.hash;
+        hash = window.location.hash;
 
  cambiarVista(user, hash);
   
@@ -225,33 +226,7 @@ export async function Router() {
         tr.classList.add("active-select");
       }
     }
-    /*if(e.target.matches(".fa-filter")){
-      d.getElementById("filtro").classList.toggle("filtro");
-    
-      if(localStorage.filter === "false"){
-        localStorage.filter = "true";
-      let html = [];
-      let items = d.querySelectorAll(".item");
-      items.forEach(item => {
-        if(!item.classList.contains("filter")){
-          html.push(item);
-        }
-      });
-      //console.log(html);
-      d.getElementById("table_body").innerHTML="";
-      html.forEach(element => {
-        d.getElementById("table_body").insertAdjacentElement("beforeend", element);
-      });       
-      } else if(localStorage.filter === "true"){
-        localStorage.filter = "false";
-        if(localStorage.tabViajes === "true"){
-          if(localStorage.vpro === "true") cargarVistaProductiva();
-          if(localStorage.vret === "true") cargarVistaEquipoV();
-        }
-      }
-        
-      
-    }*/
+
     if (e.target.matches(".importXlsx")) {
      // console.log(dbXlsx);
      // agruparRepetidos(dbXlsx);
@@ -318,101 +293,7 @@ export async function Router() {
 
       return valor;
     }
-     /* for (var clave in repetidos) {
-        if (repetidos.hasOwnProperty(clave) && repetidos[clave].length > 1) {
-     // console.log("Ruta Lechera:", repetidos[clave]);
-           let lechera = repetidos[clave];
-     //    console.log(clave);
 
-      //  await set(ref(db, "viajes/" + clave), lechera);
-
-          lechera.forEach(async element => {
-            // console.log(item);
-            let hora = element[5].slice(11, 17),
-              arrF = element[5].slice(1, -6).split("/"),
-              concatF = "";
-            element[5] = concatF.concat(
-              arrF[1],
-              "/0",
-              arrF[0],
-              "/",
-              arrF[2],
-              " ",
-              hora
-            );
-
-            let body = {
-              unidad: "",
-              caja: "",
-              cporte: "",
-              tracking: `${element[0]}`,
-              bol: "",
-              ruta: `${element[1]}`,
-              operador: "",
-              cliente: "BRP",
-              proveedor: `${element[4]}`,
-              citaprogramada: `${element[5]}`,
-              llegadareal: "01/01/0001 00:00",
-              salidareal: "01/01/0001 00:00",
-              eta: "01/01/0001 00:00",
-              llegadadestino: "01/01/0001 00:00",
-              salidadestino: "01/01/0001 00:00",
-              llegada: "A TIEMPO",
-              status: "PENDIENTE",
-              comentarios: "SIN COMENTARIOS",
-            };
-           // console.log(body);
-           await push(ref(db, `viajes/${clave}`), body);
-          });
-       
-      } else {
-      //  console.log("Ruta sencilla:", repetidos[clave]);
-      let sencilla = repetidos[clave][0];
-    
-          
-            // console.log(item);
-            let hora = sencilla[5].slice(11, 17),
-              arrF = sencilla[5].slice(1, -6).split("/"),
-              concatF = "";
-            sencilla[5] = concatF.concat(
-              arrF[1],
-              "/0",
-              arrF[0],
-              "/",
-              arrF[2],
-              " ",
-              hora
-            );
-          
-
-          let body = {
-            unidad: "",
-            caja: "",
-            cporte: "",
-            tracking: `${sencilla[0]}`,
-            bol: "",
-            ruta: `${sencilla[1]}`,
-            operador: "",
-            cliente: "BRP",
-            proveedor: `${sencilla[4]}`,
-            citaprogramada: `${sencilla[5]}`,
-            llegadareal: "01/01/0001 00:00",
-            salidareal: "01/01/0001 00:00",
-            eta: "01/01/0001 00:00",
-            llegadadestino: "01/01/0001 00:00",
-            salidadestino: "01/01/0001 00:00",
-            llegada: "A TIEMPO",
-            status: "PENDIENTE",
-            comentarios: "SIN COMENTARIOS",
-          };
-        //  console.log(body);
-        await push(ref(db, `viajes/${clave}`), body);
-      
-        }
-
-         
-     }*/
-      
      dbXlsx.forEach((item) => {
         // console.log(item);
         let hora = item[3].slice(11, 17),
@@ -433,7 +314,54 @@ export async function Router() {
      dbXlsx.forEach(async (element) => {
         //  console.log(element[1]);
 
-        if (element[1].match("24") || element[1].match("HS")) {
+        if(element[1].match("HS")){
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "FORD HERMOSILLO",
+            proveedor: `${element[1].match("HS") ? rutaProveedor(element[1]) : element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "",
+          };
+
+          push(ref(db, "retornables"), body);
+        } else
+        if(element[1].match("CU")){
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "FORD CUAUTITLAN",
+            proveedor: `${element[1].match("CU") ? rutaProveedor(element[1]) : element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "",
+          };
+            push(ref(db, "retornables"), body);
+        } else
+        if (element[1].match("24")) {
           
           let body = {
             unidad: "",
@@ -456,13 +384,10 @@ export async function Router() {
             comentarios: "",
           };
 
-          push(ref(db, "items"), body);
+          push(ref(db, "productivos"), body);
 
-        } else if (
-          element[1].match("23") ||
-          element[1].match("CU") ||
-          element[1].match("DH")
-        ) {
+        } else
+        if (element[1].match("23") ||  element[1].match("DH")) {
 
           let body = {
             unidad: "",
@@ -484,9 +409,10 @@ export async function Router() {
             status: "PENDIENTE",
             comentarios: "",
           };
-            push(ref(db, "items"), body);
+            push(ref(db, "productivos"), body);
 
-        } else if (element[1].match("GMMEX")) {
+        } else
+        if (element[1].match("GMMEX")) {
           //console.log(element[1]);
 
           let body = {
@@ -509,8 +435,9 @@ export async function Router() {
             status: "PENDIENTE",
             comentarios: "",
           };
-          push(ref(db, "items"), body);
-        } else if (element[2].match("MEX3")) {
+          push(ref(db, "productivos"), body);
+        } else
+        if (element[2].match("MEX3")) {
           //console.log(element[1]);
 
           let body = {
@@ -533,8 +460,9 @@ export async function Router() {
             status: "PENDIENTE",
             comentarios: "",
           };
-          push(ref(db, "items"), body);
-        } else if (element[1].match("BRP")) {
+          push(ref(db, "productivos"), body);
+        } else
+        if (element[1].match("BRP")) {
           //console.log(element[1]);
 
           let body = {
@@ -557,7 +485,7 @@ export async function Router() {
             status: "PENDIENTE",
             comentarios: "",
           };
-          push(ref(db, "items"), body);
+          push(ref(db, "productivos"), body);
         }
       });
       
@@ -1170,10 +1098,24 @@ export async function Router() {
     } else if (e.target.matches(".generar_xls")) {
       //let $dataTable = d.getElementById("table_xls");
       generar_xls("table_xls", "Reporte");
+    } else if (e.target.matches(".cap_xls")) {
+        if (localStorage.tabViajes === "true") {
+          let isConfirm = confirm("¿Generar Reporte?");
+  
+          if (isConfirm) {
+          repHistorial();
+          }
+  
+        }
     } else if (e.target.matches(".delete") || e.target.matches(".fa-trash")) {
       if (localStorage.tabViajes === "true"){
-        let keyDelete = `/items/${e.target.id}`, 
-        isConfirm = confirm("¿Eliminar Registro?");
+        let keyDelete = null;
+       
+       if(localStorage.vpro === "false" && localStorage.vret === "false" && localStorage.vhis === "true"){
+         keyDelete = `/historialviajes/${e.target.id}`;
+       }
+
+        let isConfirm = confirm("¿Eliminar Registro?");
 
         if (isConfirm) {
           await remove(ref(db, keyDelete))
@@ -1225,8 +1167,9 @@ export async function Router() {
         }
       }
     } else if (e.target.matches(".fa-stopwatch")){
+
       let date = new Date();
-      d.getElementById(`${e.target.previousSibling.id}`).value = `${date.toLocaleString().slice(0, 16)}`;
+      d.getElementById(`${e.target.previousSibling.id}`).value = `${date.toLocaleString().slice(0, 15)}`;
       d.getElementById(`${e.target.previousSibling.id}`).focus();
     } else if (e.target.matches(".control") || e.target.matches(".fa-car")) {
       
@@ -1251,11 +1194,9 @@ export async function Router() {
       .then((snapshot) => {
           if (snapshot.exists()) {
           let unit = snapshot.val();
-          
-
+        
           let unitArray = Object.entries(unit);
          
-
           unitArray.forEach(unit => {
      
            if(e.target.id === unit[1].unidad){      
@@ -1290,11 +1231,9 @@ export async function Router() {
  
        <input name="statusunit" rows="1" cols="500" class="mb-3 commit" style="width: 1000px; background: #69beff; font-weight: bold; color: black;" placeholder="Comentarios de Sobre la Unidad" value="${unit[1].comentarios.toUpperCase()}">
        </div>
-         `;
+             `;
  
         d.getElementById("controlV").dataset.unit = unit[0];
- 
-        
  
            } 
           });
@@ -1312,8 +1251,8 @@ export async function Router() {
       if(e.target.dataset.conveyance){
         modal.innerHTML = ``;
         d.getElementById("controlV").dataset.conveyance = "";
-        get(refItemConvs)
-      .then((snapshot) => {
+        await get(refItemConvs)
+         .then((snapshot) => {
           if (snapshot.exists()) {
           let conv = snapshot.val();
           
@@ -1426,7 +1365,7 @@ export async function Router() {
         </tbody>      
               </div>` 
       
-          );
+              );
 
           d.getElementById("controlV").dataset.conveyance = conv[0];
             
@@ -1450,7 +1389,8 @@ export async function Router() {
           
 
 
-     }
+    }
+    
     return;
   });
   d.getElementById("excelFileInput").addEventListener("change", (e) => {
@@ -1462,7 +1402,6 @@ export async function Router() {
   d.addEventListener("submit", async (e) => {
     e.preventDefault();
   // console.log(e.target);
-
     if (e.target.matches(".search-form") && localStorage.tabViajes === "true") {
       //console.log(e.target);
       let query = localStorage.getItem("apiSearch").toUpperCase() || "";
@@ -1473,7 +1412,7 @@ export async function Router() {
         if (!query) {
           e.classList.remove("filter");
           if(localStorage.vpro === "true") cargarVistaProductiva();
-          if(localStorage.vret === "true") cargarVistaEquipoV();
+          //if(localStorage.vret === "true") cargarVistaEquipoV();
          // if(localStorage.vhis === "true") cargarVistaHistorial();
           return false;
         } else if (
@@ -1557,8 +1496,14 @@ export async function Router() {
             fecha: e.target.fecha.value.toUpperCase(),
             ubicacion: e.target.ubicacion.value.toUpperCase(),
             comentarios: e.target.comentarios.value.toUpperCase(),
+          },
+          reg = {
+            date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+            user: localStorage.username,
+            body: body
           };
           await push(ref(db, "subitem"), body);
+          await push(ref(db, "registrosunit"), reg);
           /* await ajax({
         url: `${api.ITEMS}.json`,
         options,
@@ -1607,8 +1552,21 @@ export async function Router() {
             llegada: e.target.llegada.value.toUpperCase(),
             status: e.target.status.value.toUpperCase(),
             comentarios: e.target.comentarios.value.toUpperCase(),
+          },
+          reg = {
+            date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+            user: localStorage.username,
+            body: body
           };
-          await push(ref(db, "items"), body);
+
+          if(body.ruta.includes("HS") || body.ruta.includes("CU") || body.ruta.includes("RT")){
+            await push(ref(db, "retornables"), body);
+            await push(ref(db, "registros"), reg);
+          } else {
+            await push(ref(db, "productivos"), body);
+            await push(ref(db, "registros"), reg);
+          }
+          
           /* await ajax({
          url: `${api.ITEMS}.json`,
          options,
@@ -1635,8 +1593,14 @@ export async function Router() {
             verificacion: e.target.verificacion.value.toUpperCase(),
             comentarios: e.target.comentarios.value.toUpperCase(),
             reporte: "SIN REPORTE",
+          },
+          reg = {
+            date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+            user: localStorage.username,
+            body: body
           };
          await push(ref(db, "subitem1"), body);
+         await push(ref(db, "registrosrem"), reg);
         }
       }
 
@@ -1868,16 +1832,81 @@ export async function Router() {
             llegada: e.target.llegada.value.toUpperCase(),
             status: e.target.status.value.toUpperCase(),
             comentarios: e.target.comentarios.value.toUpperCase(),
+          },
+          reg = {
+            date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+            user: localStorage.username,
+            body: body
           };
 
           if(body.status === "COMPLETO" || body.status === "EXPEDITADO COMPLETO"){
-            if(!body.bol || !body.cporte){
-              alert("Ingresar BOL / CPORTE");
-              return
-            } else update(ref(db), { ["/items/" + keyValue]: body });  
+            if(localStorage.vpro === "false" && localStorage.vret === "false" && localStorage.vhis === "true"){
+              await update(ref(db), { ["/historialviajes/" + keyValue]: body });
+              await push(ref(db, "registros"), reg);
+              modal.style.display = "none";
+             } else {
+              let isConfirm = confirm("Finalizar Viaje?");
+            if (isConfirm) {
+              if(!body.bol || !body.cporte){
+                alert("Ingresar BOL / CPORTE");
+                return
+              } else {
+  
+                if(localStorage.vpro === "true" && localStorage.vret === "false" && localStorage.vhis === "false"){
+                  await push(ref(db, "historialviajes"), body);
+                  await remove(ref(db, keyValue));
+                  await push(ref(db, "registros"), reg);
+                  modal.style.display = "none";
+               }
+               if(localStorage.vpro === "false" && localStorage.vret === "true" && localStorage.vhis === "false"){
+                await push(ref(db, "historialviajes"), body);
+                await remove(ref(db, keyValue));
+                await push(ref(db, "registros"), reg);
+                modal.style.display = "none";
+               }
+              }
+            }
+             }          
           }
-          update(ref(db), { ["/items/" + keyValue]: body });
+
+          if(body.status === "CANCELADO" || body.status === "BROKEREADO" || body.status === "DRY RUN" || body.status === "TONU"){
+            let isConfirm = confirm("Cancelar Viaje?");
+            if (isConfirm) {
+              if(localStorage.vpro === "true" && localStorage.vret === "false" && localStorage.vhis === "false"){
+                await push(ref(db, "historialviajes"), body);
+                await remove(ref(db, keyValue));
+                await push(ref(db, "registros"), reg);
+                modal.style.display = "none";
+             }
+             if(localStorage.vpro === "false" && localStorage.vret === "true" && localStorage.vhis === "false"){
+              await push(ref(db, "historialviajes"), body);
+              await remove(ref(db, keyValue));
+              await push(ref(db, "registros"), reg);
+              modal.style.display = "none";
+             }
+             if(localStorage.vpro === "false" && localStorage.vret === "false" && localStorage.vhis === "true"){
+              await update(ref(db), { ["/historialviajes/" + keyValue]: body });
+              await push(ref(db, "registros"), reg);
+              modal.style.display = "none";
+             }
+            }            
+          }
+          
+          if(localStorage.vpro === "true" && localStorage.vret === "false" && localStorage.vhis === "false"){
+            await update(ref(db), { ["/productivos/" + keyValue]: body });
+            await push(ref(db, "registros"), reg);
+            modal.style.display = "none";
+         }
+         if(localStorage.vpro === "false" && localStorage.vret === "true" && localStorage.vhis === "false"){
+          await update(ref(db), { ["/retornables/" + keyValue]: body });
+          await push(ref(db, "registros"), reg);
           modal.style.display = "none";
+         }
+         if(localStorage.vpro === "false" && localStorage.vret === "false" && localStorage.vhis === "true"){
+          await update(ref(db), { ["/historialviajes/" + keyValue]: body });
+          await push(ref(db, "registros"), reg);
+          modal.style.display = "none";
+         }
         }
       } else
       if (localStorage.tabConveyance === "true") {     
@@ -1899,10 +1928,17 @@ export async function Router() {
               verificacion: e.target.verificacion.value.toUpperCase(),
               comentarios: e.target.comentarios.value.toUpperCase(),
               reporte: e.target.reporte.value.toUpperCase(),
-            }
+            },
+            reg = {
+              date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+              user: localStorage.username,
+              body: body
+            };
 
-              update(ref(db), { ["/subitem1/" + keyValue]: body });        }
-               modal.style.display = "none";
+              await update(ref(db), { ["/subitem1/" + keyValue]: body }); 
+              await push(ref(db, "registrosrem"), reg);
+              modal.style.display = "none";
+          }
       } else
       if (localStorage.tabUnit == "true") {
         if (e.target.dataset.value) {
@@ -1924,14 +1960,20 @@ export async function Router() {
              fecha: e.target.fecha.value.toUpperCase(),
              ubicacion: e.target.ubicacion.value.toUpperCase(),
              comentarios: e.target.comentarios.value.toUpperCase(),
+           },
+           reg = {
+             date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+             user: localStorage.username,
+             body: body
            }
 
-         update(ref(db), { ["/subitem/" + keyValue]: body });
+         await update(ref(db), { ["/subitem/" + keyValue]: body });
+         await push(ref(db, "registrosunit"), reg);
          modal.style.display = "none";
        }
      } 
     } else if (e.target.matches(".update")) {
-          console.log(e.target);
+
 
         //UPDATE
          //console.log(e.target.textarea[0].value.toUpperCase());
@@ -1946,7 +1988,7 @@ export async function Router() {
          if (!e.target.id.value) {
          
           if(keyUnit !== ""){
-            let body = {}
+            let body = {}, reg = {};
             let refUnit = ref(db, `subitem/${keyUnit}`);
             modal.style.display = "block"; 
               onValue(refUnit, (snapshot) => {
@@ -1967,9 +2009,15 @@ export async function Router() {
                 unidad: unit.unidad,
                 uservicio: unit.uservicio,
                 verificacion: unit.verificacion
+              },
+              reg = {
+                date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+                user: localStorage.username,
+                body: body
               };
 
-              update(ref(db), { ["/subitem/" + keyUnit]: body }); 
+              update(ref(db), { ["/subitem/" + keyUnit]: body });
+              push(ref(db, "registrosunit"), reg); 
               },{
                 onlyOnce: true
               });
@@ -1980,7 +2028,7 @@ export async function Router() {
 
           if(keyConv !== ""){
 
-          let body = {}
+          let body = {}, reg = {};
           let refRem = ref(db, `subitem1/${keyConv}`);
           modal.style.display = "block"; 
             onValue(refRem, (snapshot) => {
@@ -2000,9 +2048,15 @@ export async function Router() {
               tipo: conv.tipo,
               ubicacion: e.target.ubicacion.value.toUpperCase(),
               verificacion: conv.verificacion,
+            },
+            reg = {
+              date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+              user: localStorage.username,
+              body: body
             };
 
             update(ref(db), { ["/subitem1/" + keyConv]: body });
+            push(ref(db, "registrosrem"), reg);
             },{
               onlyOnce: true
             });
@@ -2033,10 +2087,19 @@ export async function Router() {
   d.addEventListener("dblclick", (e) => {
     if(e.target.parentNode.tagName === "TR"){
      if (localStorage.tabViajes === "true") {
+      let refItem = null;
         if(localStorage.username === "CVehicular" || localStorage.username === "Public") return null;
 
-          const db = getDatabase(),
-          refItem = ref(db, `items/${e.target.parentNode.id}`);
+          const db = getDatabase();
+          if(localStorage.vpro === "true" && localStorage.vret === "false" && localStorage.vhis === "false"){
+             refItem = ref(db, `productivos/${e.target.parentNode.id}`);
+          }
+          if(localStorage.vpro === "false" && localStorage.vret === "true" && localStorage.vhis === "false"){
+             refItem = ref(db, `retornables/${e.target.parentNode.id}`);
+          }
+          if(localStorage.vpro === "false" && localStorage.vret === "false" && localStorage.vhis === "true"){
+             refItem = ref(db, `historialviajes/${e.target.parentNode.id}`);
+          }
           modal.style.display = "block";
 
              onValue(refItem, (snapshot) => {
@@ -2420,25 +2483,20 @@ export async function Router() {
       }                
      }
   });
-
   d.addEventListener('focusin', (event) => {
     const focusedElement = event.target;
         if(focusedElement.matches(".llegadareal")){
          if(focusedElement.value !== "01/01/0001 00:00"){
           if(focusedElement.dataset.ev.includes("HS") || focusedElement.dataset.ev.includes("CU")){
-            console.log(focusedElement);
             d.getElementById("comentarios-tr").value = "CARGADA CON MP";
-
           }
          }
         } else if(focusedElement.matches(".bol-tr")){
           if(focusedElement.dataset.ev.includes("HS") || focusedElement.dataset.ev.includes("CU")){
-            console.log(focusedElement);
             d.getElementById("comentarios-tr").value = "SHIPPER EN SISTEMA";
           }
         }
-});
- 
+  });
   span.addEventListener("click", function() {
     modal.style.display = "none";
   });

@@ -14,7 +14,7 @@ import { ItemHistory } from "./ItemHistory.js";
  // Función para cargar la vista productiva para el usuario dado
  export function cargarVistaHistorial(user) {
   const db = getDatabase(), d = document;
-  const refItems = ref(db, "items");
+  const refItems = ref(db, "historialviajes");
   let modal = document.getElementById("myModal");
   let keyUpdate = null, initialData = {},
   updateValue = {};  
