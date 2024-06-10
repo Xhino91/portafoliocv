@@ -68,7 +68,7 @@ const alertColor = (item) => {
       } 
    }
    if(user === "InhouseTOL"){
-      if(!item.ruta.match("STE") && !item.ruta.match("BRP")){
+      if(!item.cliente.match("STELLANTIS")){
          return "display: none;"
       }
    }
