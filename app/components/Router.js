@@ -486,6 +486,50 @@ export async function Router() {
             comentarios: "",
           };
           push(ref(db, "productivos"), body);
+        } else if (element[0].match("E")) {
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "STELLANTIS",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "",
+          };
+          push(ref(db, "productivos"), body);
+        } else if (element[0].match("R")) {
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "STELLANTIS",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "",
+          };
+          push(ref(db, "retornables"), body);
         }
       });
       
