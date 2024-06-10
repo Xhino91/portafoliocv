@@ -314,6 +314,52 @@ export async function Router() {
      dbXlsx.forEach(async (element) => {
         //  console.log(element[1]);
 
+        if (element[1].match("417713") || element[1].match("388359") || element[1].match("376384") || element[1].match("422383") || element[1].match("422385")) {
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "STELLANTIS",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "",
+          };
+          push(ref(db, "productivos"), body);
+        } else 
+        if (element[1].match("417714") || element[1].match("388360") || element[1].match("376385") || element[1].match("422384") || element[1].match("422385")) {
+          let body = {
+            unidad: "",
+            caja: "",
+            cporte: "",
+            tracking: `${element[0]}`,
+            bol: "",
+            ruta: `${element[1]}`,
+            operador: "",
+            cliente: "STELLANTIS",
+            proveedor: `${element[2]}`,
+            citaprogramada: `${element[3]}`,
+            llegadareal: "01/01/0001 00:00",
+            salidareal: "01/01/0001 00:00",
+            eta: "01/01/0001 00:00",
+            llegadadestino: "01/01/0001 00:00",
+            salidadestino: "01/01/0001 00:00",
+            llegada: "A TIEMPO",
+            status: "PENDIENTE",
+            comentarios: "",
+          };
+          push(ref(db, "productivos"), body);         
+        } else
         if(element[1].match("HS")){
           let body = {
             unidad: "",
@@ -486,50 +532,6 @@ export async function Router() {
             comentarios: "",
           };
           push(ref(db, "productivos"), body);
-        } else if (element[0].match("E")) {
-          let body = {
-            unidad: "",
-            caja: "",
-            cporte: "",
-            tracking: `${element[0]}`,
-            bol: "",
-            ruta: `${element[1]}`,
-            operador: "",
-            cliente: "STELLANTIS",
-            proveedor: `${element[2]}`,
-            citaprogramada: `${element[3]}`,
-            llegadareal: "01/01/0001 00:00",
-            salidareal: "01/01/0001 00:00",
-            eta: "01/01/0001 00:00",
-            llegadadestino: "01/01/0001 00:00",
-            salidadestino: "01/01/0001 00:00",
-            llegada: "A TIEMPO",
-            status: "PENDIENTE",
-            comentarios: "",
-          };
-          push(ref(db, "productivos"), body);
-        } else if (element[0].match("R")) {
-          let body = {
-            unidad: "",
-            caja: "",
-            cporte: "",
-            tracking: `${element[0]}`,
-            bol: "",
-            ruta: `${element[1]}`,
-            operador: "",
-            cliente: "STELLANTIS",
-            proveedor: `${element[2]}`,
-            citaprogramada: `${element[3]}`,
-            llegadareal: "01/01/0001 00:00",
-            salidareal: "01/01/0001 00:00",
-            eta: "01/01/0001 00:00",
-            llegadadestino: "01/01/0001 00:00",
-            salidadestino: "01/01/0001 00:00",
-            llegada: "A TIEMPO",
-            status: "PENDIENTE",
-            comentarios: "",
-          };
-          push(ref(db, "retornables"), body);
         }
       });
       
