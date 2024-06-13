@@ -118,6 +118,7 @@ export async function Router() {
   function sugerencias () {
     const operadores = [
       "ANTONIO GLENN VASQUEZ LOPEZ",
+      "ORLANDO VARGAS QUIJADA",
       "JOSE TRINIDAD ANGELES VELAZQUEZ",
       "FERNANDO MENDOZA GUTIERREZ",
       "SERGIO RUBEN CAMACHO SEGOVIANO",
