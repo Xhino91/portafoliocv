@@ -1298,7 +1298,7 @@ export async function Router() {
       if(e.target.dataset.conveyance){
         modal.innerHTML = ``;
         d.getElementById("controlV").dataset.conveyance = "";
-        await get(refItemConvs)
+         get(refItemConvs)
          .then((snapshot) => {
           if (snapshot.exists()) {
           let conv = snapshot.val();
