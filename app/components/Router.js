@@ -1091,7 +1091,6 @@ export async function Router() {
    <td><input id="ruta" name="ruta" style="width: 75px;" type="text"></input></td>
    <td>
    <select class="form-select form-select-sm" style="width: 150px; height: 24px; font-size: 12px;" name="cliente" id="cliente">
-    <option value="CLIENTE NUEVO">CLIENTE NUEVO</option>  
      <option value="FORD CUAUTITLAN">FORD CUAUTITLAN</option>
      <option value="FORD HERMOSILLO">FORD HERMOSILLO</option>
      <option value="MULTILOG">MULTILOG</option>
@@ -1101,6 +1100,7 @@ export async function Router() {
      <option value="ACTIVE">ACTIVE</option>
      <option value="BRP">BRP</option>
      <option value="AMAZON">AMAZON</option>
+     <option value="CLIENTE NUEVO">CLIENTE NUEVO</option>  
    </td>
    <td><input id="proveedor" name="proveedor" type="text" style="width: 80px;"></input></td>
    <td><input id="citaprogramada" name="citaprogramada" type="datetime-local" ></td>
