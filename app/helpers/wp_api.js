@@ -8,7 +8,7 @@ const API_KEY = "AIzaSyBWjS2VrmW7eFUd34YL13VACi_6OX9Q7VI",
   MESSAGIN_SENDERING_ID = "7596898763",
   APP_ID = "1:7596898763:web:2e32c7bf836d72846c9e4e",
   USER = "proyectosintlogis@gmail.com",
-  PASS = "Ontime2024%";
+  //PASS = "Ontime2024%";
 
 export default {
   API_KEY,
